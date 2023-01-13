@@ -11,10 +11,16 @@
 #include "main.h"
 
 //---------------------------------------------------------------------------
+// Defines
+//---------------------------------------------------------------------------
+#define SYS_TICK_PRIORITY			(15U)
+#define SYS_TICK_1MS				(1000U)
+
+//---------------------------------------------------------------------------
 // Static function prototypes
 //---------------------------------------------------------------------------
 static void initMicrocontroller(void);
-
+static ErrorStatus initSysTick(uint32_t tickPriority);
 static void SystemClock_Config(void);
 
 //---------------------------------------------------------------------------
@@ -27,9 +33,15 @@ static void SystemClock_Config(void);
   */
 int main(void)
 {
+	uint8_t status;
+
 	initMicrocontroller();
 
 	SystemClock_Config();
+
+	status = initSysTick(SYS_TICK_PRIORITY);
+
+	if(!status) ;
 
 	// Call init function for freertos objects (in freertos.c)
 	MX_FREERTOS_Init();
@@ -37,7 +49,7 @@ int main(void)
 	// Start scheduler
 	osKernelStart();
 
-    /* Loop forever */
+    // Loop forever
 	for(;;);
 }
 
@@ -46,11 +58,36 @@ int main(void)
 //---------------------------------------------------------------------------
 
 /**
+  * @brief	This function is used to initialize SysTick. The SysTick is configured
+  * 		to have 1ms time base with a dedicated Tick interrupt priority
+  * @param 	tickPriority Tick interrupt priority
+  * @retval	ErrorStatus Status
+  */
+static ErrorStatus initSysTick(uint32_t tickPriority)
+{
+	// Configure the SysTick to have interrupt in 1ms time basis
+	if(SysTick_Config(SystemCoreClock / SYS_TICK_1MS) > 0U)
+	{
+		return ERROR;
+	}
+
+	// Configure the SysTick IRQ priority
+	if(tickPriority < (1UL << __NVIC_PRIO_BITS))
+	{
+		NVIC_SetPriority(SysTick_IRQn, tickPriority);
+	} else
+		{
+			return ERROR;
+		}
+
+	return SUCCESS;
+}
+
+/**
   * @brief 	This function is used to initialize the main nodes of the microcontroller to run.
-  * It performs the following:
-  * 	Configure Flash prefetch, Instruction cache, Data cache;
-  * 	Set NVIC Group Priority to 4;
-  * 	Configure the SysTick to generate an interrupt each 1 millisecond
+  * 		It performs the following:
+  * 			Configure Flash prefetch, Instruction cache, Data cache;
+  * 			Set NVIC Group Priority to 4;
   * @retval None
   */
 static void initMicrocontroller(void)
