@@ -13,6 +13,8 @@
 //---------------------------------------------------------------------------
 // Static function prototypes
 //---------------------------------------------------------------------------
+static void initMicrocontroller(void);
+
 static void initMemory(void);
 
 static void SystemClock_Config(void);
@@ -27,6 +29,8 @@ static void SystemClock_Config(void);
   */
 int main(void)
 {
+	initMicrocontroller();
+
 	SystemClock_Config();
 
 	// Call init function for freertos objects (in freertos.c)
@@ -42,6 +46,19 @@ int main(void)
 //---------------------------------------------------------------------------
 // Initialization functions
 //---------------------------------------------------------------------------
+
+/**
+  * @brief 	This function is used to initialize the main nodes of the microcontroller to run.
+  * It performs the following:
+  * 	Configure Flash prefetch, Instruction cache, Data cache;
+  * 	Set NVIC Group Priority to 4;
+  * 	Configure the SysTick to generate an interrupt each 1 millisecond
+  * @retval None
+  */
+static void initMicrocontroller(void)
+{
+	initMemory();
+}
 
 /**
   * @brief System Clock Configuration
