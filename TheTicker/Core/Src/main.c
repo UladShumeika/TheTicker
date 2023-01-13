@@ -13,6 +13,8 @@
 //---------------------------------------------------------------------------
 // Static function prototypes
 //---------------------------------------------------------------------------
+static void initMemory(void);
+
 static void SystemClock_Config(void);
 
 //---------------------------------------------------------------------------
@@ -48,6 +50,17 @@ int main(void)
 void SystemClock_Config(void)
 {
 
+}
+
+/**
+  * @brief 	This function used to configure Flash prefetch, Instruction cache, Data cache
+  * @retval None
+  */
+static void initMemory(void)
+{
+	FLASH_PrefetchBufferCmd(ENABLE);
+	FLASH_InstructionCacheCmd(ENABLE);
+	FLASH_DataCacheCmd(ENABLE);
 }
 
 #ifdef  USE_FULL_ASSERT
