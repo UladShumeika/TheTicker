@@ -59,6 +59,9 @@ static void initMicrocontroller(void)
 	FLASH_PrefetchBufferCmd(ENABLE);
 	FLASH_InstructionCacheCmd(ENABLE);
 	FLASH_DataCacheCmd(ENABLE);
+
+	// Set NVIC Group Priority to 4
+	NVIC_PriorityGroupConfig(NVIC_PriorityGroup_4);
 }
 
 /**
