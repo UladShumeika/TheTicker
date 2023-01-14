@@ -105,7 +105,19 @@ static ErrorStatus initSystemClock(void)
 
 	// Configure SYSCLK
 	RCC_SYSCLKConfig(RCC_SYSCLKSource_PLLCLK);
-	while(RCC_GetSYSCLKSource() != RCC_CFGR_SWS_PLL)
+	while(RCC_GetSYSCLKSource() != RCC_CFGR_SWS_PLL);
+
+	// Configure PCLK1
+	RCC_PCLK1Config(RCC_HCLK_Div4);
+
+	// Configure PCLK2
+	RCC_PCLK2Config(RCC_HCLK_Div2);
+
+	// Update the global variable SystemCoreClock
+	SystemCoreClockUpdate();
+
+	// Update SysTick with new SystemCoreClock
+	initSysTick(SYS_TICK_PRIORITY);
 
 	return SUCCESS;
 }
