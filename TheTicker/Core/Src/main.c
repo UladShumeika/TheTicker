@@ -13,6 +13,11 @@
 //---------------------------------------------------------------------------
 // Defines
 //---------------------------------------------------------------------------
+#define PLLM						(4U)
+#define PLLN						(180U)
+#define PLLP						(2U)
+#define PLLQ						(4U)
+
 #define SYS_TICK_PRIORITY			(15U)
 #define SYS_TICK_1MS				(1000U)
 
@@ -71,6 +76,19 @@ static ErrorStatus initSystemClock(void)
 	RCC_HSEConfig(RCC_HSE_ON);
 	while(!RCC_WaitForHSEStartUp());
 
+	// Configure the main PLL
+	RCC_PLLCmd(DISABLE);
+	while(RCC_GetFlagStatus(RCC_FLAG_PLLRDY));
+
+	RCC_PLLConfig(RCC_PLLSource_HSE, PLLM, PLLN, PLLP, PLLQ);
+	while(!RCC_GetFlagStatus(RCC_FLAG_PLLRDY));
+
+	// Activate the Over-Drive mode
+	PWR_OverDriveCmd(ENABLE);
+	while(!PWR_GetFlagStatus(PWR_FLAG_ODRDY));
+
+	PWR_OverDriveSWCmd(ENABLE);
+	while(!PWR_GetFlagStatus(PWR_FLAG_ODSWRDY));
 }
 
 /**
