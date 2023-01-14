@@ -98,7 +98,10 @@ static ErrorStatus initSystemClock(void)
 		return ERROR;
 	}
 
-
+	// Configure HCLK
+	RCC_PCLK1Config(RCC_HCLK_Div16); // Set the highest APBx dividers in order to ensure that it doesn't go
+	RCC_PCLK2Config(RCC_HCLK_Div16); // through a non-spec phase whatever we decrease or increase HCLK
+	RCC_HCLKConfig(RCC_SYSCLK_Div1);
 
 	return SUCCESS;
 }
