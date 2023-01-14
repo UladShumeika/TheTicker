@@ -103,6 +103,10 @@ static ErrorStatus initSystemClock(void)
 	RCC_PCLK2Config(RCC_HCLK_Div16); // through a non-spec phase whatever we decrease or increase HCLK
 	RCC_HCLKConfig(RCC_SYSCLK_Div1);
 
+	// Configure SYSCLK
+	RCC_SYSCLKConfig(RCC_SYSCLKSource_PLLCLK);
+	while(RCC_GetSYSCLKSource() != RCC_CFGR_SWS_PLL)
+
 	return SUCCESS;
 }
 
