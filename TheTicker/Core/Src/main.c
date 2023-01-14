@@ -90,6 +90,17 @@ static ErrorStatus initSystemClock(void)
 
 	PWR_OverDriveSWCmd(ENABLE);
 	while(!PWR_GetFlagStatus(PWR_FLAG_ODSWRDY));
+
+	// Configure FLASH LATENCY
+	FLASH_SetLatency(FLASH_Latency_5);
+	if((READ_BIT((FLASH->ACR), FLASH_ACR_LATENCY)) != FLASH_Latency_5)
+	{
+		return ERROR;
+	}
+
+
+
+	return SUCCESS;
 }
 
 /**
