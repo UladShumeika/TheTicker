@@ -81,6 +81,7 @@ static ErrorStatus initSystemClock(void)
 	while(RCC_GetFlagStatus(RCC_FLAG_PLLRDY));
 
 	RCC_PLLConfig(RCC_PLLSource_HSE, PLLM, PLLN, PLLP, PLLQ);
+	RCC_PLLCmd(ENABLE);
 	while(!RCC_GetFlagStatus(RCC_FLAG_PLLRDY));
 
 	// Activate the Over-Drive mode
