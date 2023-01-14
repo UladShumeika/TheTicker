@@ -66,6 +66,11 @@ static ErrorStatus initSystemClock(void)
 	// Configure the main internal regulator output voltage
 	RCC_APB1PeriphClockCmd(RCC_APB1ENR_PWREN, ENABLE);
 	PWR_MainRegulatorModeConfig(PWR_Regulator_Voltage_Scale1);
+
+	// Configure the External High Speed oscillator (HSE)
+	RCC_HSEConfig(RCC_HSE_ON);
+	while(!RCC_WaitForHSEStartUp());
+
 }
 
 /**
