@@ -21,7 +21,7 @@
 //---------------------------------------------------------------------------
 static void initMicrocontroller(void);
 static ErrorStatus initSysTick(uint32_t tickPriority);
-static void SystemClock_Config(void);
+static ErrorStatus initSystemClock(void);
 
 //---------------------------------------------------------------------------
 // Main function
@@ -37,11 +37,11 @@ int main(void)
 
 	initMicrocontroller();
 
-	SystemClock_Config();
+	status = initSystemClock();
+	if(!status);
 
 	status = initSysTick(SYS_TICK_PRIORITY);
-
-	if(!status) ;
+	if(!status);
 
 	// Call init function for freertos objects (in freertos.c)
 	MX_FREERTOS_Init();
@@ -56,6 +56,17 @@ int main(void)
 //---------------------------------------------------------------------------
 // Initialization functions
 //---------------------------------------------------------------------------
+
+/**
+  * @brief This function is used to initialize system clock
+  * @retval ErrorStatus Status
+  */
+static ErrorStatus initSystemClock(void)
+{
+	// Configure the main internal regulator output voltage
+	RCC_APB1PeriphClockCmd(RCC_APB1ENR_PWREN, ENABLE);
+	PWR_MainRegulatorModeConfig(PWR_Regulator_Voltage_Scale1);
+}
 
 /**
   * @brief	This function is used to initialize SysTick. The SysTick is configured
@@ -99,15 +110,6 @@ static void initMicrocontroller(void)
 
 	// Set NVIC Group Priority to 4
 	NVIC_PriorityGroupConfig(NVIC_PriorityGroup_4);
-}
-
-/**
-  * @brief System Clock Configuration
-  * @retval None
-  */
-void SystemClock_Config(void)
-{
-
 }
 
 #ifdef  USE_FULL_ASSERT
