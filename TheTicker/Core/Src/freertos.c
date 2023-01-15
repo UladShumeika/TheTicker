@@ -31,7 +31,9 @@ void vApplicationGetIdleTaskMemory( StaticTask_t **ppxIdleTaskTCBBuffer, StackTy
   * @param  None
   * @retval None
   */
-void MX_FREERTOS_Init(void)
+void freeRtosInit(void)
 {
-
+	#ifdef HEARTBEAT
+		HEARTBEAT_freeRtosInit();
+	#endif
 }

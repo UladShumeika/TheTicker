@@ -32,8 +32,7 @@ extern "C" {
 //---------------------------------------------------------------------------
 // External function prototypes
 //---------------------------------------------------------------------------
-void Error_Handler(void);
-void MX_FREERTOS_Init(void);
+void freeRtosInit(void);
 
 #ifdef __cplusplus
 }
