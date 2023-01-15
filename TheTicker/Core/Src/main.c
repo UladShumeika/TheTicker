@@ -49,7 +49,7 @@ int main(void)
 	if(!status);
 
 	// Call init function for freertos objects (in freertos.c)
-	MX_FREERTOS_Init();
+	freeRtosInit();
 
 	// Start scheduler
 	osKernelStart();
