@@ -9,6 +9,25 @@
 static osThreadId sendToTheMatrixHandle;
 
 //---------------------------------------------------------------------------
+// FreeRTOS's threads
+//---------------------------------------------------------------------------
+
+/**
+* @brief Function implementing the sending to the matrix thread.
+* @param argument: Not used
+* @retval None
+*/
+void SendToTheMatrixTask(void const * argument)
+{
+
+	/* Infinite loop */
+	for(;;)
+	{
+		osDelay(1);
+	}
+}
+
+//---------------------------------------------------------------------------
 // Initialization functions
 //---------------------------------------------------------------------------
 
@@ -21,6 +40,6 @@ void LEDMATRIX_freeRtosInit(void)
 {
 	// Create the thread(s)
 	// definition and creation of HeartbeatTask
-//	osThreadDef(SendToTheMatrix, SendToTheMatrixTask, osPriorityLow, 0, 128);
-//	sendToTheMatrixHandle = osThreadCreate(osThread(SendToTheMatrix), NULL);
+	osThreadDef(SendToTheMatrix, SendToTheMatrixTask, osPriorityLow, 0, 128);
+	sendToTheMatrixHandle = osThreadCreate(osThread(SendToTheMatrix), NULL);
 }

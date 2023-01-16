@@ -13,5 +13,6 @@
 // External function prototypes
 //---------------------------------------------------------------------------
 void LEDMATRIX_freeRtosInit(void);
+void SendToTheMatrixTask(void const * argument);
 
 #endif /* __LEDMATRIX_H */
