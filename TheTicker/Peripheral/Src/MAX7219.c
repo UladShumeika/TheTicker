@@ -2,3 +2,6 @@
 // Includes
 //---------------------------------------------------------------------------
 #include "MAX7219.h"
+#include "custom_stm32f429_spi.h"
+
+#define USE_SPI1
