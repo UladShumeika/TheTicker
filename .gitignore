@@ -1,5 +1,6 @@
 # ignored directories
 TheTicker/.settings/
+TheTicker/.vscode
 TheTicker/Debug/
 
 # Prerequisites
