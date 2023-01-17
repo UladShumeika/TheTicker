@@ -38,11 +38,22 @@ typedef enum
   */   
 typedef enum
 { 
-  GPIO_Mode_IN   = 0x00,    // GPIO input mode
-  GPIO_Mode_OUT  = 0x01,    // GPIO output mode
-  GPIO_Mode_AF   = 0x02,    // GPIO alternate function mode
-  GPIO_Mode_AN   = 0x03     // GPIO analog mode
-} GPIOMode_TypeDef;
+	SPI_GPIO_Mode_IN   = 0x00,		// GPIO input mode
+	SPI_GPIO_Mode_OUT  = 0x01,  	// GPIO output mode
+	SPI_GPIO_Mode_AF   = 0x02,  	// GPIO alternate function mode
+	SPI_GPIO_Mode_AN   = 0x03   	// GPIO analog mode
+} SPI_GPIOMode_TypeDef;
+
+/** 
+  * @brief  GPIO Output Maximum frequency enumeration 
+  */  
+typedef enum
+{ 
+	SPI_GPIO_Low_Speed     = 0x00, 		// low speed
+	SPI_GPIO_Medium_Speed  = 0x01, 		// medium speed
+	SPI_GPIO_Fast_Speed    = 0x02, 		// fast speed
+	SPI_GPIO_High_Speed    = 0x03  		// high speed
+} SPI_GPIOSpeed_TypeDef;
 
 //---------------------------------------------------------------------------
 // External function prototypes
