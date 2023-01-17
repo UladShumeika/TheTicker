@@ -17,7 +17,8 @@
 //---------------------------------------------------------------------------
 // Static function prototypes
 //---------------------------------------------------------------------------
-static void SPI_gpioInitPins(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin);
+static void SPI_gpioInitPins(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin, uint8_t GPIO_AF);
+static uint16_t SPI_GPIO_GetPortSource(GPIO_TypeDef* GPIOx);
 
 //---------------------------------------------------------------------------
 // Library Functions
@@ -34,6 +35,18 @@ static void SPI_gpioInitPins(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin);
 // {
 
 // }
+
+/**
+ * @brief	This function return port source number (0 - GPIOA; 1 - GPIOB; 2 - GPIOC and so on. For example see RCC_AHB1LPENR register)
+ * @param	*GPIOx: A pointer to GPIOx peripheral to be used where x is between A to F
+ * @retVal	Return port source number (0 - GPIOA; 1 - GPIOB; 2 - GPIOC and so on. For example see RCC_AHB1LPENR register)
+ */
+static uint16_t SPI_GPIO_GetPortSource(GPIO_TypeDef* GPIOx)
+{
+	// Get port source number
+	// Offset from GPIOA
+	return ((uint32_t)GPIOx - (GPIOA_BASE)) / ((GPIOB_BASE) - (GPIOA_BASE)); // Difference between 2 GPIO addresses
+}
 
 /**
  * @brief	This function initializes the GPIO peripheral to be used with the selected SPI
