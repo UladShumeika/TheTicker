@@ -67,15 +67,18 @@ static uint16_t SPI_GPIO_GetPortSource(GPIO_TypeDef* GPIOx)
  * 			Output mode - Output push-pull;
  * 			Resistor configuration - No pull
  * @param	GPIOx: A pointer to GPIOx peripheral to be used where x is between A to F
- * @param	GPIO_Pin: Specifies the GPIO pins to be configured. This parameter can be any value of 
- * 					  @ref GPIO_pins_define
+ * @param	GPIO_Pin: Specifies the GPIO pins to be configured. This parameter can be any value of @ref GPIO_pins_define
  * @retval	None
 */
-static void SPI_gpioInitPins(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin)
+static void SPI_gpioInitPins(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin, uint8_t GPIO_AF)
 {
 	uint32_t pinPos = 0x00, pos = 0x00 , currentPin = 0x00;
+	uint32_t temp;
 
 	// Check the parameters
+
+	// Enable clock port
+	SPI_GPIO_EnableClock(GPIOx);
 
 	for (pinPos = 0x00; pinPos < 0x10; pinPos++) // 0x10 -> 16 ()
 	{	
@@ -102,9 +105,9 @@ static void SPI_gpioInitPins(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin)
       		GPIOx->PUPDR |= (((uint32_t)SPI_GPIO_PuPd_NOPULL) << (pinPos * 2));
 
       		// Set alternate function
-      		GPIOx->AFR[pinPos >> 0x03] &= ~(0x0F << (4 * (pinPos & 0x07));
-
-      		//GPIOx->AFR[pinpos >> 0x03] = (GPIOx->AFR[pinpos >> 0x03] & ~(0x0F << (4 * (pinpos & 0x07)))) | (Alternate << (4 * (pinpos & 0x07)));
+      		GPIOx->AFR[pinPos >> 0x03] &= ~((pinPos & (uint32_t)0x07) * 4);
+      		temp = (uint32_t)GPIO_AF << ((pinPos & (uint32_t)0x07) * 4);
+      		GPIOx->AFR[pinPos >> 0x03] |= temp;
 		}
 	}
 }
