@@ -19,6 +19,7 @@
 //---------------------------------------------------------------------------
 static void SPI_gpioInitPins(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin, uint8_t GPIO_AF);
 static uint16_t SPI_GPIO_GetPortSource(GPIO_TypeDef* GPIOx);
+static void SPI_GPIO_EnableClock(GPIO_TypeDef* GPIOx);
 
 //---------------------------------------------------------------------------
 // Library Functions
@@ -37,9 +38,19 @@ static uint16_t SPI_GPIO_GetPortSource(GPIO_TypeDef* GPIOx);
 // }
 
 /**
- * @brief	This function return port source number (0 - GPIOA; 1 - GPIOB; 2 - GPIOC and so on. For example see RCC_AHB1LPENR register)
+ * @brief	This function enables clock for the selected port
+ * @param 	*GPIOx: A pointer to GPIOx peripheral to be used where x is between A to F
+ * @retval	None
+ */
+static void SPI_GPIO_EnableClock(GPIO_TypeDef* GPIOx)
+{
+	RCC->AHB1ENR |= (1 << SPI_GPIO_GetPortSource(GPIOx));
+}
+
+/**
+ * @brief	This function returns port source number (0 - GPIOA; 1 - GPIOB; 2 - GPIOC and so on. For example see RCC_AHB1LPENR register)
  * @param	*GPIOx: A pointer to GPIOx peripheral to be used where x is between A to F
- * @retVal	Return port source number (0 - GPIOA; 1 - GPIOB; 2 - GPIOC and so on. For example see RCC_AHB1LPENR register)
+ * @retval	Return port source number (0 - GPIOA; 1 - GPIOB; 2 - GPIOC and so on. For example see RCC_AHB1LPENR register)
  */
 static uint16_t SPI_GPIO_GetPortSource(GPIO_TypeDef* GPIOx)
 {
