@@ -1,0 +1,51 @@
+/**
+  ******************************************************************************
+  * @file    custom_stm32f429_spi.h
+  * @author  Ulad Shumeika
+  * @version v1.0
+  * @date    16-January-2023
+  * @brief   This file contains all the functions prototypes for the SPI firmware
+  *          library.  
+  ******************************************************************************
+  */
+  
+//---------------------------------------------------------------------------
+// Define to prevent recursive inclusion
+//---------------------------------------------------------------------------
+#ifndef __CUSTOM_SPI_H
+#define __CUSTOM_SPI_H
+
+//---------------------------------------------------------------------------
+// Includes
+//---------------------------------------------------------------------------
+#include "stm32f4xx.h"
+
+//---------------------------------------------------------------------------
+// Typedefs and enumerations
+//---------------------------------------------------------------------------
+
+/**
+ * @brief  SPI PinsPack enumeration to select pins combination for SPI
+ */
+typedef enum 
+{
+	SPI_PinsPack_1 = 0x00,    // select PinsPack1 from Pinout table for specific SPI
+	SPI_PinsPack_2 = 0x01     // select PinsPack2 from Pinout table for specific SPI
+} SPI_PinsPack_t;
+
+/** 
+  * @brief  GPIO configuration mode enumeration 
+  */   
+typedef enum
+{ 
+  GPIO_Mode_IN   = 0x00,    // GPIO input mode
+  GPIO_Mode_OUT  = 0x01,    // GPIO output mode
+  GPIO_Mode_AF   = 0x02,    // GPIO alternate function mode
+  GPIO_Mode_AN   = 0x03     // GPIO analog mode
+} GPIOMode_TypeDef;
+
+//---------------------------------------------------------------------------
+// External function prototypes
+//---------------------------------------------------------------------------
+
+#endif /* __CUSTOM_SPI_H */
