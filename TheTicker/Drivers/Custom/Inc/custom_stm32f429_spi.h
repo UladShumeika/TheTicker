@@ -64,6 +64,16 @@ typedef enum
 	SPI_GPIO_OType_OD 	= 0x01		// open-drain
 } SPI_GPIOOType_TypeDef;
 
+/**
+  * @brief  GPIO configuration pull-up pull-down enumeration
+  */
+typedef enum
+{
+	SPI_GPIO_PuPd_NOPULL 	= 0x00,		// no pull
+	SPI_GPIO_PuPd_UP		= 0x01,		// pull-up
+	SPI_GPIO_PuPd_DOWN		= 0x02		// pull-down
+} SPI_GPIOPuPd_TypeDef;
+
 //---------------------------------------------------------------------------
 // External function prototypes
 //---------------------------------------------------------------------------
