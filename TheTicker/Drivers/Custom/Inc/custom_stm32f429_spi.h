@@ -25,6 +25,33 @@
 //---------------------------------------------------------------------------
 
 /**
+  * @brief SPI init structure definition
+  */
+typedef struct
+{
+	SPI_TypeDef SPIx;					//
+
+//	SPI_pinsPack_t pinsPack;			//
+
+	uint16_t SPI_BaudRatePrescaler;		//
+
+//	TM_SPI_Mode_t SPI_Mode_t,       \
+//		uint16_t SPI_Mode,              \
+//		uint16_t SPI_FirstBit
+
+} SPI_initTypeDef;
+
+/**
+ * @brief  SPI modes selection enumeration
+ */
+typedef enum {
+	SPI_Mode_0,		// clock polarity low, clock phase 1st edge
+	SPI_Mode_1, 	// clock polarity low, clock phase 2nd edge
+	SPI_Mode_2, 	// clock polarity high, clock phase 1st edge
+	SPI_Mode_3  	// clock polarity high, clock phase 2nd edge
+} SPI_mode_t;
+
+/**
  * @brief  SPI pinsPack enumeration to select pins combination for SPI
  */
 typedef enum 
