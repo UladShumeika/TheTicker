@@ -68,7 +68,7 @@ typedef enum
 	GPIO_MODE_INPUT				= 0x00UL,		/* GPIO input mode */
 	GPIO_MODE_OUTPUT_PP			= 0x01UL,		/* GPIO output push pull mode */
 	GPIO_MODE_OUTPUT_OD			= 0x11UL,		/* GPIO output open drain mode */
-	GPIO_MODE_ALTERNATE_PP		= 0x10UL,		/* GPIO alternate function push pull mode */
+	GPIO_MODE_ALTERNATE_PP		= 0x02UL,		/* GPIO alternate function push pull mode */
 	GPIO_MODE_ALTERNATE_OD		= 0x12UL,		/* GPIO alternate function open drain mode */
 	GPIO_MODE_ANALOG			= 0x03UL		/* GPIO analog mode */
 } USH_GPIO_modes;
