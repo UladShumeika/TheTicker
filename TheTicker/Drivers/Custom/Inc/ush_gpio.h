@@ -1,8 +1,8 @@
 //---------------------------------------------------------------------------
 // Define to prevent recursive inclusion
 //---------------------------------------------------------------------------
-#ifndef __USH_SPI_H
-#define __USH_SPI_H
+#ifndef __USH_GRIO_H
+#define __USH_GRIO_H
 
 //---------------------------------------------------------------------------
 // Includes
@@ -141,6 +141,13 @@ typedef enum
 //---------------------------------------------------------------------------
 // External function prototypes
 //---------------------------------------------------------------------------
+
+/**
+ * @brief 	This function initializes the GPIOx peripheral according to the specified parameters in the USH_GPIO_initTypeDef.
+ * @param 	initStructure - a pointer to a USH_GPIO_initTypeDef structure that contains the configuration information
+ * 						    for the specified GPIO peripheral.
+ * @retval	None
+ */
 void GPIO_init(USH_GPIO_initTypeDef *initStructure);
 
-#endif /* __USH_SPI_H */
+#endif /* __USH_GRIO_H */
