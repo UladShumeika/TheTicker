@@ -106,15 +106,16 @@ typedef enum
 	GPIO_Af6_SP3		= 0x06UL		/* SPI3/I2S3 alternate function mapping */
 } USH_GPIO_alternate;
 
-
-
-
-
-
-
 //---------------------------------------------------------------------------
 // External function prototypes
 //---------------------------------------------------------------------------
 
+#define GPIO_PIN_MASK              ((uint32_t)0x0000FFFF) 	/* PIN mask for assert test */
+#define IS_GPIO_PIN(PIN)           (((PIN) & GPIO_PIN_MASK ) != (uint32_t)0x00)
+
+//---------------------------------------------------------------------------
+// External function prototypes
+//---------------------------------------------------------------------------
+void GPIO_init(USH_GPIO_initTypeDef *initStructure);
 
 #endif /* __USH_SPI_H */
