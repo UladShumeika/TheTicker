@@ -110,8 +110,29 @@ typedef enum
 // External function prototypes
 //---------------------------------------------------------------------------
 
-#define GPIO_PIN_MASK              ((uint32_t)0x0000FFFF) 	/* PIN mask for assert test */
-#define IS_GPIO_PIN(PIN)           (((PIN) & GPIO_PIN_MASK ) != (uint32_t)0x00)
+#define GPIO_PIN_MASK              		((uint32_t)0x0000FFFF) 	/* PIN mask for assert test */
+#define IS_GPIO_PIN(PIN)           		(((PIN) & GPIO_PIN_MASK ) != (uint32_t)0x00)
+
+#define IS_GPIO_MODE(MODE)		   		(((MODE) == GPIO_MODE_INPUT)     | \
+										 ((MODE) == GPIO_MODE_OUTPUT)    | \
+										 ((MODE) == GPIO_MODE_ALTERNATE) | \
+										 ((MODE) == GPIO_MODE_ANALOG))
+
+#define IS_GPIO_PULL(PULL)		   		(((PULL) == GPIO_NOPULL) | \
+										 ((PULL) == GPIO_PULLUP) | \
+										 ((PULL) == GPIO_PULLDOWN))
+
+#define IS_GPIO_SPEED(SPEED)	   		(((SPEED) == GPIO_SPEED_LOW)    | \
+								    	 ((SPEED) == GPIO_SPEED_MEDIUM) | \
+										 ((SPEED) == GPIO_SPEED_HIGH)   | \
+								    	 ((SPEED) == GPIO_SPEED_VERY_HIGH))
+
+#define IS_GPIO_ALTERNATE(ALTERNATE)	(((ALTERNATE) == GPIO_Af5_SPI1) | \
+										 ((ALTERNATE) == GPIO_Af5_SPI2) | \
+										 ((ALTERNATE) == GPIO_Af5_SPI4) | \
+										 ((ALTERNATE) == GPIO_Af5_SPI5) | \
+										 ((ALTERNATE) == GPIO_Af5_SPI6) | \
+										 ((ALTERNATE) == GPIO_Af6_SPI3))
 
 //---------------------------------------------------------------------------
 // External function prototypes
