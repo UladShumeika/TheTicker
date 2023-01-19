@@ -29,6 +29,17 @@
 #define GPIO_NUMBER           				16U
 
 //---------------------------------------------------------------------------
+// Macros
+//---------------------------------------------------------------------------
+
+#define IS_SPI_ALL_PERIPH(PERIPH) (((PERIPH) == SPI1) || \
+                                   ((PERIPH) == SPI2) || \
+                                   ((PERIPH) == SPI3) || \
+                                   ((PERIPH) == SPI4) || \
+                                   ((PERIPH) == SPI5) || \
+                                   ((PERIPH) == SPI6))
+
+//---------------------------------------------------------------------------
 // Static function prototypes
 //---------------------------------------------------------------------------
 static void SPI_gpioInitPins(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin, uint8_t GPIO_AF);
