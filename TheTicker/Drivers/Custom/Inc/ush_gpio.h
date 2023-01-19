@@ -99,8 +99,6 @@ typedef enum
  */
 typedef enum
 {
-	GPIO_AF_NONE		= 0x00UL,		/* Alternate function not used */
-
 	GPIO_Af5_SPI1 		= 0x05UL,		/* SPI1/I2S1 alternate function mapping */
 	GPIO_Af5_SPI2 		= 0x05UL,		/* SPI2/I2S2 alternate function mapping */
 	GPIO_Af5_SPI4 		= 0x05UL,		/* SPI4/I2S4 alternate function mapping */
