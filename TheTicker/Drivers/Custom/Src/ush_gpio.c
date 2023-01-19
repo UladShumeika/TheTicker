@@ -24,7 +24,7 @@ typedef struct
 	                           	   This parameter can be a value of @ref USH_GPIO_pull */
 
 	uint32_t Speed;     		/* The speed for the selected pins.
-	                           	   This parameter can be a value of @ref GPIO_speed_define */
+	                           	   This parameter can be a value of @ref USH_GPIO_speed */
 
 	uint32_t Alternate;  		/* Peripheral to be connected to the selected pins.
 	                               This parameter can be a value of @ref GPIO_Alternate_function_selection */
@@ -75,6 +75,13 @@ typedef enum
 	GPIO_PULLDOWN		= 0x10UL
 } USH_GPIO_pull;
 
-
-
-
+/**
+ * @brief GPIO speed enumeration
+ */
+typedef enum
+{
+	GPIO_SPEED_LOW			= 0x00UL,
+	GPIO_SPEED_MEDIUM		= 0x01UL,
+	GPIO_SPEED_HIGH			= 0x10UL,
+	GPIO_SPEED_VERY_HIGH	= 0x11UL
+} USH_GPIO_speed;
