@@ -39,6 +39,9 @@
                                    ((PERIPH) == SPI5) || \
                                    ((PERIPH) == SPI6))
 
+#define IS_SPI_PINSPACK(PINSPACK) (((PINSPACK) == SPI_pinsPack_1) || \
+								   ((PINSPACK) == SPI_pinsPack_2))
+
 //---------------------------------------------------------------------------
 // Static function prototypes
 //---------------------------------------------------------------------------
