@@ -26,7 +26,7 @@
 #define SPI_FirstBit_MSB					((uint16_t)0x0000)
 #define SPI_CRCPolynomial					((uint16_t)0x0000)
 
-#define GPIO_NUMBER           				16U
+
 
 //---------------------------------------------------------------------------
 // Macros
