@@ -27,7 +27,7 @@ typedef struct
 	                           	   This parameter can be a value of @ref USH_GPIO_speed */
 
 	uint32_t Alternate;  		/* Peripheral to be connected to the selected pins.
-	                               This parameter can be a value of @ref GPIO_Alternate_function_selection */
+	                               This parameter can be a value of @ref USH_GPIO_alternate */
 } USH_GPIO_initTypeDef;
 
 /**
@@ -85,3 +85,16 @@ typedef enum
 	GPIO_SPEED_HIGH			= 0x10UL,
 	GPIO_SPEED_VERY_HIGH	= 0x11UL
 } USH_GPIO_speed;
+
+/**
+ * @brief GPIO alternate function enumeration
+ */
+typedef enum
+{
+	GPIO_Af5_SPI1 		= 0x05UL,
+	GPIO_Af5_SPI2 		= 0x05UL,
+	GPIO_Af5_SPI3 		= 0x05UL,
+	GPIO_Af5_SPI4 		= 0x05UL,
+	GPIO_Af5_SPI5 		= 0x05UL,
+	GPIO_Af5_SPI6 		= 0x05UL
+} USH_GPIO_alternate;
