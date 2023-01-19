@@ -21,7 +21,7 @@ typedef struct
 	                           	   This parameter can be a value of @ref USH_GPIO_modes */
 
 	uint32_t Pull;      		/* The Pull-up or Pull-Down activation for the selected pins.
-	                           	   This parameter can be a value of @ref GPIO_pull_define */
+	                           	   This parameter can be a value of @ref USH_GPIO_pull */
 
 	uint32_t Speed;     		/* The speed for the selected pins.
 	                           	   This parameter can be a value of @ref GPIO_speed_define */
@@ -64,3 +64,17 @@ typedef enum
 	GPIO_MODE_ALTERNATE		= 0x10UL,
 	GPIO_MODE_ANALOG		= 0x11UL
 } USH_GPIO_modes;
+
+/**
+ * @brief GPIO pull enumeration
+ */
+typedef enum
+{
+	GPIO_NOPULL			= 0x00UL,
+	GPIO_PULLUP			= 0x01UL,
+	GPIO_PULLDOWN		= 0x10UL
+} USH_GPIO_pull;
+
+
+
+
