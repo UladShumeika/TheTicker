@@ -42,6 +42,20 @@
 #define IS_SPI_PINSPACK(PINSPACK) (((PINSPACK) == SPI_pinsPack_1) || \
 								   ((PINSPACK) == SPI_pinsPack_2))
 
+#define IS_SPI_BAUDRATE_PRESCALER(PRESCALER) (((PRESCALER) == SPI_BaudRatePrescaler_2) || \
+                                              ((PRESCALER) == SPI_BaudRatePrescaler_4) || \
+                                              ((PRESCALER) == SPI_BaudRatePrescaler_8) || \
+                                              ((PRESCALER) == SPI_BaudRatePrescaler_16) || \
+                                              ((PRESCALER) == SPI_BaudRatePrescaler_32) || \
+                                              ((PRESCALER) == SPI_BaudRatePrescaler_64) || \
+                                              ((PRESCALER) == SPI_BaudRatePrescaler_128) || \
+                                              ((PRESCALER) == SPI_BaudRatePrescaler_256))
+
+#define IS_SPI_MODE(SPI_MODE) (((SPI_MODE) == SPI_Mode_0) || \
+							   ((SPI_MODE) == SPI_Mode_1) || \
+							   ((SPI_MODE) == SPI_Mode_2) || \
+							   ((SPI_MODE) == SPI_Mode_3))
+
 //---------------------------------------------------------------------------
 // Static function prototypes
 //---------------------------------------------------------------------------
