@@ -115,9 +115,11 @@ typedef enum
 #define GPIO_PIN_MASK              		((uint32_t)0x0000FFFF) 	/* PIN mask for assert test */
 #define IS_GPIO_PIN(PIN)           		(((PIN) & GPIO_PIN_MASK ) != (uint32_t)0x00)
 
-#define IS_GPIO_MODE(MODE)		   		(((MODE) == GPIO_MODE_INPUT)     | \
-										 ((MODE) == GPIO_MODE_OUTPUT)    | \
-										 ((MODE) == GPIO_MODE_ALTERNATE) | \
+#define IS_GPIO_MODE(MODE)		   		(((MODE) == GPIO_MODE_INPUT)     	| \
+										 ((MODE) == GPIO_MODE_OUTPUT_PP)    | \
+										 ((MODE) == GPIO_MODE_OUTPUT_OD)    | \
+										 ((MODE) == GPIO_MODE_ALTERNATE_PP) | \
+										 ((MODE) == GPIO_MODE_ALTERNATE_OD) | \
 										 ((MODE) == GPIO_MODE_ANALOG))
 
 #define IS_GPIO_PULL(PULL)		   		(((PULL) == GPIO_NOPULL) | \
