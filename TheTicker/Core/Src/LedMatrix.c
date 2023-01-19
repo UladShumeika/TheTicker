@@ -20,7 +20,7 @@ static osThreadId sendToTheMatrixHandle;
 */
 void SendToTheMatrixTask(void const * argument)
 {
-
+	MAX7219_init();
 	/* Infinite loop */
 	for(;;)
 	{
