@@ -15,12 +15,6 @@
 #include <ush_spi.h>
 
 //---------------------------------------------------------------------------
-// Static function prototypes
-//---------------------------------------------------------------------------
-static uint16_t SPI_GPIO_GetPortSource(GPIO_TypeDef* GPIOx);
-static void SPI_GPIO_EnableClock(GPIO_TypeDef* GPIOx);
-
-//---------------------------------------------------------------------------
 // Initialization functions
 //---------------------------------------------------------------------------
 
@@ -80,7 +74,7 @@ void SPI_init(USH_SPI_initDefaultTypeDef *initStructure)
 			RCC->AHB1ENR |= (RCC_AHB1ENR_GPIOAEN | RCC_AHB1ENR_GPIOBEN);
 
 			// SPI1 GPIO pins pack 2 configuration
-			// PA15 	   ------> SPI1_CS
+			// PA15    ------> SPI1_CS
 			// PB3     ------> SPI1_SCK
 			// PB4     ------> SPI1_MISO
 			// PB5     ------> SPI1_MOSI
@@ -120,25 +114,3 @@ void SPI_init(USH_SPI_initDefaultTypeDef *initStructure)
 //---------------------------------------------------------------------------
 // Library Functions
 //---------------------------------------------------------------------------
-
-/**
- * @brief	This function enables clock for the selected port
- * @param 	*GPIOx: A pointer to GPIOx peripheral to be used where x is between A to F
- * @retval	None
- */
-static void SPI_GPIO_EnableClock(GPIO_TypeDef* GPIOx)
-{
-	RCC->AHB1ENR |= (1 << SPI_GPIO_GetPortSource(GPIOx));
-}
-
-/**
- * @brief	This function returns port source number (0 - GPIOA; 1 - GPIOB; 2 - GPIOC and so on. For example see RCC_AHB1LPENR register)
- * @param	*GPIOx: A pointer to GPIOx peripheral to be used where x is between A to F
- * @retval	Return port source number (0 - GPIOA; 1 - GPIOB; 2 - GPIOC and so on. For example see RCC_AHB1LPENR register)
- */
-static uint16_t SPI_GPIO_GetPortSource(GPIO_TypeDef* GPIOx)
-{
-	// Get port source number
-	// Offset from GPIOA
-	return ((uint32_t)GPIOx - (GPIOA_BASE)) / ((GPIOB_BASE) - (GPIOA_BASE)); // Difference between 2 GPIO addresses
-}
