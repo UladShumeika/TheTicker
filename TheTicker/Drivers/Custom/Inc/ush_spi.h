@@ -1,10 +1,10 @@
 /**
   ******************************************************************************
-  * @file    custom_stm32f429_spi.h
+  * @file    ush_spi.h
   * @author  Ulad Shumeika
   * @version v1.0
   * @date    16-January-2023
-  * @brief   This file contains all the functions prototypes for the SPI firmware
+  * @brief   This file contains the functions prototypes for the SPI firmware
   *          library.  
   ******************************************************************************
   */
@@ -12,34 +12,48 @@
 //---------------------------------------------------------------------------
 // Define to prevent recursive inclusion
 //---------------------------------------------------------------------------
-#ifndef __CUSTOM_SPI_H
-#define __CUSTOM_SPI_H
+#ifndef __USH_SPI_H
+#define __USH_SPI_H
 
 //---------------------------------------------------------------------------
 // Includes
 //---------------------------------------------------------------------------
 #include "stm32f4xx.h"
+#include "ush_gpio.h"
 
 //---------------------------------------------------------------------------
 // Typedefs and enumerations
 //---------------------------------------------------------------------------
 
 /**
-  * @brief SPI init structure definition
+  * @brief SPI init structure definition with default settings
   */
 typedef struct
 {
-	SPI_TypeDef* SPIx;				// A pointer to SPIx peripheral to be used where x is between 1 to 6
+	SPI_TypeDef* SPIx;				/* A pointer to SPIx peripheral to be used where x is between 1 to 6 */
 
-	uint8_t pinsPack;				// SPI pinsPack enumeration to select pins combination for SPI.
-									// This parameter can be a value of @ref SPI_pinsPack_t
+	uint8_t PinsPack;				/* SPI pinsPack enumeration to select pins combination for SPI.
+									   This parameter can be a value of @ref SPI_pinsPack_t */
 
-	uint16_t baudRatePrescaler;		// The Baud Rate prescaler value which will be used to configure the transmit
-									// and receive SCK clock. This parameter can be a value of @ref SPI_baudRatePrescaler_t
+	uint16_t BaudRatePrescaler;		/* The Baud Rate prescaler value which will be used to configure the transmit
+									   and receive SCK clock. This parameter can be a value of @ref SPI_baudRatePrescaler_t */
 
-	uint16_t SPI_mode;       		// SPI modes selection. This parameter can be a value of @ref SPI_mode_t
+	uint16_t SPI_mode;       		/* SPI modes selection. This parameter can be a value of @ref SPI_mode_t */
 
-} SPI_initTypeDef;
+} USH_SPI_initDefaultTypeDef;
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /**
  * @brief	SPI baudrate prescaler enumeration
@@ -122,4 +136,4 @@ typedef enum
 //---------------------------------------------------------------------------
 void SPI_init(SPI_initTypeDef* SPI_initStruct);
 
-#endif /* __CUSTOM_SPI_H */
+#endif /* __USH_SPI_H */
