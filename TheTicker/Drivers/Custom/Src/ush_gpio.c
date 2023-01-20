@@ -23,7 +23,7 @@
  * @brief 	This function initializes the GPIOx peripheral according to the specified parameters in the USH_GPIO_initTypeDef.
  * @param 	initStructure - a pointer to a USH_GPIO_initTypeDef structure that contains the configuration information
  * 						    for the specified GPIO peripheral.
- * @retval	None
+ * @retval	None.
  */
 void GPIO_init(USH_GPIO_initTypeDef *initStructure)
 {
@@ -92,3 +92,28 @@ void GPIO_init(USH_GPIO_initTypeDef *initStructure)
 		}
 	}
 }
+
+//---------------------------------------------------------------------------
+// Library functions
+//---------------------------------------------------------------------------
+
+/**
+ * @brief	This function clears the selected data port bits.
+ * @note	This function uses GPIOx_BSRR register to allow atomic read/modify accesses. In this way,
+ * 			there is no risk of an IRQ occurring between the read and the modify access.
+ * @param 	GPIOx - A pointer to GPIOx peripheral to be used where x is between A to F.
+ * @param 	gpioPins - The GPIO pins to be configured. This parameter can be any value of @ref USH_GPIO_pins.
+ * @retval	None.
+ */
+void GPIO_resetBits(GPIO_TypeDef *GPIOx, uint16_t gpioPins)
+{
+	// Check the parameters
+	assert_param(IS_GPIO_ALL_INSTANCE(initStructure->GPIOx));
+	assert_param(IS_GPIO_PIN(initStructure->Pin));
+
+	GPIOx->BSRR = (uint32_t)gpioPins << GPIO_NUMBER;
+}
+
+
+
+
