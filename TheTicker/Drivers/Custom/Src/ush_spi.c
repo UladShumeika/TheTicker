@@ -15,18 +15,6 @@
 #include <ush_spi.h>
 
 //---------------------------------------------------------------------------
-// Defines
-//---------------------------------------------------------------------------
-
-// SPI default setting
-#define SPI_Direction_2Lines_FullDuplex		((uint16_t)0x0000)
-#define SPI_Mode_Master						((uint16_t)0x0104)
-#define SPI_DataSize_16b					((uint16_t)0x0800)
-#define SPI_NSS_Soft						((uint16_t)0x0200)
-#define SPI_FirstBit_MSB					((uint16_t)0x0000)
-#define SPI_CRCPolynomial					((uint16_t)0x0000)
-
-//---------------------------------------------------------------------------
 // Static function prototypes
 //---------------------------------------------------------------------------
 static void SPI_gpioInitPins(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin, uint8_t GPIO_AF);
