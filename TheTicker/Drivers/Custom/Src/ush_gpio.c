@@ -108,12 +108,23 @@ void GPIO_init(USH_GPIO_initTypeDef *initStructure)
 void GPIO_resetBits(GPIO_TypeDef *GPIOx, uint16_t gpioPins)
 {
 	// Check the parameters
-	assert_param(IS_GPIO_ALL_INSTANCE(initStructure->GPIOx));
-	assert_param(IS_GPIO_PIN(initStructure->Pin));
+	assert_param(IS_GPIO_ALL_INSTANCE(GPIOx));
+	assert_param(IS_GPIO_PIN(gpioPins));
 
 	GPIOx->BSRR = (uint32_t)gpioPins << GPIO_NUMBER;
 }
 
+/**
+ * @brief 	This function toggles the specified GPIO pins.
+ * @param 	GPIOx - A pointer to GPIOx peripheral to be used where x is between A to F.
+ * @param  	gpioPins - The GPIO pins to be configured. This parameter can be any value of @ref USH_GPIO_pins.
+ * @retval	None.
+ */
+void GPIO_toggleBits(GPIO_TypeDef* GPIOx, uint16_t gpioPins)
+{
+	// Check the parameters
+	assert_param(IS_GPIO_ALL_INSTANCE(GPIOx));
+	assert_param(IS_GPIO_PIN(gpioPins));
 
-
-
+	GPIOx->ODR ^= gpioPins;
+}

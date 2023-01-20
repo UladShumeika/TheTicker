@@ -160,4 +160,12 @@ void GPIO_init(USH_GPIO_initTypeDef *initStructure);
  */
 void GPIO_resetBits(GPIO_TypeDef *GPIOx, uint16_t gpioPins);
 
+/**
+ * @brief 	This function toggles the specified GPIO pins.
+ * @param 	GPIOx - A pointer to GPIOx peripheral to be used where x is between A to F.
+ * @param  	gpioPins - The GPIO pins to be configured. This parameter can be any value of @ref USH_GPIO_pins.
+ * @retval	None.
+ */
+void GPIO_toggleBits(GPIO_TypeDef* GPIOx, uint16_t gpioPins);
+
 #endif /* __USH_GRIO_H */
