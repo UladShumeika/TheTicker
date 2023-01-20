@@ -40,6 +40,8 @@ static void SPI_GPIO_EnableClock(GPIO_TypeDef* GPIOx);
  */
 void SPI_init(USH_SPI_initDefaultTypeDef *initStructure)
 {
+	USH_GPIO_initTypeDef initGpioStructure = {0,};
+
 	uint16_t temp;
 
 	// Check parameters
@@ -50,8 +52,51 @@ void SPI_init(USH_SPI_initDefaultTypeDef *initStructure)
 
 	/* ----------------------- GPIO configuration-------------------------- */
 
+	if(initStructure->SPIx == SPI1)
+	{
+		// SPI1 clock enable
+		RCC->APB2ENR |= RCC_APB2ENR_SPI1EN;
 
+		if(initStructure->PinsPack == SPI_PINSPACK_1) 	// Pins configuration according to pinsPack_1
+		{
+			// GPIOA clock enable
+			RCC->AHB1ENR |= RCC_AHB1ENR_GPIOAEN;
 
+			// SPI1 GPIO pins pack 1 configuration
+			// PA4 	   ------> SPI1_CS
+			// PA5     ------> SPI1_SCK
+			// PA6     ------> SPI1_MISO
+			// PA7     ------> SPI1_MOSI
+			initGpioStructure.GPIOx 		= GPIOA;
+			initGpioStructure.Pin			= (GPIO_PIN_4 | GPIO_PIN_5 | GPIO_PIN_6 | GPIO_PIN_7);
+			initGpioStructure.Mode			= GPIO_MODE_ALTERNATE_PP;
+			initGpioStructure.Pull			= GPIO_NOPULL;
+			initGpioStructure.Speed			= GPIO_SPEED_VERY_HIGH;
+			initGpioStructure.Alternate		= GPIO_Af5_SPI1;
+			GPIO_init(&initGpioStructure);
+		} else											// Pins configuration according to pinsPack_2
+		{
+			// GPIOA and GPIOB clock enable
+			RCC->AHB1ENR |= (RCC_AHB1ENR_GPIOAEN | RCC_AHB1ENR_GPIOBEN);
+
+			// SPI1 GPIO pins pack 2 configuration
+			// PA15 	   ------> SPI1_CS
+			// PB3     ------> SPI1_SCK
+			// PB4     ------> SPI1_MISO
+			// PB5     ------> SPI1_MOSI
+			initGpioStructure.GPIOx 		= GPIOB;
+			initGpioStructure.Pin			= (GPIO_PIN_3 | GPIO_PIN_4 | GPIO_PIN_5);
+			initGpioStructure.Mode			= GPIO_MODE_ALTERNATE_PP;
+			initGpioStructure.Pull			= GPIO_NOPULL;
+			initGpioStructure.Speed			= GPIO_SPEED_VERY_HIGH;
+			initGpioStructure.Alternate		= GPIO_Af5_SPI1;
+			GPIO_init(&initGpioStructure);
+
+			initGpioStructure.GPIOx 		= GPIOA;
+			initGpioStructure.Pin			= GPIO_PIN_15;
+			GPIO_init(&initGpioStructure);
+		}
+	}
 
 	/* ----------------------- SPI configuration--------------------------- */
 
