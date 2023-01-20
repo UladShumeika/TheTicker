@@ -38,7 +38,7 @@ typedef struct
 	uint16_t BaudRatePrescaler;		/* The Baud Rate prescaler value which will be used to configure the transmit
 									   and receive SCK clock. This parameter can be a value of @ref USH_SPI_baudRatePrescaler */
 
-	uint16_t Mode;       			/* SPI modes selection. This parameter can be a value of @ref SPI_mode_t */
+	uint16_t Mode;       			/* SPI modes selection. This parameter can be a value of @ref USH_SPI_mode */
 
 } USH_SPI_initDefaultTypeDef;
 
@@ -66,27 +66,27 @@ typedef enum
 	SPI_BAUDRATE_PRESCALER_256		= 0x0038U		/* f_pclk/256 selected */
 } USH_SPI_baudRatePrescaler;
 
-
-
-
-
-
-
-
-
-
-
-
 /**
- * @brief  SPI modes selection enumeration
+ * @brief SPI modes selection enumeration
  */
 typedef enum
 {
-	SPI_Mode_0	= 0x0000,		// clock polarity low, clock phase 1st edge
-	SPI_Mode_1	= 0x0010, 		// clock polarity low, clock phase 2nd edge
-	SPI_Mode_2	= 0x0001, 		// clock polarity high, clock phase 1st edge
-	SPI_Mode_3  = 0x0011 		// clock polarity high, clock phase 2nd edge
-} SPI_mode_t;
+	SPI_MODE_1	= 0x0000U,		/* Clock polarity low, clock phase 1st edge */
+	SPI_MODE_2	= 0x0010U, 		/* Clock polarity low, clock phase 2nd edge */
+	SPI_MODE_3	= 0x0001U, 		/* Clock polarity high, clock phase 1st edge */
+	SPI_MODE_4  = 0x0011U 		/* Clock polarity high, clock phase 2nd edge */
+} USH_SPI_mode;
+
+
+
+
+
+
+
+
+
+
+
 
 
 
