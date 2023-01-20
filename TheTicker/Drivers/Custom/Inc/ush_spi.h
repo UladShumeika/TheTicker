@@ -63,7 +63,8 @@ typedef enum
 	SPI_BAUDRATE_PRESCALER_32		= 0x0020U,		/* f_pclk/32 selected */
 	SPI_BAUDRATE_PRESCALER_64		= 0x0028U,		/* f_pclk/64 selected */
 	SPI_BAUDRATE_PRESCALER_128		= 0x0030U,		/* f_pclk/128 selected */
-	SPI_BAUDRATE_PRESCALER_256		= 0x0038U		/* f_pclk/256 selected */
+	SPI_BAUDRATE_PRESCALER_256		= 0x0038U,		/* f_pclk/256 selected */
+	SPI_BAUDRATE_MASK				= 0x0038U
 } USH_SPI_baudRatePrescaler;
 
 /**
@@ -71,10 +72,11 @@ typedef enum
  */
 typedef enum
 {
-	SPI_MODE_1	= 0x0000U,		/* Clock polarity low, clock phase 1st edge */
-	SPI_MODE_2	= 0x0010U, 		/* Clock polarity low, clock phase 2nd edge */
-	SPI_MODE_3	= 0x0001U, 		/* Clock polarity high, clock phase 1st edge */
-	SPI_MODE_4  = 0x0011U 		/* Clock polarity high, clock phase 2nd edge */
+	SPI_MODE_1		= 0x0000U,		/* Clock polarity low, clock phase 1st edge */
+	SPI_MODE_2		= 0x0010U, 		/* Clock polarity low, clock phase 2nd edge */
+	SPI_MODE_3		= 0x0001U, 		/* Clock polarity high, clock phase 1st edge */
+	SPI_MODE_4  	= 0x0011U, 		/* Clock polarity high, clock phase 2nd edge */
+	SPI_MODE_MASK 	= 0x0011U
 } USH_SPI_mode;
 
 /**
