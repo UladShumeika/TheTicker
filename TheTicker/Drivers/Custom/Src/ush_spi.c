@@ -27,9 +27,15 @@ static void SPI_GPIO_EnableClock(GPIO_TypeDef* GPIOx);
 /**
  * @brief 	This function initializes the SPIx peripheral according to the specified parameters in the USH_SPI_initDefaultTypeDef.
  * @note 	This function has default settings:
- *
- *
- * @param 	initStructure
+ *			- Master mode selected;
+ *			- Full duplex selected;
+ *			- 16bits data size selected;
+ *			- Chip select pin software control selected;
+ *			- MSB transmitted first;
+ *			- CRC calculation disabled;
+ *			- TI mode disable.
+ * @param 	initStructure - a pointer to a USH_SPI_initDefaultTypeDef structure that contains the configuration
+ * 							information for the specified SPI peripheral.
  * @retval	None.
  */
 void SPI_init(USH_SPI_initDefaultTypeDef *initStructure)
