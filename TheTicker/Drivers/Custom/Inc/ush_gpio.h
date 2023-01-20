@@ -90,8 +90,8 @@ typedef enum
 {
 	GPIO_SPEED_LOW			= 0x00UL,		/* Low speed mode selected */
 	GPIO_SPEED_MEDIUM		= 0x01UL,		/* Medium speed mode selected */
-	GPIO_SPEED_HIGH			= 0x10UL,		/* High speed mode selected */
-	GPIO_SPEED_VERY_HIGH	= 0x11UL		/* Very high speed mode selected */
+	GPIO_SPEED_HIGH			= 0x02UL,		/* High speed mode selected */
+	GPIO_SPEED_VERY_HIGH	= 0x03UL		/* Very high speed mode selected */
 } USH_GPIO_speed;
 
 /**
