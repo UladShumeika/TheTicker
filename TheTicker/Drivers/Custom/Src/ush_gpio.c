@@ -86,9 +86,10 @@ void GPIO_init(USH_GPIO_initTypeDef *initStructure)
 			}
 
 			// Configure IO Direction mode (Input, Output, Alternate or Analog)
-			initStructure->GPIOx->MODER = temp;
+			temp = initStructure->GPIOx->MODER;
 			temp &= ~(GPIO_MODER_MODER0 << (pinPos * 2U));
 			temp |= (initStructure->Mode << (pinPos * 2U));
+			initStructure->GPIOx->MODER = temp;
 		}
 	}
 }
