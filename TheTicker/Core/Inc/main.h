@@ -12,6 +12,7 @@ extern "C" {
 // Includes
 //---------------------------------------------------------------------------
 #include "stm32f4xx.h"
+#include "ush_gpio.h"
 
 #include "cmsis_os.h"
 
