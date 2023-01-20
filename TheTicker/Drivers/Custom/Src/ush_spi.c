@@ -12,7 +12,7 @@
 //---------------------------------------------------------------------------
 // Includes
 //---------------------------------------------------------------------------
-#include "custom_stm32f429_spi.h"
+#include <ush_spi.h>
 
 //---------------------------------------------------------------------------
 // Defines
@@ -74,10 +74,45 @@ static void SPI_GPIO_EnableClock(GPIO_TypeDef* GPIOx);
  * 					 @ref CUS_SPI_PinsPack_t enumeration
  * @retval None
  */
-// void CUS_spiInit(SPI_TypeDef* SPIx, CUS_SPI_PinsPack_t pinspack)
-// {
+void SPI_init(SPI_initTypeDef* SPI_initStruct)
+{
+	uint16_t tmprgr, pins;
 
-// }
+	// Check the parameters
+	assert_param(IS_SPI_ALL_PERIPH(SPI_initStruct->SPIx));
+	assert_param(IS_SPI_PINSPACK(SPI_initStruct->pinsPack));
+	assert_param(IS_SPI_BAUDRATE_PRESCALER(SPI_initStruct->baudRatePrescaler));
+	assert_param(IS_SPI_MODE(SPI_initStruct->SPI_mode));
+
+	if(SPI_initStruct->SPIx == SPI1)
+	{
+		// Enable SPI1 clock
+		RCC->APB2ENR |= RCC_APB2ENR_SPI1EN;
+
+		if(SPI_initStruct->pinsPack == SPI_pinsPack_1)
+		{
+//			pins = GPIO_Pin_5 | GPIO_Pin_6 | GPIO_Pin_7;
+//			SPI_gpioInitPins(GPIOA, pins, GPIO_AF_SPI1);
+		}
+	}
+
+
+
+//	if(SPIx == SPI1)
+//	{
+//
+//
+//		if(pinsPack == SPI_pinsPack_1)
+//		{
+//
+//		} else		// SPI_pinsPack_2
+//		{
+//			pins = GPIO_Pin_3 | GPIO_Pin_4 | GPIO_Pin_5;
+//			SPI_gpioInitPins(GPIOB, pins, GPIO_AF_SPI1);
+//		}
+
+//	}
+}
 
 /**
  * @brief	This function enables clock for the selected port

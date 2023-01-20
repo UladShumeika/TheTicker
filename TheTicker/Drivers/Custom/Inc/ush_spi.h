@@ -120,6 +120,6 @@ typedef enum
 //---------------------------------------------------------------------------
 // External function prototypes
 //---------------------------------------------------------------------------
-void SPI_init(SPI_initTypeDef SPI_initStruct);
+void SPI_init(SPI_initTypeDef* SPI_initStruct);
 
 #endif /* __CUSTOM_SPI_H */
