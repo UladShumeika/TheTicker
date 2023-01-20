@@ -26,36 +26,6 @@
 #define SPI_FirstBit_MSB					((uint16_t)0x0000)
 #define SPI_CRCPolynomial					((uint16_t)0x0000)
 
-
-
-//---------------------------------------------------------------------------
-// Macros
-//---------------------------------------------------------------------------
-
-#define IS_SPI_ALL_PERIPH(PERIPH) (((PERIPH) == SPI1) || \
-                                   ((PERIPH) == SPI2) || \
-                                   ((PERIPH) == SPI3) || \
-                                   ((PERIPH) == SPI4) || \
-                                   ((PERIPH) == SPI5) || \
-                                   ((PERIPH) == SPI6))
-
-#define IS_SPI_PINSPACK(PINSPACK) (((PINSPACK) == SPI_pinsPack_1) || \
-								   ((PINSPACK) == SPI_pinsPack_2))
-
-#define IS_SPI_BAUDRATE_PRESCALER(PRESCALER) (((PRESCALER) == SPI_BaudRatePrescaler_2) || \
-                                              ((PRESCALER) == SPI_BaudRatePrescaler_4) || \
-                                              ((PRESCALER) == SPI_BaudRatePrescaler_8) || \
-                                              ((PRESCALER) == SPI_BaudRatePrescaler_16) || \
-                                              ((PRESCALER) == SPI_BaudRatePrescaler_32) || \
-                                              ((PRESCALER) == SPI_BaudRatePrescaler_64) || \
-                                              ((PRESCALER) == SPI_BaudRatePrescaler_128) || \
-                                              ((PRESCALER) == SPI_BaudRatePrescaler_256))
-
-#define IS_SPI_MODE(SPI_MODE) (((SPI_MODE) == SPI_Mode_0) || \
-							   ((SPI_MODE) == SPI_Mode_1) || \
-							   ((SPI_MODE) == SPI_Mode_2) || \
-							   ((SPI_MODE) == SPI_Mode_3))
-
 //---------------------------------------------------------------------------
 // Static function prototypes
 //---------------------------------------------------------------------------
