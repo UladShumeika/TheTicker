@@ -33,10 +33,10 @@ typedef struct
 	SPI_TypeDef* SPIx;				/* A pointer to SPIx peripheral to be used where x is between 1 to 6 */
 
 	uint8_t PinsPack;				/* SPI pinsPack enumeration to select pins combination for SPI.
-									   This parameter can be a value of @ref SPI_pinsPack_t */
+									   This parameter can be a value of @ref USH_SPI_pinsPack */
 
 	uint16_t BaudRatePrescaler;		/* The Baud Rate prescaler value which will be used to configure the transmit
-									   and receive SCK clock. This parameter can be a value of @ref SPI_baudRatePrescaler_t */
+									   and receive SCK clock. This parameter can be a value of @ref USH_SPI_baudRatePrescaler */
 
 	uint16_t Mode;       			/* SPI modes selection. This parameter can be a value of @ref SPI_mode_t */
 
@@ -47,35 +47,35 @@ typedef struct
  */
 typedef enum
 {
-	SPI_PINSPACK_1	= 0x00,		/* pinsPack1 selected */
-	SPI_PINSPACK_2	= 0x01		/* pinsPack2 selected */
+	SPI_PINSPACK_1	= 0x00U,	/* pinsPack1 selected */
+	SPI_PINSPACK_2	= 0x01U		/* pinsPack2 selected */
 } USH_SPI_pinsPack;
 
-
-
-
-
-
-
-
-
-
-
-
 /**
- * @brief	SPI baudrate prescaler enumeration
+ * @brief SPI baudrate prescaler enumeration
  */
 typedef enum
 {
-	SPI_BaudRatePrescaler_2		= 0x0000,
-	SPI_BaudRatePrescaler_4		= 0x0008,
-	SPI_BaudRatePrescaler_8		= 0x0010,
-	SPI_BaudRatePrescaler_16	= 0x0018,
-	SPI_BaudRatePrescaler_32	= 0x0020,
-	SPI_BaudRatePrescaler_64	= 0x0028,
-	SPI_BaudRatePrescaler_128	= 0x0030,
-	SPI_BaudRatePrescaler_256	= 0x0038
-} SPI_baudRatePrescaler_t;
+	SPI_BAUDRATE_PRESCALER_2		= 0x0000U,		/* f_pclk/2 selected */
+	SPI_BAUDRATE_PRESCALER_4		= 0x0008U,		/* f_pclk/4 selected */
+	SPI_BAUDRATE_PRESCALER_8		= 0x0010U,		/* f_pclk/8 selected */
+	SPI_BAUDRATE_PRESCALER_16		= 0x0018U,		/* f_pclk/16 selected */
+	SPI_BAUDRATE_PRESCALER_32		= 0x0020U,		/* f_pclk/32 selected */
+	SPI_BAUDRATE_PRESCALER_64		= 0x0028U,		/* f_pclk/64 selected */
+	SPI_BAUDRATE_PRESCALER_128		= 0x0030U,		/* f_pclk/128 selected */
+	SPI_BAUDRATE_PRESCALER_256		= 0x0038U		/* f_pclk/256 selected */
+} USH_SPI_baudRatePrescaler;
+
+
+
+
+
+
+
+
+
+
+
 
 /**
  * @brief  SPI modes selection enumeration
