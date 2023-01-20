@@ -77,6 +77,20 @@ typedef enum
 	SPI_MODE_4  = 0x0011U 		/* Clock polarity high, clock phase 2nd edge */
 } USH_SPI_mode;
 
+/**
+ * @brief SPI default settings enumeration
+ */
+typedef enum
+{
+	SPI_MASTER 				= 0x0104U,		/* Master mode selected */
+	SPI_DIRECTION_2LINES	= 0x0000U,		/* Full duplex selected */
+	SPI_DATASIZE			= 0x0800U,		/* 16bits data size selected */
+	SPI_NSS					= 0x0200U, 		/* Chip select pin software control selected */
+	SPI_FIRST_BIT			= 0x0000U, 		/* MSB transmitted first */
+	SPI_CRC_CALCULATION		= 0x0000U,		/* CRC calculation disabled */
+	SPI_TI_MODE				= 0x0000U		/* TI mode disable */
+} USH_SPI_default;
+
 //---------------------------------------------------------------------------
 // Macros
 //---------------------------------------------------------------------------
