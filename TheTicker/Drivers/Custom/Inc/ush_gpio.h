@@ -109,7 +109,7 @@ typedef enum
 } USH_GPIO_alternate;
 
 //---------------------------------------------------------------------------
-// External function prototypes
+// Macros
 //---------------------------------------------------------------------------
 
 #define GPIO_PIN_MASK              		((uint32_t)0x0000FFFF) 	/* PIN mask for assert test */
