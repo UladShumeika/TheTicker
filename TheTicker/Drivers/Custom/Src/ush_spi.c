@@ -51,15 +51,17 @@ void SPI_init(USH_SPI_initDefaultTypeDef *initStructure)
 
 	// Setting the default settings for CR1 register
 	temp = initStructure->SPIx->CR1;
-	temp |= (SPI_MASTER | SPI_DIRECTION_2LINES | SPI_DATASIZE | SPI_NSS | SPI_FIRST_BIT | SPI_CRC_CALCULATION);
+	temp |= (SPI_MASTER | SPI_DATASIZE | SPI_NSS);
+	temp &= ~(SPI_DIRECTION_2LINES | SPI_FIRST_BIT | SPI_CRC_CALCULATION);
 
 	// Setting the settings from structure
+	temp &= ~(SPI_BAUDRATE_MASK | SPI_MODE_MASK);
 	temp |= (initStructure->BaudRatePrescaler | initStructure->Mode);
 	initStructure->SPIx->CR1 = temp;
 
 	// Setting the default settings for CR2 register
 	temp = initStructure->SPIx->CR2;
-	temp |= (SPI_TI_MODE);
+	temp &= ~(SPI_TI_MODE);
 	initStructure->SPIx->CR2 = temp;
 }
 
