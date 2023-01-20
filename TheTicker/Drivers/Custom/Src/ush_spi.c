@@ -34,6 +34,50 @@ static uint16_t SPI_GPIO_GetPortSource(GPIO_TypeDef* GPIOx);
 static void SPI_GPIO_EnableClock(GPIO_TypeDef* GPIOx);
 
 //---------------------------------------------------------------------------
+// Initialization functions
+//---------------------------------------------------------------------------
+
+/**
+ * @brief 	This function initializes the SPIx peripheral according to the specified parameters in the USH_SPI_initDefaultTypeDef.
+ * @note 	This function has default settings:
+ *
+ *
+ * @param 	initStructure
+ * @retval	None.
+ */
+void SPI_init(USH_SPI_initDefaultTypeDef *initStructure)
+{
+	uint16_t temp;
+
+	// Check parameters
+	assert_param(IS_SPI_ALL_INSTANCE(initStructure->SPIx));
+	assert_param(IS_SPI_PINSPACK(initStructure->PinsPack));
+	assert_param(IS_SPI_BAUDRATE_PRESCALER(initStructure->BaudRatePrescaler));
+	assert_param(IS_SPI_MODE(initStructure->Mode));
+
+	/* ----------------------- GPIO configuration-------------------------- */
+
+
+
+
+	/* ----------------------- SPI configuration--------------------------- */
+
+	// Setting the default settings for CR1 register
+	temp = initStructure->SPIx->CR1;
+	temp |= (SPI_MASTER | SPI_DIRECTION_2LINES | SPI_DATASIZE | SPI_NSS | SPI_FIRST_BIT | SPI_CRC_CALCULATION);
+
+	// Setting the settings from structure
+	temp |= (initStructure->BaudRatePrescaler | initStructure->Mode);
+	initStructure->SPIx->CR1 = temp;
+
+	// Setting the default settings for CR2 register
+	temp = initStructure->SPIx->CR2;
+	temp |= (SPI_TI_MODE);
+	initStructure->SPIx->CR2 = temp;
+}
+
+
+//---------------------------------------------------------------------------
 // Library Functions
 //---------------------------------------------------------------------------
 
