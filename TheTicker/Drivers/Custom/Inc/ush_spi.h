@@ -124,7 +124,7 @@ typedef enum
 	SPI_MASTER 				= 0x0104U,		/* Master mode selected */
 	SPI_DIRECTION_2LINES	= 0x8400U,		/* Full duplex selected */
 	SPI_DATASIZE			= 0x0800U,		/* 16bits data size selected */
-	SPI_NSS					= 0x0200U, 		/* Chip select pin software control selected */
+	SPI_NSS					= 0x0300U, 		/* Chip select pin software control selected */
 	SPI_FIRST_BIT			= 0x0080U, 		/* MSB transmitted first */
 	SPI_CRC_CALCULATION		= 0x6000U,		/* CRC calculation disabled */
 	SPI_TI_MODE				= 0x0010U		/* TI mode disable */
