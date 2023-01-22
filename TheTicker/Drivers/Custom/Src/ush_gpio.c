@@ -116,6 +116,30 @@ void GPIO_resetBits(GPIO_TypeDef *GPIOx, uint16_t gpioPins)
 }
 
 /**
+ * @brief	This function sets or clears the selected data port bits.
+ * @param 	GPIOx - A pointer to GPIOx peripheral to be used where x is between A to F.
+ * @param 	gpioPins - The GPIO pins to be configured. This parameter can be any value of @ref USH_GPIO_pins.
+ * @param 	state - The value to be written to the selected bit. This parameter can be any value of @ref USH_GPIO_pinState.
+ * @retval	None.
+ */
+void GPIO_writeBits(GPIO_TypeDef *GPIOx, uint16_t gpioPins, USH_GPIO_pinState state)
+{
+	// Check the parameters
+	assert_param(IS_GPIO_ALL_INSTANCE(GPIOx));
+	assert_param(IS_GPIO_PIN(gpioPins));
+	assert_param(IS_GPIO_STATE(state));
+
+	if(state != GPIO_PIN_RESET)
+	{
+		GPIOx->BSRR = state;
+	}
+	else
+	{
+		GPIOx->BSRR = (uint32_t)gpioPins << GPIO_NUMBER;
+	}
+}
+
+/**
  * @brief 	This function toggles the specified GPIO pins.
  * @param 	GPIOx - A pointer to GPIOx peripheral to be used where x is between A to F.
  * @param  	gpioPins - The GPIO pins to be configured. This parameter can be any value of @ref USH_GPIO_pins.
