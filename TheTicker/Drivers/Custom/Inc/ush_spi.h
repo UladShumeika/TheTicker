@@ -89,6 +89,15 @@ typedef enum
 } USH_SPI_pinsPack;
 
 /**
+ * @brief SPI dmaPack enumeration to select dma combination for SPI
+ */
+typedef enum
+{
+	SPI_DMAPACK_1	= 0x00U,	/* dmaPack1 selected */
+	SPI_DMAPACK_2	= 0x01U		/* dmaPack2 selected */
+} USH_SPI_dmaPack;
+
+/**
  * @brief SPI baudrate prescaler enumeration
  */
 typedef enum
