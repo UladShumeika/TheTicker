@@ -163,6 +163,15 @@ typedef enum
 void GPIO_init(USH_GPIO_initTypeDef *initStructure);
 
 /**
+ * @brief	This function sets or clears the selected data port bits.
+ * @param 	GPIOx - A pointer to GPIOx peripheral to be used where x is between A to F.
+ * @param 	gpioPins - The GPIO pins to be configured. This parameter can be any value of @ref USH_GPIO_pins.
+ * @param 	state - The value to be written to the selected bit. This parameter can be any value of @ref USH_GPIO_pinState.
+ * @retval	None.
+ */
+void GPIO_writeBits(GPIO_TypeDef *GPIOx, uint16_t gpioPins, USH_GPIO_pinState state);
+
+/**
  * @brief	This function clears the selected data port bits.
  * @note	This function uses GPIOx_BSRR register to allow atomic read/modify accesses. In this way,
  * 			there is no risk of an IRQ occurring between the read and the modify access.
