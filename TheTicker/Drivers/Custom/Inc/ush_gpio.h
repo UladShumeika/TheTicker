@@ -147,6 +147,9 @@ typedef enum
 										 ((ALTERNATE) == GPIO_Af5_SPI6) | \
 										 ((ALTERNATE) == GPIO_Af6_SPI3))
 
+#define IS_GPIO_STATE(STATE)			(((STATE) == GPIO_PIN_RESET) | \
+										 ((STATE) == GPIO_PIN_SET))
+
 //---------------------------------------------------------------------------
 // External function prototypes
 //---------------------------------------------------------------------------
