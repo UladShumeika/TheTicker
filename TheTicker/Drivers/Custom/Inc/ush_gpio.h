@@ -108,6 +108,15 @@ typedef enum
 	GPIO_Af6_SP3		= 0x06UL		/* SPI3/I2S3 alternate function mapping */
 } USH_GPIO_alternate;
 
+/**
+  * @brief  GPIO Bit SET and Bit RESET enumeration
+  */
+typedef enum
+{
+	GPIO_PIN_RESET = 0,
+	GPIO_PIN_SET
+} USH_GPIO_pinState;
+
 //---------------------------------------------------------------------------
 // Macros
 //---------------------------------------------------------------------------
