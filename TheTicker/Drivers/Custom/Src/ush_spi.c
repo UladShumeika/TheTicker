@@ -123,7 +123,7 @@ void SPI_init(USH_SPI_initDefaultTypeDef *initStructure)
 //---------------------------------------------------------------------------
 
 /**
- * @brief 	This function writes data to a register
+ * @brief 	This function writes data to a register.
  * @param 	SPIx - A pointer to SPIx peripheral to be used where x is between 1 to 6.
  * @param 	reg - A register to write data to.
  * @param 	data - Data to be recorded.
