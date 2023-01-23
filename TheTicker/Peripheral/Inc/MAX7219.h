@@ -12,6 +12,25 @@
 // Defines
 //---------------------------------------------------------------------------
 
+/* --------------------- General parameters of the matrix -----------------*/
+#define MATRIX_NUM									((uint8_t)4)
+#define DELAY_TEST_MODE								((uint16_t)500)
+
+//---------------------------------------------------------------------------
+// Typedefs and enumerations
+//---------------------------------------------------------------------------
+
+/**
+ * @brief MAX7219 digits enumeration
+ */
+typedef enum
+{
+	FIRST_DIGIT		= 4,
+	SECOND_DIGIT    = 3,
+	THIRD_DIGIT		= 2,
+	FORTH_DIGIT		= 1,
+	ALL_DIGITS		= 0xFF
+} USH_MAX7219_digits;
 
 //---------------------------------------------------------------------------
 // External function prototypes
