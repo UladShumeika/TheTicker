@@ -139,6 +139,15 @@ typedef enum
 	SPI_TI_MODE				= 0x0010U		/* TI mode disable */
 } USH_SPI_default;
 
+/**
+ * @brief SPI CS (Chip select) pin enumeration
+ */
+typedef enum
+{
+	LOW 	= 0,
+	HIGH	= !LOW
+} USH_SPI_csState;
+
 //---------------------------------------------------------------------------
 // Macros
 //---------------------------------------------------------------------------
