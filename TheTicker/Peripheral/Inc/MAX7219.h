@@ -138,7 +138,7 @@ void MAX7219_init(void);
   * @param  mode - The driver mode. This parameter can be any value of @ref USH_MAX7219_REG_SHUTDOWN.
   * @retval None.
   */
-void MAX7219_state(uint8_t digit, USH_MAX7219_REG_SHUTDOWN mode);
+void MAX7219_state(USH_MAX7219_digits digit, USH_MAX7219_REG_SHUTDOWN mode);
 
 /**
   * @brief  This function sends data WITH a latch.
