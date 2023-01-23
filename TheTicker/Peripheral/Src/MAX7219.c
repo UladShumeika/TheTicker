@@ -73,39 +73,24 @@ void MAX7219_sendDataWithLatch(USH_MAX7219_digits digit, USH_MAX7219_registers r
   * @param	data - Data to be sent to the matrix driver.
   * @retval None.
   */
-void MAX7219_sendDataWithoutLatch(uint8_t digit, uint8_t addr, uint8_t data)
+void MAX7219_sendDataWithoutLatch(USH_MAX7219_digits digit, USH_MAX7219_registers reg, uint8_t data)
 {
-	uint16_t NoOp = 0;
+	uint8_t NoOp = 0;
 
 	for(uint8_t i = 1; i <= MATRIX_NUM; i++)
 	{
 		if(digit == ALL_DIGITS)
 		{
-			SPI_writeData(SPI1, addr, data);
+			SPI_writeData(SPI1, reg, data);
 		} else
 		{
 			if(i == digit)
 			{
-				SPI_writeData(SPI1, addr, data);
+				SPI_writeData(SPI1, reg, data);
 			} else
 			{
 				SPI_writeData(SPI1, NoOp, NoOp);
 			}
 		}
 	}
-}
-
-/**
-  * @brief  This function sends data WITH a latch.
-  * @param  digit - The digit indicates which digit of the matrix to transfer data to.
-  * 		        This parameter can be any value of @ref USH_MAX7219_digits.
-  * @param  addr - The matrix controller's address where you want to send data.
-  * @param	data - Data to be sent to the matrix controller.
-  * @retval None.
-  */
-void MAX7219_sendDataWithLatch(uint8_t digit, uint8_t addr, uint8_t data)
-{
-	SPI_csPin(LOW);
-	MAX7219_sendDataWithoutLatch(digit, addr, data);
-	SPI_csPin(HIGH);
 }
