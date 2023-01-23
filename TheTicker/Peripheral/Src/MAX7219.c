@@ -24,12 +24,28 @@ void MAX7219_init(void)
 	MAX7219_state(ALL_DIGITS, NORMAL_MODE);
 	MAX7219_decodeMode(ALL_DIGITS, NO_DECODE_FOR_ALL);
 	MAX7219_intensity(ALL_DIGITS, INTENSITY_13_32);
+	MAX7219_scanLimit(ALL_DIGITS, SCAN_LIMIT_0_7);
+	MAX7219_clean(ALL_DIGITS);
 
 }
 
 //---------------------------------------------------------------------------
 // Library Functions
 //---------------------------------------------------------------------------
+
+/**
+ * @brief 	This function cleans matrix's digits.
+ * @param 	digit - The digit indicates which digit of the matrix driver to transfer data to.
+ * 					This parameter can be any value of @ref USH_MAX7219_digits.
+ * @retval	None.
+ */
+void MAX7219_clean(USH_MAX7219_digits digit)
+{
+	for(uint8_t reg = REG_DIGIT_0; reg <= REG_DIGIT_7; reg++)
+	{
+		MAX7219_sendDataWithLatch(digit, reg, 0x00U);
+	}
+}
 
 /**
  * @brief	This function sets the number of digits to be displayed.
@@ -47,8 +63,9 @@ void MAX7219_scanLimit(USH_MAX7219_digits digit, USH_MAX7219_REG_SCAN_LIMIT scan
  * @brief 	TThis function sets the intensity of the glow.
  * @param 	digit - The digit indicates which digit of the matrix driver to transfer data to.
  * 					This parameter can be any value of @ref USH_MAX7219_digits.
- * @param intensity - The value of intensity of the glow.
+ * @param 	intensity - The value of intensity of the glow.
  * 					  This parameter can be any value of @ref USH_MAX7219_REG_INTENSITY.
+ * @retval	None.
  */
 void MAX7219_intensity(USH_MAX7219_digits digit, USH_MAX7219_REG_INTENSITY intensity)
 {
@@ -60,6 +77,7 @@ void MAX7219_intensity(USH_MAX7219_digits digit, USH_MAX7219_REG_INTENSITY inten
  * @param	digit - The digit indicates which digit of the matrix driver to transfer data to.
  * 					This parameter can be any value of @ref USH_MAX7219_digits.
  * @param	mode - The decode mode. This parameter can be any value of @ref USH_MAX7219_REG_DECODE_MODE.
+ * @retval	None.
  */
 void MAX7219_decodeMode(USH_MAX7219_digits digit, USH_MAX7219_REG_DECODE_MODE mode)
 {
