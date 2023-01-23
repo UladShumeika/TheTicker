@@ -126,6 +126,12 @@ typedef enum
 //---------------------------------------------------------------------------
 
 /**
+ * @brief	This function initializes MAX7219
+ * @retval	None.
+ */
+void MAX7219_init(void);
+
+/**
   * @brief  This function sends data WITHOUT a latch.
   * @param	digit - The digit indicates which digit of the matrix to transfer data to.
   * 		        This parameter can be any value of @ref USH_MAX7219_digits.
@@ -144,7 +150,5 @@ void MAX7219_sendDataWithoutLatch(uint8_t digit, uint8_t addr, uint8_t data);
   * @retval None.
   */
 void MAX7219_sendDataWithLatch(uint8_t digit, uint8_t addr, uint8_t data);
-
-void MAX7219_init(void);
 
 #endif /* __MAX7219_H */
