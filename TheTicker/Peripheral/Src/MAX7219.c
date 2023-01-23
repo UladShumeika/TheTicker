@@ -20,6 +20,8 @@ void MAX7219_init(void)
 	initStructure.BaudRatePrescaler		= SPI_BAUDRATE_PRESCALER_16;
 	initStructure.Mode 					= SPI_MODE_1;
 	SPI_init(&initStructure);
+
+	MAX7219_state(ALL_DIGITS, NORMAL_MODE);
 }
 
 //---------------------------------------------------------------------------
