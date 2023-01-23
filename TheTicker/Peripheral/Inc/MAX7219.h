@@ -132,8 +132,8 @@ typedef enum
 void MAX7219_init(void);
 
 /**
-  * @brief  This function enables or disables a matrix controller.
-  * @param  digit - The digit indicates which digit of the matrix to transfer data to.
+  * @brief  This function enables or disables a matrix driver.
+  * @param  digit - The digit indicates which digit of the matrix driver to transfer data to.
   * 				This parameter can be any value of @ref USH_MAX7219_digits.
   * @param  mode - The driver mode. This parameter can be any value of @ref USH_MAX7219_REG_SHUTDOWN.
   * @retval None.
