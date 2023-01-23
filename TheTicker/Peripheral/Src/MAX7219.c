@@ -16,7 +16,7 @@
   * @param	data - Data to be sent to the matrix controller.
   * @retval None.
   */
-void MAX7219_SendDataWithoutLatch(uint8_t digit, uint8_t addr, uint8_t data)
+void MAX7219_sendDataWithoutLatch(uint8_t digit, uint8_t addr, uint8_t data)
 {
 	uint16_t NoOp = 0;
 
