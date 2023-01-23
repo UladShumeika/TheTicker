@@ -29,8 +29,17 @@ void MAX7219_init(void)
 //---------------------------------------------------------------------------
 
 /**
-  * @brief  This function enables or disables a matrix controller.
-  * @param  digit - The digit indicates which digit of the matrix to transfer data to.
+ * @brief This function sets the decoding mode for the driver
+ *
+ */
+void MAX7219_decodeMode(USH_MAX7219_digits digit, USH_MAX7219_REG_DECODE_MODE mode)
+{
+	MAX7219_sendDataWithLatch(digit, REG_DECODE_MODE, mode);
+}
+
+/**
+  * @brief  This function enables or disables a matrix driver.
+  * @param  digit - The digit indicates which digit of the matrix driver to transfer data to.
   * 				This parameter can be any value of @ref USH_MAX7219_digits.
   * @param  mode - The driver mode. This parameter can be any value of @ref USH_MAX7219_REG_SHUTDOWN.
   * @retval None.
@@ -48,10 +57,11 @@ void MAX7219_state(uint8_t digit, USH_MAX7219_REG_SHUTDOWN mode)
 
 /**
   * @brief  This function sends data WITHOUT a latch.
-  * @param	digit - The digit indicates which digit of the matrix to transfer data to.
+  * @param	digit - The digit indicates which digit of the matrix driver to transfer data to.
   * 		        This parameter can be any value of @ref USH_MAX7219_digits.
-  * @param  addr - The matrix controller's address where you want to send data.
-  * @param	data - Data to be sent to the matrix controller.
+  * @param  reg - The matrix driver's address where the data should be written.
+  * 			  This parameter can be any value of @ref USH_MAX7219_registers.
+  * @param	data - Data to be sent to the matrix driver.
   * @retval None.
   */
 void MAX7219_sendDataWithoutLatch(uint8_t digit, uint8_t addr, uint8_t data)
