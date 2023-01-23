@@ -28,7 +28,7 @@
  *			- MSB transmitted first;
  *			- CRC calculation disabled;
  *			- TI mode disable.
- * @param 	initStructure - a pointer to a USH_SPI_initDefaultTypeDef structure that contains the configuration
+ * @param 	initStructure - A pointer to a USH_SPI_initDefaultTypeDef structure that contains the configuration
  * 							information for the specified SPI peripheral.
  * @retval	None.
  */
