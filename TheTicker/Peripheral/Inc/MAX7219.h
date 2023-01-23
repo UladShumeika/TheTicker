@@ -132,6 +132,15 @@ typedef enum
 void MAX7219_init(void);
 
 /**
+ * @brief 	TThis function sets the intensity of the glow.
+ * @param 	digit - The digit indicates which digit of the matrix driver to transfer data to.
+ * 					This parameter can be any value of @ref USH_MAX7219_digits.
+ * @param intensity - The value of intensity of the glow.
+ * 					  This parameter can be any value of @ref USH_MAX7219_REG_INTENSITY.
+ */
+void MAX7219_intensity(USH_MAX7219_digits digit, USH_MAX7219_REG_INTENSITY intensity);
+
+/**
  * @brief	This function sets the decoding mode for the matrix driver
  * @param	digit - The digit indicates which digit of the matrix driver to transfer data to.
  * 					This parameter can be any value of @ref USH_MAX7219_digits.
