@@ -8,6 +8,7 @@
 // Includes
 //---------------------------------------------------------------------------
 #include "ush_spi.h"
+
 //---------------------------------------------------------------------------
 // Defines
 //---------------------------------------------------------------------------
@@ -52,6 +53,17 @@ typedef enum
 	REG_SHUTDOWN,
 	REG_DISPLAY_TEST
 } USH_MAX7219_registers;
+
+/**
+ * @brief MAX7219 decode mode register's description.
+ */
+typedef enum
+{
+	NO_DECODE_FOR_ALL     	= 0x00,		// No decode for digits 7–0
+	CODE_B_DECODE_FOR_0		= 0x01,		// Code B decode for digit 0. No decode for digits 7–1
+	CODE_B_DECODE_FOR_3_0	= 0x0F,		// Code B decode for digits 3–0. No decode for digits 7–4
+	CODE_B_DECODE_FOR_ALL	= 0xFF		// Code B decode for digits 7–0
+} USH_MAX7219_REG_DECODE_MODE;
 
 //---------------------------------------------------------------------------
 // External function prototypes
