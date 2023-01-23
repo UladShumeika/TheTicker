@@ -148,7 +148,7 @@ void MAX7219_state(USH_MAX7219_digits digit, USH_MAX7219_REG_SHUTDOWN mode);
   * @param	data - Data to be sent to the matrix driver.
   * @retval None.
   */
-void MAX7219_sendDataWithoutLatch(uint8_t digit, uint8_t addr, uint8_t data);
+void MAX7219_sendDataWithLatch(USH_MAX7219_digits digit, USH_MAX7219_registers reg, uint8_t data);
 
 /**
   * @brief  This function sends data WITHOUT a latch.
