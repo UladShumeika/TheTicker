@@ -203,6 +203,6 @@ void SPI_writeData(SPI_TypeDef *SPIx, uint8_t reg, uint8_t data);
   * @param  state - The value to be written to the CS pin. This parameter can be any value of @ref USH_SPI_csState.
   * @retval None.
   */
-void MAX7219_CSpin(USH_SPI_csState state);
+void SPI_csPin(USH_SPI_csState state);
 
 #endif /* __USH_SPI_H */
