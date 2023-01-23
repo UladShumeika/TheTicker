@@ -103,6 +103,24 @@ typedef enum
 	SCAN_LIMIT_0_7			// display digits 0 & 7
 } USH_MAX7219_REG_SCAN_LIMIT;
 
+/**
+ * @brief MAX7219 shutdown register's description enumeration.
+ */
+typedef enum
+{
+	SHUTDOWN_MODE = 0,
+	NORMAL_MODE
+} USH_MAX7219_REG_SHUTDOWN;
+
+/**
+ * @brief MAX7219 display test register's description enumeration.
+ */
+typedef enum
+{
+	NORMAL_OPERATION = 0,
+	DISPLAY_TEST_MODE
+} USH_MAX7219_REG_DISPLAY_TEST;
+
 //---------------------------------------------------------------------------
 // External function prototypes
 //---------------------------------------------------------------------------
