@@ -183,14 +183,14 @@ typedef enum
  *			- MSB transmitted first;
  *			- CRC calculation disabled;
  *			- TI mode disable.
- * @param 	initStructure - a pointer to a USH_SPI_initDefaultTypeDef structure that contains the configuration
+ * @param 	initStructure - A pointer to a USH_SPI_initDefaultTypeDef structure that contains the configuration
  * 							information for the specified SPI peripheral.
  * @retval	None.
  */
 void SPI_init(USH_SPI_initDefaultTypeDef *initStructure);
 
 /**
- * @brief 	This function writes data to a register
+ * @brief 	This function writes data to a register.
  * @param 	SPIx - A pointer to SPIx peripheral to be used where x is between 1 to 6.
  * @param 	reg - A register to write data to.
  * @param 	data - Data to be recorded.
