@@ -55,7 +55,7 @@ typedef enum
 } USH_MAX7219_registers;
 
 /**
- * @brief MAX7219 decode mode register's description.
+ * @brief MAX7219 decode mode register's description enumeration.
  */
 typedef enum
 {
@@ -64,6 +64,29 @@ typedef enum
 	CODE_B_DECODE_FOR_3_0	= 0x0F,		// Code B decode for digits 3–0. No decode for digits 7–4
 	CODE_B_DECODE_FOR_ALL	= 0xFF		// Code B decode for digits 7–0
 } USH_MAX7219_REG_DECODE_MODE;
+
+/**
+ * @brief MAX7219 intensity register's description enumeration.
+ */
+typedef enum
+{
+	INTENSITY_1_32 = 0,		// min value
+	INTENSITY_3_32,
+	INTENSITY_5_32,
+	INTENSITY_7_32,
+	INTENSITY_9_32,
+	INTENSITY_11_32,
+	INTENSITY_13_32,
+	INTENSITY_15_32,
+	INTENSITY_17_32,
+	INTENSITY_19_32,
+	INTENSITY_21_32,
+	INTENSITY_23_32,
+	INTENSITY_25_32,
+	INTENSITY_27_32,
+	INTENSITY_29_32,
+	INTENSITY_31_32			// max value
+} USH_MAX7219_REG_INTENSITY;
 
 //---------------------------------------------------------------------------
 // External function prototypes
