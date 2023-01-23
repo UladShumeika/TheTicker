@@ -46,13 +46,22 @@ void MAX7219_decodeMode(USH_MAX7219_digits digit, USH_MAX7219_REG_DECODE_MODE mo
   */
 void MAX7219_state(USH_MAX7219_digits digit, USH_MAX7219_REG_SHUTDOWN mode)
 {
-	if(mode == NORMAL_MODE)
-	{
-		MAX7219_sendDataWithLatch(digit, REG_SHUTDOWN, NORMAL_MODE);
-	} else
-	{
-		MAX7219_sendDataWithLatch(digit, REG_SHUTDOWN, SHUTDOWN_MODE);
-	}
+	MAX7219_sendDataWithLatch(digit, REG_SHUTDOWN, mode);
+}
+
+/**
+  * @brief  This function sends data WITH a latch.
+  * @param  digit - The digit indicates which digit of the matrix driver to transfer data to.
+  * 		        This parameter can be any value of @ref USH_MAX7219_digits.
+  * @param  reg - The matrix driver's address where the data should be written.
+  * @param	data - Data to be sent to the matrix driver.
+  * @retval None.
+  */
+void MAX7219_sendDataWithLatch(USH_MAX7219_digits digit, USH_MAX7219_registers reg, uint8_t data)
+{
+	SPI_csPin(LOW);
+	MAX7219_sendDataWithoutLatch(digit, reg, data);
+	SPI_csPin(HIGH);
 }
 
 /**
