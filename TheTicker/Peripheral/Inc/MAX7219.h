@@ -159,6 +159,6 @@ void MAX7219_sendDataWithLatch(USH_MAX7219_digits digit, USH_MAX7219_registers r
   * @param	data - Data to be sent to the matrix driver.
   * @retval None.
   */
-void MAX7219_sendDataWithLatch(uint8_t digit, uint8_t addr, uint8_t data);
+void MAX7219_sendDataWithoutLatch(USH_MAX7219_digits digit, USH_MAX7219_registers reg, uint8_t data);
 
 #endif /* __MAX7219_H */
