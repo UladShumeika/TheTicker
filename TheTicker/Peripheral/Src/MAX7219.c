@@ -22,6 +22,7 @@ void MAX7219_init(void)
 	SPI_init(&initStructure);
 
 	MAX7219_state(ALL_DIGITS, NORMAL_MODE);
+	MAX7219_decodeMode(ALL_DIGITS, NO_DECODE_FOR_ALL);
 }
 
 //---------------------------------------------------------------------------
@@ -29,8 +30,10 @@ void MAX7219_init(void)
 //---------------------------------------------------------------------------
 
 /**
- * @brief This function sets the decoding mode for the driver
- *
+ * @brief	This function sets the decoding mode for the matrix driver
+ * @param	digit - The digit indicates which digit of the matrix driver to transfer data to.
+ * 					This parameter can be any value of @ref USH_MAX7219_digits.
+ * @param	mode - The decode mode. This parameter can be any value of @ref USH_MAX7219_REG_DECODE_MODE.
  */
 void MAX7219_decodeMode(USH_MAX7219_digits digit, USH_MAX7219_REG_DECODE_MODE mode)
 {
