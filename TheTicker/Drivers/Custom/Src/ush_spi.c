@@ -62,12 +62,20 @@ void SPI_init(USH_SPI_initDefaultTypeDef *initStructure)
 			// PA6     ------> SPI1_MISO
 			// PA7     ------> SPI1_MOSI
 			initGpioStructure.GPIOx 		= GPIOA;
-			initGpioStructure.Pin			= (GPIO_PIN_4 | GPIO_PIN_5 | GPIO_PIN_6 | GPIO_PIN_7);
+			initGpioStructure.Pin			= (GPIO_PIN_5 | GPIO_PIN_6 | GPIO_PIN_7);
 			initGpioStructure.Mode			= GPIO_MODE_ALTERNATE_PP;
 			initGpioStructure.Pull			= GPIO_NOPULL;
 			initGpioStructure.Speed			= GPIO_SPEED_VERY_HIGH;
 			initGpioStructure.Alternate		= GPIO_Af5_SPI1;
 			GPIO_init(&initGpioStructure);
+
+			initGpioStructure.Pin			= GPIO_PIN_4;
+			initGpioStructure.Mode			= GPIO_MODE_OUTPUT_PP;
+			initGpioStructure.Pull			= GPIO_NOPULL;
+			GPIO_init(&initGpioStructure);
+
+			GPIO_writeBits(GPIOA, GPIO_PIN_4, SET);
+			GPIO_writeBits(GPIOA, GPIO_PIN_5, RESET);
 		} else											// Pins configuration according to pinsPack_2
 		{
 			// GPIOA and GPIOB clock enable
