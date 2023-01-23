@@ -38,10 +38,20 @@ void MAX7219_sendDataWithoutLatch(uint8_t digit, uint8_t addr, uint8_t data)
 	}
 }
 
-
-
-
-
+/**
+  * @brief  This function sends data WITH a latch.
+  * @param  digit - The digit indicates which digit of the matrix to transfer data to.
+  * 		        This parameter can be any value of @ref USH_MAX7219_digits.
+  * @param  addr - The matrix controller's address where you want to send data.
+  * @param	data - Data to be sent to the matrix controller.
+  * @retval None.
+  */
+void MAX7219_sendDataWithLatch(uint8_t digit, uint8_t addr, uint8_t data)
+{
+	SPI_csPin(LOW);
+	MAX7219_sendDataWithoutLatch(digit, addr, data);
+	SPI_csPin(HIGH);
+}
 
 void MAX7219_init(void)
 {
