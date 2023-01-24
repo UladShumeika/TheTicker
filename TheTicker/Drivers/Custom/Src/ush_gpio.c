@@ -70,6 +70,7 @@ void GPIO_init(USH_GPIO_initTypeDef *initStructure)
 				temp = initStructure->GPIOx->PUPDR;
 				temp &= ~(GPIO_PUPDR_PUPDR0 << (pinPos * 2U));
 				temp |= (initStructure->Pull << (pinPos * 2U));
+				initStructure->GPIOx->PUPDR = temp;
 			}
 
 			// In case of Alternate function mode selection
