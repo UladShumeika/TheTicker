@@ -2,6 +2,11 @@
 TheTicker/.settings/
 TheTicker/.vscode
 TheTicker/Debug/
+*.cproject
+*.project
+*.launch
+*.ld
+
 
 # Prerequisites
 *.d
