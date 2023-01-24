@@ -118,11 +118,11 @@ typedef enum
  */
 typedef enum
 {
-	SPI_MODE_1		= 0x0000U,		/* Clock polarity low, clock phase 1st edge */
-	SPI_MODE_2		= 0x0010U, 		/* Clock polarity low, clock phase 2nd edge */
-	SPI_MODE_3		= 0x0001U, 		/* Clock polarity high, clock phase 1st edge */
-	SPI_MODE_4  	= 0x0011U, 		/* Clock polarity high, clock phase 2nd edge */
-	SPI_MODE_MASK 	= 0x0011U
+	SPI_MODE_1		= 0x00U,		/* Clock polarity low, clock phase 1st edge */
+	SPI_MODE_2		= 0x02U, 		/* Clock polarity low, clock phase 2nd edge */
+	SPI_MODE_3		= 0x01U, 		/* Clock polarity high, clock phase 1st edge */
+	SPI_MODE_4  	= 0x03U, 		/* Clock polarity high, clock phase 2nd edge */
+	SPI_MODE_MASK 	= 0x03U
 } USH_SPI_mode;
 
 /**
