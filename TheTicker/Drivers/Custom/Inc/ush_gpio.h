@@ -80,7 +80,7 @@ typedef enum
 {
 	GPIO_NOPULL		= 0x00UL,		/* No pull up and pull down */
 	GPIO_PULLUP		= 0x01UL,		/* Pull up selected */
-	GPIO_PULLDOWN	= 0x10UL		/* Pull down selected */
+	GPIO_PULLDOWN	= 0x02UL		/* Pull down selected */
 } USH_GPIO_pull;
 
 /**
