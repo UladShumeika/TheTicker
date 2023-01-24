@@ -132,7 +132,7 @@ void GPIO_writeBits(GPIO_TypeDef *GPIOx, uint16_t gpioPins, USH_GPIO_pinState st
 
 	if(state != GPIO_PIN_RESET)
 	{
-		GPIOx->BSRR = state;
+		GPIOx->BSRR = gpioPins;
 	}
 	else
 	{
