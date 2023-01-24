@@ -27,12 +27,26 @@ void MAX7219_init(void)
 	MAX7219_intensity(ALL_DIGITS, INTENSITY_13_32);
 	MAX7219_scanLimit(ALL_DIGITS, SCAN_LIMIT_0_7);
 	MAX7219_clean(ALL_DIGITS);
-
+	MAX7219_testMode(ALL_DIGITS, DELAY_TEST_MODE);
 }
 
 //---------------------------------------------------------------------------
 // Library Functions
 //---------------------------------------------------------------------------
+
+/**
+ * @brief 	This function starts a test mode with a duration of delay (ms)
+ * @param 	digit - The digit indicates which digit of the matrix driver to transfer data to.
+ * 					This parameter can be any value of @ref USH_MAX7219_digits.
+ * @param 	delay - The delay in ms.
+ * @retval	None.
+ */
+void MAX7219_testMode(USH_MAX7219_digits digit, uint16_t delay)
+{
+	MAX7219_sendDataWithLatch(digit, REG_DISPLAY_TEST, DISPLAY_TEST_MODE);
+	osDelay(delay);
+	MAX7219_sendDataWithLatch(digit, REG_DISPLAY_TEST, NORMAL_OPERATION);
+}
 
 /**
  * @brief 	This function cleans matrix's digits.
