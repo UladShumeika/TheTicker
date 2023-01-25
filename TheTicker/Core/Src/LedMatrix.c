@@ -38,11 +38,18 @@ void addNewDataToOutputBuffer(uint8_t outputBuffer[][4], uint8_t dataBuffer[8]);
 void SendToTheMatrixTask(void const * argument)
 {
 	MAX7219_init();
+//	shift_outputBuffer(outputBuffer);
+	//addNewDataToOutputBuffer(outputBuffer, dataBuffer);
+
+	//outputOnMatrix(&outputBuffer);
 
 	/* Infinite loop */
 	for(;;)
 	{
+		outputOnMatrix(outputBuffer);
+		shift_outputBuffer(outputBuffer);
 		osDelay(1000);
+		MAX7219_clean(ALL_DIGITS);
 	}
 }
 
