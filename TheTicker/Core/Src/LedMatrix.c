@@ -37,7 +37,7 @@ uint8_t string[] = "0123456789!";
 //---------------------------------------------------------------------------
 static void outputOnMatrix(uint8_t outputBuffer[][MATRIX_COLUMN]);
 static void shift_outputBuffer(uint8_t outputBuffer[][MATRIX_COLUMN]);
-static void convertStringIntoDataForMatrix(uint8_t *str, uint8_t fontArray[][MATRIX_COLUMN]);
+static void convertStringIntoDataForMatrix(uint8_t *str, const uint8_t fontArray[][MATRIX_COLUMN]);
 
 //---------------------------------------------------------------------------
 // FreeRTOS's threads
@@ -160,7 +160,19 @@ static void shift_outputBuffer(uint8_t outputBuffer[][MATRIX_COLUMN])
 	}
 }
 
-static void convertStringIntoDataForMatrix(uint8_t *str, uint8_t fontArray[][MATRIX_COLUMN])
+static void convertStringIntoDataForMatrix(uint8_t *str, const uint8_t fontArray[][MATRIX_COLUMN])
 {
+	uint8_t sizeStr = strlen((char*)str);
+	uint8_t m = MATRIX_COLUMN;
+
+	uint8_t **buffer = pvPortMalloc(sizeStr * sizeof(uint8_t*) + sizeStr * m * sizeof(uint8_t));
+
+	uint8_t *pc = buffer;
+
+	pc += sizeStr * sizeof(uint8_t*);
+
+	for(uint8_t i = 0; i < sizeStr; i++)
+		buffer[i] = pc + i * sizeof(m * sizeof(uint8_t));
+
 
 }
