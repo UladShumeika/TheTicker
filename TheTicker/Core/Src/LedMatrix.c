@@ -9,6 +9,8 @@
 #define MATRIX_ROW					((uint8_t)4)
 #define MATRIX_COLUMN				((uint8_t)8)
 
+#define SHIFT_BYTE					((uint8_t)7)
+
 //---------------------------------------------------------------------------
 // Descriptions of FreeRTOS elements
 //---------------------------------------------------------------------------
@@ -26,7 +28,7 @@ uint8_t outputBuffer[MATRIX_ROW][MATRIX_COLUMN] = {{0x18, 0x24, 0x42, 0x81, 0x81
 // Static functions
 //---------------------------------------------------------------------------
 static void outputOnMatrix(uint8_t outputBuffer[][MATRIX_COLUMN]);
-void shift_outputBuffer(uint8_t outputBuffer[][8]);
+static void shift_outputBuffer(uint8_t outputBuffer[][MATRIX_COLUMN]);
 
 //---------------------------------------------------------------------------
 // FreeRTOS's threads
@@ -94,5 +96,41 @@ static void outputOnMatrix(uint8_t outputBuffer[][MATRIX_COLUMN])
 	}
 }
 
+/**
+ * @brief 	This function shifts data into the output buffer.
+ * @note	To understand how shift works. You need to understand that the matrix driver "flips" the data it receives.
+ * 			For example, it is necessary that the LEDs 10011000 light up. For the matrix itself, the numbering will be
+ * 			carried out as L10011000M. However, this number is stored in memory as M00011001L. In this regard,
+ * 			when it is necessary to shift the displayed data to the left, then in fact in the code they need to be
+ * 			shifted to the right. Also, when we check the extreme bit for a 1 in order to move it to the adjacent
+ * 			matrix, then we need to keep track of the low bit in the code, and not the high bit.
+ * 			And move it to the place of the older one in the adjacent matrix, and not the younger one.
+ * @param 	outputBuffer - The special buffer that contains useful information for output to the matrix.
+ * @retval	None.
+ */
+static void shift_outputBuffer(uint8_t outputBuffer[][MATRIX_COLUMN])
+{
+	uint8_t tempBuffer[MATRIX_COLUMN] = {0,};
 
+	for(uint8_t row = 0; row < MATRIX_ROW; row++)
+	{
+		for(uint8_t column = 0; column < MATRIX_COLUMN; column++)
+		{
+			if(row == 0)				// For the extreme matrix, we move the transitional 1 array from the buffer.
+			{
+				tempBuffer[column] = outputBuffer[row][column] & 0x01;
+				outputBuffer[row][column] = outputBuffer[row][column] >> 1;
+			} else
+			{
+				outputBuffer[row - 1][column] |= (outputBuffer[row][column] & 0x01) << SHIFT_BYTE;
+				outputBuffer[row][column] = outputBuffer[row][column] >> 1;
+			}
+
+			if(row == MATRIX_ROW - 1)	// For the last matrix, add transition units from the buffer.
+			{
+				outputBuffer[row][column] = outputBuffer[row][column] | (tempBuffer[column] << SHIFT_BYTE);
+			}
+		}
+	}
+}
 
