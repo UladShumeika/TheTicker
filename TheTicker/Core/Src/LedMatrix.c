@@ -6,6 +6,9 @@
 //---------------------------------------------------------------------------
 // Defines
 //---------------------------------------------------------------------------
+#define USED_SPI					(SPI1)
+#define SPEED_SHIFT					((uint8_t)100)
+
 #define MATRIX_ROW					((uint8_t)4)
 #define MATRIX_COLUMN				((uint8_t)8)
 
@@ -42,17 +45,13 @@ static void shift_outputBuffer(uint8_t outputBuffer[][MATRIX_COLUMN]);
 void SendToTheMatrixTask(void const * argument)
 {
 	MAX7219_init();
-//	shift_outputBuffer(outputBuffer);
-	//addNewDataToOutputBuffer(outputBuffer, dataBuffer);
-
-	//outputOnMatrix(&outputBuffer);
 
 	/* Infinite loop */
 	for(;;)
 	{
 		outputOnMatrix(outputBuffer);
 		shift_outputBuffer(outputBuffer);
-		osDelay(1000);
+		osDelay(SPEED_SHIFT);
 		MAX7219_clean(ALL_DIGITS);
 	}
 }
