@@ -20,6 +20,7 @@
 // Descriptions of FreeRTOS elements
 //---------------------------------------------------------------------------
 static osThreadId sendToTheMatrixHandle;
+static osThreadId convertStringHandle;
 
 //---------------------------------------------------------------------------
 // Variables
@@ -61,6 +62,22 @@ void SendToTheMatrixTask(void const * argument)
 	}
 }
 
+/**
+ * @brief 	Function implementing the converting the string to the matrix thread.
+ * @param  	argument - Not used.
+ * @retval	None.
+ */
+void convertStringIntoDataForMatrixTask(void const *argument)
+{
+	convertStringIntoDataForMatrix(string, font_ASCII);
+
+	/* Infinite loop */
+	for(;;)
+	{
+
+	}
+}
+
 //---------------------------------------------------------------------------
 // Initialization functions
 //---------------------------------------------------------------------------
@@ -76,6 +93,11 @@ void LEDMATRIX_freeRtosInit(void)
 	// definition and creation of HeartbeatTask
 	osThreadDef(SendToTheMatrix, SendToTheMatrixTask, osPriorityLow, 0, 128);
 	sendToTheMatrixHandle = osThreadCreate(osThread(SendToTheMatrix), NULL);
+
+	// definition and creation of convertStringIntoDataForMatrixTask
+	osThreadDef(convertString, convertStringIntoDataForMatrixTask, osPriorityLow, 0, 128);
+	convertStringHandle = osThreadCreate(osThread(convertString), NULL);
+
 }
 
 //---------------------------------------------------------------------------
