@@ -22,8 +22,6 @@ uint8_t outputBuffer[4][8] = {{0x18, 0x24, 0x42, 0x81, 0x81, 0x42, 0x24, 0x18}, 
 void outputOnMatrix(uint8_t outputBuffer[][8]);
 void shift_outputBuffer(uint8_t outputBuffer[][8]);
 
-void addNewDataToOutputBuffer(uint8_t outputBuffer[][4], uint8_t dataBuffer[8]);
-
 //---------------------------------------------------------------------------
 // FreeRTOS's threads
 //---------------------------------------------------------------------------
