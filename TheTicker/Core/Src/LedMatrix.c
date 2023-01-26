@@ -36,6 +36,7 @@ uint8_t string[] = "Hello!";
 //---------------------------------------------------------------------------
 static void outputOnMatrix(uint8_t outputBuffer[][MATRIX_COLUMN]);
 static void shift_outputBuffer(uint8_t outputBuffer[][MATRIX_COLUMN]);
+static void convertStringIntoDataForMatrix(uint8_t *str, uint8_t fontArray[][MATRIX_COLUMN]);
 
 //---------------------------------------------------------------------------
 // FreeRTOS's threads
@@ -137,3 +138,7 @@ static void shift_outputBuffer(uint8_t outputBuffer[][MATRIX_COLUMN])
 	}
 }
 
+static void convertStringIntoDataForMatrix(uint8_t *str, uint8_t fontArray[][MATRIX_COLUMN])
+{
+
+}
