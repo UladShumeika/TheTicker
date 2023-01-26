@@ -25,7 +25,7 @@ uint8_t outputBuffer[MATRIX_ROW][MATRIX_COLUMN] = {{0x18, 0x24, 0x42, 0x81, 0x81
 //---------------------------------------------------------------------------
 // Static functions
 //---------------------------------------------------------------------------
-void outputOnMatrix(uint8_t outputBuffer[][8]);
+static void outputOnMatrix(uint8_t outputBuffer[][MATRIX_COLUMN]);
 void shift_outputBuffer(uint8_t outputBuffer[][8]);
 
 //---------------------------------------------------------------------------
@@ -71,3 +71,28 @@ void LEDMATRIX_freeRtosInit(void)
 	osThreadDef(SendToTheMatrix, SendToTheMatrixTask, osPriorityLow, 0, 128);
 	sendToTheMatrixHandle = osThreadCreate(osThread(SendToTheMatrix), NULL);
 }
+
+//---------------------------------------------------------------------------
+// Others functions
+//---------------------------------------------------------------------------
+
+/**
+ * @brief	This function outputs information from the output buffer to the matrix.
+ * @param 	outputBuffer - The special buffer that contains useful information for output to the matrix.
+ * @retval	None.
+ */
+static void outputOnMatrix(uint8_t outputBuffer[][MATRIX_COLUMN])
+{
+	for(uint8_t column = 0; column < MATRIX_COLUMN; column++)
+	{
+		SPI_csPin(LOW);
+		for(int8_t row = MATRIX_ROW - 1; row >= 0; row--)
+		{
+			SPI_writeData(USED_SPI, column + 1, outputBuffer[row][column]);
+		}
+		SPI_csPin(HIGH);
+	}
+}
+
+
+
