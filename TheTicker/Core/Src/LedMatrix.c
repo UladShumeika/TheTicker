@@ -99,7 +99,9 @@ void LEDMATRIX_freeRtosInit(void)
 	osSemaphoreDef(mutexForMessage);
 	mutexForMessageHandle = osSemaphoreCreate(osSemaphore(mutexForMessage), 1);
 
-
+#ifdef DEBUG
+	vQueueAddToRegistry(mutexForMessageHandle, "mutex for a message");
+#endif
 }
 
 //---------------------------------------------------------------------------
