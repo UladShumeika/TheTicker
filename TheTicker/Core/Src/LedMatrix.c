@@ -22,11 +22,8 @@
 static osThreadId sendToTheMatrixHandle;
 static osThreadId convertStringHandle;
 osSemaphoreId mutexForMessageHandle;
-
-//---------------------------------------------------------------------------
-// Variables
-//---------------------------------------------------------------------------
-uint8_t string[] = "[\\]^_`";
+static osMessageQId fromConvertToOutputHandle;
+extern osMessageQId fromUartToMatrixHandle;
 
 //---------------------------------------------------------------------------
 // Static functions
