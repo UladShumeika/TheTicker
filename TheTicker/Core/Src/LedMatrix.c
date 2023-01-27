@@ -203,4 +203,5 @@ static uint8_t** convertStringIntoDataForMatrix(UART_messageTypeDef *message, co
 		}
 	}
 
+	return buffer;
 }
