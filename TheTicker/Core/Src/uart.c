@@ -28,10 +28,18 @@ static uint8_t string[] = "Hello, My Name is Ulad! ";
  */
 void receivingMessageTask(void const *argument)
 {
+	UART_messageTypeDef *message;
+	message = (UART_messageTypeDef*) osPoolCAlloc(messageStructHandle);
+
+	message->message = string;
+	message->sizeMessage = strlen((char*)string);
+
+	osMessagePut(fromUartToMatrixHandle, (uint32_t)message, osWaitForever);
+
 	/* Infinite loop */
 	for(;;)
 	{
-		osDelay(1000);
+		osDelay(1);
 	}
 }
 
