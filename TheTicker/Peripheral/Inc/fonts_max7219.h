@@ -21,8 +21,11 @@
 #include "stm32f4xx.h"
 
 //---------------------------------------------------------------------------
-// Description of fonts
+// Defines
 //---------------------------------------------------------------------------
+#define ROW_ASCII				((uint8_t)95)
+#define COLUMN_ASCII			((uint8_t)8)
+#define SHIFT_ASCII				((uint8_t)0x21 + (uint8_t)0x01)
 
 const uint8_t font_ASCII[30][8] = {{0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00},	// space
 						           {0x00, 0x02, 0x00, 0x00, 0x02, 0x02, 0x02, 0x02},	// !
