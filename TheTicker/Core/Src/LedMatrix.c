@@ -28,9 +28,11 @@ extern osMessageQId fromUartToMatrixHandle;
 //---------------------------------------------------------------------------
 // Static functions
 //---------------------------------------------------------------------------
-static void outputOnMatrix(uint8_t outputBuffer[][MATRIX_COLUMN]);
-static void shift_outputBuffer(uint8_t outputBuffer[][MATRIX_COLUMN]);
-static void convertStringIntoDataForMatrix(uint8_t *str, const uint8_t fontArray[][MATRIX_COLUMN]);
+static void outputOnMatrix(uint8_t** outputBuffer, uint8_t max_column);
+static void shiftOutputBuffer(uint8_t** outputBuffer, uint8_t rowBuffer, uint8_t columnBuffer);
+static uint8_t** convertStringIntoDataForMatrix(UART_messageTypeDef *message, const uint8_t fontArray[][MATRIX_COLUMN]);
+
+uint8_t **outputBuffer;
 
 //---------------------------------------------------------------------------
 // FreeRTOS's threads
