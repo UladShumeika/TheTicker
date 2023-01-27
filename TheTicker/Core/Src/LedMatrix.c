@@ -188,14 +188,11 @@ static uint8_t** convertStringIntoDataForMatrix(UART_messageTypeDef *message, co
 	uint8_t m = MATRIX_COLUMN;
 	uint8_t symbol = 0;
 
-	uint8_t **buffer = pvPortMalloc(sizeStr * sizeof(uint8_t*) + sizeStr * m * sizeof(uint8_t));
-
-	uint8_t *pc = buffer;
-
-	pc += sizeStr * sizeof(uint8_t*);
+	uint8_t **buffer = (uint8_t**)pvPortMalloc(sizeStr * sizeof(uint8_t*) + sizeStr * m * sizeof(uint8_t));
+	uint8_t *start = ((uint8_t*)buffer + sizeStr * sizeof(uint8_t*));
 
 	for(uint8_t i = 0; i < sizeStr; i++)
-		buffer[i] = pc + i * sizeof(m * sizeof(uint8_t));
+		buffer[i] = start + i * m;
 
 
 }
