@@ -9,7 +9,7 @@
 // Defines
 //---------------------------------------------------------------------------
 #define USED_SPI					(SPI1)
-#define SPEED_SHIFT					((uint8_t)100)
+#define SPEED_SHIFT					((uint8_t)60)
 
 #define MATRIX_ROW					((uint8_t)4)
 #define MATRIX_COLUMN				((uint8_t)8)
