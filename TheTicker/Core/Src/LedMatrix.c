@@ -127,12 +127,15 @@ void LEDMATRIX_freeRtosInit(void)
  * @param 	outputBuffer - The special buffer that contains useful information for output to the matrix.
  * @retval	None.
  */
-static void outputOnMatrix(uint8_t outputBuffer[][MATRIX_COLUMN])
+static void outputOnMatrix(uint8_t** outputBuffer, uint8_t max_column)
 {
+	//uint8_t matrix_row = strlen((char*)str);
+	uint8_t matrix_row = 24;
+
 	for(uint8_t column = 0; column < MATRIX_COLUMN; column++)
 	{
 		SPI_csPin(LOW);
-		for(int8_t row = MATRIX_ROW - 1; row >= 0; row--)
+		for(int8_t row = matrix_row - 1; row >= 0; row--)
 		{
 			SPI_writeData(USED_SPI, column + 1, outputBuffer[row][column]);
 		}
