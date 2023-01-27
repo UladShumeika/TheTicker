@@ -155,13 +155,13 @@ static void outputOnMatrix(uint8_t** outputBuffer, uint8_t max_column)
  * @param 	outputBuffer - The special buffer that contains useful information for output to the matrix.
  * @retval	None.
  */
-static void shift_outputBuffer(uint8_t outputBuffer[][MATRIX_COLUMN])
+static void shiftOutputBuffer(uint8_t** outputBuffer, uint8_t rowBuffer, uint8_t columnBuffer)
 {
 	uint8_t tempBuffer[MATRIX_COLUMN] = {0,};
 
-	for(uint8_t row = 0; row < MATRIX_ROW; row++)
+	for(uint8_t row = 0; row < rowBuffer; row++)
 	{
-		for(uint8_t column = 0; column < MATRIX_COLUMN; column++)
+		for(uint8_t column = 0; column < columnBuffer; column++)
 		{
 			if(row == 0)				// For the extreme matrix, we move the transitional 1 array from the buffer.
 			{
@@ -173,7 +173,7 @@ static void shift_outputBuffer(uint8_t outputBuffer[][MATRIX_COLUMN])
 				outputBuffer[row][column] = outputBuffer[row][column] >> 1;
 			}
 
-			if(row == MATRIX_ROW - 1)	// For the last matrix, add transition units from the buffer.
+			if(row == rowBuffer - 1)	// For the last matrix, add transition units from the buffer.
 			{
 				outputBuffer[row][column] = outputBuffer[row][column] | (tempBuffer[column] << SHIFT_BYTE);
 			}
