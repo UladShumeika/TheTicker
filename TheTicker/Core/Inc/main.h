@@ -23,6 +23,7 @@ extern "C" {
 //---------------------------------------------------------------------------
 #define HEARTBEAT
 #define LEDMATRIX
+#define UART
 
 //---------------------------------------------------------------------------
 // Module's includes
@@ -33,6 +34,10 @@ extern "C" {
 
 #ifdef LEDMATRIX
 	#include "LedMatrix.h"
+#endif
+
+#ifdef UART
+	#include "uart.h"
 #endif
 
 //---------------------------------------------------------------------------
