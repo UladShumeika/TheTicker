@@ -96,6 +96,11 @@ void LEDMATRIX_freeRtosInit(void)
 	osThreadDef(convertString, convertStringIntoDataForMatrixTask, osPriorityLow, 0, 128);
 	convertStringHandle = osThreadCreate(osThread(convertString), NULL);
 
+	// Create the queue(s)
+	// definition and creating of fromConvertToOutputHandle
+	osMessageQDef(fromConvertToOutput, 1, uint32_t);
+	fromConvertToOutputHandle = osMessageCreate(osMessageQ(fromConvertToOutput), NULL);
+
 	// Create the semaphore(s)
 	// definition and creation of mutex for a message
 	osSemaphoreDef(mutexForMessage);
