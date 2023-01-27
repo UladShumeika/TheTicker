@@ -194,5 +194,13 @@ static uint8_t** convertStringIntoDataForMatrix(UART_messageTypeDef *message, co
 	for(uint8_t i = 0; i < sizeStr; i++)
 		buffer[i] = start + i * m;
 
+	for(uint8_t row = 0; row < sizeStr; row++)
+	{
+		for(uint8_t column = 0; column < MATRIX_COLUMN; column++)
+		{
+			symbol = (uint8_t)(message->message[row] - 0x21 + 0x01);
+			buffer[row][column] = font_ASCII[symbol][column];
+		}
+	}
 
 }
