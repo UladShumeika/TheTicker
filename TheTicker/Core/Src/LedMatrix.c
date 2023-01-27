@@ -45,13 +45,16 @@ uint8_t **outputBuffer;
 */
 void SendToTheMatrixTask(void const * argument)
 {
+	uint8_t rowBuffer = 24;
+
 	MAX7219_init();
 
 	/* Infinite loop */
 	for(;;)
 	{
-		outputOnMatrix(outputBuffer);
-		shift_outputBuffer(outputBuffer);
+
+		outputOnMatrix(outputBuffer, MATRIX_COLUMN);
+		shiftOutputBuffer(outputBuffer, rowBuffer, MATRIX_COLUMN);
 		osDelay(SPEED_SHIFT);
 		MAX7219_clean(ALL_DIGITS);
 	}
