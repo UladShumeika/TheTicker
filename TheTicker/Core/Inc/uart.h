@@ -26,5 +26,6 @@ typedef struct
 // External function prototypes
 //---------------------------------------------------------------------------
 void UART_freeRtosInit(void);
+void receivingMessageTask(void const *argument);
 
 #endif /* __UART_H */
