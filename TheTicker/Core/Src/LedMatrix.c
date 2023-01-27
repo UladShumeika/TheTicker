@@ -21,6 +21,7 @@
 //---------------------------------------------------------------------------
 static osThreadId sendToTheMatrixHandle;
 static osThreadId convertStringHandle;
+osSemaphoreId mutexForMessageHandle;
 
 //---------------------------------------------------------------------------
 // Variables
@@ -92,6 +93,12 @@ void LEDMATRIX_freeRtosInit(void)
 	// definition and creation of convertStringIntoDataForMatrixTask
 	osThreadDef(convertString, convertStringIntoDataForMatrixTask, osPriorityLow, 0, 128);
 	convertStringHandle = osThreadCreate(osThread(convertString), NULL);
+
+	// Create the semaphore(s)
+	// definition and creation of mutex for a message
+	osSemaphoreDef(mutexForMessage);
+	mutexForMessageHandle = osSemaphoreCreate(osSemaphore(mutexForMessage), 1);
+
 
 }
 
