@@ -181,10 +181,12 @@ static void shiftOutputBuffer(uint8_t** outputBuffer, uint8_t rowBuffer, uint8_t
 	}
 }
 
-static void convertStringIntoDataForMatrix(uint8_t *str, const uint8_t fontArray[][MATRIX_COLUMN])
+static uint8_t** convertStringIntoDataForMatrix(UART_messageTypeDef *message, const uint8_t fontArray[][MATRIX_COLUMN])
 {
-	uint8_t sizeStr = strlen((char*)str);
+	//uint8_t sizeStr = strlen((char*)str);
+	uint8_t sizeStr = message->sizeMessage;
 	uint8_t m = MATRIX_COLUMN;
+	uint8_t symbol = 0;
 
 	uint8_t **buffer = pvPortMalloc(sizeStr * sizeof(uint8_t*) + sizeStr * m * sizeof(uint8_t));
 
