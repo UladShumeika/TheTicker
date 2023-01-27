@@ -67,12 +67,19 @@ void SendToTheMatrixTask(void const * argument)
  */
 void convertStringIntoDataForMatrixTask(void const *argument)
 {
-	convertStringIntoDataForMatrix(string, font_ASCII);
+	UART_messageTypeDef *message;
+	osEvent evt;
 
 	/* Infinite loop */
 	for(;;)
 	{
+		evt = osMessageGet(fromUartToMatrixHandle, osWaitForever);
 
+		if(evt.status == osEventMessage)
+		{
+			message = evt.value.p;
+			outputBuffer = convertStringIntoDataForMatrix(message, font_ASCII);
+		}
 	}
 }
 
