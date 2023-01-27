@@ -7,6 +7,8 @@
 // Descriptions of FreeRTOS elements
 //---------------------------------------------------------------------------
 static osThreadId receivingMessageHandle;
+static osMessageQId fromUartToMatrixHandle;
+extern osSemaphoreId mutexForMessageHandle;
 
 //---------------------------------------------------------------------------
 // FreeRTOS's threads
@@ -41,4 +43,13 @@ void UART_freeRtosInit(void)
 	// definition and creation of receivingMessageTask
 	osThreadDef(receivingMessage, receivingMessageTask, osPriorityLow, 0, 128);
 	receivingMessageHandle = osThreadCreate(osThread(receivingMessage), NULL);
+
+	// Create the queue(s)
+	// definition and creating of fromUartToMatrixHandle
+	osMessageQDef(fromUartToMatrix, 1, UART_messageTypeDef);
+	fromUartToMatrixHandle = osMessageCreate(osMessageQ(fromUartToMatrix), NULL);
+
+#ifdef DEBUG
+	vQueueAddToRegistry(fromUartToMatrixHandle, "from uart");
+#endif
 }
