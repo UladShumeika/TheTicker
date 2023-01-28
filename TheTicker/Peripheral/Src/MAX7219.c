@@ -54,11 +54,11 @@ void MAX7219_testMode(uint8_t numDigit, uint16_t delay)
  * 					This parameter can be any value of @ref USH_MAX7219_digits.
  * @retval	None.
  */
-void MAX7219_clean(USH_MAX7219_digits digit)
+void MAX7219_clean(uint8_t numDigit)
 {
 	for(uint8_t reg = REG_DIGIT_0; reg <= REG_DIGIT_7; reg++)
 	{
-		MAX7219_sendDataWithLatch(digit, reg, 0x00U);
+		MAX7219_sendDataWithLatch(numDigit, reg, 0x00U);
 	}
 }
 
