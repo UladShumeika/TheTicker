@@ -106,9 +106,9 @@ void MAX7219_decodeMode(USH_MAX7219_digits numDigit, USH_MAX7219_REG_DECODE_MODE
   * @param  mode - The driver mode. This parameter can be any value of @ref USH_MAX7219_REG_SHUTDOWN.
   * @retval None.
   */
-void MAX7219_state(USH_MAX7219_digits digit, USH_MAX7219_REG_SHUTDOWN mode)
+void MAX7219_state(uint8_t numDigit, USH_MAX7219_REG_SHUTDOWN mode)
 {
-	MAX7219_sendDataWithLatch(digit, REG_SHUTDOWN, mode);
+	MAX7219_sendDataWithLatch(numDigit, REG_SHUTDOWN, mode);
 }
 
 /**
