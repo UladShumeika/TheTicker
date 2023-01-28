@@ -69,9 +69,9 @@ void MAX7219_clean(uint8_t numDigit)
  * @param 	scanLimit - The number of digits to be displayed.
  * @retval	None.
  */
-void MAX7219_scanLimit(USH_MAX7219_digits digit, USH_MAX7219_REG_SCAN_LIMIT scanLimit)
+void MAX7219_scanLimit(USH_MAX7219_digits numDigit, USH_MAX7219_REG_SCAN_LIMIT scanLimit)
 {
-	MAX7219_sendDataWithLatch(digit, REG_SCAN_LIMIT, scanLimit);
+	MAX7219_sendDataWithLatch(numDigit, REG_SCAN_LIMIT, scanLimit);
 }
 
 /**
