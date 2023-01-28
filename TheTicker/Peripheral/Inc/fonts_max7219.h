@@ -23,15 +23,15 @@
 //---------------------------------------------------------------------------
 // Defines
 //---------------------------------------------------------------------------
-#define ROW_ASCII				((uint8_t)95)
-#define COLUMN_ASCII			((uint8_t)8)
-#define SHIFT_ASCII				((uint8_t)0x21 + (uint8_t)0x01)
+#define ASCII_ROW				((uint8_t)95)
+#define ASCII_COLUMN			((uint8_t)8)
+#define ASCII_SHIFT				((uint8_t)0x21 + (uint8_t)0x01)
 
 //---------------------------------------------------------------------------
 // Descriptions of fonts
 //---------------------------------------------------------------------------
 
-const uint8_t font_ASCII[ROW_ASCII][COLUMN_ASCII] = {{0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00},	// space
+const uint8_t font_ASCII[ASCII_ROW][ASCII_COLUMN] = {{0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00},	// space
 						         	 	 	 	 	 {0x18, 0x00, 0x18, 0x18, 0x3c, 0x3c, 0x18, 0x00},	// !
 													 {0x00, 0x00, 0x00, 0x00, 0x28, 0x6c, 0x6c, 0x00},	// "
 													 {0x6c, 0x6c, 0xfe, 0x6c, 0xfe, 0x6c, 0x6c, 0x00},	// #
