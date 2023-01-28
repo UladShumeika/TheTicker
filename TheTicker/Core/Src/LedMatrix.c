@@ -27,7 +27,7 @@ extern osMessageQId fromUartToMatrixHandle;
 //---------------------------------------------------------------------------
 // Static functions
 //---------------------------------------------------------------------------
-static void outputOnMatrix(uint8_t** outputBuffer, uint8_t max_column);
+static void outputOnMatrix(uint8_t** outputBuffer);
 static void shiftOutputBuffer(uint8_t** outputBuffer, uint8_t rowBuffer, uint8_t columnBuffer);
 static uint8_t** convertStringIntoDataForMatrix(UART_messageTypeDef *message, const uint8_t fontArray[][MATRIX_COLUMN]);
 
@@ -122,23 +122,26 @@ void LEDMATRIX_freeRtosInit(void)
 //---------------------------------------------------------------------------
 
 /**
- * @brief	This function outputs information from the output buffer to the matrix.
- * @param 	outputBuffer - The special buffer that contains useful information for output to the matrix.
+ * @brief	This function outputs information from the output buffer to the LED matrix.
+ * @note	A pointer to a dynamic 2D buffer is passed to this function without specifying its size,
+ * 			since the "output window" of information corresponds to the number of digits of the LED matrix.
+ * 			For example, if a LED matrix module with 4 digits is available, then a dynamic array must be created
+ * 			for at least 4 characters. !!!If you create a dynamic array smaller than the LED matrix "output window",
+ * 			then this will lead to an overflow of the array!!!.
+ * @param 	outputBuffer - A pointer to output buffer that contains the useful information for
+ * 						   outputting to the LED matrix.
  * @retval	None.
  */
-static void outputOnMatrix(uint8_t** outputBuffer, uint8_t max_column)
+static void outputOnMatrix(uint8_t** outputBuffer)
 {
-	//uint8_t matrix_row = strlen((char*)str);
-	uint8_t matrix_row = 24;
-
-	for(uint8_t column = 0; column < MATRIX_COLUMN; column++)
+	for(uint8_t column = 0; column < OUTPUT_BUFFER_COLUMN; column++)
 	{
-		SPI_csPin(LOW);
-		for(int8_t row = matrix_row - 1; row >= 0; row--)
+		SPI_csPin(MATRIX_CS_PORT, MATRIX_CS_PIN, LOW);
+		for(int8_t row = OUTPUT_BUFFER_MIN_ROW - 1; row >= 0; row--)
 		{
-			SPI_writeData(USED_SPI, column + 1, outputBuffer[row][column]);
+			SPI_writeData(MATRIX_SPI, column + 1, outputBuffer[row][column]);
 		}
-		SPI_csPin(HIGH);
+		SPI_csPin(MATRIX_CS_PORT, MATRIX_CS_PIN, HIGH);
 	}
 }
 
