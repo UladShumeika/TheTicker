@@ -147,11 +147,11 @@ void MAX7219_testMode(USH_MAX7219_digits numDigit, uint16_t delay);
 
 /**
  * @brief 	This function cleans matrix's digits.
- * @param 	digit - The digit indicates which digit of the matrix driver to transfer data to.
- * 					This parameter can be any value of @ref USH_MAX7219_digits.
+ * @param 	numDigit - The digit indicates which digit of the matrix driver to transfer data to.
+ * 					   This parameter can be any value of @ref USH_MAX7219_digits.
  * @retval	None.
  */
-void MAX7219_clean(USH_MAX7219_digits digit);
+void MAX7219_clean(USH_MAX7219_digits numDigit);
 
 /**
  * @brief	This function sets the number of digits to be displayed.
