@@ -10,12 +10,13 @@
 #include "ush_spi.h"
 
 //---------------------------------------------------------------------------
-// Defines
+// General parameters of the matrix
 //---------------------------------------------------------------------------
+#define MATRIX_DIGITS								((uint8_t)4)
+#define MATRIX_HIGH									((uint8_t)8)
 
-/* --------------------- General parameters of the matrix -----------------*/
-#define MATRIX_NUM									((uint8_t)4)
-#define DELAY_TEST_MODE								((uint16_t)500)
+#define DELAY_TEST_MODE								((uint16_t)1000)
+#define MATRIX_SPI									(SPI1)
 
 //---------------------------------------------------------------------------
 // Typedefs and enumerations
