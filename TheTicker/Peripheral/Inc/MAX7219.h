@@ -27,11 +27,15 @@
  */
 typedef enum
 {
-	FIRST_DIGIT		= 4,
-	SECOND_DIGIT    = 3,
-	THIRD_DIGIT		= 2,
-	FORTH_DIGIT		= 1,
-	ALL_DIGITS		= 0xFF
+	DIGIT_1		= 0x08,
+	DIGIT_2		= 0x04,
+	DIGIT_3		= 0x02,
+	DIGIT_4		= 0x01,
+	DIGIT_5		= 0x80,
+	DIGIT_6		= 0x40,
+	DIGIT_7		= 0x20,
+	DIGIT_8		= 0x10,
+	ALL_DIGITS	= 0xFF
 } USH_MAX7219_digits;
 
 /**
