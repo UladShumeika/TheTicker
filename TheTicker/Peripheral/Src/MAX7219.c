@@ -119,39 +119,42 @@ void MAX7219_state(uint8_t numDigit, USH_MAX7219_REG_SHUTDOWN mode)
   * @param	data - Data to be sent to the matrix driver.
   * @retval None.
   */
-void MAX7219_sendDataWithLatch(USH_MAX7219_digits digit, USH_MAX7219_registers reg, uint8_t data)
+void MAX7219_sendDataWithLatch(uint8_t numDigit, USH_MAX7219_registers reg, uint8_t data)
 {
 	SPI_csPin(LOW);
-	MAX7219_sendDataWithoutLatch(digit, reg, data);
+	MAX7219_sendDataWithoutLatch(numDigit, reg, data);
 	SPI_csPin(HIGH);
 }
 
 /**
   * @brief  This function sends data WITHOUT a latch.
-  * @param	digit - The digit indicates which digit of the matrix driver to transfer data to.
-  * 		        This parameter can be any value of @ref USH_MAX7219_digits.
+  * @param	numDigit - The digit indicates which digit of the matrix driver to transfer data to.
+  * 		           This parameter can be any value of @ref USH_MAX7219_digits.
   * @param  reg - The matrix driver's address where the data should be written.
   * 			  This parameter can be any value of @ref USH_MAX7219_registers.
   * @param	data - Data to be sent to the matrix driver.
   * @retval None.
   */
-void MAX7219_sendDataWithoutLatch(USH_MAX7219_digits digit, USH_MAX7219_registers reg, uint8_t data)
+void MAX7219_sendDataWithoutLatch(USH_MAX7219_digits numDigit, USH_MAX7219_registers reg, uint8_t data)
 {
-	uint8_t NoOp = 0;
+	uint8_t digitPos, pos, currentDigit, NoOp = 0;
 
-	for(uint8_t i = 1; i <= MATRIX_NUM; i++)
+	for(digitPos = 0; digitPos < MATRIX_DIGITS; digitPos++)
 	{
-		if(digit == ALL_DIGITS)
+		if(numDigit == ALL_DIGITS)
 		{
-			SPI_writeData(SPI1, reg, data);
+			SPI_writeData(MATRIX_SPI, reg, data);
 		} else
 		{
-			if(i == digit)
+			pos = (uint8_t)0x01 << digitPos;
+			currentDigit = numDigit & pos;
+
+			if(currentDigit == pos)
 			{
-				SPI_writeData(SPI1, reg, data);
+				SPI_writeData(MATRIX_SPI, reg, data);
 			} else
 			{
-				SPI_writeData(SPI1, NoOp, NoOp);
+				SPI_writeData(MATRIX_SPI, NoOp, NoOp);
 			}
 		}
 	}
