@@ -121,9 +121,9 @@ void MAX7219_state(uint8_t numDigit, USH_MAX7219_REG_SHUTDOWN mode)
   */
 void MAX7219_sendDataWithLatch(uint8_t numDigit, USH_MAX7219_registers reg, uint8_t data)
 {
-	SPI_csPin(LOW);
+	SPI_csPin(MATRIX_CS_PORT, MATRIX_CS_PIN, LOW);
 	MAX7219_sendDataWithoutLatch(numDigit, reg, data);
-	SPI_csPin(HIGH);
+	SPI_csPin(MATRIX_CS_PORT, MATRIX_CS_PIN, HIGH);
 }
 
 /**
