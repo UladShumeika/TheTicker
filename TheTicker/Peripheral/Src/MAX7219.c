@@ -94,9 +94,9 @@ void MAX7219_intensity(USH_MAX7219_digits numDigit, USH_MAX7219_REG_INTENSITY in
  * @param	mode - The decode mode. This parameter can be any value of @ref USH_MAX7219_REG_DECODE_MODE.
  * @retval	None.
  */
-void MAX7219_decodeMode(USH_MAX7219_digits digit, USH_MAX7219_REG_DECODE_MODE mode)
+void MAX7219_decodeMode(USH_MAX7219_digits numDigit, USH_MAX7219_REG_DECODE_MODE mode)
 {
-	MAX7219_sendDataWithLatch(digit, REG_DECODE_MODE, mode);
+	MAX7219_sendDataWithLatch(numDigit, REG_DECODE_MODE, mode);
 }
 
 /**
