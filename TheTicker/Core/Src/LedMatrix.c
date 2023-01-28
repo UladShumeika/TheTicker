@@ -10,8 +10,8 @@
 //---------------------------------------------------------------------------
 #define SPEED_SHIFT					((uint8_t)60)
 
-#define MATRIX_ROW					((uint8_t)4)
-#define MATRIX_COLUMN				((uint8_t)8)
+#define OUTPUT_BUFFER_MIN_ROW		MATRIX_DIGITS
+#define OUTPUT_BUFFER_COLUMN		MATRIX_HIGH
 
 #define SHIFT_BYTE					((uint8_t)7)
 
