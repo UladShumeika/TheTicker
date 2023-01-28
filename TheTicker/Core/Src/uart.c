@@ -15,7 +15,7 @@ extern osSemaphoreId mutexForMessageHandle;
 //---------------------------------------------------------------------------
 // Variables
 //---------------------------------------------------------------------------
-static uint8_t string[] = "Hello, My Name is Ulad! ";
+static uint8_t string[] = "Hello, my name is Ulad! ";
 
 //---------------------------------------------------------------------------
 // FreeRTOS's threads
