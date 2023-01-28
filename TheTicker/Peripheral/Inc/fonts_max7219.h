@@ -25,7 +25,7 @@
 //---------------------------------------------------------------------------
 #define ASCII_ROW				((uint8_t)95)
 #define ASCII_COLUMN			((uint8_t)8)
-#define ASCII_SHIFT				((uint8_t)0x21 + (uint8_t)0x01)
+#define ASCII_SHIFT				((uint8_t)32)
 
 //---------------------------------------------------------------------------
 // Descriptions of fonts
