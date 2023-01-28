@@ -152,16 +152,20 @@ static void outputOnMatrix(uint8_t** outputBuffer)
  * 			shifted to the right. Also, when we check the extreme bit for a 1 in order to move it to the adjacent
  * 			matrix, then we need to keep track of the low bit in the code, and not the high bit.
  * 			And move it to the place of the older one in the adjacent matrix, and not the younger one.
- * @param 	outputBuffer - The special buffer that contains useful information for output to the matrix.
+ * 			!!!Note about the pointer. Read outputOnMatrix function's description.
+ * @param 	outputBuffer - A pointer to output buffer that contains the useful information for
+ * 						   outputting to the LED matrix.
+ * @param 	rowOutputBuffer - The number of rows in the dynamic output buffer.
+ * @param 	columnOutputBuffer - The number of columns in the dynamic output buffer.
  * @retval	None.
  */
-static void shiftOutputBuffer(uint8_t** outputBuffer, uint8_t rowBuffer, uint8_t columnBuffer)
+static void shiftOutputBuffer(uint8_t** outputBuffer, uint8_t rowOutputBuffer, uint8_t columnOutputBuffer)
 {
-	uint8_t tempBuffer[MATRIX_COLUMN] = {0,};
+	uint8_t *tempBuffer = (uint8_t*)pvPortMalloc(columnOutputBuffer * sizeof(uint8_t));
 
-	for(uint8_t row = 0; row < rowBuffer; row++)
+	for(uint8_t row = 0; row < rowOutputBuffer; row++)
 	{
-		for(uint8_t column = 0; column < columnBuffer; column++)
+		for(uint8_t column = 0; column < columnOutputBuffer; column++)
 		{
 			if(row == 0)				// For the extreme matrix, we move the transitional 1 array from the buffer.
 			{
@@ -173,12 +177,13 @@ static void shiftOutputBuffer(uint8_t** outputBuffer, uint8_t rowBuffer, uint8_t
 				outputBuffer[row][column] = outputBuffer[row][column] >> 1;
 			}
 
-			if(row == rowBuffer - 1)	// For the last matrix, add transition units from the buffer.
+			if(row == rowOutputBuffer - 1)	// For the last matrix, add transition units from the buffer.
 			{
 				outputBuffer[row][column] = outputBuffer[row][column] | (tempBuffer[column] << SHIFT_BYTE);
 			}
 		}
 	}
+	vPortFree(tempBuffer);
 }
 
 static uint8_t** convertStringIntoDataForMatrix(UART_messageTypeDef *message, const uint8_t fontArray[][MATRIX_COLUMN])
