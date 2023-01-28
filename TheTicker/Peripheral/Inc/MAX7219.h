@@ -163,14 +163,14 @@ void MAX7219_clean(USH_MAX7219_digits numDigit);
 void MAX7219_scanLimit(USH_MAX7219_digits numDigit, USH_MAX7219_REG_SCAN_LIMIT scanLimit);
 
 /**
- * @brief 	TThis function sets the intensity of the glow.
- * @param 	digit - The digit indicates which digit of the matrix driver to transfer data to.
- * 					This parameter can be any value of @ref USH_MAX7219_digits.
+ * @brief 	This function sets the intensity of the glow.
+ * @param 	numDigit - The digit indicates which digit of the matrix driver to transfer data to.
+ * 					   This parameter can be any value of @ref USH_MAX7219_digits.
  * @param 	intensity - The value of intensity of the glow.
  * 					    This parameter can be any value of @ref USH_MAX7219_REG_INTENSITY.
  * @retval	None.
  */
-void MAX7219_intensity(USH_MAX7219_digits digit, USH_MAX7219_REG_INTENSITY intensity);
+void MAX7219_intensity(USH_MAX7219_digits numDigit, USH_MAX7219_REG_INTENSITY intensity);
 
 /**
  * @brief	This function sets the decoding mode for the matrix driver
