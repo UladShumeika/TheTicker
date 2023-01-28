@@ -41,11 +41,11 @@ void MAX7219_init(void)
  * @param 	delay - The delay in ms.
  * @retval	None.
  */
-void MAX7219_testMode(USH_MAX7219_digits digit, uint16_t delay)
+void MAX7219_testMode(uint8_t numDigit, uint16_t delay)
 {
-	MAX7219_sendDataWithLatch(digit, REG_DISPLAY_TEST, DISPLAY_TEST_MODE);
+	MAX7219_sendDataWithLatch(numDigit, REG_DISPLAY_TEST, DISPLAY_TEST_MODE);
 	osDelay(delay);
-	MAX7219_sendDataWithLatch(digit, REG_DISPLAY_TEST, NORMAL_OPERATION);
+	MAX7219_sendDataWithLatch(numDigit, REG_DISPLAY_TEST, NORMAL_OPERATION);
 }
 
 /**
