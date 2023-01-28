@@ -28,8 +28,8 @@ extern osMessageQId fromUartToMatrixHandle;
 // Static functions
 //---------------------------------------------------------------------------
 static void outputOnMatrix(uint8_t** outputBuffer);
-static void shiftOutputBuffer(uint8_t** outputBuffer, uint8_t rowBuffer, uint8_t columnBuffer);
-static uint8_t** convertStringIntoDataForMatrix(UART_messageTypeDef *message, const uint8_t fontArray[][MATRIX_COLUMN]);
+static void shiftOutputBuffer(uint8_t** outputBuffer, uint8_t rowOutputBuffer, uint8_t columnOutputBuffer);
+static uint8_t** convertStringIntoDataForMatrix(UART_messageTypeDef *message, const uint8_t fontArray[][ASCII_COLUMN]);
 
 uint8_t **outputBuffer;
 
@@ -186,27 +186,35 @@ static void shiftOutputBuffer(uint8_t** outputBuffer, uint8_t rowOutputBuffer, u
 	vPortFree(tempBuffer);
 }
 
-static uint8_t** convertStringIntoDataForMatrix(UART_messageTypeDef *message, const uint8_t fontArray[][MATRIX_COLUMN])
+/**
+ * @brief 	This function converts the received message into the special data for the LED matrix.
+ * @param 	message - A pointer to the message structure.
+ * @param 	fontArray - The special array that has ASCII font information.
+ * @retval
+ */
+static uint8_t** convertStringIntoDataForMatrix(UART_messageTypeDef *message, const uint8_t fontArray[][ASCII_COLUMN])
 {
-	//uint8_t sizeStr = strlen((char*)str);
-	uint8_t sizeStr = message->sizeMessage;
-	uint8_t m = MATRIX_COLUMN;
+	uint8_t sizeMessage = message->sizeMessage;
 	uint8_t symbol = 0;
 
-	uint8_t **buffer = (uint8_t**)pvPortMalloc(sizeStr * sizeof(uint8_t*) + sizeStr * m * sizeof(uint8_t));
-	uint8_t *start = ((uint8_t*)buffer + sizeStr * sizeof(uint8_t*));
+/* -------------------------------- Dynamic allocation memory ---------------------------------------*/
 
-	for(uint8_t i = 0; i < sizeStr; i++)
-		buffer[i] = start + i * m;
+	uint8_t **outputBuffer = (uint8_t**)pvPortMalloc(sizeMessage * sizeof(uint8_t*) + sizeof(uint8_t) * OUTPUT_BUFFER_COLUMN * sizeMessage);
+	uint8_t *startData = ((uint8_t*)outputBuffer + sizeMessage * sizeof(uint8_t*));
 
-	for(uint8_t row = 0; row < sizeStr; row++)
+	for(uint8_t counter = 0; counter < sizeMessage; counter++)
+		outputBuffer[counter] = startData + counter * OUTPUT_BUFFER_COLUMN;
+
+/* ------ Filling the created array with information about symbols for output to the LED matrix -----*/
+
+	for(uint8_t row = 0; row < sizeMessage; row++)
 	{
-		for(uint8_t column = 0; column < MATRIX_COLUMN; column++)
+		for(uint8_t column = 0; column < OUTPUT_BUFFER_COLUMN; column++)
 		{
-			symbol = (uint8_t)(message->message[row] - 0x21 + 0x01);
-			buffer[row][column] = font_ASCII[symbol][column];
+			symbol = (uint8_t)(message->message[row] - ASCII_SHIFT);
+			outputBuffer[row][column] = font_ASCII[symbol][column];
 		}
 	}
 
-	return buffer;
+	return outputBuffer;
 }
