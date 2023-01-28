@@ -155,12 +155,12 @@ void MAX7219_clean(USH_MAX7219_digits numDigit);
 
 /**
  * @brief	This function sets the number of digits to be displayed.
- * @param 	digit - The digit indicates which digit of the matrix driver to transfer data to.
- * 					This parameter can be any value of @ref USH_MAX7219_digits.
+ * @param 	numDigit - The digit indicates which digit of the matrix driver to transfer data to.
+ * 					   This parameter can be any value of @ref USH_MAX7219_digits.
  * @param 	scanLimit - The number of digits to be displayed.
  * @retval	None.
  */
-void MAX7219_scanLimit(USH_MAX7219_digits digit, USH_MAX7219_REG_SCAN_LIMIT scanLimit);
+void MAX7219_scanLimit(USH_MAX7219_digits numDigit, USH_MAX7219_REG_SCAN_LIMIT scanLimit);
 
 /**
  * @brief 	TThis function sets the intensity of the glow.
