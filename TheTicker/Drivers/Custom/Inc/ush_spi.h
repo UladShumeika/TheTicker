@@ -96,8 +96,9 @@ typedef enum
  */
 typedef enum
 {
-	SPI_DMAPACK_1	= 0x00U,	/* dmaPack1 selected */
-	SPI_DMAPACK_2	= 0x01U		/* dmaPack2 selected */
+	SPI_DMAPACK_1		= 0x00U,	/* dmaPack1 selected */
+	SPI_DMAPACK_2		= 0x01U,	/* dmaPack2 selected */
+	SPI_NOT_USED_DMA	= 0xFFU		/* DMA is not used */
 } USH_SPI_dmaPack;
 
 /**
