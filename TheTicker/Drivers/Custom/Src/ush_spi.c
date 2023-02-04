@@ -44,7 +44,7 @@ void SPI_init(USH_SPI_initDefaultTypeDef *initStructure)
 	assert_param(IS_SPI_BAUDRATE_PRESCALER(initStructure->BaudRatePrescaler));
 	assert_param(IS_SPI_MODE(initStructure->Mode));
 
-	/* ----------------------- GPIO configuration-------------------------- */
+	/* ----------------------- GPIO configuration -------------------------- */
 
 	if(initStructure->SPIx == SPI1)
 	{
@@ -109,8 +109,14 @@ void SPI_init(USH_SPI_initDefaultTypeDef *initStructure)
 			GPIO_init(&initGpioStructure);
 		}
 	}
+	/* ----------------------- DMA configuration --------------------------- */
 
-	/* ----------------------- SPI configuration--------------------------- */
+	if(initStructure->DmaPack != SPI_NOT_USED_DMA)
+	{
+
+	}
+
+	/* ----------------------- SPI configuration --------------------------- */
 
 	// Setting the default settings for CR1 register
 	temp = initStructure->SPIx->CR1;
