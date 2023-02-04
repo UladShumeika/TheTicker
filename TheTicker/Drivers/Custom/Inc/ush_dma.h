@@ -41,7 +41,8 @@ typedef struct
 	uint32_t PeriphDataAlignment;			/* This parameter specifies the peripheral data width.
 	 	 	 	 	 	 	 	 	 	 	   This parameter can be a value of @ref USH_DMA_periphDataSize */
 
-	uint32_t MemDataAlignment;
+	uint32_t MemDataAlignment;				/* This parameter specifies the memory data width.
+											   This parameter can be a value of @ref USH_DMA_memoryDataSize */
 	uint32_t Mode;
 	uint32_t Priority;
 	uint32_t FIFOMode;
@@ -101,5 +102,15 @@ typedef enum
 	DMA_PERIPH_SIZE_HALFWORD	= 0x800UL,		/* Peripheral data alignment: Half word	*/
 	DMA_PERIPH_SIZE_WORD		= 0x1000UL		/* Peripheral data alignment: Word */
 } USH_DMA_periphDataSize;
+
+/**
+ * @brief DMA memory data size enumeration
+ */
+typedef enum
+{
+	DMA_MEMORY_SIZE_BYTE		= 0x0000UL,		/* Memory data alignment: Byte */
+	DMA_MEMORY_SIZE_HALFWORD	= 0x2000UL,		/* Memory data alignment: Half word */
+	DMA_MEMORY_SIZE_WORD		= 0x4000UL		/* Memory data alignment: Word	*/
+} USH_DMA_memoryDataSize;
 
 #endif /* __USH_DMA_H */
