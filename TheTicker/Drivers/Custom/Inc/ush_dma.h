@@ -25,9 +25,13 @@ typedef struct
 {
 	DMA_Stream_TypeDef* DMAx;				/* A pointer to DMAx peripheral to be used where x is 1 or 2 */
 
-	uint32_t Channel;						/* A channel to be used for the specified stream */
 
-	uint32_t Direction;
+	uint32_t Channel;						/* A channel to be used for the specified stream.
+											   This parameter can be a value of @ref USH_DMA_channels */
+
+	uint32_t Direction;						/* A direction to be used for the specified stream.
+											   This parameter can be a value of @ref USH_DMA_dataTransferDirection */
+
 	uint32_t PeriphInc;
 	uint32_t MemInc;
 	uint32_t PeriphDataAlignment;
@@ -40,7 +44,7 @@ typedef struct
 } USH_DMA_initTypeDef;
 
 /**
- * @brief DMA channels enumeration to select a channel for DMA
+ * @brief DMA channels enumeration to select the channel for DMA
  */
 typedef enum
 {
@@ -53,5 +57,15 @@ typedef enum
 	DMA_CHANNEL_6	= 0x0C000000U,		/* DMA Channel 6 */
 	DMA_CHANNEL_7	= 0x0E000000U		/* DMA Channel 7 */
 } USH_DMA_channels;
+
+/**
+ * @brief DMA data transfer direction enumeration
+ */
+typedef enum
+{
+	DMA_PERIPH_TO_MEMORY	= 0x00UL,		/* Peripheral to memory direction */
+	DMA_MEMORY_TO_PERIPH	= 0x40UL,		/* Memory to peripheral direction */
+	DMA_MEMORY_TO_MEMORY	= 0x80UL		/* Memory to memory direction	  */
+} USH_DMA_dataTransferDirection;
 
 #endif /* __USH_DMA_H */
