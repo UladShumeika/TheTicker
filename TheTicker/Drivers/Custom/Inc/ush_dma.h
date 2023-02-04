@@ -43,7 +43,10 @@ typedef struct
 
 	uint32_t MemDataAlignment;				/* This parameter specifies the memory data width.
 											   This parameter can be a value of @ref USH_DMA_memoryDataSize */
-	uint32_t Mode;
+
+	uint32_t Mode;							/* This parameter specifies the operation mode of the selected stream.
+	 	 	 	 	 	 	 	 	 	 	   This parameter can be a value of @ref USH_DMA_mode */
+
 	uint32_t Priority;
 	uint32_t FIFOMode;
 	uint32_t FIFOThreshold;
@@ -112,5 +115,15 @@ typedef enum
 	DMA_MEMORY_SIZE_HALFWORD	= 0x2000UL,		/* Memory data alignment: Half word */
 	DMA_MEMORY_SIZE_WORD		= 0x4000UL		/* Memory data alignment: Word	*/
 } USH_DMA_memoryDataSize;
+
+/**
+ * @brief DMA mode enumeration
+ */
+typedef enum
+{
+	DMA_NORMAL_MODE			= 0x000UL,		/* Normal mode */
+	DMA_CIRCULAR_MODE		= 0x100UL,		/* Circular mode */
+	DMA_PERIPH_CTRL_MODE	= 0x20UL		/* Peripheral control mode */
+} USH_DMA_mode;
 
 #endif /* __USH_DMA_H */
