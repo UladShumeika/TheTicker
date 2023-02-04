@@ -37,7 +37,10 @@ typedef struct
 
 	uint32_t MemInc;						/* This parameter specifies whether the memory address register should
 	 	 	 	 	 	 	 	 	 	 	   be incremented or not. This parameter can be a value of @ref USH_DMA_memoryIncrement */
-	uint32_t PeriphDataAlignment;
+
+	uint32_t PeriphDataAlignment;			/* This parameter specifies the peripheral data width.
+	 	 	 	 	 	 	 	 	 	 	   This parameter can be a value of @ref USH_DMA_periphDataSize */
+
 	uint32_t MemDataAlignment;
 	uint32_t Mode;
 	uint32_t Priority;
@@ -76,8 +79,8 @@ typedef enum
  */
 typedef enum
 {
-	DMA_PINC_ENABLE			= 0x200UL,		/* Peripheral increment mode enable */
-	DMA_PINC_DISABLE		= 0x000UL		/* Peripheral increment mode disable */
+	DMA_PINC_ENABLE		= 0x200UL,		/* Peripheral increment mode enable */
+	DMA_PINC_DISABLE	= 0x000UL		/* Peripheral increment mode disable */
 } USH_DMA_periphIncrement;
 
 /**
@@ -85,8 +88,18 @@ typedef enum
  */
 typedef enum
 {
-	DMA_MINC_ENABLE			= 0x400UL,		/* Memory increment mode enable */
-	DMA_MINC_DISABLE		= 0x000UL		/* Memory increment mode disable */
+	DMA_MINC_ENABLE		= 0x400UL,		/* Memory increment mode enable */
+	DMA_MINC_DISABLE	= 0x000UL		/* Memory increment mode disable */
 } USH_DMA_memoryIncrement;
+
+/**
+ * @brief DMA peripheral data size enumeration
+ */
+typedef enum
+{
+	DMA_PERIPH_SIZE_BYTE		= 0x000UL,  	/* Peripheral data alignment: Byte */
+	DMA_PERIPH_SIZE_HALFWORD	= 0x800UL,		/* Peripheral data alignment: Half word	*/
+	DMA_PERIPH_SIZE_WORD		= 0x1000UL		/* Peripheral data alignment: Word */
+} USH_DMA_periphDataSize;
 
 #endif /* __USH_DMA_H */
