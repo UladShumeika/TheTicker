@@ -32,7 +32,9 @@ typedef struct
 	uint32_t Direction;						/* A direction to be used for the specified stream.
 											   This parameter can be a value of @ref USH_DMA_dataTransferDirection */
 
-	uint32_t PeriphInc;
+	uint32_t PeriphInc;						/* This parameter specifies whether the Peripheral address register should
+	                                           be incremented or not. This parameter can be a value of @ref USH_DMA_periphIncrement */
+
 	uint32_t MemInc;
 	uint32_t PeriphDataAlignment;
 	uint32_t MemDataAlignment;
@@ -65,7 +67,16 @@ typedef enum
 {
 	DMA_PERIPH_TO_MEMORY	= 0x00UL,		/* Peripheral to memory direction */
 	DMA_MEMORY_TO_PERIPH	= 0x40UL,		/* Memory to peripheral direction */
-	DMA_MEMORY_TO_MEMORY	= 0x80UL		/* Memory to memory direction	  */
+	DMA_MEMORY_TO_MEMORY	= 0x80UL		/* Memory to memory direction */
 } USH_DMA_dataTransferDirection;
+
+/**
+ * @brief DMA peripheral incremented mode enumeration
+ */
+typedef enum
+{
+	DMA_PINC_ENABLE			= 0x200UL,		/* Peripheral increment mode enable */
+	DMA_PINC_DISABLE		= 0x000UL		/* Peripheral increment mode disable */
+} USH_DMA_periphIncrement;
 
 #endif /* __USH_DMA_H */
