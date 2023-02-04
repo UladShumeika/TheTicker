@@ -72,6 +72,9 @@ typedef struct
 	uint8_t PinsPack;				/* SPI pinsPack enumeration to select pins combination for SPI.
 									   This parameter can be a value of @ref USH_SPI_pinsPack */
 
+	uint8_t DmaPack;				/* DMA pack enumeration to select DMA for SPI.
+									   This parameter can be a value of @ref USH_SPI_dmaPack */
+
 	uint16_t BaudRatePrescaler;		/* The Baud Rate prescaler value which will be used to configure the transmit
 									   and receive SCK clock. This parameter can be a value of @ref USH_SPI_baudRatePrescaler */
 
