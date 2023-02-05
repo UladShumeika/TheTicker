@@ -52,10 +52,13 @@ typedef struct
 
 	uint32_t PeriphBurst;
 
+	//uint32_t PeriphBurst;
+
 	uint16_t FIFOMode;						/* This parameter specifies if the FIFO mode or Direct mode will be used
 											   for the selected stream. This parameter can be a value of @ref USH_DMA_fifoMode */
 
-	uint32_t FIFOThreshold;					/* 	*/
+	uint16_t FIFOThreshold;					/* This parameter specifies the FIFO threshold level.
+	 	 	 	 	 	 	 	 	 	 	   This parameter can be a value of @ref USH_DMA_fifoThresholdLevel */
 
 } USH_DMA_initTypeDef;
 
@@ -151,5 +154,16 @@ typedef enum
 	DMA_FIFO_MODE_ENABLE	= 0x04U,	/* FIFO mode enable */
 	DMA_FIFO_MODE_DISABLE	= 0x00U		/* FIFO mode disable */
 } USH_DMA_fifoMode;
+
+/**
+ * @brief DMA FIFO threshold level enumeration
+ */
+typedef enum
+{
+	DMA_FIFO_THRESHOLD_1QUARTER		= 0x00U,	/* FIFO threshold 1 quart full configuration */
+	DMA_FIFO_THRESHOLD_HALF			= 0x01U,	/* FIFO threshold half full configuration */
+	DMA_FIFO_THRESHOLD_3QUARTER		= 0x02U,	/* FIFO threshold 3 quart full configuration */
+	DMA_FIFO_THRESHOLD_FULL			= 0x03U		/* FIFO threshold full configuration */
+} USH_DMA_fifoThresholdLevel;
 
 #endif /* __USH_DMA_H */
