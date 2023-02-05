@@ -28,7 +28,7 @@
   */
 typedef struct
 {
-	DMA_Stream_TypeDef* DMAx;				/* A pointer to DMAx peripheral to be used where x is 1 or 2 */
+	DMA_Stream_TypeDef *Stream;				/* A pointer to Stream peripheral to be used where x is 0 or 7 */
 
 
 	uint32_t Channel;						/* A channel to be used for the specified stream.
