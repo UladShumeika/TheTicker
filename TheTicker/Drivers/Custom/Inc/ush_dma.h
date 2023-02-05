@@ -47,7 +47,9 @@ typedef struct
 	uint32_t Mode;							/* This parameter specifies the operation mode of the selected stream.
 	 	 	 	 	 	 	 	 	 	 	   This parameter can be a value of @ref USH_DMA_mode */
 
-	uint32_t Priority;
+	uint32_t Priority;						/* This parameter specifies the software priority for the selected stream.
+	 	 	 	 	 	 	 	 	 	 	   This parameter can be a value of @ref USH_DMA_priority*/
+
 	uint32_t FIFOMode;
 	uint32_t FIFOThreshold;
 	uint32_t PeriphBurst;
@@ -125,5 +127,16 @@ typedef enum
 	DMA_CIRCULAR_MODE		= 0x100UL,		/* Circular mode */
 	DMA_PERIPH_CTRL_MODE	= 0x20UL		/* Peripheral control mode */
 } USH_DMA_mode;
+
+/**
+ * @brief DMA priority enumeration
+ */
+typedef enum
+{
+	DMA_PRIORITY_LOW		= 0x0000UL,		/* Priority level: Low */
+	DMA_PRIORITY_MEDIUM		= 0x4000UL,		/* Priority level: Medium */
+	DMA_PRIORITY_HIGH		= 0x8000UL,		/* Priority level: High */
+	DMA_PRIORITY_VERY_HIGH	= 0x30000UL		/* Priority level: Low */
+} USH_DMA_priority;
 
 #endif /* __USH_DMA_H */
