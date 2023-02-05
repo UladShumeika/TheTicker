@@ -55,7 +55,10 @@ typedef struct
 											   transferred in a single non interruptible transaction.
 											   This parameter can be a value of @ref USH_DMA_memoryBurst */
 
-	uint32_t PeriphBurst;					/* */
+	uint32_t PeriphBurst;					/* This parameter specifies the burst transfer configuration for
+	   	   	   	   	   	   	   	   	   	   	   the peripheral transfers. It specifies the amount of data to be
+	   	   	   	   	   	   	   	   	   	   	   transferred in a single non interruptible transaction.
+	   	   	   	   	   	   	   	   	   	   	   This parameter can be a value of @ref USH_DMA_periphBurst */
 
 	uint16_t FIFOMode;						/* This parameter specifies if the FIFO mode or Direct mode will be used
 											   for the selected stream. This parameter can be a value of @ref USH_DMA_fifoMode */
@@ -159,6 +162,17 @@ typedef enum
 	DMA_MBURST_INCR8	= 0x400000UL,	/* Incremental burst of 8 beats */
 	DMA_MBURST_INCR16	= 0x600000UL	/* Incremental burst of 16 beats */
 } USH_DMA_memoryBurst;
+
+/**
+ * @brief DMA peripheral burst enumeration
+ */
+typedef enum
+{
+	DMA_PBURST_SINGLE	= 0x000000UL,	/* Single transfer configuration */
+	DMA_PBURST_INCR4	= 0x200000UL,	/* Incremental burst of 4 beats */
+	DMA_PBURST_INCR8	= 0x400000UL,	/* Incremental burst of 8 beats */
+	DMA_PBURST_INCR16	= 0x600000UL	/* Incremental burst of 16 beats */
+} USH_DMA_periphBurst;
 
 /**
  * @brief DMA FIFO mode enumeration
