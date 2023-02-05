@@ -157,10 +157,10 @@ typedef enum
  */
 typedef enum
 {
-	DMA_MBURST_SINGLE	= 0x000000UL,	/* Single transfer configuration */
-	DMA_MBURST_INCR4	= 0x200000UL,	/* Incremental burst of 4 beats */
-	DMA_MBURST_INCR8	= 0x400000UL,	/* Incremental burst of 8 beats */
-	DMA_MBURST_INCR16	= 0x600000UL	/* Incremental burst of 16 beats */
+	DMA_MBURST_SINGLE	= 0x0000000UL,	/* Single transfer configuration */
+	DMA_MBURST_INCR4	= 0x2000000UL,	/* Incremental burst of 4 beats */
+	DMA_MBURST_INCR8	= 0x4000000UL,	/* Incremental burst of 8 beats */
+	DMA_MBURST_INCR16	= 0x6000000UL	/* Incremental burst of 16 beats */
 } USH_DMA_memoryBurst;
 
 /**
