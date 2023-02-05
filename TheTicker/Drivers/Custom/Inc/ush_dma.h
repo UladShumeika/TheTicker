@@ -211,4 +211,12 @@ typedef enum
  */
 void DMA_init(USH_DMA_initTypeDef *initStructure);
 
+/**
+ * @brief 	This function enables and disables the selected DMA stream.
+ * @param 	DMAx_Streamy - A pointer to a DMA_Stream_TypeDef structure that contains the selected DMA stream.
+ * @param 	state - The state of the selected stream. This parameter can be a value of @ref FunctionalState.
+ * @retval	None.
+ */
+void DMA_state(DMA_Stream_TypeDef *DMAx_Streamy, FunctionalState state);
+
 #endif /* __USH_DMA_H */
