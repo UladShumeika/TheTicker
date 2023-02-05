@@ -48,11 +48,15 @@ typedef struct
 	 	 	 	 	 	 	 	 	 	 	   This parameter can be a value of @ref USH_DMA_mode */
 
 	uint32_t Priority;						/* This parameter specifies the software priority for the selected stream.
-	 	 	 	 	 	 	 	 	 	 	   This parameter can be a value of @ref USH_DMA_priority*/
+	 	 	 	 	 	 	 	 	 	 	   This parameter can be a value of @ref USH_DMA_priority */
 
-	uint32_t FIFOMode;
-	uint32_t FIFOThreshold;
 	uint32_t PeriphBurst;
+
+	uint16_t FIFOMode;						/* This parameter specifies if the FIFO mode or Direct mode will be used
+											   for the selected stream. This parameter can be a value of @ref USH_DMA_fifoMode */
+
+	uint32_t FIFOThreshold;					/* 	*/
+
 } USH_DMA_initTypeDef;
 
 /**
@@ -138,5 +142,14 @@ typedef enum
 	DMA_PRIORITY_HIGH		= 0x8000UL,		/* Priority level: High */
 	DMA_PRIORITY_VERY_HIGH	= 0x30000UL		/* Priority level: Low */
 } USH_DMA_priority;
+
+/**
+ * @brief DMA FIFO mode enumeration
+ */
+typedef enum
+{
+	DMA_FIFO_MODE_ENABLE	= 0x04U,	/* FIFO mode enable */
+	DMA_FIFO_MODE_DISABLE	= 0x00U		/* FIFO mode disable */
+} USH_DMA_fifoMode;
 
 #endif /* __USH_DMA_H */
