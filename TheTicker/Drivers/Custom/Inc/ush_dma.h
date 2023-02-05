@@ -141,9 +141,10 @@ typedef enum
  */
 typedef enum
 {
-	DMA_NORMAL_MODE			= 0x000UL,		/* Normal mode */
-	DMA_CIRCULAR_MODE		= 0x100UL,		/* Circular mode */
-	DMA_PERIPH_CTRL_MODE	= 0x20UL		/* Peripheral control mode */
+	DMA_NORMAL_MODE			= 0x00UL,			/* Normal mode */
+	DMA_CIRCULAR_MODE		= DMA_SxCR_CIRC,	/* Circular mode */
+	DMA_DOUBLE_BUFFERING	= DMA_SxCR_DBM,  	/* Double buffering mode */
+	DMA_PERIPH_CTRL_MODE	= DMA_SxCR_PFCTRL	/* Peripheral control mode */
 } USH_DMA_mode;
 
 /**
