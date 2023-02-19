@@ -12,6 +12,7 @@
 // Includes
 //---------------------------------------------------------------------------
 #include "ush_dma.h"
+#include "stm32f4xx.h"
 
 //---------------------------------------------------------------------------
 // Initialization functions
@@ -26,6 +27,11 @@
 void DMA_init(USH_DMA_initTypeDef *initStructure)
 {
 	uint32_t temp = 0;
+
+	DMA_state(initStructure->Stream, DISABLE);
+
+	// Get the CR register value
+	temp = initStructure->Stream->CR;
 
 
 }
