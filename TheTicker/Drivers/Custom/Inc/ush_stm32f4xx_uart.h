@@ -41,21 +41,21 @@ typedef enum
   */
 typedef struct
 {
-	USART_TypeDef* USARTx;		/* A pointer to U(S)ART peripheral to be used where x is between 1 to 8 */
+	USART_TypeDef* USARTx;			/* A pointer to U(S)ART peripheral to be used where x is between 1 to 8 */
 
-	uint8_t PinsPack;			/* U(S)ART pinsPack enumeration to select pins combination for U(S)ART.
-								   This parameter can be a value of @ref USH_USART_pinsPack */
+	USH_USART_pinsPack PinsPack;	/* U(S)ART pinsPack enumeration to select pins combination for U(S)ART.
+								   	   This parameter can be a value of @ref USH_USART_pinsPack */
 
-	uint8_t DmaPack;			/* DMA pack enumeration to select DMA for U(S)ART.
-								   This parameter can be a value of @ref USH_USART_dmaPack */
+	uint8_t DmaPack;				/* DMA pack enumeration to select DMA for U(S)ART.
+								   	   This parameter can be a value of @ref USH_USART_dmaPack */
 
-	uint32_t BaudRate;			/* The special value which will be used to configure the UART communication baud rate.
-								   The baud rate is computed using the following formula:
-								   	   - IntegerDivider = ((PCLKx) / (8 * (OVR8 + 1) * (BaudRate)))
-								   	   - FractionalDivider = ((IntegerDivider - ((uint32_t)IntegerDivider)) * 8 * (OVR8+1)) + 0.5
-	                                     Where OVR8 is the "oversampling by 8 mode" configuration bit in the CR1 register. */
+	uint32_t BaudRate;				/* The special value which will be used to configure the UART communication baud rate.
+								   	   The baud rate is computed using the following formula:
+								   	   	   - IntegerDivider = ((PCLKx) / (8 * (OVR8 + 1) * (BaudRate)))
+								   	   	   - FractionalDivider = ((IntegerDivider - ((uint32_t)IntegerDivider)) * 8 * (OVR8+1)) + 0.5
+	                                     	 Where OVR8 is the "oversampling by 8 mode" configuration bit in the CR1 register. */
 
-	uint16_t Mode;				/* U(S)ART modes selection. This parameter can be a value of @ref USH_USART_mode */
+	uint16_t Mode;					/* U(S)ART modes selection. This parameter can be a value of @ref USH_USART_mode */
 
 } USH_USART_initTypeDef;
 
