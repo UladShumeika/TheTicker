@@ -65,7 +65,7 @@ typedef struct
 								   	   	   - FractionalDivider = ((IntegerDivider - ((uint32_t)IntegerDivider)) * 8 * (OVR8+1)) + 0.5
 	                                     	 Where OVR8 is the "oversampling by 8 mode" configuration bit in the CR1 register. */
 
-	uint16_t Mode;					/* U(S)ART modes selection. This parameter can be a value of @ref USH_USART_mode */
+	USH_USART_mode Mode;			/* U(S)ART modes selection. This parameter can be a value of @ref USH_USART_mode */
 
 } USH_USART_initTypeDef;
 
