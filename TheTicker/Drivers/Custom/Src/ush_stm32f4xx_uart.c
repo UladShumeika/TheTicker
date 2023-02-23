@@ -111,6 +111,31 @@ void USART_init(USH_USART_initTypeDef *initStructure)
 
 	/* ----------------------- DMA configuration --------------------------- */
 	/* ----------------------- USART configuration ------------------------- */
+
+	// Check parameters
+
+	// Oversampling by 16, 8 data bits, parity control disabled, multiprocessor communication disabled
+	if(initStructure->Mode == USART_MODE_RX_TX)
+	{
+		tmpReg |= USART_MODE_RX_TX;
+	} else if(initStructure->Mode == USART_MODE_RX)
+	{
+		tmpReg |= USART_MODE_RX;
+	} else
+	{
+		tmpReg |= USART_MODE_TX;
+	}
+
+	initStructure->USARTx->CR1 = tmpReg;
+
+	// Synchronous mode disabled, LIN disabled, 1 stop bit
+	tmpReg = 0;
+	initStructure->USARTx->CR2 = tmpReg;
+
+	// IrDA disable, half duplex mode is not selected, flow control disabled.
+	tmpReg = initStructure->USARTx->CR3;
+	tmpReg &= 0xC0; // clear all bits except DMAT, DMAR
+	initStructure->USARTx->CR3 = tmpReg;
 }
 
 //---------------------------------------------------------------------------
