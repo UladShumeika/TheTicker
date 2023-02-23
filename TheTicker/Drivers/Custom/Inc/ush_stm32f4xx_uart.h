@@ -1,6 +1,6 @@
 /**
   ******************************************************************************
-  * @file    ush_stm32f4xx_uart.h
+  * @file    ush_stm32f4xx_usart.h
   * @author  Ulad Shumeika
   * @version v1.0
   * @date    21-February-2023
@@ -15,8 +15,8 @@
 //---------------------------------------------------------------------------
 // Define to prevent recursive inclusion
 //---------------------------------------------------------------------------
-#ifndef __USH_STM32F4XX_UART_H
-#define __USH_STM32F4XX_UART_H
+#ifndef __USH_STM32F4XX_USART_H
+#define __USH_STM32F4XX_USART_H
 
 //---------------------------------------------------------------------------
 // Includes
@@ -78,4 +78,4 @@ typedef struct
  */
 void USART_init(USH_USART_initTypeDef *initStructure);
 
-#endif /* __USH_STM32F4XX_UART_H */
+#endif /* __USH_STM32F4XX_USART_H */
