@@ -33,7 +33,7 @@
 typedef enum
 {
 	USART_PINSPACK_1	= 0x00U,	/* pinsPack1 selected */
-	USART_PINSPACK_2	= 0x01U		/* pinsPack2 selected */
+	USART_PINSPACK_2				/* pinsPack2 selected */
 } USH_USART_pinsPack;
 
 /**
