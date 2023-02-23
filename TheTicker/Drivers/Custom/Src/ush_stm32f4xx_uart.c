@@ -39,7 +39,7 @@ void USART_init(USH_USART_initTypeDef *initStructure)
 {
 	USH_GPIO_initTypeDef initGpioStructure = {0,};
 
-	uint32_t temp_rgr;
+	uint16_t tmpReg = 0;
 
 	/* ----------------------- GPIO configuration -------------------------- */
 
