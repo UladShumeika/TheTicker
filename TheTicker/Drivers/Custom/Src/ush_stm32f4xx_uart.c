@@ -66,7 +66,7 @@ void USART_init(USH_USART_initTypeDef *initStructure)
 
 			if(initStructure->Mode == USART_MODE_RX_TX)
 			{
-				initGpioStructure.Pin		= (GPIO_PIN_9 || GPIO_PIN_10);
+				initGpioStructure.Pin		= (GPIO_PIN_9 | GPIO_PIN_10);
 
 			} else if(initStructure->Mode == USART_MODE_RX)
 			{
@@ -90,7 +90,7 @@ void USART_init(USH_USART_initTypeDef *initStructure)
 
 			if(initStructure->Mode == USART_MODE_RX_TX)
 			{
-				initGpioStructure.Pin		= (GPIO_PIN_6 || GPIO_PIN_7);
+				initGpioStructure.Pin		= (GPIO_PIN_6 | GPIO_PIN_7);
 
 			} else if(initStructure->Mode == USART_MODE_RX)
 			{
