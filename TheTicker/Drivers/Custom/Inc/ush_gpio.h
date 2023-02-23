@@ -99,13 +99,23 @@ typedef enum
  */
 typedef enum
 {
-	GPIO_Af5_SPI1 		= 0x05UL,		/* SPI1/I2S1 alternate function mapping */
-	GPIO_Af5_SPI2 		= 0x05UL,		/* SPI2/I2S2 alternate function mapping */
-	GPIO_Af5_SPI4 		= 0x05UL,		/* SPI4/I2S4 alternate function mapping */
-	GPIO_Af5_SPI5 		= 0x05UL,		/* SPI5 alternate function mapping */
-	GPIO_Af5_SPI6 		= 0x05UL,		/* SPI6 alternate function mapping */
+	GPIO_AF5_SPI1 		= 0x05UL,		/* SPI1/I2S1 alternate function mapping */
+	GPIO_AF5_SPI2 		= 0x05UL,		/* SPI2/I2S2 alternate function mapping */
+	GPIO_AF5_SPI4 		= 0x05UL,		/* SPI4/I2S4 alternate function mapping */
+	GPIO_AF5_SPI5 		= 0x05UL,		/* SPI5 alternate function mapping */
+	GPIO_AF5_SPI6 		= 0x05UL,		/* SPI6 alternate function mapping */
 
-	GPIO_Af6_SP3		= 0x06UL		/* SPI3/I2S3 alternate function mapping */
+	GPIO_AF6_SP3		= 0x06UL,		/* SPI3/I2S3 alternate function mapping */
+
+	GPIO_AF7_USART1		= 0x07UL,		/* USART1 alternative function mapping */
+	GPIO_AF7_USART2		= 0x07UL,		/* USART2 alternative function mapping */
+	GPIO_AF7_USART3		= 0x07UL,		/* USART3 alternative function mapping */
+
+	GPIO_AF8_UART4		= 0x07UL,		/* UART4 alternative function mapping */
+	GPIO_AF8_UART5		= 0x07UL,		/* UART5 alternative function mapping */
+	GPIO_AF8_USART6		= 0x07UL,		/* USART6 alternative function mapping */
+	GPIO_AF8_UART7		= 0x07UL,		/* UART7 alternative function mapping */
+	GPIO_AF8_UART8		= 0x07UL		/* UART8 alternative function mapping */
 } USH_GPIO_alternate;
 
 /**
