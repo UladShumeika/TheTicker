@@ -66,7 +66,7 @@ void SPI_init(USH_SPI_initDefaultTypeDef *initStructure)
 			initGpioStructure.Mode			= GPIO_MODE_ALTERNATE_PP;
 			initGpioStructure.Pull			= GPIO_NOPULL;
 			initGpioStructure.Speed			= GPIO_SPEED_VERY_HIGH;
-			initGpioStructure.Alternate		= GPIO_Af5_SPI1;
+			initGpioStructure.Alternate		= GPIO_AF5_SPI1;
 			GPIO_init(&initGpioStructure);
 
 			initGpioStructure.Pin			= GPIO_PIN_5;
@@ -101,7 +101,7 @@ void SPI_init(USH_SPI_initDefaultTypeDef *initStructure)
 			initGpioStructure.Mode			= GPIO_MODE_ALTERNATE_PP;
 			initGpioStructure.Pull			= GPIO_NOPULL;
 			initGpioStructure.Speed			= GPIO_SPEED_VERY_HIGH;
-			initGpioStructure.Alternate		= GPIO_Af5_SPI1;
+			initGpioStructure.Alternate		= GPIO_AF5_SPI1;
 			GPIO_init(&initGpioStructure);
 
 			initGpioStructure.GPIOx 		= GPIOA;
