@@ -28,6 +28,15 @@
 //---------------------------------------------------------------------------
 
 /**
+ * @brief USART pinsPack enumeration to select pins combination for U(S)ART
+ */
+typedef enum
+{
+	USART_PINSPACK_1	= 0x00U,	/* pinsPack1 selected */
+	USART_PINSPACK_2	= 0x01U		/* pinsPack2 selected */
+} USH_USART_pinsPack;
+
+/**
   * @brief UART initialization structure definition
   */
 typedef struct
