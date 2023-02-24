@@ -22,6 +22,7 @@
 // Static function prototypes
 //---------------------------------------------------------------------------
 static uint32_t USART_getPCLK1Freq(void);
+static uint32_t USART_getPCLK2Freq(void);
 
 //---------------------------------------------------------------------------
 // Initialization functions
@@ -155,4 +156,14 @@ void USART_init(USH_USART_initTypeDef *initStructure)
 static uint32_t USART_getPCLK1Freq(void)
 {
 	return SystemCoreClock >> APBPrescTable[(RCC->CFGR & RCC_CFGR_PPRE1) >> 10]; // 10 - a position in CFGR register
+}
+
+/**
+ * @brief	This function returns PCLK2 frequency.
+ * @param	None.
+ * @retval	PCLK2 frequency.
+ */
+static uint32_t USART_getPCLK2Freq(void)
+{
+	return SystemCoreClock >> APBPrescTable[(RCC->CFGR & RCC_CFGR_PPRE2) >> 13]; // 13 - a position in CFGR register
 }
