@@ -1,6 +1,6 @@
 /**
   ******************************************************************************
-  * @file    ush_stm32f4xx_uart.h
+  * @file    ush_stm32f4xx_uart.c
   * @author  Ulad Shumeika
   * @version v1.0
   * @date    21-February-2023
