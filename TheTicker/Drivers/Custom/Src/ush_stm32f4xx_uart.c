@@ -153,6 +153,9 @@ void USART_init(USH_USART_initTypeDef *initStructure)
 	{
 		pclk = USART_getPCLK1Freq();
 	}
+
+	// USART BRR configuration
+	initStructure->USARTx->BRR = USART_BRRSampling16(pclk, initStructure->BaudRate);
 }
 
 //---------------------------------------------------------------------------
