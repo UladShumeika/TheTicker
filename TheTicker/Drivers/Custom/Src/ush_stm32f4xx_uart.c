@@ -46,6 +46,7 @@ void USART_init(USH_USART_initTypeDef *initStructure)
 	USH_GPIO_initTypeDef initGpioStructure = {0,};
 
 	uint16_t tmpReg = 0;
+	uint32_t pclk = 0;
 
 	/* ----------------------- GPIO configuration -------------------------- */
 
@@ -142,6 +143,15 @@ void USART_init(USH_USART_initTypeDef *initStructure)
 	tmpReg = initStructure->USARTx->CR3;
 	tmpReg &= 0xC0; // clear all bits except DMAT, DMAR
 	initStructure->USARTx->CR3 = tmpReg;
+
+	// Get PCLK frequency
+	if(initStructure->USARTx == USART1 || initStructure->USARTx == USART6)
+	{
+		pclk = USART_getPCLK2Freq();
+	} else
+	{
+		pclk = USART_getPCLK1Freq();
+	}
 }
 
 //---------------------------------------------------------------------------
