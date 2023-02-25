@@ -37,6 +37,15 @@ typedef enum
 } USH_USART_pinsPack;
 
 /**
+ * @brief USART dmaPack enumeration to select DMA combination for U(S)ART
+ */
+typedef enum
+{
+	USART_DMAPACK_1	= 0x00U,	/* DMAPack1 selected */
+	USART_DMAPACK_2				/* DMAPack2 selected */
+} USH_USART_dmaPack;
+
+/**
  * @brief USART pinsPack enumeration to select a mode for U(S)ART
  */
 typedef enum
@@ -56,7 +65,7 @@ typedef struct
 	USH_USART_pinsPack PinsPack;	/* U(S)ART pinsPack enumeration to select pins combination for U(S)ART.
 								   	   This parameter can be a value of @ref USH_USART_pinsPack */
 
-	uint8_t DmaPack;				/* DMA pack enumeration to select DMA for U(S)ART.
+	USH_USART_dmaPack DmaPack;		/* DMA pack enumeration to select DMA for U(S)ART.
 								   	   This parameter can be a value of @ref USH_USART_dmaPack */
 
 	uint32_t BaudRate;				/* The special value which will be used to configure the UART communication baud rate.
