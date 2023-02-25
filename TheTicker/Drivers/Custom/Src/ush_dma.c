@@ -15,6 +15,11 @@
 #include "stm32f4xx.h"
 
 //---------------------------------------------------------------------------
+// Static function prototypes
+//---------------------------------------------------------------------------
+static uint32_t DMA_calcBaseAndIndex(USH_DMA_initTypeDef *initStructure);
+
+//---------------------------------------------------------------------------
 // Initialization functions
 //---------------------------------------------------------------------------
 
@@ -55,4 +60,31 @@ void DMA_state(DMA_Stream_TypeDef *DMAx_Streamy, FunctionalState state)
 	{
 		DMAx_Streamy->CR &= ~DMA_SxCR_EN;
 	}
+}
+
+/**
+ * @brief 	This function returns the DMA stream base address depending on stream number.
+ * @param 	initStructure - A pointer to a USH_DMA_initTypeDef structure that contains the configuration
+ * 							information for the specified DMA peripheral.
+ * @return	Stream base address.
+ */
+static uint32_t DMA_calcBaseAndIndex(USH_DMA_initTypeDef *initStructure)
+{
+	uint32_t streamNumber = (((uint32_t)initStructure->Stream & 0xFFU) - 16U) / 24U;
+
+	// lookup table for necessary stream index of flags within status registers
+	static const uint8_t flagBitshiftOffset[8U] = {0U, 6U, 16U, 22U, 0U, 6U, 16U, 22U};
+	initStructure->StreamIndex = flagBitshiftOffset[streamNumber];
+
+	if (streamNumber > 3U)
+	{
+		// return pointer to HISR and HIFCR
+		initStructure->StreamBaseAddress = (((uint32_t)initStructure->Stream & (uint32_t)(~0x3FFU)) + 4U);
+	} else
+	{
+	    // return pointer to LISR and LIFCR
+		initStructure->StreamBaseAddress = ((uint32_t)initStructure->Stream & (uint32_t)(~0x3FFU));
+	}
+
+	return initStructure->StreamBaseAddress;
 }
