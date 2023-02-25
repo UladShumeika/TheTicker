@@ -23,6 +23,11 @@ static osPoolId	messageStructHandle;
 extern osSemaphoreId mutexForMessageHandle;
 
 //---------------------------------------------------------------------------
+// Static function prototypes
+//---------------------------------------------------------------------------
+static void UART_init(void);
+
+//---------------------------------------------------------------------------
 // Variables
 //---------------------------------------------------------------------------
 static uint8_t string[] = "Hello, my name is Ulad! ";
@@ -45,6 +50,8 @@ void receivingMessageTask(void const *argument)
 	message->sizeMessage = strlen((char*)string);
 
 	osMessagePut(fromUartToMatrixHandle, (uint32_t)message, osWaitForever);
+
+	UART_init();
 
 	/* Infinite loop */
 	for(;;)
@@ -82,4 +89,24 @@ void UART_freeRtosInit(void)
 #ifdef DEBUG
 	vQueueAddToRegistry(fromUartToMatrixHandle, "from uart");
 #endif
+}
+
+//---------------------------------------------------------------------------
+// Others functions
+//---------------------------------------------------------------------------
+
+/**
+ * @brief 	This function initializes U(S)ART module.
+ * @retval	None.
+ */
+static void UART_init(void)
+{
+	USH_USART_initTypeDef uart_structure = {0,};
+
+	uart_structure.USARTx 		= USE_UART;
+	uart_structure.PinsPack 	= USE_PINSPACK;
+	uart_structure.DmaPack 		= USE_DMAPACK;
+	uart_structure.BaudRate 	= USE_BAUDRATE;
+	uart_structure.Mode 		= USART_MODE_RX_TX;
+	USART_init(&uart_structure);
 }
