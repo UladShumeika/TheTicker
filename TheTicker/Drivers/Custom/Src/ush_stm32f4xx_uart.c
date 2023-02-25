@@ -19,6 +19,11 @@
 #include "ush_dma.h"
 
 //---------------------------------------------------------------------------
+// Macros
+//---------------------------------------------------------------------------
+#define IS_UART_BAUDRATE(BAUDRATE) ((BAUDRATE) <= 10500000U)
+
+//---------------------------------------------------------------------------
 // Static function prototypes
 //---------------------------------------------------------------------------
 static uint16_t USART_BRRSampling16(uint32_t pclk, uint32_t bautrate);
@@ -121,6 +126,7 @@ void USART_init(USH_USART_initTypeDef *initStructure)
 	/* ----------------------- USART configuration ------------------------- */
 
 	// Check parameters
+	assert_param(IS_UART_BAUDRATE(initStructure->BaudRate));
 
 	// Oversampling by 16, 8 data bits, parity control disabled, multiprocessor communication disabled
 	if(initStructure->Mode == USART_MODE_RX_TX)
