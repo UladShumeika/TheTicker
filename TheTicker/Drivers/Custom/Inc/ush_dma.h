@@ -30,7 +30,6 @@ typedef struct
 {
 	DMA_Stream_TypeDef *Stream;				/* A pointer to Stream peripheral to be used where x is 0 or 7 */
 
-
 	uint32_t Channel;						/* A channel to be used for the specified stream.
 											   This parameter can be a value of @ref USH_DMA_channels */
 
@@ -70,6 +69,12 @@ typedef struct
 
 	uint16_t FIFOThreshold;					/* This parameter specifies the FIFO threshold level.
 	 	 	 	 	 	 	 	 	 	 	   This parameter can be a value of @ref USH_DMA_fifoThresholdLevel */
+
+	uint8_t StreamBaseAddress;				/* DMA stream base address.
+											   System parameter that is set using the DMA_calcBaseAndIndex function. */
+
+	uint8_t StreamIndex;					/* DMA stream index.
+											   System parameter that is set using the DMA_calcBaseAndIndex function. */
 
 } USH_DMA_initTypeDef;
 
