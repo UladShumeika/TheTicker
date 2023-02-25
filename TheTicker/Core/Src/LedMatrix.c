@@ -25,7 +25,7 @@ static osMessageQId fromConvertToOutputHandle;
 extern osMessageQId fromUartToMatrixHandle;
 
 //---------------------------------------------------------------------------
-// Static functions
+// Static function prototypes
 //---------------------------------------------------------------------------
 static void outputOnMatrix(uint8_t** outputBuffer);
 static void shiftOutputBuffer(uint8_t** outputBuffer, uint8_t rowOutputBuffer, uint8_t columnOutputBuffer);
