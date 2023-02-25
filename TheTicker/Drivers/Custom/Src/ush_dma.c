@@ -31,14 +31,56 @@ static uint32_t DMA_calcBaseAndIndex(USH_DMA_initTypeDef *initStructure);
  */
 void DMA_init(USH_DMA_initTypeDef *initStructure)
 {
-	uint32_t temp = 0;
+	uint32_t tmpReg = 0;
+	DMA_TypeDef *reg;
 
 	DMA_state(initStructure->Stream, DISABLE);
 
 	// Get the CR register value
-	temp = initStructure->Stream->CR;
+	tmpReg = initStructure->Stream->CR;
 
+	// Clear all bits except PFCTRL, TCIE, HTIE, TEIE, DMEIE, EN
+	tmpReg &= 0x3FU;
 
+	// Prepare the DMA Stream configuration
+	tmpReg |= initStructure->Channel   | initStructure->MemDataAlignment 	| initStructure->MemInc	   |
+			  initStructure->Direction | initStructure->PeriphDataAlignment	| initStructure->PeriphInc |
+			  initStructure->Mode 	   | initStructure->Priority;
+
+	// The memory burst and peripheral burst are not used when the FIFO is disabled
+	if(initStructure->FIFOMode == DMA_FIFO_MODE_ENABLE)
+	{
+		tmpReg |= initStructure->MemBurst | initStructure->PeriphBurst;
+	}
+
+	// Write to DMA Stream CR register
+	initStructure->Stream->CR = tmpReg;
+
+	// Get the FCR register value
+	tmpReg = initStructure->Stream->FCR;
+
+	// Clear direct mode and FIFO threshold bits
+	tmpReg &= ~(DMA_SxFCR_DMDIS | DMA_SxFCR_FTH);
+
+	// Prepare the DMA stream FIFO configuration
+	tmpReg |= initStructure->FIFOMode;
+
+	if(initStructure->FIFOMode == DMA_FIFO_MODE_ENABLE)
+	{
+		tmpReg |= initStructure->FIFOThreshold;
+	}
+
+	// Write to DMA stream FCR
+	initStructure->Stream->FCR = tmpReg;
+
+	// Calculate DMA base adress and DMA stream index
+	reg = (DMA_TypeDef*)DMA_calcBaseAndIndex(initStructure);
+
+	// Clear all interrupt flags
+	if(initStructure->StreamIndex < 4U)
+	{
+		// add clearing code
+	}
 }
 
 //---------------------------------------------------------------------------
