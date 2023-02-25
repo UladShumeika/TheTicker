@@ -5,6 +5,16 @@
 #include "string.h"
 
 //---------------------------------------------------------------------------
+// Defines
+//---------------------------------------------------------------------------
+
+// Configuration UART
+#define USE_UART		(USART1)
+#define USE_PINSPACK	(USART_PINSPACK_1)
+#define USE_DMAPACK		(USART_DMAPACK_1)
+#define USE_BAUDRATE	((uint32_t)115200)
+
+//---------------------------------------------------------------------------
 // Descriptions of FreeRTOS elements
 //---------------------------------------------------------------------------
 static osThreadId receivingMessageHandle;
