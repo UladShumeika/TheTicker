@@ -119,10 +119,98 @@ void USART_init(USH_USART_initTypeDef *initStructure)
 
 	} else
 	{
-		// not implemented for other modules
+		#warning "This UART module has only USART1 settings with pinsPack1"
 	}
 
+	// TODO When using this function, it's necessary to check the DMA parameters.
+
 	/* ----------------------- DMA configuration --------------------------- */
+
+	USH_DMA_initTypeDef initDMAStructure = {0,};
+
+	if(initStructure->USARTx == USART1)
+	{
+		// Enable DMA2 clock
+		RCC->AHB1ENR |= RCC_AHB1ENR_DMA2EN;
+
+		if(initStructure->Mode == USART_MODE_TX)
+		{
+			initDMAStructure.Stream  				= DMA2_Stream7;
+			initDMAStructure.Channel 				= DMA_CHANNEL_4;
+			initDMAStructure.Direction 				= DMA_MEMORY_TO_PERIPH;
+			initDMAStructure.PeriphInc 				= DMA_PINC_DISABLE;
+			initDMAStructure.MemInc 			  	= DMA_MINC_ENABLE;
+			initDMAStructure.PeriphDataAlignment 	= DMA_PERIPH_SIZE_BYTE;
+			initDMAStructure.MemDataAlignment    	= DMA_MEMORY_SIZE_BYTE;
+			initDMAStructure.Mode 				 	= DMA_NORMAL_MODE;
+			initDMAStructure.Priority 			 	= DMA_PRIORITY_LOW;
+			initDMAStructure.FIFOMode 			 	= DMA_FIFO_MODE_DISABLE;
+			DMA_init(&initDMAStructure);
+
+		} else if(initStructure->Mode == USART_MODE_RX)
+		{
+			if(initStructure->DmaPack == USART_DMAPACK_1)
+			{
+				initDMAStructure.Stream  = DMA2_Stream2;
+				initDMAStructure.Channel = DMA_CHANNEL_4;
+			} else
+			{
+				initDMAStructure.Stream  = DMA2_Stream5;
+				initDMAStructure.Channel = DMA_CHANNEL_4;
+			}
+
+			initDMAStructure.Direction 				= DMA_PERIPH_TO_MEMORY;
+			initDMAStructure.PeriphInc 				= DMA_PINC_DISABLE;
+			initDMAStructure.MemInc 			  	= DMA_MINC_ENABLE;
+			initDMAStructure.PeriphDataAlignment 	= DMA_PERIPH_SIZE_BYTE;
+			initDMAStructure.MemDataAlignment    	= DMA_MEMORY_SIZE_BYTE;
+			initDMAStructure.Mode 				 	= DMA_CIRCULAR_MODE;
+			initDMAStructure.Priority 			 	= DMA_PRIORITY_LOW;
+			initDMAStructure.FIFOMode 			 	= DMA_FIFO_MODE_DISABLE;
+			DMA_init(&initDMAStructure);
+
+		} else					// TX_RX mode selected
+		{
+			// DMA TX
+			initDMAStructure.Stream  				= DMA2_Stream7;
+			initDMAStructure.Channel 				= DMA_CHANNEL_4;
+			initDMAStructure.Direction 				= DMA_MEMORY_TO_PERIPH;
+			initDMAStructure.PeriphInc 				= DMA_PINC_DISABLE;
+			initDMAStructure.MemInc 			  	= DMA_MINC_ENABLE;
+			initDMAStructure.PeriphDataAlignment 	= DMA_PERIPH_SIZE_BYTE;
+			initDMAStructure.MemDataAlignment    	= DMA_MEMORY_SIZE_BYTE;
+			initDMAStructure.Mode 				 	= DMA_NORMAL_MODE;
+			initDMAStructure.Priority 			 	= DMA_PRIORITY_LOW;
+			initDMAStructure.FIFOMode 			 	= DMA_FIFO_MODE_DISABLE;
+			DMA_init(&initDMAStructure);
+
+			// DMA RX
+			if(initStructure->DmaPack == USART_DMAPACK_1)
+			{
+				initDMAStructure.Stream  = DMA2_Stream2;
+				initDMAStructure.Channel = DMA_CHANNEL_4;
+			} else
+			{
+				initDMAStructure.Stream  = DMA2_Stream5;
+			    initDMAStructure.Channel = DMA_CHANNEL_4;
+			}
+
+			initDMAStructure.Direction 				= DMA_PERIPH_TO_MEMORY;
+			initDMAStructure.PeriphInc 				= DMA_PINC_DISABLE;
+			initDMAStructure.MemInc 			  	= DMA_MINC_ENABLE;
+			initDMAStructure.PeriphDataAlignment 	= DMA_PERIPH_SIZE_BYTE;
+			initDMAStructure.MemDataAlignment    	= DMA_MEMORY_SIZE_BYTE;
+			initDMAStructure.Mode 				 	= DMA_CIRCULAR_MODE;
+			initDMAStructure.Priority 			 	= DMA_PRIORITY_LOW;
+			initDMAStructure.FIFOMode 			 	= DMA_FIFO_MODE_DISABLE;
+			DMA_init(&initDMAStructure);
+		}
+
+	} else
+	{
+		#warning "This UART module has only USART1 settings with DMApack1"
+	}
+
 	/* ----------------------- USART configuration ------------------------- */
 
 	// Check parameters
