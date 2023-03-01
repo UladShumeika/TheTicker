@@ -94,7 +94,7 @@ void DMA_init(USH_DMA_initTypeDef *initStructure)
 
 /**
  * @brief 	This function enables and disables the selected DMA stream.
- * @param 	DMAx_Streamy - A pointer to a DMA_Stream_TypeDef structure that contains the selected DMA stream.
+ * @param 	DMAy_Streamx - A pointer to Stream peripheral to be used where y is 1 or 2 and x is from 0 to 7.
  * @param 	state - The state of the selected stream. This parameter can be a value of @ref FunctionalState.
  * @retval	None.
  */
