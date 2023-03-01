@@ -153,7 +153,7 @@ void USART_init(USH_USART_initTypeDef *initStructure)
 		{
 			USH_DMA_initTypeDef initDMA_txStructure = {0,};
 
-			initDMA_txStructure.Stream  				= DMA2_Stream7;
+			initDMA_txStructure.DMAy_Streamx  			= DMA2_Stream7;
 			initDMA_txStructure.Channel 				= DMA_CHANNEL_4;
 			initDMA_txStructure.Direction 				= DMA_MEMORY_TO_PERIPH;
 			initDMA_txStructure.PeriphInc 				= DMA_PINC_DISABLE;
@@ -171,7 +171,7 @@ void USART_init(USH_USART_initTypeDef *initStructure)
 		{
 			USH_DMA_initTypeDef initDMA_rxStructure = {0,};
 
-			initDMA_rxStructure.Stream  				= DMA2_Stream2;
+			initDMA_rxStructure.DMAy_Streamx			= DMA2_Stream2;
 			initDMA_rxStructure.Channel 				= DMA_CHANNEL_4;
 			initDMA_rxStructure.Direction 				= DMA_PERIPH_TO_MEMORY;
 			initDMA_rxStructure.PeriphInc 				= DMA_PINC_DISABLE;
@@ -183,7 +183,7 @@ void USART_init(USH_USART_initTypeDef *initStructure)
 			initDMA_rxStructure.FIFOMode 			 	= DMA_FIFO_MODE_DISABLE;
 			DMA_init(&initDMA_rxStructure);
 		}
-
+	}
 		#warning "There are only DMA settings for USART1"
 
 	/* ----------------------- USART configuration ------------------------- */
