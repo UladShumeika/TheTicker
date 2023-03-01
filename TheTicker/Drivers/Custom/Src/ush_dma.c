@@ -110,28 +110,27 @@ void DMA_state(DMA_Stream_TypeDef *DMAy_Streamx, FunctionalState state)
 }
 
 /**
- * @brief 	This function returns the DMA stream base address depending on stream number.
- * @param 	initStructure - A pointer to a USH_DMA_initTypeDef structure that contains the configuration
- * 							information for the specified DMA peripheral.
- * @return	Stream base address.
+ * @brief 	This function clears DMA flags.
+ * @param 	DMAy_Streamx - A pointer to Stream peripheral to be used where y is 1 or 2 and x is from 0 to 7.
+ * @param 	flags - DMA flags. This parameter can be a value of @ref USH_DMA_flags.
+ * @retval	None.
  */
-static uint32_t DMA_calcBaseAndIndex(USH_DMA_initTypeDef *initStructure)
+void DMA_clearFlags(DMA_Stream_TypeDef *DMAy_Streamx, USH_DMA_flags flags)
 {
-	uint32_t streamNumber = (((uint32_t)initStructure->DMAy_Streamx & 0xFFU) - 16U) / 24U;
+	DMA_TypeDef* DMAy;
 
-	// lookup table for necessary stream index of flags within status registers
-	static const uint8_t flagBitshiftOffset[8U] = {0U, 6U, 16U, 22U, 0U, 6U, 16U, 22U};
-	initStructure->StreamIndex = flagBitshiftOffset[streamNumber];
+	uint32_t streamNumber = ((uint32_t)DMAy_Streamx & 0xFFU) / 0x18U;	// 0xFF is a mask. 0x18 is a step between stream registers.
+																		// For a better understanding of magic numbers. See the reference manual.
+	DMAy = (DMAy_Streamx < DMA2_Stream0) ? DMA1 : DMA2;
 
-	if (streamNumber > 3U)
+	if(streamNumber < 4U)	// Stream 0-3 is LIFCR and stream 4-6 is HIFCR
 	{
-		// return pointer to HISR and HIFCR
-		initStructure->StreamBaseAddress = (((uint32_t)initStructure->DMAy_Streamx & (uint32_t)(~0x3FFU)) + 4U);
+		DMAy->LIFCR = flags << flagBitshiftOffset[streamNumber];
 	} else
 	{
-	    // return pointer to LISR and LIFCR
-		initStructure->StreamBaseAddress = ((uint32_t)initStructure->DMAy_Streamx & (uint32_t)(~0x3FFU));
+		DMAy->HIFCR = flags << flagBitshiftOffset[streamNumber];
 	}
+}
 
 	return initStructure->StreamBaseAddress;
 }
