@@ -34,10 +34,10 @@ void DMA_init(USH_DMA_initTypeDef *initStructure)
 	uint32_t tmpReg = 0;
 	DMA_TypeDef *reg;
 
-	DMA_state(initStructure->Stream, DISABLE);
+	DMA_state(initStructure->DMAy_Streamx, DISABLE);
 
 	// Get the CR register value
-	tmpReg = initStructure->Stream->CR;
+	tmpReg = initStructure->DMAy_Streamx->CR;
 
 	// Clear all bits except PFCTRL, TCIE, HTIE, TEIE, DMEIE, EN
 	tmpReg &= 0x3FU;
@@ -54,10 +54,10 @@ void DMA_init(USH_DMA_initTypeDef *initStructure)
 	}
 
 	// Write to DMA Stream CR register
-	initStructure->Stream->CR = tmpReg;
+	initStructure->DMAy_Streamx->CR = tmpReg;
 
 	// Get the FCR register value
-	tmpReg = initStructure->Stream->FCR;
+	tmpReg = initStructure->DMAy_Streamx->FCR;
 
 	// Clear direct mode and FIFO threshold bits
 	tmpReg &= ~(DMA_SxFCR_DMDIS | DMA_SxFCR_FTH);
@@ -71,7 +71,7 @@ void DMA_init(USH_DMA_initTypeDef *initStructure)
 	}
 
 	// Write to DMA stream FCR
-	initStructure->Stream->FCR = tmpReg;
+	initStructure->DMAy_Streamx->FCR = tmpReg;
 
 	// Calculate DMA base adress and DMA stream index
 	reg = (DMA_TypeDef*)DMA_calcBaseAndIndex(initStructure);
@@ -112,7 +112,7 @@ void DMA_state(DMA_Stream_TypeDef *DMAx_Streamy, FunctionalState state)
  */
 static uint32_t DMA_calcBaseAndIndex(USH_DMA_initTypeDef *initStructure)
 {
-	uint32_t streamNumber = (((uint32_t)initStructure->Stream & 0xFFU) - 16U) / 24U;
+	uint32_t streamNumber = (((uint32_t)initStructure->DMAy_Streamx & 0xFFU) - 16U) / 24U;
 
 	// lookup table for necessary stream index of flags within status registers
 	static const uint8_t flagBitshiftOffset[8U] = {0U, 6U, 16U, 22U, 0U, 6U, 16U, 22U};
@@ -121,11 +121,11 @@ static uint32_t DMA_calcBaseAndIndex(USH_DMA_initTypeDef *initStructure)
 	if (streamNumber > 3U)
 	{
 		// return pointer to HISR and HIFCR
-		initStructure->StreamBaseAddress = (((uint32_t)initStructure->Stream & (uint32_t)(~0x3FFU)) + 4U);
+		initStructure->StreamBaseAddress = (((uint32_t)initStructure->DMAy_Streamx & (uint32_t)(~0x3FFU)) + 4U);
 	} else
 	{
 	    // return pointer to LISR and LIFCR
-		initStructure->StreamBaseAddress = ((uint32_t)initStructure->Stream & (uint32_t)(~0x3FFU));
+		initStructure->StreamBaseAddress = ((uint32_t)initStructure->DMAy_Streamx & (uint32_t)(~0x3FFU));
 	}
 
 	return initStructure->StreamBaseAddress;
