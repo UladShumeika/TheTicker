@@ -11,7 +11,6 @@
 // Configuration UART
 #define USE_UART		(USART1)
 #define USE_PINSPACK	(USART_PINSPACK_1)
-#define USE_DMAPACK		(USART_DMAPACK_1)
 #define USE_BAUDRATE	((uint32_t)115200)
 
 //---------------------------------------------------------------------------
@@ -105,7 +104,6 @@ static void UART_init(void)
 
 	uart_structure.USARTx 		= USE_UART;
 	uart_structure.PinsPack 	= USE_PINSPACK;
-	uart_structure.DmaPack 		= USE_DMAPACK;
 	uart_structure.BaudRate 	= USE_BAUDRATE;
 	uart_structure.Mode 		= USART_MODE_RX_TX;
 	USART_init(&uart_structure);
