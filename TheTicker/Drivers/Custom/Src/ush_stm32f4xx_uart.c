@@ -116,17 +116,11 @@ void USART_init(USH_USART_initTypeDef *initStructure)
 		}
 
 		GPIO_init(&initGpioStructure);
-
-	} else
-	{
-		#warning "This UART module has only USART1 settings with pinsPack1"
 	}
 
-	// TODO When using this function, it's necessary to check the DMA parameters.
+	#warning "There are only GPIO settings for USART1 pinsPack1 and pinsPack2"
 
 	/* ----------------------- DMA configuration --------------------------- */
-
-	USH_DMA_initTypeDef initDMAStructure = {0,};
 
 	if(initStructure->USARTx == USART1)
 	{
@@ -169,10 +163,7 @@ void USART_init(USH_USART_initTypeDef *initStructure)
 			DMA_init(&initDMA_rxStructure);
 		}
 
-	} else
-	{
-		#warning "This UART module has only USART1 settings with DMApack1"
-	}
+		#warning "There are only DMA settings for USART1"
 
 	/* ----------------------- USART configuration ------------------------- */
 
@@ -213,6 +204,8 @@ void USART_init(USH_USART_initTypeDef *initStructure)
 
 	// USART BRR configuration
 	initStructure->USARTx->BRR = USART_BRRSampling16(pclk, initStructure->BaudRate);
+
+	}
 }
 
 //---------------------------------------------------------------------------
