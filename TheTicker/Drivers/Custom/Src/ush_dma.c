@@ -32,7 +32,6 @@ static const uint8_t flagBitshiftOffset[8U] = {0U, 6U, 16U, 22U, 0U, 6U, 16U, 22
 void DMA_init(USH_DMA_initTypeDef *initStructure)
 {
 	uint32_t tmpReg = 0;
-	DMA_TypeDef *reg;
 
 	DMA_state(initStructure->DMAy_Streamx, DISABLE);
 
@@ -73,14 +72,8 @@ void DMA_init(USH_DMA_initTypeDef *initStructure)
 	// Write to DMA stream FCR
 	initStructure->DMAy_Streamx->FCR = tmpReg;
 
-	// Calculate DMA base adress and DMA stream index
-	reg = (DMA_TypeDef*)DMA_calcBaseAndIndex(initStructure);
-
-	// Clear all interrupt flags
-	if(initStructure->StreamIndex < 4U)
-	{
-		// add clearing code
-	}
+	// Clear stream interrupt flags
+	DMA_clearFlags(initStructure->DMAy_Streamx, DMA_FLAG_ALL);
 }
 
 //---------------------------------------------------------------------------
