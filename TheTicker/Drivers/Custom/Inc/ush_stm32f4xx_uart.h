@@ -83,15 +83,6 @@ typedef enum
 } USH_USART_pinsPack;
 
 /**
- * @brief USART dmaPack enumeration to select DMA combination for U(S)ART
- */
-typedef enum
-{
-	USART_DMAPACK_1	= 0x00U,	/* DMAPack1 selected */
-	USART_DMAPACK_2				/* DMAPack2 selected */
-} USH_USART_dmaPack;
-
-/**
  * @brief USART pinsPack enumeration to select a mode for U(S)ART
  */
 typedef enum
