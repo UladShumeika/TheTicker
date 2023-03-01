@@ -98,14 +98,14 @@ void DMA_init(USH_DMA_initTypeDef *initStructure)
  * @param 	state - The state of the selected stream. This parameter can be a value of @ref FunctionalState.
  * @retval	None.
  */
-void DMA_state(DMA_Stream_TypeDef *DMAx_Streamy, FunctionalState state)
+void DMA_state(DMA_Stream_TypeDef *DMAy_Streamx, FunctionalState state)
 {
 	if(state == ENABLE)
 	{
-		DMAx_Streamy->CR |= DMA_SxCR_EN;
+		DMAy_Streamx->CR |= DMA_SxCR_EN;
 	} else
 	{
-		DMAx_Streamy->CR &= ~DMA_SxCR_EN;
+		DMAy_Streamx->CR &= ~DMA_SxCR_EN;
 	}
 }
 
