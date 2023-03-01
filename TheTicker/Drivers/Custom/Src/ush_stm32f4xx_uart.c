@@ -133,77 +133,40 @@ void USART_init(USH_USART_initTypeDef *initStructure)
 		// Enable DMA2 clock
 		RCC->AHB1ENR |= RCC_AHB1ENR_DMA2EN;
 
-		if(initStructure->Mode == USART_MODE_TX)
+		// Check TX or TX/RX mode
+		if(initStructure->Mode == USART_MODE_TX || initStructure->Mode == USART_MODE_RX_TX)
 		{
-			initDMAStructure.Stream  				= DMA2_Stream7;
-			initDMAStructure.Channel 				= DMA_CHANNEL_4;
-			initDMAStructure.Direction 				= DMA_MEMORY_TO_PERIPH;
-			initDMAStructure.PeriphInc 				= DMA_PINC_DISABLE;
-			initDMAStructure.MemInc 			  	= DMA_MINC_ENABLE;
-			initDMAStructure.PeriphDataAlignment 	= DMA_PERIPH_SIZE_BYTE;
-			initDMAStructure.MemDataAlignment    	= DMA_MEMORY_SIZE_BYTE;
-			initDMAStructure.Mode 				 	= DMA_NORMAL_MODE;
-			initDMAStructure.Priority 			 	= DMA_PRIORITY_LOW;
-			initDMAStructure.FIFOMode 			 	= DMA_FIFO_MODE_DISABLE;
-			DMA_init(&initDMAStructure);
+			USH_DMA_initTypeDef initDMA_txStructure = {0,};
 
-		} else if(initStructure->Mode == USART_MODE_RX)
+			initDMA_txStructure.Stream  				= DMA2_Stream7;
+			initDMA_txStructure.Channel 				= DMA_CHANNEL_4;
+			initDMA_txStructure.Direction 				= DMA_MEMORY_TO_PERIPH;
+			initDMA_txStructure.PeriphInc 				= DMA_PINC_DISABLE;
+			initDMA_txStructure.MemInc 			  		= DMA_MINC_ENABLE;
+			initDMA_txStructure.PeriphDataAlignment 	= DMA_PERIPH_SIZE_BYTE;
+			initDMA_txStructure.MemDataAlignment    	= DMA_MEMORY_SIZE_BYTE;
+			initDMA_txStructure.Mode 				 	= DMA_NORMAL_MODE;
+			initDMA_txStructure.Priority 			 	= DMA_PRIORITY_LOW;
+			initDMA_txStructure.FIFOMode 			 	= DMA_FIFO_MODE_DISABLE;
+			DMA_init(&initDMA_txStructure);
+		}
+
+		// Check RX or TX/RX mode
+		if(initStructure->Mode == USART_MODE_RX || initStructure->Mode == USART_MODE_RX_TX)
 		{
-			if(initStructure->DmaPack == USART_DMAPACK_1)
-			{
-				initDMAStructure.Stream  = DMA2_Stream2;
-				initDMAStructure.Channel = DMA_CHANNEL_4;
-			} else
-			{
-				initDMAStructure.Stream  = DMA2_Stream5;
-				initDMAStructure.Channel = DMA_CHANNEL_4;
-			}
+			USH_DMA_initTypeDef initDMA_rxStructure = {0,};
 
-			initDMAStructure.Direction 				= DMA_PERIPH_TO_MEMORY;
-			initDMAStructure.PeriphInc 				= DMA_PINC_DISABLE;
-			initDMAStructure.MemInc 			  	= DMA_MINC_ENABLE;
-			initDMAStructure.PeriphDataAlignment 	= DMA_PERIPH_SIZE_BYTE;
-			initDMAStructure.MemDataAlignment    	= DMA_MEMORY_SIZE_BYTE;
-			initDMAStructure.Mode 				 	= DMA_CIRCULAR_MODE;
-			initDMAStructure.Priority 			 	= DMA_PRIORITY_LOW;
-			initDMAStructure.FIFOMode 			 	= DMA_FIFO_MODE_DISABLE;
-			DMA_init(&initDMAStructure);
-
-		} else					// TX_RX mode selected
-		{
-			// DMA TX
-			initDMAStructure.Stream  				= DMA2_Stream7;
-			initDMAStructure.Channel 				= DMA_CHANNEL_4;
-			initDMAStructure.Direction 				= DMA_MEMORY_TO_PERIPH;
-			initDMAStructure.PeriphInc 				= DMA_PINC_DISABLE;
-			initDMAStructure.MemInc 			  	= DMA_MINC_ENABLE;
-			initDMAStructure.PeriphDataAlignment 	= DMA_PERIPH_SIZE_BYTE;
-			initDMAStructure.MemDataAlignment    	= DMA_MEMORY_SIZE_BYTE;
-			initDMAStructure.Mode 				 	= DMA_NORMAL_MODE;
-			initDMAStructure.Priority 			 	= DMA_PRIORITY_LOW;
-			initDMAStructure.FIFOMode 			 	= DMA_FIFO_MODE_DISABLE;
-			DMA_init(&initDMAStructure);
-
-			// DMA RX
-			if(initStructure->DmaPack == USART_DMAPACK_1)
-			{
-				initDMAStructure.Stream  = DMA2_Stream2;
-				initDMAStructure.Channel = DMA_CHANNEL_4;
-			} else
-			{
-				initDMAStructure.Stream  = DMA2_Stream5;
-			    initDMAStructure.Channel = DMA_CHANNEL_4;
-			}
-
-			initDMAStructure.Direction 				= DMA_PERIPH_TO_MEMORY;
-			initDMAStructure.PeriphInc 				= DMA_PINC_DISABLE;
-			initDMAStructure.MemInc 			  	= DMA_MINC_ENABLE;
-			initDMAStructure.PeriphDataAlignment 	= DMA_PERIPH_SIZE_BYTE;
-			initDMAStructure.MemDataAlignment    	= DMA_MEMORY_SIZE_BYTE;
-			initDMAStructure.Mode 				 	= DMA_CIRCULAR_MODE;
-			initDMAStructure.Priority 			 	= DMA_PRIORITY_LOW;
-			initDMAStructure.FIFOMode 			 	= DMA_FIFO_MODE_DISABLE;
-			DMA_init(&initDMAStructure);
+			initDMA_rxStructure.Stream  				= DMA2_Stream2;
+			initDMA_rxStructure.Channel 				= DMA_CHANNEL_4;
+			initDMA_rxStructure.Direction 				= DMA_PERIPH_TO_MEMORY;
+			initDMA_rxStructure.PeriphInc 				= DMA_PINC_DISABLE;
+			initDMA_rxStructure.MemInc 			  		= DMA_MINC_ENABLE;
+			initDMA_rxStructure.PeriphDataAlignment 	= DMA_PERIPH_SIZE_BYTE;
+			initDMA_rxStructure.MemDataAlignment    	= DMA_MEMORY_SIZE_BYTE;
+			initDMA_rxStructure.Mode 				 	= DMA_CIRCULAR_MODE;
+			initDMA_rxStructure.Priority 			 	= DMA_PRIORITY_LOW;
+			initDMA_rxStructure.FIFOMode 			 	= DMA_FIFO_MODE_DISABLE;
+			DMA_init(&initDMA_rxStructure);
 		}
 
 	} else
