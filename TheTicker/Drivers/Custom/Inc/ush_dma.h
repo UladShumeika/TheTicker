@@ -28,7 +28,7 @@
   */
 typedef struct
 {
-	DMA_Stream_TypeDef *Stream;				/* A pointer to Stream peripheral to be used where x is 0 or 7 */
+	DMA_Stream_TypeDef *DMAy_Streamx;		/* A pointer to Stream peripheral to be used where y is 1 or 2 and x is from 0 to 7. */
 
 	uint32_t Channel;						/* A channel to be used for the specified stream.
 											   This parameter can be a value of @ref USH_DMA_channels */
