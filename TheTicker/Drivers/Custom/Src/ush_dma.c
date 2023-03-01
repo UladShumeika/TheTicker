@@ -20,11 +20,6 @@
 static const uint8_t flagBitshiftOffset[8U] = {0U, 6U, 16U, 22U, 0U, 6U, 16U, 22U};
 
 //---------------------------------------------------------------------------
-// Static function prototypes
-//---------------------------------------------------------------------------
-static uint32_t DMA_calcBaseAndIndex(USH_DMA_initTypeDef *initStructure);
-
-//---------------------------------------------------------------------------
 // Initialization functions
 //---------------------------------------------------------------------------
 
@@ -130,7 +125,4 @@ void DMA_clearFlags(DMA_Stream_TypeDef *DMAy_Streamx, USH_DMA_flags flags)
 	{
 		DMAy->HIFCR = flags << flagBitshiftOffset[streamNumber];
 	}
-}
-
-	return initStructure->StreamBaseAddress;
 }
