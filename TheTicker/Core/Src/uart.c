@@ -9,9 +9,9 @@
 //---------------------------------------------------------------------------
 
 // Configuration UART
-#define USE_UART		(USART1)
-#define USE_PINSPACK	(USART_PINSPACK_1)
-#define USE_BAUDRATE	((uint32_t)115200)
+#define USED_UART		(USART1)
+#define USED_PINSPACK	(USART_PINSPACK_1)
+#define USED_BAUDRATE	((uint32_t)115200)
 
 //---------------------------------------------------------------------------
 // Descriptions of FreeRTOS elements
@@ -102,9 +102,9 @@ static void UART_init(void)
 {
 	USH_USART_initTypeDef uart_structure = {0,};
 
-	uart_structure.USARTx 		= USE_UART;
-	uart_structure.PinsPack 	= USE_PINSPACK;
-	uart_structure.BaudRate 	= USE_BAUDRATE;
+	uart_structure.USARTx 		= USED_UART;
+	uart_structure.PinsPack 	= USED_PINSPACK;
+	uart_structure.BaudRate 	= USED_BAUDRATE;
 	uart_structure.Mode 		= USART_MODE_RX_TX;
 	USART_init(&uart_structure);
 }
