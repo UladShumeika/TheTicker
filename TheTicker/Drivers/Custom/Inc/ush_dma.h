@@ -205,6 +205,19 @@ typedef enum
 	DMA_FIFO_THRESHOLD_FULL			= 0x03U		/* FIFO threshold full configuration */
 } USH_DMA_fifoThresholdLevel;
 
+/**
+ * @brief DMA flags enumeration
+ */
+typedef enum
+{
+	DMA_FLAG_FEIF		= 0x01U,	/* FIFO error interrupt flag */
+	DMA_FLAG_DMEIF		= 0x04U,	/* Direct mode error interrupt flag */
+	DMA_FLAG_TEIF		= 0x08U,	/* Transfer error interrupt flag */
+	DMA_FLAG_HTIF		= 0x10U,	/* Half transfer interrupt flag */
+	DMA_FLAG_TCIF		= 0x20U,	/* Transfer complete interrupt flag */
+	DMA_FLAG_ALL		= 0x3DU		/* All flags */
+} USH_DMA_flags;
+
 //---------------------------------------------------------------------------
 // External function prototypes
 //---------------------------------------------------------------------------
