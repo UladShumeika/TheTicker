@@ -49,6 +49,7 @@ USH_USART_streamAndChannelTypeDef streamAndChannel = {0,};
 static uint16_t USART_BRRSampling16(uint32_t pclk, uint32_t bautrate);
 static uint32_t USART_getPCLK1Freq(void);
 static uint32_t USART_getPCLK2Freq(void);
+static void fillInInternalStructure(USART_TypeDef* usart, USH_USART_streamAndChannelTypeDef* streamAndChannel);
 
 //---------------------------------------------------------------------------
 // Initialization functions
@@ -270,5 +271,56 @@ static uint32_t USART_getPCLK1Freq(void)
  */
 static uint32_t USART_getPCLK2Freq(void)
 {
-	return SystemCoreClock >> APBPrescTable[(RCC->CFGR & RCC_CFGR_PPRE2) >> 13]; // 13 - a position in CFGR register
+	return (SystemCoreClock >> APBPrescTable[(RCC->CFGR & RCC_CFGR_PPRE2) >> 13]); // 13 - a position in CFGR register
+}
+
+/**
+ * @brief 	This function populates an internal structure that contains the actual stream and channel
+ * 			the selected U(S)ART.
+ * @param 	usart - A pointer to U(S)ART peripheral to be used where x is between 1 to 8.
+ * @param	streamAndChannel - A pointer to the internal structure.
+ * @retval	None.
+ */
+static void fillInInternalStructure(USART_TypeDef* usart, USH_USART_streamAndChannelTypeDef* streamAndChannel)
+{
+	if(usart == USART1)
+		{
+			streamAndChannel->DMAy_Streamx 		= DMA2_Stream7;
+			streamAndChannel->Channel			= DMA_CHANNEL_4;
+
+		} else if(usart == USART2)
+			   {
+					streamAndChannel->DMAy_Streamx 		= DMA1_Stream6;
+					streamAndChannel->Channel			= DMA_CHANNEL_4;
+
+			   } else if(usart == USART3)
+			   	      {
+				   	   	   streamAndChannel->DMAy_Streamx 		= DMA1_Stream3;
+				   	   	   streamAndChannel->Channel			= DMA_CHANNEL_4;
+
+			          } else if(usart == UART4)
+			                 {
+			        	  	  	  streamAndChannel->DMAy_Streamx	= DMA1_Stream4;
+			        	  	  	  streamAndChannel->Channel			= DMA_CHANNEL_4;
+
+			                 } else if(usart == UART5)
+			                 {
+			                	 streamAndChannel->DMAy_Streamx 	= DMA1_Stream7;
+			                	 streamAndChannel->Channel			= DMA_CHANNEL_4;
+
+			                 } else if(usart == USART6)
+			                 	 	{
+			                	 	 	 streamAndChannel->DMAy_Streamx 	= DMA2_Stream6;
+			                	 	 	 streamAndChannel->Channel			= DMA_CHANNEL_5;
+
+			                 	 	} else if(usart == UART7)
+			                 	 	       {
+			                 	 				streamAndChannel->DMAy_Streamx 	= DMA1_Stream1;
+			                 	 				streamAndChannel->Channel		= DMA_CHANNEL_5;
+
+			                 	 	       } else		// UART8
+			                 	 	       {
+			                 	 	    	   streamAndChannel->DMAy_Streamx 	= DMA1_Stream0;
+			                 	 	    	   streamAndChannel->Channel		= DMA_CHANNEL_5;
+			                 	 	       }
 }
