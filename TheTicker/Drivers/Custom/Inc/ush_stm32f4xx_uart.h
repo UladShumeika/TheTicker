@@ -12,7 +12,8 @@
   ******************************************************************************
   */
 
-/* The U(S)ART setting is based on the choice of a set of pins and a set of DMA.
+/* The U(S)ART setting is based on the choice of a set of pins. Also sending and receiving data via U(S)ART always uses DMA.
+ * The stream and channel numbers for a particular U(S)ART are listed below.
  *
  * The set of pins.
  * 		  	  |    pinsPack_1	|    pinsPack_2   |
@@ -27,33 +28,33 @@
  * UART7	  |	 PE8   |  PE7   |  PF7	 |  PF6   |
  * UART8	  |  PE1   |  PE0   |  ---   |  ---   |
  *
- * The set of DMA.
- *     	      |		   dmaPack_1	    |		 dmaPack_2        |
- * U(S)ARTx___|_DMAx Stream x Channel x_|_DMAx Stream x Channel x_|
- * 		      |			                |				          |
- * USART1_TX  |      DMA2 St.7 Ch.4     |           -----         |
- * USART1_RX  |      DMA2 St.2 Ch.4     |      DMA2 St.5 Ch.4     |
- * 		      |						    |						  |
- * USART2_TX  |      DMA1 St.6 Ch.4     |			-----		  |
- * USART2_RX  |      DMA1 St.5 Ch.4     |			-----		  |
- * 		      |						    |						  |
- * USART3_TX  |      DMA1 St.3 Ch.4     |      DMA1 St.4 Ch.7     |
- * USART3_RX  |      DMA1 St.1 Ch.4     |           -----         |
- * 		      |							|						  |
- * UART4_TX   |      DMA1 St.4 Ch.4     |           -----         |
- * UART4_RX   |      DMA1 St.2 Ch.4     |           -----         |
- * 		      |						    |						  |
- * UART5_TX   | 	 DMA1 St.7 Ch.4     |           -----         |
- * UART5_RX   |      DMA1 St.0 Ch.4     | 	        -----         |
- * 		      |						    |						  |
- * USART6_TX  | 	 DMA2 St.6 Ch.5     |	   DMA2 St.7 Ch.5	  |
- * USART6_RX  | 	 DMA2 St.1 Ch.5     |	   DMA2 St.2 Ch.5	  |
- *			  |							|						  |
- * UART7_TX	  | 	 DMA1 St.1 Ch.5     |			-----		  |
- * UART7_RX	  | 	 DMA1 St.3 Ch.5     |			-----		  |
- *			  |							|						  |
- * UART8_TX   | 	 DMA1 St.0 Ch.5     |			-----		  |
- * UART8_RX   | 	 DMA1 St.6 Ch.5     |			-----		  |
+ * DMA streams and channels.
+ *     	      |		            	    |
+ * U(S)ARTx___|_DMAx Stream x Channel x_|
+ * 		      |			                |
+ * USART1_TX  |      DMA2 St.7 Ch.4     |
+ * USART1_RX  |      DMA2 St.2 Ch.4     |
+ * 		      |						    |
+ * USART2_TX  |      DMA1 St.6 Ch.4     |
+ * USART2_RX  |      DMA1 St.5 Ch.4     |
+ * 		      |						    |
+ * USART3_TX  |      DMA1 St.3 Ch.4     |
+ * USART3_RX  |      DMA1 St.1 Ch.4     |
+ * 		      |							|
+ * UART4_TX   |      DMA1 St.4 Ch.4     |
+ * UART4_RX   |      DMA1 St.2 Ch.4     |
+ * 		      |						    |
+ * UART5_TX   | 	 DMA1 St.7 Ch.4     |
+ * UART5_RX   |      DMA1 St.0 Ch.4     |
+ * 		      |						    |
+ * USART6_TX  | 	 DMA2 St.6 Ch.5     |
+ * USART6_RX  | 	 DMA2 St.1 Ch.5     |
+ *			  |							|
+ * UART7_TX	  | 	 DMA1 St.1 Ch.5     |
+ * UART7_RX	  | 	 DMA1 St.3 Ch.5     |
+ *			  |							|
+ * UART8_TX   | 	 DMA1 St.0 Ch.5     |
+ * UART8_RX   | 	 DMA1 St.6 Ch.5     |
  *
  */
 
