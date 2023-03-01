@@ -70,12 +70,6 @@ typedef struct
 	uint16_t FIFOThreshold;					/* This parameter specifies the FIFO threshold level.
 	 	 	 	 	 	 	 	 	 	 	   This parameter can be a value of @ref USH_DMA_fifoThresholdLevel */
 
-	uint32_t StreamBaseAddress;				/* DMA stream base address.
-											   System parameter that is set using the DMA_calcBaseAndIndex function. */
-
-	uint32_t StreamIndex;					/* DMA stream index.
-											   System parameter that is set using the DMA_calcBaseAndIndex function. */
-
 } USH_DMA_initTypeDef;
 
 /**
