@@ -110,9 +110,6 @@ typedef struct
 	USH_USART_pinsPack PinsPack;	/* U(S)ART pinsPack enumeration to select pins combination for U(S)ART.
 								   	   This parameter can be a value of @ref USH_USART_pinsPack */
 
-	USH_USART_dmaPack DmaPack;		/* DMA pack enumeration to select DMA for U(S)ART.
-								   	   This parameter can be a value of @ref USH_USART_dmaPack */
-
 	uint32_t BaudRate;				/* The special value which will be used to configure the UART communication baud rate.
 								   	   The baud rate is computed using the following formula:
 								   	   	   - IntegerDivider = ((PCLKx) / (8 * (OVR8 + 1) * (BaudRate)))
