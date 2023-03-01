@@ -240,7 +240,7 @@ static uint16_t USART_BRRSampling16(uint32_t pclk, uint32_t baudrate)
  */
 static uint32_t USART_getPCLK1Freq(void)
 {
-	return SystemCoreClock >> APBPrescTable[(RCC->CFGR & RCC_CFGR_PPRE1) >> 10]; // 10 - a position in CFGR register
+	return (SystemCoreClock >> APBPrescTable[(RCC->CFGR & RCC_CFGR_PPRE1) >> 10]); // 10 - a position in CFGR register
 }
 
 /**
