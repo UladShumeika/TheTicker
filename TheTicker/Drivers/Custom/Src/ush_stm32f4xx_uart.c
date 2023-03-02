@@ -236,6 +236,61 @@ void USART_init(USH_USART_initTypeDef *initStructure)
 //---------------------------------------------------------------------------
 
 /**
+ * @brief	This function transmits data using DMA.
+ * @param 	usart - A pointer to U(S)ART peripheral to be used where x is between 1 to 8.
+ * @param 	data - The data to be transmitted.
+ * @param 	size - The data transfer size.
+ * @retval	The periphery status.
+ */
+USH_peripheryStatus USART_transmitDMA(USART_TypeDef* usart, uint8_t* data, uint16_t size)
+{
+	USH_USART_streamAndChannelTypeDef* settings = &streamAndChannel;
+
+	fillInInternalStructure(usart, &streamAndChannel);
+
+	if(settings->DMAy_Streamx->NDTR)
+	{
+		return STATUS_BUSY;
+	}
+
+	// Set data size
+	settings->DMAy_Streamx->NDTR = size;
+
+	// Set peripheral address
+	settings->DMAy_Streamx->PAR = (uint32_t)&usart->DR;
+
+	// Set memory address
+	settings->DMAy_Streamx->M0AR = (uint32_t)data;
+
+	// Clear interrupt flags
+	DMA_clearFlags(settings->DMAy_Streamx, DMA_FLAG_ALL);
+
+	// Enable interrupts
+	settings->DMAy_Streamx->CR |= DMA_SxCR_TCIE | DMA_SxCR_TEIE | DMA_SxCR_DMEIE;
+
+	// Enable DMA stream
+	DMA_state(settings->DMAy_Streamx, ENABLE);
+
+	USART_clearFlags(usart, USART_FLAG_TC);
+
+	// Enable U(S)ART TX DMA
+	usart->CR3 |= USART_CR3_DMAT;
+
+	return STATUS_OK;
+}
+
+/**
+ * @brief 	This function clears U(S)ART flags.
+ * @param 	usart - A pointer to U(S)ART peripheral to be used where x is between 1 to 8.
+ * @param 	flags - U(S)ART flags. This parameter can be a value of @ref USH_USART_flags.
+ * @retval	None.
+ */
+void USART_clearFlags(USART_TypeDef* usart, USH_USART_flags flags)
+{
+	usart->SR = ~(flags);
+}
+
+/**
  * @brief 	This function calculates BRR value.
  * @note	Most of the numbers are needed in order not to use float. 50 - for rounding.
  * @param 	pclk - PCLK frequency.
