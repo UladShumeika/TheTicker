@@ -75,6 +75,8 @@ void USART_init(USH_USART_initTypeDef *initStructure)
 	uint16_t tmpReg = 0;
 	uint32_t pclk = 0;
 
+	USH_USART_DISABLE(initStructure->USARTx);
+
 	/* ----------------------- GPIO configuration -------------------------- */
 
 	// Fill in the initGpioStructure to initialize the GPIO pins, these parameters are used for all pinsPacks
@@ -226,7 +228,7 @@ void USART_init(USH_USART_initTypeDef *initStructure)
 	// USART BRR configuration
 	initStructure->USARTx->BRR = USART_BRRSampling16(pclk, initStructure->BaudRate);
 
-	}
+	USH_USART_ENABLE(initStructure->USARTx);
 }
 
 //---------------------------------------------------------------------------
