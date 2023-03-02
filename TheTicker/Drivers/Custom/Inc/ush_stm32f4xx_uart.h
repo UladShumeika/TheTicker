@@ -87,9 +87,9 @@ typedef enum
  */
 typedef enum
 {
-	USART_MODE_RX	= 0x00U,	/* only RX selected */
-	USART_MODE_TX,				/* only TX selected */
-	USART_MODE_RX_TX			/* RX and TX selected */
+	USART_MODE_RX		= 0x04U,	/* only RX selected */
+	USART_MODE_TX		= 0x08U,	/* only TX selected */
+	USART_MODE_RX_TX 	= 0x0CU		/* RX and TX selected */
 } USH_USART_mode;
 
 /**
