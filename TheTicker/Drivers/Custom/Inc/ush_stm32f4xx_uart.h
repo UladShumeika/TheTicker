@@ -112,6 +112,31 @@ typedef struct
 
 } USH_USART_initTypeDef;
 
+/**
+ * @brief U(S)ART flags enumeration
+ */
+typedef enum
+{
+	USART_FLAG_CTS		= USART_SR_CTS,		/* CTS flag */
+	USART_FLAG_LBD		= USART_SR_LBD,		/* LIN break detection flag */
+	USART_FLAG_TC		= USART_SR_TC,		/* Transmission complete flag */
+	USART_FLAG_RXNE		= USART_SR_RXNE		/* Read data register not empty flag */
+} USH_USART_flags;
+
+//---------------------------------------------------------------------------
+// Macros
+//---------------------------------------------------------------------------
+
+/**
+ * @brief	Enable U(S)ART
+ */
+#define USH_USART_ENABLE(HANDLE)			((HANDLE)->CR1 |= USART_CR1_UE);
+
+/**
+ * @brief	Disable U(S)ART
+ */
+#define USH_USART_DISABLE(HANDLE)			((HANDLE)->CR1 &= ~USART_CR1_UE);
+
 //---------------------------------------------------------------------------
 // External function prototypes
 //---------------------------------------------------------------------------
