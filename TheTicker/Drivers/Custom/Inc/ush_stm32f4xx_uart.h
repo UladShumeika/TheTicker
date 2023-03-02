@@ -156,4 +156,21 @@ typedef enum
  */
 void USART_init(USH_USART_initTypeDef *initStructure);
 
+/**
+ * @brief	This function transmits data using DMA.
+ * @param 	usart - A pointer to U(S)ART peripheral to be used where x is between 1 to 8.
+ * @param 	data - The data to be transmitted.
+ * @param 	size - The data transfer size.
+ * @retval	The periphery status.
+ */
+USH_peripheryStatus USART_transmitDMA(USART_TypeDef* usart, uint8_t* data, uint16_t size);
+
+/**
+ * @brief 	This function clears U(S)ART flags.
+ * @param 	usart - A pointer to U(S)ART peripheral to be used where x is between 1 to 8.
+ * @param 	flags - U(S)ART flags. This parameter can be a value of @ref USH_USART_flags.
+ * @retval	None.
+ */
+void USART_clearFlags(USART_TypeDef* usart, USH_USART_flags flags);
+
 #endif /* __USH_STM32F4XX_USART_H */
