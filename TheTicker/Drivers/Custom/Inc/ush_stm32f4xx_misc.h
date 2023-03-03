@@ -22,19 +22,6 @@
 #include "stm32f4xx.h"
 
 //---------------------------------------------------------------------------
-// Structures and enumerations
-//---------------------------------------------------------------------------
-
-/**
- * @brief Periphery status enumeration.
- */
-typedef enum
-{
-	STATUS_BUSY	 	= 0,				/* Periphery status busy */
-	STATUS_OK	 	= !STATUS_BUSY		/* Periphery status ok */
-} USH_peripheryStatus;
-
-//---------------------------------------------------------------------------
 // External function prototypes
 //---------------------------------------------------------------------------
 
