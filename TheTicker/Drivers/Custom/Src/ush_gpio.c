@@ -107,7 +107,7 @@ void GPIO_init(USH_GPIO_initTypeDef *initStructure)
  * @param 	gpioPins - The GPIO pins to be configured. This parameter can be any value of @ref USH_GPIO_pins.
  * @retval	None.
  */
-void GPIO_resetBits(GPIO_TypeDef *GPIOx, uint16_t gpioPins)
+void GPIO_resetBits(GPIO_TypeDef *GPIOx, USH_GPIO_pins gpioPins)
 {
 	// Check the parameters
 	assert_param(IS_GPIO_ALL_INSTANCE(GPIOx));
@@ -123,7 +123,7 @@ void GPIO_resetBits(GPIO_TypeDef *GPIOx, uint16_t gpioPins)
  * @param 	state - The value to be written to the selected bit. This parameter can be any value of @ref USH_GPIO_pinState.
  * @retval	None.
  */
-void GPIO_writeBits(GPIO_TypeDef *GPIOx, uint16_t gpioPins, USH_GPIO_pinState state)
+void GPIO_writeBits(GPIO_TypeDef *GPIOx, USH_GPIO_pins gpioPins, USH_GPIO_pinState state)
 {
 	// Check the parameters
 	assert_param(IS_GPIO_ALL_INSTANCE(GPIOx));
@@ -146,7 +146,7 @@ void GPIO_writeBits(GPIO_TypeDef *GPIOx, uint16_t gpioPins, USH_GPIO_pinState st
  * @param  	gpioPins - The GPIO pins to be configured. This parameter can be any value of @ref USH_GPIO_pins.
  * @retval	None.
  */
-void GPIO_toggleBits(GPIO_TypeDef* GPIOx, uint16_t gpioPins)
+void GPIO_toggleBits(GPIO_TypeDef* GPIOx, USH_GPIO_pins gpioPins)
 {
 	// Check the parameters
 	assert_param(IS_GPIO_ALL_INSTANCE(GPIOx));
