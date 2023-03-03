@@ -12028,6 +12028,10 @@ typedef struct
   #include "stm32f4xx_conf.h"
 #endif /* USE_STDPERIPH_DRIVER */
 
+#ifdef USE_CUSTOM_DRIVER
+	#include "ush_stm32f4xx_conf.h"
+#endif
+
 /** @addtogroup Exported_macro
   * @{
   */
