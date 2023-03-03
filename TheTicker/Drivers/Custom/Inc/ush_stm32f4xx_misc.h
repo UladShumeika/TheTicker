@@ -40,4 +40,12 @@
   */
 void MISC_NVIC_SetPriority(IRQn_Type IRQn, uint32_t preemptPriority, uint32_t subPriority);
 
+/**
+  * @brief  This function enables or disables the prefetch buffer.
+  * @param  newState - a new state of the prefetch buffer.
+  *          		   This parameter can be: ENABLE or DISABLE.
+  * @retval None.
+  */
+void MISC_FLASH_prefetchBufferCmd(FunctionalState newState);
+
 #endif /* __USH_STM32F4XX_MISC_H */
