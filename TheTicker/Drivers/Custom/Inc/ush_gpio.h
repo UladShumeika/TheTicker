@@ -82,7 +82,7 @@ typedef enum
 	GPIO_AF5_SPI5 		= 0x05UL,		/* SPI5 alternate function mapping */
 	GPIO_AF5_SPI6 		= 0x05UL,		/* SPI6 alternate function mapping */
 
-	GPIO_AF6_SP3		= 0x06UL,		/* SPI3/I2S3 alternate function mapping */
+	GPIO_AF6_SPI3		= 0x06UL,		/* SPI3/I2S3 alternate function mapping */
 
 	GPIO_AF7_USART1		= 0x07UL,		/* USART1 alternative function mapping */
 	GPIO_AF7_USART2		= 0x07UL,		/* USART2 alternative function mapping */
