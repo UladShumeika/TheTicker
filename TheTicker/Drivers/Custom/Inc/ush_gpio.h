@@ -173,12 +173,20 @@ typedef enum
 										 ((SPEED) == GPIO_SPEED_HIGH)   | \
 								    	 ((SPEED) == GPIO_SPEED_VERY_HIGH))
 
-#define IS_GPIO_ALTERNATE(ALTERNATE)	(((ALTERNATE) == GPIO_Af5_SPI1) | \
-										 ((ALTERNATE) == GPIO_Af5_SPI2) | \
-										 ((ALTERNATE) == GPIO_Af5_SPI4) | \
-										 ((ALTERNATE) == GPIO_Af5_SPI5) | \
-										 ((ALTERNATE) == GPIO_Af5_SPI6) | \
-										 ((ALTERNATE) == GPIO_Af6_SPI3))
+#define IS_GPIO_ALTERNATE(ALTERNATE)	(((ALTERNATE) == GPIO_AF5_SPI1)   | \
+										 ((ALTERNATE) == GPIO_AF5_SPI2)   | \
+										 ((ALTERNATE) == GPIO_AF5_SPI4)   | \
+										 ((ALTERNATE) == GPIO_AF5_SPI5)   | \
+										 ((ALTERNATE) == GPIO_AF5_SPI6)   | \
+										 ((ALTERNATE) == GPIO_AF6_SPI3)   | \
+										 ((ALTERNATE) == GPIO_AF7_USART1) | \
+										 ((ALTERNATE) == GPIO_AF7_USART2) | \
+										 ((ALTERNATE) == GPIO_AF7_USART3) | \
+										 ((ALTERNATE) == GPIO_AF8_UART4)  | \
+										 ((ALTERNATE) == GPIO_AF8_UART5)  | \
+										 ((ALTERNATE) == GPIO_AF8_USART6) | \
+										 ((ALTERNATE) == GPIO_AF8_UART7)  | \
+										 ((ALTERNATE) == GPIO_AF8_UART8))
 
 #define IS_GPIO_STATE(STATE)			(((STATE) == GPIO_PIN_RESET) | \
 										 ((STATE) == GPIO_PIN_SET))
