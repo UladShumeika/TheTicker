@@ -131,6 +131,14 @@ typedef enum
 // Macros
 //---------------------------------------------------------------------------
 
+#define IS_GPIO_ALL_INSTANCE(INSTANCE)  (((INSTANCE) == GPIOA)	| \
+										 ((INSTANCE) == GPIOB)	| \
+										 ((INSTANCE) == GPIOC)	| \
+										 ((INSTANCE) == GPIOD)	| \
+										 ((INSTANCE) == GPIOE)	| \
+										 ((INSTANCE) == GPIOF)	| \
+										 ((INSTANCE) == GPIOG))
+
 #define GPIO_PIN_MASK              		((uint32_t)0x0000FFFF) 	/* PIN mask for assert test */
 #define IS_GPIO_PIN(PIN)           		(((PIN) & GPIO_PIN_MASK ) != (uint32_t)0x00)
 
