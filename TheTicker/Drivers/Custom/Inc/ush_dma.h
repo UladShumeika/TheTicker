@@ -43,9 +43,9 @@ typedef enum
  */
 typedef enum
 {
-	DMA_PERIPH_TO_MEMORY	= 0x00UL,		/* Peripheral to memory direction */
-	DMA_MEMORY_TO_PERIPH	= 0x40UL,		/* Memory to peripheral direction */
-	DMA_MEMORY_TO_MEMORY	= 0x80UL		/* Memory to memory direction */
+	DMA_PERIPH_TO_MEMORY	= 0x00UL,			/* Peripheral to memory direction */
+	DMA_MEMORY_TO_PERIPH	= DMA_SxCR_DIR_0,	/* Memory to peripheral direction */
+	DMA_MEMORY_TO_MEMORY	= DMA_SxCR_DIR_1	/* Memory to memory direction */
 } USH_DMA_dataTransferDirection;
 
 /**
@@ -53,8 +53,8 @@ typedef enum
  */
 typedef enum
 {
-	DMA_PINC_ENABLE		= 0x200UL,		/* Peripheral increment mode enable */
-	DMA_PINC_DISABLE	= 0x000UL		/* Peripheral increment mode disable */
+	DMA_PINC_ENABLE		= DMA_SxCR_PINC,	/* Peripheral increment mode enable */
+	DMA_PINC_DISABLE	= 0x00UL			/* Peripheral increment mode disable */
 } USH_DMA_periphIncrement;
 
 /**
@@ -62,8 +62,8 @@ typedef enum
  */
 typedef enum
 {
-	DMA_MINC_ENABLE		= 0x400UL,		/* Memory increment mode enable */
-	DMA_MINC_DISABLE	= 0x000UL		/* Memory increment mode disable */
+	DMA_MINC_ENABLE		= DMA_SxCR_MINC,	/* Memory increment mode enable */
+	DMA_MINC_DISABLE	= 0x00UL			/* Memory increment mode disable */
 } USH_DMA_memoryIncrement;
 
 /**
@@ -71,9 +71,9 @@ typedef enum
  */
 typedef enum
 {
-	DMA_PERIPH_SIZE_BYTE		= 0x000UL,  	/* Peripheral data alignment: Byte */
-	DMA_PERIPH_SIZE_HALFWORD	= 0x800UL,		/* Peripheral data alignment: Half word	*/
-	DMA_PERIPH_SIZE_WORD		= 0x1000UL		/* Peripheral data alignment: Word */
+	DMA_PERIPH_SIZE_BYTE		= 0x000UL,  			/* Peripheral data alignment: Byte */
+	DMA_PERIPH_SIZE_HALFWORD	= DMA_SxCR_PSIZE_0,		/* Peripheral data alignment: Half word	*/
+	DMA_PERIPH_SIZE_WORD		= DMA_SxCR_PSIZE_1		/* Peripheral data alignment: Word */
 } USH_DMA_periphDataSize;
 
 /**
@@ -81,9 +81,9 @@ typedef enum
  */
 typedef enum
 {
-	DMA_MEMORY_SIZE_BYTE		= 0x0000UL,		/* Memory data alignment: Byte */
-	DMA_MEMORY_SIZE_HALFWORD	= 0x2000UL,		/* Memory data alignment: Half word */
-	DMA_MEMORY_SIZE_WORD		= 0x4000UL		/* Memory data alignment: Word	*/
+	DMA_MEMORY_SIZE_BYTE		= 0x00UL,				/* Memory data alignment: Byte */
+	DMA_MEMORY_SIZE_HALFWORD	= DMA_SxCR_MSIZE_0,		/* Memory data alignment: Half word */
+	DMA_MEMORY_SIZE_WORD		= DMA_SxCR_MSIZE_1		/* Memory data alignment: Word	*/
 } USH_DMA_memoryDataSize;
 
 /**
