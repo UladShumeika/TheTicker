@@ -64,3 +64,46 @@ void MISC_NVIC_SetPriority(IRQn_Type IRQn, uint32_t preemptPriority, uint32_t su
 
   NVIC_SetPriority(IRQn, NVIC_EncodePriority(prioritygroup, preemptPriority, subPriority));
 }
+
+//---------------------------------------------------------------------------
+// The section of FLASH memory
+//---------------------------------------------------------------------------
+
+/**
+  * @brief  This function enables or disables the prefetch buffer.
+  * @param  newState - a new state of the prefetch buffer.
+  *          		   This parameter can be: ENABLE or DISABLE.
+  * @retval None.
+  */
+void MISC_FLASH_prefetchBufferCmd(FunctionalState newState)
+{
+  // Check the parameters
+  assert_param(IS_FUNCTIONAL_STATE(newState));
+
+  // Enable or disable the prefetch buffer
+  if(newState != DISABLE)
+  {
+    FLASH->ACR |= FLASH_ACR_PRFTEN;
+  }
+  else
+  {
+    FLASH->ACR &= (~FLASH_ACR_PRFTEN);
+  }
+}
+
+//---------------------------------------------------------------------------
+// Function's parameters check.
+//---------------------------------------------------------------------------
+#ifdef USE_FULL_ASSERT
+/**
+  * @brief  Reports the name of the source file and the source line number
+  *         where the assert_param error has occurred.
+  * @param  file: pointer to the source file name
+  * @param  line: assert_param error line source number
+  * @retval None
+  */
+void assert_failed(uint8_t *file, uint32_t line)
+{
+	printf("Wrong parameters value: file %s on line %ld\r\n", file, line);
+}
+#endif /* USE_FULL_ASSERT */
