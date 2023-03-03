@@ -248,7 +248,7 @@ USH_peripheryStatus USART_transmitDMA(USART_TypeDef* usart, uint8_t* data, uint1
 
 	fillInInternalStructure(usart, &streamAndChannel);
 
-	if(settings->DMAy_Streamx->NDTR)
+	if(!(usart->SR & USART_SR_TC))
 	{
 		return STATUS_BUSY;
 	}
