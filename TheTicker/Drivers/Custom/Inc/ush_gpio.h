@@ -100,22 +100,22 @@ typedef enum
   */
 typedef struct
 {
-	GPIO_TypeDef *GPIOx;		/* A pointer to GPIOx peripheral to be used where x is between A to F */
+	GPIO_TypeDef *GPIOx;			/* A pointer to GPIOx peripheral to be used where x is between A to F */
 
-	USH_GPIO_pins Pin;       	/* The GPIO pins to be configured.
-	                           	   This parameter can be any value of @ref USH_GPIO_pins */
+	USH_GPIO_pins Pin;       		/* The GPIO pins to be configured.
+	                           	   	   This parameter can be any value of @ref USH_GPIO_pins */
 
-	uint32_t Mode;      		/* The operating mode for the selected pins.
-	                           	   This parameter can be a value of @ref USH_GPIO_modes */
+	USH_GPIO_modes Mode;      		/* The operating mode for the selected pins.
+	                           	   	   This parameter can be a value of @ref USH_GPIO_modes */
 
-	uint32_t Pull;      		/* The Pull-up or Pull-Down activation for the selected pins.
-	                           	   This parameter can be a value of @ref USH_GPIO_pull */
+	USH_GPIO_pull Pull;      		/* The Pull-up or Pull-Down activation for the selected pins.
+	                           	   	   This parameter can be a value of @ref USH_GPIO_pull */
 
-	uint32_t Speed;     		/* The speed for the selected pins.
-	                           	   This parameter can be a value of @ref USH_GPIO_speed */
+	USH_GPIO_speed Speed;     		/* The speed for the selected pins.
+	                           	   	   This parameter can be a value of @ref USH_GPIO_speed */
 
-	uint32_t Alternate;  		/* Peripheral to be connected to the selected pins.
-	                               This parameter can be a value of @ref USH_GPIO_alternate */
+	USH_GPIO_alternate Alternate;	/* Peripheral to be connected to the selected pins.
+	                               	   This parameter can be a value of @ref USH_GPIO_alternate */
 } USH_GPIO_initTypeDef;
 
 /**
