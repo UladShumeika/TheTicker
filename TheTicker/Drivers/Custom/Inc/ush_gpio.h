@@ -14,29 +14,6 @@
 //---------------------------------------------------------------------------
 
 /**
-  * @brief GPIO init structure definition
-  */
-typedef struct
-{
-	GPIO_TypeDef *GPIOx;		/* A pointer to GPIOx peripheral to be used where x is between A to F */
-
-	uint32_t Pin;       		/* The GPIO pins to be configured.
-	                           	   This parameter can be any value of @ref USH_GPIO_pins */
-
-	uint32_t Mode;      		/* The operating mode for the selected pins.
-	                           	   This parameter can be a value of @ref USH_GPIO_modes */
-
-	uint32_t Pull;      		/* The Pull-up or Pull-Down activation for the selected pins.
-	                           	   This parameter can be a value of @ref USH_GPIO_pull */
-
-	uint32_t Speed;     		/* The speed for the selected pins.
-	                           	   This parameter can be a value of @ref USH_GPIO_speed */
-
-	uint32_t Alternate;  		/* Peripheral to be connected to the selected pins.
-	                               This parameter can be a value of @ref USH_GPIO_alternate */
-} USH_GPIO_initTypeDef;
-
-/**
  * @brief GPIO pins enumeration
  */
 typedef enum
@@ -117,6 +94,29 @@ typedef enum
 	GPIO_AF8_UART7		= 0x07UL,		/* UART7 alternative function mapping */
 	GPIO_AF8_UART8		= 0x07UL		/* UART8 alternative function mapping */
 } USH_GPIO_alternate;
+
+/**
+  * @brief GPIO init structure definition
+  */
+typedef struct
+{
+	GPIO_TypeDef *GPIOx;		/* A pointer to GPIOx peripheral to be used where x is between A to F */
+
+	USH_GPIO_pins Pin;       	/* The GPIO pins to be configured.
+	                           	   This parameter can be any value of @ref USH_GPIO_pins */
+
+	uint32_t Mode;      		/* The operating mode for the selected pins.
+	                           	   This parameter can be a value of @ref USH_GPIO_modes */
+
+	uint32_t Pull;      		/* The Pull-up or Pull-Down activation for the selected pins.
+	                           	   This parameter can be a value of @ref USH_GPIO_pull */
+
+	uint32_t Speed;     		/* The speed for the selected pins.
+	                           	   This parameter can be a value of @ref USH_GPIO_speed */
+
+	uint32_t Alternate;  		/* Peripheral to be connected to the selected pins.
+	                               This parameter can be a value of @ref USH_GPIO_alternate */
+} USH_GPIO_initTypeDef;
 
 /**
   * @brief  GPIO Bit SET and Bit RESET enumeration
