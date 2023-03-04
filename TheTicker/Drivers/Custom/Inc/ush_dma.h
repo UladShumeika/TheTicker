@@ -280,8 +280,13 @@ typedef enum
 													 ((PBURST) == DMA_PBURST_INCR8)   | \
 													 ((PBURST) == DMA_PBURST_INCR16))
 
-#define IS_DMA_FIFOMODE(FIFOMODE)					(((FIFOMODE) == DMA_FIFO_MODE_ENABLE) | \
-													 ((FIFOMODE) == DMA_FIFO_MODE_DISABLE))
+#define IS_DMA_FIFO_MODE(MODE)						(((MODE) == DMA_FIFO_MODE_ENABLE) | \
+													 ((MODE) == DMA_FIFO_MODE_DISABLE))
+
+#define IS_DMA_FIFO_THRESHOLD(THRESHOLD)			(((THRESHOLD) == DMA_FIFO_THRESHOLD_1QUARTER) | \
+													 ((THRESHOLD) == DMA_FIFO_THRESHOLD_HALF) | \
+													 ((THRESHOLD) == DMA_FIFO_THRESHOLD_3QUARTER) | \
+													 ((THRESHOLD) == DMA_FIFO_THRESHOLD_FULL))
 
 //---------------------------------------------------------------------------
 // External function prototypes
