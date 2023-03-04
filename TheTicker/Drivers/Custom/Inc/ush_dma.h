@@ -246,6 +246,9 @@ typedef enum
 													 ((DIRECTION) == DMA_MEMORY_TO_PERIPH) | \
 													 ((DIRECTION) == DMA_MEMORY_TO_MEMORY))
 
+#define IS_DMA_PERIPH_INC(COMMAND)					(((COMMAND) == DMA_PINC_ENABLE) | \
+													 ((COMMAND) == DMA_PINC_DISABLE))
+
 //---------------------------------------------------------------------------
 // External function prototypes
 //---------------------------------------------------------------------------
