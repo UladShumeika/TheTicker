@@ -103,6 +103,10 @@ void DMA_init(USH_DMA_initTypeDef *initStructure)
  */
 void DMA_state(DMA_Stream_TypeDef *DMAy_Streamx, FunctionalState state)
 {
+	// Check parameters
+	assert_param(IS_DMA_STREAM_ALL_INSTANCE(DMAy_Streamx));
+	assert_param(IS_FUNCTIONAL_STATE(state));
+
 	if(state == ENABLE)
 	{
 		DMAy_Streamx->CR |= DMA_SxCR_EN;
