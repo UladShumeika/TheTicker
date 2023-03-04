@@ -242,6 +242,10 @@ typedef enum
 													 ((CHANNEL) == DMA_CHANNEL_6)	| \
 													 ((CHANNEL) == DMA_CHANNEL_7))
 
+#define IS_DMA_DIRECTION(DIRECTION)					(((DIRECTION) == DMA_PERIPH_TO_MEMORY) | \
+													 ((DIRECTION) == DMA_MEMORY_TO_PERIPH) | \
+													 ((DIRECTION) == DMA_MEMORY_TO_MEMORY))
+
 //---------------------------------------------------------------------------
 // External function prototypes
 //---------------------------------------------------------------------------
