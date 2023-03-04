@@ -33,6 +33,21 @@ void DMA_init(USH_DMA_initTypeDef *initStructure)
 {
 	uint32_t tmpReg = 0;
 
+	// check parameters
+	assert_param(IS_DMA_STREAM_ALL_INSTANCE(initStructure->DMAy_Streamx));
+	assert_param(IS_DMA_CHANNEL(initStructure->Channel));
+	assert_param(IS_DMA_DIRECTION(initStructure->Direction));
+	assert_param(IS_DMA_PERIPH_INC(initStructure->PeriphInc));
+	assert_param(IS_DMA_MEM_INC(initStructure->MemInc));
+	assert_param(IS_DMA_PERIPH_SIZE(initStructure->PeriphDataAlignment));
+	assert_param(IS_DMA_MEM_SIZE(initStructure->MemDataAlignment));
+	assert_param(IS_DMA_MODE(initStructure->Mode));
+	assert_param(IS_DMA_PRIORITY(initStructure->Priority));
+	assert_param(IS_DMA_MBURST(initStructure->MemBurst));
+	assert_param(IS_DMA_PBURST(initStructure->PeriphBurst));
+	assert_param(IS_DMA_FIFO_MODE(initStructure->FIFOMode));
+	assert_param(IS_DMA_FIFO_THRESHOLD(initStructure->FIFOThreshold));
+
 	DMA_state(initStructure->DMAy_Streamx, DISABLE);
 
 	// Get the CR register value
