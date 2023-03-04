@@ -288,6 +288,13 @@ typedef enum
 													 ((THRESHOLD) == DMA_FIFO_THRESHOLD_3QUARTER) | \
 													 ((THRESHOLD) == DMA_FIFO_THRESHOLD_FULL))
 
+#define IS_DMA_INTERRUPT_FLAGS(FLAG)				(((FLAG) == DMA_FLAG_FEIF)  | \
+													 ((FLAG) == DMA_FLAG_DMEIF) | \
+													 ((FLAG) == DMA_FLAG_TEIF)  | \
+													 ((FLAG) == DMA_FLAG_HTIF)  | \
+													 ((FLAG) == DMA_FLAG_TCIF)  | \
+													 ((FLAG) == DMA_FLAG_ALL))
+
 //---------------------------------------------------------------------------
 // External function prototypes
 //---------------------------------------------------------------------------
