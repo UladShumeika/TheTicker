@@ -124,6 +124,10 @@ void DMA_state(DMA_Stream_TypeDef *DMAy_Streamx, FunctionalState state)
  */
 void DMA_clearFlags(DMA_Stream_TypeDef *DMAy_Streamx, USH_DMA_flags flags)
 {
+	// Check parameters
+	assert_param(IS_DMA_STREAM_ALL_INSTANCE(DMAy_Streamx));
+	assert_param(IS_DMA_INTERRUPT_FLAGS(flags));
+
 	DMA_TypeDef* DMAy;
 
 	uint32_t streamNumber = ((uint32_t)DMAy_Streamx & 0xFFU) / 0x18U;	// 0xFF is a mask. 0x18 is a step between stream registers.
