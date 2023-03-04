@@ -260,6 +260,11 @@ typedef enum
 													 ((MEM_SIZE) == DMA_MEMORY_SIZE_HALFWORD) | \
 													 ((MEM_SIZE) == DMA_MEMORY_SIZE_WORD))
 
+#define IS_DMA_MODE(MODE)							(((MODE) == DMA_NORMAL_MODE)		| \
+													 ((MODE) == DMA_CIRCULAR_MODE)		| \
+													 ((MODE) == DMA_DOUBLE_BUFFERING)	| \
+													 ((MODE) == DMA_PERIPH_CTRL_MODE))
+
 //---------------------------------------------------------------------------
 // External function prototypes
 //---------------------------------------------------------------------------
