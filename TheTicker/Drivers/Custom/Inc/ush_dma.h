@@ -270,6 +270,11 @@ typedef enum
 													 ((PRIORITY) == DMA_PRIORITY_HIGH)	  | \
 													 ((PRIORITY) == DMA_PRIORITY_VERY_HIGH))
 
+#define IS_DMA_MBURST(MBURST)						(((MBURST) == DMA_MBURST_SINGLE)  | \
+													 ((MBURST) == DMA_MBURST_INCR4)   | \
+													 ((MBURST) == DMA_MBURST_INCR8)   | \
+													 ((MBURST) == DMA_MBURST_INCR16))
+
 //---------------------------------------------------------------------------
 // External function prototypes
 //---------------------------------------------------------------------------
