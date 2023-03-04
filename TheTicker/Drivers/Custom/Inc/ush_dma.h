@@ -256,6 +256,10 @@ typedef enum
 													 ((PERIPH_SIZE) == DMA_PERIPH_SIZE_HALFWORD) | \
 													 ((PERIPH_SIZE) == DMA_PERIPH_SIZE_WORD))
 
+#define IS_DMA_MEM_SIZE(MEM_SIZE)					(((MEM_SIZE) == DMA_MEMORY_SIZE_BYTE) 	  | \
+													 ((MEM_SIZE) == DMA_MEMORY_SIZE_HALFWORD) | \
+													 ((MEM_SIZE) == DMA_MEMORY_SIZE_WORD))
+
 //---------------------------------------------------------------------------
 // External function prototypes
 //---------------------------------------------------------------------------
