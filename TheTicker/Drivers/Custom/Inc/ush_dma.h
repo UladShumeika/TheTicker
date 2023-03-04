@@ -233,6 +233,15 @@ typedef enum
 													 ((INSTANCE) == DMA2_Stream6)	| \
 													 ((INSTANCE) == DMA2_Stream7))
 
+#define IS_DMA_CHANNEL(CHANNEL)						(((CHANNEL) == DMA_CHANNEL_0)	| \
+													 ((CHANNEL) == DMA_CHANNEL_1)	| \
+													 ((CHANNEL) == DMA_CHANNEL_2)	| \
+													 ((CHANNEL) == DMA_CHANNEL_3)	| \
+													 ((CHANNEL) == DMA_CHANNEL_4)	| \
+													 ((CHANNEL) == DMA_CHANNEL_5)	| \
+													 ((CHANNEL) == DMA_CHANNEL_6)	| \
+													 ((CHANNEL) == DMA_CHANNEL_7))
+
 //---------------------------------------------------------------------------
 // External function prototypes
 //---------------------------------------------------------------------------
