@@ -249,6 +249,9 @@ typedef enum
 #define IS_DMA_PERIPH_INC(COMMAND)					(((COMMAND) == DMA_PINC_ENABLE) | \
 													 ((COMMAND) == DMA_PINC_DISABLE))
 
+#define IS_DMA_MEM_INC(COMMAND)						(((COMMAND) == DMA_MINC_ENABLE) | \
+													 ((COMMAND) == DMA_MINC_DISABLE))
+
 //---------------------------------------------------------------------------
 // External function prototypes
 //---------------------------------------------------------------------------
