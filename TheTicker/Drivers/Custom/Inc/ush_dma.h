@@ -275,6 +275,11 @@ typedef enum
 													 ((MBURST) == DMA_MBURST_INCR8)   | \
 													 ((MBURST) == DMA_MBURST_INCR16))
 
+#define IS_DMA_PBURST(PBURST)						(((PBURST) == DMA_PBURST_SINGLE)  | \
+													 ((PBURST) == DMA_PBURST_INCR4)   | \
+													 ((PBURST) == DMA_PBURST_INCR8)   | \
+													 ((PBURST) == DMA_PBURST_INCR16))
+
 //---------------------------------------------------------------------------
 // External function prototypes
 //---------------------------------------------------------------------------
