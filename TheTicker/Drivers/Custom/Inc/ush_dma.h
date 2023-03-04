@@ -280,6 +280,9 @@ typedef enum
 													 ((PBURST) == DMA_PBURST_INCR8)   | \
 													 ((PBURST) == DMA_PBURST_INCR16))
 
+#define IS_DMA_FIFOMODE(FIFOMODE)					(((FIFOMODE) == DMA_FIFO_MODE_ENABLE) | \
+													 ((FIFOMODE) == DMA_FIFO_MODE_DISABLE))
+
 //---------------------------------------------------------------------------
 // External function prototypes
 //---------------------------------------------------------------------------
