@@ -252,6 +252,10 @@ typedef enum
 #define IS_DMA_MEM_INC(COMMAND)						(((COMMAND) == DMA_MINC_ENABLE) | \
 													 ((COMMAND) == DMA_MINC_DISABLE))
 
+#define IS_DMA_PERIPH_SIZE(PERIPH_SIZE)				(((PERIPH_SIZE) == DMA_PERIPH_SIZE_BYTE) 	 | \
+													 ((PERIPH_SIZE) == DMA_PERIPH_SIZE_HALFWORD) | \
+													 ((PERIPH_SIZE) == DMA_PERIPH_SIZE_WORD))
+
 //---------------------------------------------------------------------------
 // External function prototypes
 //---------------------------------------------------------------------------
