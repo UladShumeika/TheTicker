@@ -265,6 +265,11 @@ typedef enum
 													 ((MODE) == DMA_DOUBLE_BUFFERING)	| \
 													 ((MODE) == DMA_PERIPH_CTRL_MODE))
 
+#define IS_DMA_PRIORITY(PRIORITY)					(((PRIORITY) == DMA_PRIORITY_LOW) 	  | \
+													 ((PRIORITY) == DMA_PRIORITY_MEDIUM)  | \
+													 ((PRIORITY) == DMA_PRIORITY_HIGH)	  | \
+													 ((PRIORITY) == DMA_PRIORITY_VERY_HIGH))
+
 //---------------------------------------------------------------------------
 // External function prototypes
 //---------------------------------------------------------------------------
