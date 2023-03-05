@@ -128,6 +128,15 @@ typedef enum
 // Macros
 //---------------------------------------------------------------------------
 
+#define IS_USART_ALL_INSTANCE(INSTANCE)  	(((INSTANCE) == USART1)	| \
+										 	 ((INSTANCE) == USART2)	| \
+											 ((INSTANCE) == USART3)	| \
+											 ((INSTANCE) == UART4)	| \
+											 ((INSTANCE) == UART5)	| \
+											 ((INSTANCE) == USART6)	| \
+											 ((INSTANCE) == UART7)  | \
+											 ((INSTANCE) == UART8))
+
 /**
  * @brief	Enable U(S)ART
  */
