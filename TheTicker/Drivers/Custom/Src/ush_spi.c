@@ -176,6 +176,7 @@ void SPI_writeData(SPI_TypeDef *SPIx, uint8_t reg, uint8_t data)
   */
 void SPI_csPin(GPIO_TypeDef *GPIOx, uint16_t csPin, USH_SPI_csState state)
 {
+	// Check parameters
 	assert_param(IS_GPIO_ALL_INSTANCE(GPIOx));
 	assert_param(IS_SPI_PIN_STATE(state));
 
