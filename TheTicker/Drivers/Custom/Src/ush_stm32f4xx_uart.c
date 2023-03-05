@@ -75,6 +75,12 @@ void USART_init(USH_USART_initTypeDef *initStructure)
 	uint16_t tmpReg = 0;
 	uint32_t pclk = 0;
 
+	// Check parameters
+	assert_param(IS_USART_ALL_INSTANCE(initStructure->USARTx));
+	assert_param(IS_USART_PINSPACK(initStructure->PinsPack));
+	assert_param(IS_USART_BAUDRATE(initStructure->BaudRate));
+	assert_param(IS_USART_MODE(initStructure->Mode));
+
 	USH_USART_DISABLE(initStructure->USARTx);
 
 	/* ----------------------- GPIO configuration -------------------------- */
