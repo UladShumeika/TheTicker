@@ -72,9 +72,6 @@ typedef struct
 	uint8_t PinsPack;				/* SPI pinsPack enumeration to select pins combination for SPI.
 									   This parameter can be a value of @ref USH_SPI_pinsPack */
 
-	uint8_t DmaPack;				/* DMA pack enumeration to select DMA for SPI.
-									   This parameter can be a value of @ref USH_SPI_dmaPack */
-
 	uint16_t BaudRatePrescaler;		/* The Baud Rate prescaler value which will be used to configure the transmit
 									   and receive SCK clock. This parameter can be a value of @ref USH_SPI_baudRatePrescaler */
 
@@ -90,16 +87,6 @@ typedef enum
 	SPI_PINSPACK_1	= 0x00U,	/* pinsPack1 selected */
 	SPI_PINSPACK_2	= 0x01U		/* pinsPack2 selected */
 } USH_SPI_pinsPack;
-
-/**
- * @brief SPI dmaPack enumeration to select dma combination for SPI
- */
-typedef enum
-{
-	SPI_DMAPACK_1		= 0x00U,	/* dmaPack1 selected */
-	SPI_DMAPACK_2		= 0x01U,	/* dmaPack2 selected */
-	SPI_NOT_USED_DMA	= 0xFFU		/* DMA is not used */
-} USH_SPI_dmaPack;
 
 /**
  * @brief SPI baudrate prescaler enumeration
