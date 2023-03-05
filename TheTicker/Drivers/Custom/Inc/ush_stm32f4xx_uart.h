@@ -121,12 +121,23 @@ typedef enum
 	USART_FLAG_CTS		= USART_SR_CTS,		/* CTS flag */
 	USART_FLAG_LBD		= USART_SR_LBD,		/* LIN break detection flag */
 	USART_FLAG_TC		= USART_SR_TC,		/* Transmission complete flag */
-	USART_FLAG_RXNE		= USART_SR_RXNE		/* Read data register not empty flag */
+	USART_FLAG_RXNE		= USART_SR_RXNE,	/* Read data register not empty flag */
+	USART_FLAG_ALL		= 0x360U			/* CTS + LBD + TC + RXNE flags */
 } USH_USART_flags;
 
 //---------------------------------------------------------------------------
 // Macros
 //---------------------------------------------------------------------------
+
+/**
+ * @brief	Enable U(S)ART
+ */
+#define USH_USART_ENABLE(HANDLE)			((HANDLE)->CR1 |= USART_CR1_UE);
+
+/**
+ * @brief	Disable U(S)ART
+ */
+#define USH_USART_DISABLE(HANDLE)			((HANDLE)->CR1 &= ~USART_CR1_UE);
 
 #define IS_USART_ALL_INSTANCE(INSTANCE)  	(((INSTANCE) == USART1)	| \
 										 	 ((INSTANCE) == USART2)	| \
@@ -147,15 +158,12 @@ typedef enum
 											 ((MODE) == USART_MODE_RX_TX))
 
 #define IS_USART_MESSAGE_SIZE(SIZE)			(((SIZE) != 0x00U))
-/**
- * @brief	Enable U(S)ART
- */
-#define USH_USART_ENABLE(HANDLE)			((HANDLE)->CR1 |= USART_CR1_UE);
 
-/**
- * @brief	Disable U(S)ART
- */
-#define USH_USART_DISABLE(HANDLE)			((HANDLE)->CR1 &= ~USART_CR1_UE);
+#define IS_USART_CLEAR_FLAGS(FLAG)			(((FLAG) == USART_FLAG_CTS)  | \
+											 ((FLAG) == USART_FLAG_LBD)  | \
+											 ((FLAG) == USART_FLAG_TC)   | \
+											 ((FLAG) == USART_FLAG_RXNE) | \
+											 ((FLAG) == USART_FLAG_ALL))
 
 //---------------------------------------------------------------------------
 // External function prototypes
