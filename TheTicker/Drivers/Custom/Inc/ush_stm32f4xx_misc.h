@@ -26,8 +26,9 @@
 //---------------------------------------------------------------------------
 #define IS_MISC_NVIC_PREEMPTION_PRIORITY(PRIORITY)  	((PRIORITY) < 16U)
 
-#define IS__MISC_NVIC_SUB_PRIORITY(PRIORITY)  			((PRIORITY) < 16U)
+#define IS_MISC_NVIC_SUB_PRIORITY(PRIORITY)  			((PRIORITY) < 16U)
 
+#define IS_MISC_NVIC_DEVICE_IRQ(IRQ)                	((IRQ) >= (IRQn_Type)0x00U)
 
 //---------------------------------------------------------------------------
 // External function prototypes
