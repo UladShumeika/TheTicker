@@ -140,6 +140,8 @@ typedef enum
 #define IS_USART_PINSPACK(PINSPACK)			(((PINSPACK) == USART_PINSPACK_1) | \
 											 ((PINSPACK) == USART_PINSPACK_2))
 
+#define IS_USART_BAUDRATE(BAUDRATE)			(((BAUDRATE) <= 10500000U))
+
 /**
  * @brief	Enable U(S)ART
  */
