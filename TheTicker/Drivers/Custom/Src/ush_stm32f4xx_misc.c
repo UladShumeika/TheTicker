@@ -78,6 +78,22 @@ void MISC_NVIC_EnableIRQ(IRQn_Type IRQn)
 	NVIC_EnableIRQ(IRQn);
 }
 
+/**
+  * @brief  This function disables a device specific interrupt in the NVIC interrupt controller.
+  * @param  IRQn - The external interrupt number.
+  *         This parameter can be an enumerator of IRQn_Type enumeration
+  *         (For the complete STM32 Devices IRQ Channels list, please refer to the appropriate CMSIS device file (stm32f4xxxx.h))
+  * @retval None.
+  */
+void MISC_NVIC_DisableIRQ(IRQn_Type IRQn)
+{
+  // Check the parameters
+  assert_param(IS_MISC_NVIC_DEVICE_IRQ(IRQn));
+
+  // Disable interrupt
+  NVIC_DisableIRQ(IRQn);
+}
+
 //---------------------------------------------------------------------------
 // The section of FLASH memory
 //---------------------------------------------------------------------------
