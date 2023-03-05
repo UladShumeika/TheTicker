@@ -142,6 +142,11 @@ typedef enum
 
 #define IS_USART_BAUDRATE(BAUDRATE)			(((BAUDRATE) <= 10500000U))
 
+#define IS_USART_MODE(MODE)					(((MODE) == USART_MODE_RX) | \
+											 ((MODE) == USART_MODE_TX) | \
+											 ((MODE) == USART_MODE_RX_TX))
+
+#define IS_USART_MESSAGE_SIZE(SIZE)			(((SIZE) != 0x00U))
 /**
  * @brief	Enable U(S)ART
  */
