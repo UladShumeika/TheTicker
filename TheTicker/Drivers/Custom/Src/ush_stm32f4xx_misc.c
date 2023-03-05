@@ -17,12 +17,6 @@
 #include <stdio.h>
 
 //---------------------------------------------------------------------------
-// Macros
-//---------------------------------------------------------------------------
-#define IS_NVIC_SUB_PRIORITY(PRIORITY)  		((PRIORITY) < 16U)
-#define IS_NVIC_PREEMPTION_PRIORITY(PRIORITY)  	((PRIORITY) < 16U)
-
-//---------------------------------------------------------------------------
 // Redefine printf function
 //---------------------------------------------------------------------------
 int _write(int file, char *ptr, int len)
@@ -57,8 +51,8 @@ void MISC_NVIC_SetPriority(IRQn_Type IRQn, uint32_t preemptPriority, uint32_t su
   uint32_t prioritygroup = 0x00U;
 
   // Check the parameters
-  assert_param(IS_NVIC_SUB_PRIORITY(subPriority));
-  assert_param(IS_NVIC_PREEMPTION_PRIORITY(preemptPriority));
+  assert_param(IS__MISC_NVIC_SUB_PRIORITY(subPriority));
+  assert_param(IS_MISC_NVIC_PREEMPTION_PRIORITY(preemptPriority));
 
   prioritygroup = NVIC_GetPriorityGrouping();
 
