@@ -156,6 +156,13 @@ typedef enum
 // Macros
 //---------------------------------------------------------------------------
 
+#define IS_SPI_ALL_INSTANCE(INSTANCE)			(((INSTANCE) == SPI1) | \
+												 ((INSTANCE) == SPI2) | \
+												 ((INSTANCE) == SPI3) | \
+												 ((INSTANCE) == SPI4) | \
+												 ((INSTANCE) == SPI5) | \
+												 ((INSTANCE) == SPI6))
+
 #define IS_SPI_PINSPACK(PINSPACK)				(((PINSPACK) == SPI_PINSPACK_1) | \
 										 	 	 ((PINSPACK) == SPI_PINSPACK_2))
 
