@@ -111,10 +111,6 @@ void SPI_init(USH_SPI_initDefaultTypeDef *initStructure)
 	}
 	/* ----------------------- DMA configuration --------------------------- */
 
-	if(initStructure->DmaPack != SPI_NOT_USED_DMA)
-	{
-
-	}
 
 	/* ----------------------- SPI configuration --------------------------- */
 
