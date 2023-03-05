@@ -137,6 +137,9 @@ typedef enum
 											 ((INSTANCE) == UART7)  | \
 											 ((INSTANCE) == UART8))
 
+#define IS_USART_PINSPACK(PINSPACK)			(((PINSPACK) == USART_PINSPACK_1) | \
+											 ((PINSPACK) == USART_PINSPACK_2))
+
 /**
  * @brief	Enable U(S)ART
  */
