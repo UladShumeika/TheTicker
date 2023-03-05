@@ -252,6 +252,10 @@ USH_peripheryStatus USART_transmitDMA(USART_TypeDef* usart, uint8_t* data, uint1
 {
 	USH_USART_streamAndChannelTypeDef* settings = &streamAndChannel;
 
+	// check parameters
+	assert_param(IS_USART_ALL_INSTANCE(usart));
+	assert_param(IS_USART_MESSAGE_SIZE(size));
+
 	fillInInternalStructure(usart, &streamAndChannel);
 
 	if(!(usart->SR & USART_SR_TC))
