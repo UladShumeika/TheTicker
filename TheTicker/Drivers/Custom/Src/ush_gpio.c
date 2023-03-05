@@ -33,6 +33,9 @@ void GPIO_init(USH_GPIO_initTypeDef *initStructure)
 	assert_param(IS_GPIO_ALL_INSTANCE(initStructure->GPIOx));
 	assert_param(IS_GPIO_PIN(initStructure->Pin));
 	assert_param(IS_GPIO_MODE(initStructure->Mode));
+	assert_param(IS_GPIO_PULL(initStructure->Pull));
+	assert_param(IS_GPIO_SPEED(initStructure->Speed));
+	assert_param(IS_GPIO_ALTERNATE(initStructure->Alternate));
 
 	// Configure the port pins
 	for(pinPos = 0x00; pinPos < GPIO_NUMBER; pinPos++)
@@ -45,9 +48,6 @@ void GPIO_init(USH_GPIO_initTypeDef *initStructure)
 			// In case of Output or Alternate function mode selection
 			if(((initStructure->Mode & GPIO_MODE) == GPIO_OUTPUT) || ((initStructure->Mode & GPIO_MODE) == GPIO_AF))
 			{
-				// Check speed parameter
-				assert_param(IS_GPIO_SPEED(initStructure->Speed));
-
 				// Speed mode configuration
 				temp = initStructure->GPIOx->OSPEEDR;
 				temp &= ~(GPIO_OSPEEDER_OSPEEDR0 << (pinPos * 2U));
@@ -63,9 +63,6 @@ void GPIO_init(USH_GPIO_initTypeDef *initStructure)
 
 			if(initStructure->Mode != GPIO_MODE_ANALOG)
 			{
-				// Check pull parameter
-				assert_param(IS_GPIO_PULL(initStructure->Pull));
-
 				// Activate the Pull-up or Pull down resistor for the current IO
 				temp = initStructure->GPIOx->PUPDR;
 				temp &= ~(GPIO_PUPDR_PUPDR0 << (pinPos * 2U));
@@ -76,9 +73,6 @@ void GPIO_init(USH_GPIO_initTypeDef *initStructure)
 			// In case of Alternate function mode selection
 			if((initStructure->Mode & GPIO_MODE) == GPIO_AF)
 			{
-				// Check the Alternate function parameter
-				assert_param(IS_GPIO_ALTERNATE(initStructure->Alternate));
-
 				// Configure Alternate function mapped with the current IO
 				temp = initStructure->GPIOx->AFR[pinPos >> 3U];
 				temp &= ~((uint32_t)0x0F << ((pinPos) & 0x07UL) * 4U);
