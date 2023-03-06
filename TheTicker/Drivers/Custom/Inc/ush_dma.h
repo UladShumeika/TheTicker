@@ -340,6 +340,6 @@ void DMA_IRQHandler(USH_DMA_initTypeDef *initStructure);
 //---------------------------------------------------------------------------
 // DMA interrupt user callbacks
 //---------------------------------------------------------------------------
-__weak void DMA_transferCompleteCallback(DMA_Stream_TypeDef *DMAy_Streamx);
+__WEAK void DMA_transferCompleteCallback(DMA_Stream_TypeDef *DMAy_Streamx);
 
 #endif /* __USH_DMA_H */
