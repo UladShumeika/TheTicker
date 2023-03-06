@@ -131,49 +131,49 @@ typedef enum
 // Macros
 //---------------------------------------------------------------------------
 
-#define IS_GPIO_ALL_INSTANCE(INSTANCE)  (((INSTANCE) == GPIOA)	| \
-										 ((INSTANCE) == GPIOB)	| \
-										 ((INSTANCE) == GPIOC)	| \
-										 ((INSTANCE) == GPIOD)	| \
-										 ((INSTANCE) == GPIOE)	| \
-										 ((INSTANCE) == GPIOF)	| \
+#define IS_GPIO_ALL_INSTANCE(INSTANCE)  (((INSTANCE) == GPIOA)	|| \
+										 ((INSTANCE) == GPIOB)	|| \
+										 ((INSTANCE) == GPIOC)	|| \
+										 ((INSTANCE) == GPIOD)	|| \
+										 ((INSTANCE) == GPIOE)	|| \
+										 ((INSTANCE) == GPIOF)	|| \
 										 ((INSTANCE) == GPIOG))
 
 #define GPIO_PIN_MASK					(0x0000FFFFU)
 #define IS_GPIO_PIN(PIN)           		(((((uint32_t)PIN) & GPIO_PIN_MASK ) != 0x00U) && ((((uint32_t)PIN) & ~GPIO_PIN_MASK) == 0x00U))
 
-#define IS_GPIO_MODE(MODE)		   		(((MODE) == GPIO_MODE_INPUT)     	| \
-										 ((MODE) == GPIO_MODE_OUTPUT_PP)    | \
-										 ((MODE) == GPIO_MODE_OUTPUT_OD)    | \
-										 ((MODE) == GPIO_MODE_ALTERNATE_PP) | \
-										 ((MODE) == GPIO_MODE_ALTERNATE_OD) | \
+#define IS_GPIO_MODE(MODE)		   		(((MODE) == GPIO_MODE_INPUT)     	|| \
+										 ((MODE) == GPIO_MODE_OUTPUT_PP)    || \
+										 ((MODE) == GPIO_MODE_OUTPUT_OD)    || \
+										 ((MODE) == GPIO_MODE_ALTERNATE_PP) || \
+										 ((MODE) == GPIO_MODE_ALTERNATE_OD) || \
 										 ((MODE) == GPIO_MODE_ANALOG))
 
-#define IS_GPIO_PULL(PULL)		   		(((PULL) == GPIO_NOPULL) | \
-										 ((PULL) == GPIO_PULLUP) | \
+#define IS_GPIO_PULL(PULL)		   		(((PULL) == GPIO_NOPULL) || \
+										 ((PULL) == GPIO_PULLUP) || \
 										 ((PULL) == GPIO_PULLDOWN))
 
-#define IS_GPIO_SPEED(SPEED)	   		(((SPEED) == GPIO_SPEED_LOW)    | \
-								    	 ((SPEED) == GPIO_SPEED_MEDIUM) | \
-										 ((SPEED) == GPIO_SPEED_HIGH)   | \
+#define IS_GPIO_SPEED(SPEED)	   		(((SPEED) == GPIO_SPEED_LOW)    || \
+								    	 ((SPEED) == GPIO_SPEED_MEDIUM) || \
+										 ((SPEED) == GPIO_SPEED_HIGH)   || \
 								    	 ((SPEED) == GPIO_SPEED_VERY_HIGH))
 
-#define IS_GPIO_ALTERNATE(ALTERNATE)	(((ALTERNATE) == GPIO_AF5_SPI1)   | \
-										 ((ALTERNATE) == GPIO_AF5_SPI2)   | \
-										 ((ALTERNATE) == GPIO_AF5_SPI4)   | \
-										 ((ALTERNATE) == GPIO_AF5_SPI5)   | \
-										 ((ALTERNATE) == GPIO_AF5_SPI6)   | \
-										 ((ALTERNATE) == GPIO_AF6_SPI3)   | \
-										 ((ALTERNATE) == GPIO_AF7_USART1) | \
-										 ((ALTERNATE) == GPIO_AF7_USART2) | \
-										 ((ALTERNATE) == GPIO_AF7_USART3) | \
-										 ((ALTERNATE) == GPIO_AF8_UART4)  | \
-										 ((ALTERNATE) == GPIO_AF8_UART5)  | \
-										 ((ALTERNATE) == GPIO_AF8_USART6) | \
-										 ((ALTERNATE) == GPIO_AF8_UART7)  | \
+#define IS_GPIO_ALTERNATE(ALTERNATE)	(((ALTERNATE) == GPIO_AF5_SPI1)   || \
+										 ((ALTERNATE) == GPIO_AF5_SPI2)   || \
+										 ((ALTERNATE) == GPIO_AF5_SPI4)   || \
+										 ((ALTERNATE) == GPIO_AF5_SPI5)   || \
+										 ((ALTERNATE) == GPIO_AF5_SPI6)   || \
+										 ((ALTERNATE) == GPIO_AF6_SPI3)   || \
+										 ((ALTERNATE) == GPIO_AF7_USART1) || \
+										 ((ALTERNATE) == GPIO_AF7_USART2) || \
+										 ((ALTERNATE) == GPIO_AF7_USART3) || \
+										 ((ALTERNATE) == GPIO_AF8_UART4)  || \
+										 ((ALTERNATE) == GPIO_AF8_UART5)  || \
+										 ((ALTERNATE) == GPIO_AF8_USART6) || \
+										 ((ALTERNATE) == GPIO_AF8_UART7)  || \
 										 ((ALTERNATE) == GPIO_AF8_UART8))
 
-#define IS_GPIO_STATE(STATE)			(((STATE) == GPIO_PIN_RESET) | \
+#define IS_GPIO_STATE(STATE)			(((STATE) == GPIO_PIN_RESET) || \
 										 ((STATE) == GPIO_PIN_SET))
 
 //---------------------------------------------------------------------------
