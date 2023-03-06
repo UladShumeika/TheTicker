@@ -186,9 +186,33 @@ void DMA_IRQHandler(USH_DMA_initTypeDef *initStructure)
 	DMA_clearFlags(initStructure->DMAy_Streamx, DMA_FLAG_ALL);
 
 	// Check transfer complete flag
-	if((flags & DMA_FLAG_TCIF) && (initStructure->DMAy_Streamx->CR && DMA_SxCR_TCIE))
+	if((flags & DMA_FLAG_TCIF) && (initStructure->DMAy_Streamx->CR & DMA_SxCR_TCIE))
 	{
+		DMA_transferCompleteCallback(initStructure->DMAy_Streamx);
+	}
 
+	// Check half transfer complete flag
+	if((flags & DMA_FLAG_HTIF) && (initStructure->DMAy_Streamx->CR & DMA_SxCR_HTIE))
+	{
+		DMA_halfTransferCompleteCallback(initStructure->DMAy_Streamx);
+	}
+
+	// Check transfer error flag
+	if((flags & DMA_FLAG_TEIF) && (initStructure->DMAy_Streamx->CR & DMA_SxCR_TEIE))
+	{
+		DMA_transferErrorCallback(initStructure->DMAy_Streamx);
+	}
+
+	// Check direct mode error flag
+	if((flags & DMA_FLAG_DMEIF) && (initStructure->DMAy_Streamx->CR & DMA_SxCR_DMEIE))
+	{
+		DMA_directModeErrorCallback(initStructure->DMAy_Streamx);
+	}
+
+	// Check FIFO error flag
+	if((flags & DMA_FLAG_FEIF) && (initStructure->DMAy_Streamx->FCR & DMA_SxFCR_FEIE))
+	{
+		DMA_fifoErrorCallback(initStructure->DMAy_Streamx);
 	}
 }
 
