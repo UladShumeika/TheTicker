@@ -321,6 +321,10 @@ void USART_clearFlags(USART_TypeDef* usart, USH_USART_flags flags)
 	usart->SR = ~(flags);
 }
 
+//---------------------------------------------------------------------------
+// Static Functions
+//---------------------------------------------------------------------------
+
 /**
  * @brief 	This function calculates BRR value.
  * @note	Most of the numbers are needed in order not to use float. 50 - for rounding.
