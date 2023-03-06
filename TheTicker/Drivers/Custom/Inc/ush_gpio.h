@@ -139,23 +139,8 @@ typedef enum
 										 ((INSTANCE) == GPIOF)	| \
 										 ((INSTANCE) == GPIOG))
 
-#define IS_GPIO_PIN(PIN)				(((PIN) == GPIO_PIN_0)	| \
-										 ((PIN) == GPIO_PIN_1)	| \
-										 ((PIN) == GPIO_PIN_2)	| \
-										 ((PIN) == GPIO_PIN_3)	| \
-										 ((PIN) == GPIO_PIN_4)	| \
-										 ((PIN) == GPIO_PIN_5)	| \
-										 ((PIN) == GPIO_PIN_6)	| \
-										 ((PIN) == GPIO_PIN_7)	| \
-										 ((PIN) == GPIO_PIN_8)	| \
-										 ((PIN) == GPIO_PIN_9)	| \
-										 ((PIN) == GPIO_PIN_10)	| \
-										 ((PIN) == GPIO_PIN_11)	| \
-										 ((PIN) == GPIO_PIN_12)	| \
-										 ((PIN) == GPIO_PIN_13)	| \
-										 ((PIN) == GPIO_PIN_14)	| \
-										 ((PIN) == GPIO_PIN_15)	| \
-										 ((PIN) == GPIO_PIN_FULL))
+#define GPIO_PIN_MASK					(0x0000FFFFU)
+#define IS_GPIO_PIN(PIN)           		(((((uint32_t)PIN) & GPIO_PIN_MASK ) != 0x00U) && ((((uint32_t)PIN) & ~GPIO_PIN_MASK) == 0x00U))
 
 #define IS_GPIO_MODE(MODE)		   		(((MODE) == GPIO_MODE_INPUT)     	| \
 										 ((MODE) == GPIO_MODE_OUTPUT_PP)    | \
