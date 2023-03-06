@@ -7,6 +7,8 @@
 //---------------------------------------------------------------------------
 // External variables
 //---------------------------------------------------------------------------
+extern USH_DMA_initTypeDef initDMA_txStructure;
+extern USH_DMA_initTypeDef initDMA_rxStructure;
 
 /******************************************************************************/
 /*           Cortex-M4 Processor Interruption and Exception Handlers          */
@@ -87,7 +89,7 @@ void DebugMon_Handler(void)
   */
 void DMA2_Stream7_IRQHandler(void)
 {
-
+	DMA_IRQHandler(&initDMA_txStructure);
 }
 
 /**
@@ -95,5 +97,5 @@ void DMA2_Stream7_IRQHandler(void)
   */
 void DMA2_Stream2_IRQHandler(void)
 {
-
+	DMA_IRQHandler(&initDMA_rxStructure);
 }
