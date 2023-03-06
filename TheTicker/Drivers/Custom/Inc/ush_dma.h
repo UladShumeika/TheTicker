@@ -344,5 +344,6 @@ __WEAK void DMA_transferCompleteCallback(DMA_Stream_TypeDef *DMAy_Streamx);
 __WEAK void DMA_halfTransferCompleteCallback(DMA_Stream_TypeDef *DMAy_Streamx);
 __WEAK void DMA_transferErrorCallback(DMA_Stream_TypeDef *DMAy_Streamx);
 __WEAK void DMA_directModeErrorCallback(DMA_Stream_TypeDef *DMAy_Streamx);
+__WEAK void DMA_fifoErrorCallback(DMA_Stream_TypeDef *DMAy_Streamx);
 
 #endif /* __USH_DMA_H */
