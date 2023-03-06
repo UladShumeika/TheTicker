@@ -231,3 +231,15 @@ __WEAK void DMA_transferErrorCallback(DMA_Stream_TypeDef *DMAy_Streamx)
 {
 	(void)DMAy_Streamx;
 }
+
+/**
+  * @brief  Direct mode error callbacks.
+  * 		NOTE: This function should not be modified, when the callback is needed,
+           	   	  the DMA_directModeErrorCallback could be implemented in the user file.
+  * @param  DMAy_Streamx - A pointer to Stream peripheral to be used where y is 1 or 2 and x is from 0 to 7.
+  * @retval None.
+  */
+__WEAK void DMA_directModeErrorCallback(DMA_Stream_TypeDef *DMAy_Streamx)
+{
+	(void)DMAy_Streamx;
+}
