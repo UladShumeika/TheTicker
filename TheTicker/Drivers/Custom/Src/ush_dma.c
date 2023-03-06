@@ -171,3 +171,39 @@ uint32_t DMA_getFlags(USH_DMA_initTypeDef *initStructure)
 
 	return flags;
 }
+
+/**
+ * @brief 	This function handles DMA interrupt request.
+ * @param 	DMAy_Streamx - A pointer to Stream peripheral to be used where y is 1 or 2 and x is from 0 to 7.
+ * @retval	None.
+ */
+void DMA_IRQHandler(USH_DMA_initTypeDef *initStructure)
+{
+	// Get interrupt flags
+	uint32_t flags = DMA_getFlags(initStructure);
+
+	// Clear interrupt flags
+	DMA_clearFlags(initStructure->DMAy_Streamx, DMA_FLAG_ALL);
+
+	// Check transfer complete flag
+	if((flags & DMA_FLAG_TCIF) && (initStructure->DMAy_Streamx->CR && DMA_SxCR_TCIE))
+	{
+
+	}
+}
+
+//---------------------------------------------------------------------------
+// DMA interrupt user callbacks
+//---------------------------------------------------------------------------
+
+/**
+  * @brief  Tx Transfer completed callbacks.
+  * 		NOTE: This function should not be modified, when the callback is needed,
+           	   	  the HAL_UART_TxCpltCallback could be implemented in the user file.
+  * @param  DMAy_Streamx - A pointer to Stream peripheral to be used where y is 1 or 2 and x is from 0 to 7.
+  * @retval None.
+  */
+__weak void DMA_transferCompleteCallback(DMA_Stream_TypeDef *DMAy_Streamx)
+{
+	(void)DMAy_Streamx;
+}
