@@ -170,6 +170,10 @@ void USART_init(USH_USART_initTypeDef *initStructure)
 		{
 			USH_DMA_initTypeDef initDMA_txStructure = {0,};
 
+			// DMA interrupt init
+			MISC_NVIC_SetPriority(DMA2_Stream7_IRQn, PREEMPTION_PRIORITY_TX, SUBPRIORITY_TX);
+			MISC_NVIC_EnableIRQ(DMA2_Stream7_IRQn);
+
 			initDMA_txStructure.DMAy_Streamx  			= DMA2_Stream7;
 			initDMA_txStructure.Channel 				= DMA_CHANNEL_4;
 			initDMA_txStructure.Direction 				= DMA_MEMORY_TO_PERIPH;
@@ -187,6 +191,10 @@ void USART_init(USH_USART_initTypeDef *initStructure)
 		if(initStructure->Mode == USART_MODE_RX || initStructure->Mode == USART_MODE_RX_TX)
 		{
 			USH_DMA_initTypeDef initDMA_rxStructure = {0,};
+
+			// DMA interrupt init
+			MISC_NVIC_SetPriority(DMA2_Stream2_IRQn, PREEMPTION_PRIORITY_TX, SUBPRIORITY_TX);
+			MISC_NVIC_EnableIRQ(DMA2_Stream2_IRQn);
 
 			initDMA_rxStructure.DMAy_Streamx			= DMA2_Stream2;
 			initDMA_rxStructure.Channel 				= DMA_CHANNEL_4;
