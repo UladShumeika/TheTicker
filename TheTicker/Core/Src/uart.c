@@ -55,7 +55,8 @@ void receivingMessageTask(void const *argument)
 	/* Infinite loop */
 	for(;;)
 	{
-		osDelay(1);
+		USART_transmitDMA(USART1, string, sizeof(string));
+		osDelay(1000);
 	}
 }
 
