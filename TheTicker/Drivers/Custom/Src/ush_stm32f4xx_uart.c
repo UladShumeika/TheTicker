@@ -50,6 +50,9 @@ typedef struct
 //---------------------------------------------------------------------------
 // Private variables
 //---------------------------------------------------------------------------
+USH_DMA_initTypeDef initDMA_txStructure = {0,};
+USH_DMA_initTypeDef initDMA_rxStructure = {0,};
+
 USH_USART_streamAndChannelTypeDef streamAndChannel = {0,};
 
 //---------------------------------------------------------------------------
@@ -168,8 +171,6 @@ void USART_init(USH_USART_initTypeDef *initStructure)
 		// Check TX or TX/RX mode
 		if(initStructure->Mode == USART_MODE_TX || initStructure->Mode == USART_MODE_RX_TX)
 		{
-			USH_DMA_initTypeDef initDMA_txStructure = {0,};
-
 			// DMA interrupt init
 			MISC_NVIC_SetPriority(DMA2_Stream7_IRQn, PREEMPTION_PRIORITY_TX, SUBPRIORITY_TX);
 			MISC_NVIC_EnableIRQ(DMA2_Stream7_IRQn);
@@ -190,8 +191,6 @@ void USART_init(USH_USART_initTypeDef *initStructure)
 		// Check RX or TX/RX mode
 		if(initStructure->Mode == USART_MODE_RX || initStructure->Mode == USART_MODE_RX_TX)
 		{
-			USH_DMA_initTypeDef initDMA_rxStructure = {0,};
-
 			// DMA interrupt init
 			MISC_NVIC_SetPriority(DMA2_Stream2_IRQn, PREEMPTION_PRIORITY_TX, SUBPRIORITY_TX);
 			MISC_NVIC_EnableIRQ(DMA2_Stream2_IRQn);
