@@ -199,11 +199,23 @@ void DMA_IRQHandler(USH_DMA_initTypeDef *initStructure)
 /**
   * @brief  Tx Transfer completed callbacks.
   * 		NOTE: This function should not be modified, when the callback is needed,
-           	   	  the HAL_UART_TxCpltCallback could be implemented in the user file.
+           	   	  the DMA_transferCompleteCallback could be implemented in the user file.
   * @param  DMAy_Streamx - A pointer to Stream peripheral to be used where y is 1 or 2 and x is from 0 to 7.
   * @retval None.
   */
 __WEAK void DMA_transferCompleteCallback(DMA_Stream_TypeDef *DMAy_Streamx)
+{
+	(void)DMAy_Streamx;
+}
+
+/**
+  * @brief  Tx Half transfer completed callbacks.
+  * 		NOTE: This function should not be modified, when the callback is needed,
+           	   	  the DMA_halfTransferCompleteCallback could be implemented in the user file.
+  * @param  DMAy_Streamx - A pointer to Stream peripheral to be used where y is 1 or 2 and x is from 0 to 7.
+  * @retval None.
+  */
+__WEAK void DMA_halfTransferCompleteCallback(DMA_Stream_TypeDef *DMAy_Streamx)
 {
 	(void)DMAy_Streamx;
 }
