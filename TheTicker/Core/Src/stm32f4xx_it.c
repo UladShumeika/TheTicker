@@ -83,17 +83,9 @@ void DebugMon_Handler(void)
 /******************************************************************************/
 
 /**
-  * @brief This function handles TIM7 global interrupt.
-  */
-void TIM7_IRQHandler(void)
-{
-
-}
-
-/**
   * @brief This function handles DMA1 stream0 global interrupt.
   */
-void DMA1_Stream0_IRQHandler(void)
+void DMA2_Stream7_IRQHandler(void)
 {
 
 }
@@ -101,15 +93,7 @@ void DMA1_Stream0_IRQHandler(void)
 /**
   * @brief This function handles DMA1 stream7 global interrupt.
   */
-void DMA1_Stream7_IRQHandler(void)
-{
-
-}
-
-/**
-  * @brief This function handles UART5 global interrupt.
-  */
-void UART5_IRQHandler(void)
+void DMA2_Stream2_IRQHandler(void)
 {
 
 }
