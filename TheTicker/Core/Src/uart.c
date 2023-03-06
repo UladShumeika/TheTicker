@@ -27,6 +27,11 @@ extern osSemaphoreId mutexForMessageHandle;
 static void UART_init(void);
 
 //---------------------------------------------------------------------------
+// Description of peripheral structures
+//--------------------------------------------------------------------------
+USH_USART_initTypeDef uart_structure = {0,};
+
+//---------------------------------------------------------------------------
 // Variables
 //---------------------------------------------------------------------------
 static uint8_t string[] = "Hello, my name is Ulad! ";
@@ -101,8 +106,6 @@ void UART_freeRtosInit(void)
  */
 static void UART_init(void)
 {
-	USH_USART_initTypeDef uart_structure = {0,};
-
 	uart_structure.USARTx 		= USED_UART;
 	uart_structure.PinsPack 	= USED_PINSPACK;
 	uart_structure.BaudRate 	= USED_BAUDRATE;
