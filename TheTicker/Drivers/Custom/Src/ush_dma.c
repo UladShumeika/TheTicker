@@ -203,7 +203,7 @@ void DMA_IRQHandler(USH_DMA_initTypeDef *initStructure)
   * @param  DMAy_Streamx - A pointer to Stream peripheral to be used where y is 1 or 2 and x is from 0 to 7.
   * @retval None.
   */
-__weak void DMA_transferCompleteCallback(DMA_Stream_TypeDef *DMAy_Streamx)
+__WEAK void DMA_transferCompleteCallback(DMA_Stream_TypeDef *DMAy_Streamx)
 {
 	(void)DMAy_Streamx;
 }
