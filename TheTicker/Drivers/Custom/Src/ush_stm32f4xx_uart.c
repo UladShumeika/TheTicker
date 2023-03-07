@@ -258,6 +258,50 @@ void USART_init(USH_USART_initTypeDef *initStructure)
 //---------------------------------------------------------------------------
 
 /**
+ * @brief	This function receives an amount of data in DMA mode till either the expected number of data is received or an IDLE event occurs.
+ * @param 	usart - A pointer to U(S)ART peripheral to be used where x is between 1 to 8.
+ * @param 	data - The data to be transmitted.
+ * @param 	size - The data transfer size.
+ * @return	The periphery status.
+ */
+USH_peripheryStatus USART_receiveToIdleDMA(USART_TypeDef* usart, uint8_t* data, uint16_t size)
+{
+	USH_USART_streamAndChannelTypeDef* settings = &streamAndChannel;
+
+	// Check parameters
+	assert_param(IS_USART_ALL_INSTANCE(usart));
+	assert_param(IS_USART_MESSAGE_SIZE(size));
+
+	fillInInternalStructure(usart, &streamAndChannel);
+
+	if(!(usart->SR & USART_SR_TC))
+	{
+		return STATUS_BUSY;
+	}
+
+	// Fill DMA registers
+	settings->DMAy_Streamx->NDTR = size; 					// Set data size
+	settings->DMAy_Streamx->PAR = (uint32_t)&usart->DR;		// Set peripheral address
+	settings->DMAy_Streamx->M0AR = (uint32_t)data;			// Set memory address
+
+	// Clear interrupt flags
+	DMA_clearFlags(settings->DMAy_Streamx, DMA_FLAG_ALL);
+
+	// Enable interrupts
+	settings->DMAy_Streamx->CR |= DMA_SxCR_TCIE | DMA_SxCR_TEIE | DMA_SxCR_DMEIE;
+
+	// Enable DMA stream
+	DMA_state(settings->DMAy_Streamx, ENABLE);
+
+	// Enable U(S)ART RX DMA
+	usart->CR3 |= USART_CR3_DMAR;
+
+	usart->CR1 |= USART_CR1_IDLEIE;
+
+	return STATUS_OK;
+}
+
+/**
  * @brief	This function transmits data using DMA.
  * @param 	usart - A pointer to U(S)ART peripheral to be used where x is between 1 to 8.
  * @param 	data - The data to be transmitted.
