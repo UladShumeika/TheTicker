@@ -99,3 +99,11 @@ void DMA2_Stream2_IRQHandler(void)
 {
 	DMA_IRQHandler(&initDMA_rxStructure);
 }
+
+/**
+  * @brief This function handles USART1 global interrupt.
+  */
+void USART1_IRQHandler(void)
+{
+
+}
