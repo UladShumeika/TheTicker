@@ -357,11 +357,21 @@ USH_peripheryStatus USART_transmitDMA(USART_TypeDef* usart, uint8_t* data, uint1
  */
 void USART_clearFlags(USART_TypeDef* usart, USH_USART_flags flags)
 {
+	uint16_t temp = 0;
+
 	// Check parameters
 	assert_param(IS_USART_ALL_INSTANCE(usart));
 	assert_param(IS_USART_CLEAR_FLAGS(flags));
 
-	usart->SR = ~(flags);
+	if((flags = USART_FLAG_TXE) || (flags < USART_FLAG_RXNE))
+	{
+		temp = usart->SR;
+		temp = usart->DR;
+		(void)temp;
+	} else
+	{
+		usart->SR = ~(flags);
+	}
 }
 
 //---------------------------------------------------------------------------
