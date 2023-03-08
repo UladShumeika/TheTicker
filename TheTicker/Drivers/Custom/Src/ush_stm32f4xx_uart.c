@@ -29,33 +29,17 @@
 
 #define PREEMPTION_PRIORITY_UART	(5U)
 #define SUBPRIORITY_UART			(0)
+
 //---------------------------------------------------------------------------
 // Macros
 //---------------------------------------------------------------------------
 #define IS_UART_BAUDRATE(BAUDRATE) ((BAUDRATE) <= 10500000U)
 
 //---------------------------------------------------------------------------
-// Private structure
-//---------------------------------------------------------------------------
-
-/**
- * @brief DMA stream and channel structure definition
- */
-typedef struct
-{
-	DMA_Stream_TypeDef *DMAy_Streamx;	/* A pointer to Stream peripheral to be used where y is 1 or 2 and x is from 0 to 7. */
-
-	USH_DMA_channels Channel;			/* A channel to be used for the specified stream. */
-
-} USH_USART_streamAndChannelTypeDef;
-
-//---------------------------------------------------------------------------
 // Private variables
 //---------------------------------------------------------------------------
 USH_DMA_initTypeDef initDMA_txStructure = {0,};
 USH_DMA_initTypeDef initDMA_rxStructure = {0,};
-
-USH_USART_streamAndChannelTypeDef streamAndChannel = {0,};
 
 //---------------------------------------------------------------------------
 // Static function prototypes
