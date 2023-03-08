@@ -27,6 +27,8 @@
 #define PREEMPTION_PRIORITY_TX		(5U)
 #define SUBPRIORITY_TX				(0)
 
+#define PREEMPTION_PRIORITY_UART	(5U)
+#define SUBPRIORITY_UART			(0)
 //---------------------------------------------------------------------------
 // Macros
 //---------------------------------------------------------------------------
@@ -251,6 +253,9 @@ void USART_init(USH_USART_initTypeDef *initStructure)
 	initStructure->USARTx->BRR = USART_BRRSampling16(pclk, initStructure->BaudRate);
 
 	USH_USART_ENABLE(initStructure->USARTx);
+
+	MISC_NVIC_SetPriority(USART1_IRQn, PREEMPTION_PRIORITY_UART, SUBPRIORITY_UART);
+	MISC_NVIC_EnableIRQ(USART1_IRQn);
 }
 
 //---------------------------------------------------------------------------
