@@ -216,4 +216,17 @@ USH_peripheryStatus USART_transmitDMA(USART_TypeDef* usart, uint8_t* data, uint1
  */
 void USART_clearFlags(USART_TypeDef* usart, USH_USART_flags flags);
 
+/**
+ * @brief 	This function handles U(S)ART interrupt request.
+ * @param 	initStructure - A pointer to a USH_USART_initTypeDef structure that contains the configuration information
+ * 							for the specified U(S)ART peripheral.
+ * @retval	None.
+ */
+void USART_IRQHandler(USH_USART_initTypeDef *initStructure);
+
+//---------------------------------------------------------------------------
+// DMA interrupt user callbacks
+//---------------------------------------------------------------------------
+__WEAK void USART_idleCallback(USART_TypeDef* usart);
+
 #endif /* __USH_STM32F4XX_USART_H */
