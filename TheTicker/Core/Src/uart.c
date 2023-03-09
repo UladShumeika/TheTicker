@@ -19,6 +19,7 @@
 // Descriptions of FreeRTOS elements
 //---------------------------------------------------------------------------
 static osThreadId receivingMessageHandle;
+static osThreadId idleIRQTaskHandle;
 static osPoolId	messageStructHandle;
 osMessageQId fromUartToMatrixHandle;
 osSemaphoreId idleIRQHandle;
@@ -69,6 +70,28 @@ void receivingMessageTask(void const *argument)
 	}
 }
 
+/**
+ * @brief 	Function implementing the processing of received data by USART1
+ * @param 	argument - Not used.
+ * @retval  None.
+ */
+void idleIRQTask(void const *argument)
+{
+	uint8_t firstStart = 1;
+
+	/* Infinite loop */
+	for(;;)
+	{
+		osSemaphoreWait(idleIRQHandle, osWaitForever);
+
+		// After a semaphore is created, it's in the released state. So, the message will only be processed when the interrupt occurs.
+		if(!firstStart)
+		{
+
+		}
+	}
+}
+
 //---------------------------------------------------------------------------
 // Initialization functions
 //---------------------------------------------------------------------------
@@ -84,6 +107,10 @@ void UART_freeRtosInit(void)
 	// definition and creation of receivingMessageTask
 	osThreadDef(receivingMessage, receivingMessageTask, osPriorityLow, 0, 128);
 	receivingMessageHandle = osThreadCreate(osThread(receivingMessage), NULL);
+
+	// definition and creation of idleIRQTask
+	osThreadDef(idleIRQ, idleIRQTask, osPriorityLow, 0, 128);
+	idleIRQTaskHandle = osThreadCreate(osThread(idleIRQ), NULL);
 
 	// Create the queue(s)
 	// definition and creating of fromUartToMatrixHandle
