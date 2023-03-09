@@ -27,5 +27,6 @@ typedef struct
 //---------------------------------------------------------------------------
 void UART_freeRtosInit(void);
 void receivingMessageTask(void const *argument);
+void idleIRQTask(void const *argument);
 
 #endif /* __UART_H */
