@@ -9,6 +9,7 @@
 //---------------------------------------------------------------------------
 extern USH_DMA_initTypeDef initDMA_txStructure;
 extern USH_DMA_initTypeDef initDMA_rxStructure;
+extern USH_USART_initTypeDef uart_structure;
 
 /******************************************************************************/
 /*           Cortex-M4 Processor Interruption and Exception Handlers          */
@@ -105,5 +106,5 @@ void DMA2_Stream2_IRQHandler(void)
   */
 void USART1_IRQHandler(void)
 {
-
+	USART_IRQHandler(&uart_structure);
 }
