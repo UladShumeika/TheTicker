@@ -17,9 +17,9 @@
 // Descriptions of FreeRTOS elements
 //---------------------------------------------------------------------------
 static osThreadId receivingMessageHandle;
-osMessageQId fromUartToMatrixHandle;
 static osPoolId	messageStructHandle;
-extern osSemaphoreId mutexForMessageHandle;
+osMessageQId fromUartToMatrixHandle;
+osSemaphoreId idleIRQHandle;
 
 //---------------------------------------------------------------------------
 // Static function prototypes
@@ -91,8 +91,14 @@ void UART_freeRtosInit(void)
 	osPoolDef(messagePool, 1, UART_messageTypeDef);
 	messageStructHandle = osPoolCreate(osPool(messagePool));
 
+	// Create the semaphore(s)
+	// definition and creating of idleIRQHandle
+	osSemaphoreDef(idleIRQ);
+	idleIRQHandle = osSemaphoreCreate(osSemaphore(idleIRQ), 1);
+
 #ifdef DEBUG
 	vQueueAddToRegistry(fromUartToMatrixHandle, "from uart");
+	vQueueAddToRegistry(idleIRQHandle, "IDLE IRQ");
 #endif
 }
 
