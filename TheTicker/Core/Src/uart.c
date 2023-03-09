@@ -13,6 +13,8 @@
 #define USED_PINSPACK	(USART_PINSPACK_1)
 #define USED_BAUDRATE	((uint32_t)115200)
 
+#define RX_BUFFER_SIZE	(20U)
+
 //---------------------------------------------------------------------------
 // Descriptions of FreeRTOS elements
 //---------------------------------------------------------------------------
@@ -34,6 +36,8 @@ USH_USART_initTypeDef uart_structure = {0,};
 //---------------------------------------------------------------------------
 // Variables
 //---------------------------------------------------------------------------
+static uint8_t Rx_buffer[RX_BUFFER_SIZE];
+
 static uint8_t string[] = "Hello, my name is Ulad! ";
 
 //---------------------------------------------------------------------------
