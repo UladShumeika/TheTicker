@@ -149,3 +149,17 @@ static void UART_init(void)
 	uart_structure.Mode 		= USART_MODE_RX_TX;
 	USART_init(&uart_structure);
 }
+
+//---------------------------------------------------------------------------
+// Callbacks
+//---------------------------------------------------------------------------
+
+/**
+ * @brief  IDLE callbacks.
+ * @param  usart - A pointer to U(S)ART peripheral to be used where x is between 1 to 8.
+ * @retval None.
+ */
+void USART_idleCallback(USART_TypeDef* usart)
+{
+	osSemaphoreRelease(idleIRQHandle);
+}
