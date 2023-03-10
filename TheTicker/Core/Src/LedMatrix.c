@@ -28,7 +28,11 @@ static void outputOnMatrix(uint8_t** outputBuffer);
 static void shiftOutputBuffer(uint8_t** outputBuffer, uint8_t rowOutputBuffer, uint8_t columnOutputBuffer);
 static uint8_t** convertStringIntoDataForMatrix(UART_messageTypeDef *message, const uint8_t fontArray[][ASCII_COLUMN]);
 
-uint8_t **outputBuffer;
+//---------------------------------------------------------------------------
+// Variables
+//---------------------------------------------------------------------------
+static uint8_t **outputBuffer;
+static uint8_t rowBuffer;
 
 //---------------------------------------------------------------------------
 // FreeRTOS's threads
