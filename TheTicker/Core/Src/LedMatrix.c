@@ -46,8 +46,6 @@ static uint8_t rowBuffer;
  */
 void sendToTheMatrixTask(void const *argument)
 {
-	uint8_t rowBuffer = 24;
-
 	MAX7219_init();
 
 	/* Infinite loop */
