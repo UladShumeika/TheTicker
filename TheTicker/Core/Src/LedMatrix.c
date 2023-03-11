@@ -220,6 +220,8 @@ static uint8_t** convertStringIntoDataForMatrix(UART_messageTypeDef *message, co
 		for(uint8_t column = 0; column < OUTPUT_BUFFER_COLUMN; column++)
 		{
 			symbol = (uint8_t)(message->message[row] - ASCII_SHIFT);
+			if(symbol >= ASCII_ROW) symbol = 0;	// see font_ASCII buffer for more information
+
 			outputBuffer[row][column] = font_ASCII[symbol][column];
 		}
 	}
