@@ -51,8 +51,13 @@ void sendToTheMatrixTask(void const *argument)
 	/* Infinite loop */
 	for(;;)
 	{
+		osMutexWait(pVarsMutexHandle, osWaitForever);
+
 		outputOnMatrix(outputBuffer);
 		shiftOutputBuffer(outputBuffer, rowBuffer, MATRIX_HIGH);
+
+		osMutexRelease(pVarsMutexHandle);
+
 		osDelay(SPEED_SHIFT);
 	}
 }
