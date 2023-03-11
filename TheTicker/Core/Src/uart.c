@@ -239,5 +239,5 @@ static void UART_init(void)
  */
 void USART_idleCallback(USART_TypeDef* usart)
 {
-	osSemaphoreRelease(idleIRQHandle);
+	if(usart == USED_UART) osSemaphoreRelease(idleIRQHandle);
 }
