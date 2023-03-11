@@ -69,8 +69,9 @@ void sendToTheMatrixTask(void const *argument)
  */
 void convertStringIntoDataForMatrixTask(void const *argument)
 {
-	UART_messageTypeDef *message;
 	osEvent evt;
+	UART_messageTypeDef *message;
+	uint8_t firstStart = 1;
 
 	/* Infinite loop */
 	for(;;)
@@ -79,8 +80,18 @@ void convertStringIntoDataForMatrixTask(void const *argument)
 
 		if(evt.status == osEventMessage)
 		{
+			osMutexWait(pVarsMutexHandle, osWaitForever);
+
 			message = evt.value.p;
+			rowBuffer = message->sizeMessage;
+
+			if(!firstStart) vPortFree(outputBuffer);
 			outputBuffer = convertStringIntoDataForMatrix(message, font_ASCII);
+
+			osMutexRelease(pVarsMutexHandle);
+
+			if(!firstStart) vPortFree(message->message);
+			firstStart = 0;
 		}
 	}
 }
