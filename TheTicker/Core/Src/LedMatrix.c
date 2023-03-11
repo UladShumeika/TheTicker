@@ -191,7 +191,7 @@ static void shiftOutputBuffer(uint8_t** outputBuffer, uint8_t rowOutputBuffer, u
  * @brief 	This function converts the received message into the special data for the LED matrix.
  * @param 	message - A pointer to the message structure.
  * @param 	fontArray - The special array that has ASCII font information.
- * @retval
+ * @retval	A pointer to a dynamic 2D buffer.
  */
 static uint8_t** convertStringIntoDataForMatrix(UART_messageTypeDef *message, const uint8_t fontArray[][ASCII_COLUMN])
 {
