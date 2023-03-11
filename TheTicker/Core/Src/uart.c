@@ -28,6 +28,7 @@ osSemaphoreId idleIRQHandle;
 // Static function prototypes
 //---------------------------------------------------------------------------
 static void UART_init(void);
+static uint8_t* messageCapture(USART_TypeDef* usart, uint8_t* sourceBuffer, uint16_t sizeSourceBuffer);
 
 //---------------------------------------------------------------------------
 // Description of peripheral structures
@@ -87,9 +88,87 @@ void idleIRQTask(void const *argument)
 		// After a semaphore is created, it's in the released state. So, the message will only be processed when the interrupt occurs.
 		if(!firstStart)
 		{
-
+			receivedString = messageCapture(USED_UART, Rx_buffer, sizeof(Rx_buffer));
 		}
+
+		message->message = receivedString;
+		message->sizeMessage = strlen((char*)receivedString);
+
+		osMessagePut(fromUartToMatrixHandle, (uint32_t)message, osWaitForever);
 	}
+}
+
+//---------------------------------------------------------------------------
+// Static functions
+//---------------------------------------------------------------------------
+
+/**
+ * @brief 	This function parses the RX buffer and grabs messages from it.
+ * @note	Each message has system characters at the end \r and \n. They are not needed for output to the matrix.
+ * 			In the code, these two characters are replaced by one space (' ') character.
+ * @param 	usart - A pointer to U(S)ART peripheral to be used where x is between 1 to 8.
+ * @param 	sourceBuffer - A pointer to RX buffer.
+ * @param 	sizeSourceBuffer - Size of RX buffer.
+ * @retval	A pointer to the created string.
+ */
+static uint8_t* messageCapture(USART_TypeDef* usart, uint8_t* sourceBuffer, uint16_t sizeSourceBuffer)
+{
+	static uint16_t oldPosition	= 0;	// necessary variables to calculate the length of the received message
+	uint16_t position			= 0;	// and the index in the RX buffer
+	uint8_t sizeString 			= 0;
+	uint8_t* string;
+
+	// Get DMA stream
+	DMA_Stream_TypeDef* DMA_Stream = USART_getDmaStream(usart, USART_MODE_RX);
+
+	position = sizeSourceBuffer - DMA_getNumberOfData(DMA_Stream);
+
+	if(position > oldPosition)
+	{
+		sizeString = position - oldPosition;
+
+		if(sizeString < OUTPUT_BUFFER_MIN_ROW)
+		{
+			string = (uint8_t*)pvPortMalloc(((OUTPUT_BUFFER_MIN_ROW + 1) * (sizeof(uint8_t))));
+			memcpy(string, &sourceBuffer[oldPosition], 1);
+
+			for(uint8_t i = 1; i < OUTPUT_BUFFER_MIN_ROW; i++)
+			{
+				string[i] = ' ';
+			}
+
+			string[OUTPUT_BUFFER_MIN_ROW + 1] = '\0';
+
+		} else
+		{
+			string = (uint8_t*)pvPortMalloc(((sizeString + 1) * sizeof(uint8_t)));
+			memset(string, ' ', sizeString);
+			memcpy(string, &sourceBuffer[oldPosition], sizeString - 1);
+
+			string[sizeString + 1] = '\0';
+		}
+	} else
+	{
+		if(position > 2)
+		{
+			sizeString = (sizeSourceBuffer - oldPosition) + (position);
+		} else
+		{
+			sizeString = (sizeSourceBuffer - oldPosition);
+		}
+		string = (uint8_t*)pvPortMalloc(((sizeString + 1) * sizeof(uint8_t)));
+		memcpy(string, &sourceBuffer[oldPosition], sizeSourceBuffer - oldPosition);
+		memcpy(&string[sizeSourceBuffer - oldPosition], sourceBuffer, sizeString - (sizeSourceBuffer - oldPosition) - 1);
+	}
+
+	//string[sizeString - 2] = ' ';
+	//string[sizeString - 1] = '\0';
+
+	oldPosition = position;
+
+	if(oldPosition == (RX_BUFFER_SIZE - 1)) oldPosition = 0;
+
+	return string;
 }
 
 //---------------------------------------------------------------------------
