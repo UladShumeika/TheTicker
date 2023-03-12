@@ -18,7 +18,6 @@
 static osThreadId sendToTheMatrixHandle;
 static osThreadId convertStringHandle;
 
-static osMessageQId fromConvertToOutputHandle;
 static osMutexId pVarsMutexHandle;
 extern osMessageQId fromUartToMatrixHandle;
 
@@ -115,11 +114,6 @@ void LEDMATRIX_freeRtosInit(void)
 	// definition and creation of convertStringIntoDataForMatrixTask
 	osThreadDef(convertString, convertStringIntoDataForMatrixTask, osPriorityLow, 0, 128);
 	convertStringHandle = osThreadCreate(osThread(convertString), NULL);
-
-	// Create the queue(s)
-	// definition and creating of fromConvertToOutputHandle
-	osMessageQDef(fromConvertToOutput, 1, uint32_t);
-	fromConvertToOutputHandle = osMessageCreate(osMessageQ(fromConvertToOutput), NULL);
 
 	// Create the mutex(s)
 	// definition and creation of mutex for internal variables
