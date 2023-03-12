@@ -38,7 +38,7 @@ USH_USART_initTypeDef uart_structure = {0,};
 //---------------------------------------------------------------------------
 // Variables
 //---------------------------------------------------------------------------
-static uint8_t Rx_buffer[RX_BUFFER_SIZE];
+static uint8_t rxBuffer[RX_BUFFER_SIZE];
 static uint8_t defaultString[] = "Hello! ";
 
 //---------------------------------------------------------------------------
