@@ -165,7 +165,7 @@ void UART_freeRtosInit(void)
 {
 	// Create the thread(s)
 	// definition and creation of idleIRQTask
-	osThreadDef(idleIRQ, idleIRQTask, osPriorityLow, 0, 192);
+	osThreadDef(idleIRQ, idleIRQTask, osPriorityLow, 0, 256);
 	idleIRQTaskHandle = osThreadCreate(osThread(idleIRQ), NULL);
 
 	// Create the queue(s)
