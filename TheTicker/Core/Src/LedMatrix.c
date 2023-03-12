@@ -17,7 +17,7 @@
 //---------------------------------------------------------------------------
 static osThreadId sendToTheMatrixHandle;
 static osThreadId convertStringHandle;
-osSemaphoreId mutexForMessageHandle;
+
 static osMessageQId fromConvertToOutputHandle;
 static osMutexId pVarsMutexHandle;
 extern osMessageQId fromUartToMatrixHandle;
@@ -121,18 +121,12 @@ void LEDMATRIX_freeRtosInit(void)
 	osMessageQDef(fromConvertToOutput, 1, uint32_t);
 	fromConvertToOutputHandle = osMessageCreate(osMessageQ(fromConvertToOutput), NULL);
 
-	// Create the semaphore(s)
-	// definition and creation of mutex for a message
-	osSemaphoreDef(mutexForMessage);
-	mutexForMessageHandle = osSemaphoreCreate(osSemaphore(mutexForMessage), 1);
-
 	// Create the mutex(s)
 	// definition and creation of mutex for internal variables
 	osMutexDef(pVarsMutex);
 	pVarsMutexHandle = osMutexCreate(osMutex(pVarsMutex));
 
 #ifdef DEBUG
-	vQueueAddToRegistry(mutexForMessageHandle, "mutex for a message");
 	vQueueAddToRegistry(pVarsMutexHandle, "pointer to output buffer");
 #endif
 }
