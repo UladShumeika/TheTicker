@@ -51,17 +51,25 @@ static uint8_t defaultString[] = "Hello! ";
  */
 void idleIRQTask(void const *argument)
 {
+	UART_messageTypeDef *message = (UART_messageTypeDef*)osPoolCAlloc(messageStructHandle);
+	uint8_t* receivedString;
 	uint8_t firstStart = 1;
+
+	UART_init();
+	USART_receiveToIdleDMA(USED_UART, rxBuffer, sizeof(rxBuffer));
 
 	/* Infinite loop */
 	for(;;)
 	{
 		osSemaphoreWait(idleIRQHandle, osWaitForever);
 
-		// After a semaphore is created, it's in the released state. So, the message will only be processed when the interrupt occurs.
-		if(!firstStart)
+		if(firstStart)
 		{
-			receivedString = messageCapture(USED_UART, Rx_buffer, sizeof(Rx_buffer));
+			receivedString = defaultString;
+			firstStart = 0;
+		} else
+		{
+			receivedString = messageCapture(USED_UART, rxBuffer, sizeof(rxBuffer));
 		}
 
 		message->message = receivedString;
