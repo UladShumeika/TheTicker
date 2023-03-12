@@ -18,7 +18,6 @@
 //---------------------------------------------------------------------------
 // Descriptions of FreeRTOS elements
 //---------------------------------------------------------------------------
-static osThreadId receivingMessageHandle;
 static osThreadId idleIRQTaskHandle;
 static osPoolId	messageStructHandle;
 osMessageQId fromUartToMatrixHandle;
@@ -44,31 +43,6 @@ static uint8_t defaultString[] = "Hello! ";
 //---------------------------------------------------------------------------
 // FreeRTOS's threads
 //---------------------------------------------------------------------------
-
-/**
- * @brief 	Function implementing receiving a message thread.
- * @param 	argument - Not used.
- * @retval  None.
- */
-void receivingMessageTask(void const *argument)
-{
-	UART_messageTypeDef *message;
-	message = (UART_messageTypeDef*) osPoolCAlloc(messageStructHandle);
-
-	message->message = string;
-	message->sizeMessage = strlen((char*)string);
-
-	osMessagePut(fromUartToMatrixHandle, (uint32_t)message, osWaitForever);
-
-	UART_init();
-
-	/* Infinite loop */
-	for(;;)
-	{
-		USART_transmitDMA(USART1, string, sizeof(string));
-		osDelay(1000);
-	}
-}
 
 /**
  * @brief 	Function implementing the processing of received data by USART1
@@ -182,10 +156,6 @@ static uint8_t* messageCapture(USART_TypeDef* usart, uint8_t* sourceBuffer, uint
 void UART_freeRtosInit(void)
 {
 	// Create the thread(s)
-	// definition and creation of receivingMessageTask
-	osThreadDef(receivingMessage, receivingMessageTask, osPriorityLow, 0, 128);
-	receivingMessageHandle = osThreadCreate(osThread(receivingMessage), NULL);
-
 	// definition and creation of idleIRQTask
 	osThreadDef(idleIRQ, idleIRQTask, osPriorityLow, 0, 128);
 	idleIRQTaskHandle = osThreadCreate(osThread(idleIRQ), NULL);
