@@ -65,23 +65,6 @@
 //---------------------------------------------------------------------------
 
 /**
-  * @brief SPI init structure definition with default settings
-  */
-typedef struct
-{
-	SPI_TypeDef* SPIx;				/* A pointer to SPIx peripheral to be used where x is between 1 to 6 */
-
-	uint8_t PinsPack;				/* SPI pinsPack enumeration to select pins combination for SPI.
-									   This parameter can be a value of @ref USH_SPI_pinsPack */
-
-	uint16_t BaudRatePrescaler;		/* The Baud Rate prescaler value which will be used to configure the transmit
-									   and receive SCK clock. This parameter can be a value of @ref USH_SPI_baudRatePrescaler */
-
-	uint16_t Mode;       			/* SPI modes selection. This parameter can be a value of @ref USH_SPI_mode */
-
-} USH_SPI_initDefaultTypeDef;
-
-/**
  * @brief SPI pinsPack enumeration to select pins combination for SPI
  */
 typedef enum
@@ -117,6 +100,23 @@ typedef enum
 	SPI_MODE_4  	= 0x03U, 		/* Clock polarity high, clock phase 2nd edge */
 	SPI_MODE_MASK 	= 0x03U
 } USH_SPI_mode;
+
+/**
+  * @brief SPI init structure definition with default settings
+  */
+typedef struct
+{
+	SPI_TypeDef* SPIx;								/* A pointer to SPIx peripheral to be used where x is between 1 to 6 */
+
+	USH_SPI_pinsPack PinsPack;						/* SPI pinsPack enumeration to select pins combination for SPI.
+									   	   	   	   	   This parameter can be a value of @ref USH_SPI_pinsPack */
+
+	USH_SPI_baudRatePrescaler BaudRatePrescaler;	/* The Baud Rate prescaler value which will be used to configure the transmit
+									   	   	   	   	   and receive SCK clock. This parameter can be a value of @ref USH_SPI_baudRatePrescaler */
+
+	USH_SPI_mode Mode;       						/* SPI modes selection. This parameter can be a value of @ref USH_SPI_mode */
+
+} USH_SPI_initDefaultTypeDef;
 
 /**
  * @brief SPI default settings enumeration
