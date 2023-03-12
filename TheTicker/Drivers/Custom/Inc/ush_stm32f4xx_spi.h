@@ -1,6 +1,6 @@
 /**
   ******************************************************************************
-  * @file    ush_spi.h
+  * @file    ush_stm32f4xx_spi.h
   * @author  Ulad Shumeika
   * @version v1.0
   * @date    16-January-2023
@@ -51,8 +51,8 @@
 //---------------------------------------------------------------------------
 // Define to prevent recursive inclusion
 //---------------------------------------------------------------------------
-#ifndef __USH_SPI_H
-#define __USH_SPI_H
+#ifndef __USH_STM32F4XX_SPI_H
+#define __USH_STM32F4XX_SPI_H
 
 //---------------------------------------------------------------------------
 // Includes
@@ -212,4 +212,4 @@ void SPI_writeData(SPI_TypeDef *SPIx, uint8_t reg, uint8_t data);
   */
 void SPI_csPin(GPIO_TypeDef *GPIOx, uint16_t csPin, USH_SPI_csState state);
 
-#endif /* __USH_SPI_H */
+#endif /* __USH_STM32F4XX_SPI_H */
