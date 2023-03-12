@@ -4,11 +4,13 @@
   * @author  Ulad Shumeika
   * @version v1.0
   * @date    16-January-2023
-  * @brief   This file contains the functions prototypes for the SPI firmware
-  *          library.  
+  * @brief   Header file of SPI module.
+  *
   ******************************************************************************
   */
   
+/* NOTE: The work with DMA is not implemented */
+
 /* The SPI setting is based on the choice of a set of pins and a set of DMA.
  *
  * The set of pins.
