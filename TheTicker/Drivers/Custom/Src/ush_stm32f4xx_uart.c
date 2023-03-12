@@ -328,6 +328,7 @@ USH_peripheryStatus USART_transmitDMA(USART_TypeDef* usart, uint8_t* data, uint1
 	// Enable DMA stream
 	DMA_state(DMA_Stream, ENABLE);
 
+	// Clear transmission complete flag
 	USART_clearFlags(usart, USART_FLAG_TC);
 
 	// Enable U(S)ART TX DMA
