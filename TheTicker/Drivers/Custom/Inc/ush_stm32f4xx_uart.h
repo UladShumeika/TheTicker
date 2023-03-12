@@ -4,8 +4,7 @@
   * @author  Ulad Shumeika
   * @version v1.0
   * @date    21-February-2023
-  * @brief   This file contains the functions prototypes for the UART firmware
-  *          library.
+  * @brief   Header file of U(S)ART module.
   *
   * NOTE: This file is not a full-fledged U(S)ART driver, but contains only some of
   * 	  the functions that are needed for the current project.
