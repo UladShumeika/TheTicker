@@ -21,7 +21,7 @@
 static osThreadId idleIRQTaskHandle;
 static osPoolId	messageStructHandle;
 osMessageQId fromUartToMatrixHandle;
-osSemaphoreId idleIRQHandle;
+static osSemaphoreId idleIRQHandle;
 
 //---------------------------------------------------------------------------
 // Static function prototypes
