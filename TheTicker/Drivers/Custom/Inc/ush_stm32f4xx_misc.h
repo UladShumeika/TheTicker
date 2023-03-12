@@ -4,8 +4,7 @@
   * @author  Ulad Shumeika
   * @version v1.0
   * @date    27-February-2023
-  * @brief   This file contains the functions's prototypes for the miscellaneous
-  *          firmware library functions.
+  * @brief   Header file of miscellaneous module.
   *
   ******************************************************************************
   */
