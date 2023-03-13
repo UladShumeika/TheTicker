@@ -164,8 +164,8 @@ static void initMicrocontroller(void)
 {
 	// Configure Flash prefetch, Instruction cache, Data cache
 	MISC_FLASH_prefetchBufferCmd(ENABLE);
-	FLASH_InstructionCacheCmd(ENABLE);
-	FLASH_DataCacheCmd(ENABLE);
+	MISC_FLASH_instructionCacheCmd(ENABLE);
+	MISC_FLASH_dataCacheCmd(ENABLE);
 
 	// Set NVIC Group Priority to 4
 	NVIC_PriorityGroupConfig(NVIC_PriorityGroup_4);
