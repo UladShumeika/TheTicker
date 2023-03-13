@@ -17,7 +17,6 @@
 //---------------------------------------------------------------------------
 static osThreadId sendToTheMatrixHandle;
 static osThreadId convertStringHandle;
-
 static osMutexId pVarsMutexHandle;
 extern osMessageQId fromUartToMatrixHandle;
 
