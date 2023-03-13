@@ -1,9 +1,9 @@
 /**
   ******************************************************************************
-  * @file    ush_gpio.h
+  * @file    ush_stm32f4xx_gpio.h
   * @author  Ulad Shumeika
   * @version v1.0
-  * @date    04-February-2023
+  * @date    13-January-2023
   * @brief   Header file of GPIO module
   *
   ******************************************************************************
@@ -12,8 +12,8 @@
 //---------------------------------------------------------------------------
 // Define to prevent recursive inclusion
 //---------------------------------------------------------------------------
-#ifndef __USH_GRIO_H
-#define __USH_GRIO_H
+#ifndef __USH_STM32F4XX_GRIO_H
+#define __USH_STM32F4XX_GRIO_H
 
 //---------------------------------------------------------------------------
 // Includes
@@ -226,4 +226,4 @@ void GPIO_resetBits(GPIO_TypeDef *GPIOx, USH_GPIO_pins gpioPins);
  */
 void GPIO_toggleBits(GPIO_TypeDef* GPIOx, USH_GPIO_pins gpioPins);
 
-#endif /* __USH_GRIO_H */
+#endif /* __USH_STM32F4XX_GRIO_H */
