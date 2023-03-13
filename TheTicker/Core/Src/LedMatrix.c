@@ -10,7 +10,7 @@
 //---------------------------------------------------------------------------
 
 // Configuration SPI
-#define USED_SPI			(SPI1)
+#define USED_SPI			(MATRIX_SPI)
 #define USED_PINSPACK		((SPI_PINSPACK_1))
 #define USED_PRESCALER		((SPI_BAUDRATE_PRESCALER_16))
 
