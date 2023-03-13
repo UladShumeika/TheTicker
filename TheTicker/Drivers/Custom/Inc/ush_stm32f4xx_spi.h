@@ -180,6 +180,9 @@ typedef enum
 												 ((MODE) == SPI_MODE_3) || \
 												 ((MODE) == SPI_MODE_4))
 
+#define IS_SPI_FRAME_FORMAT(FRAME_FORMAT)		(((FRAME_FORMAT) == SPI_MSB_FIRST)	|| \
+												 ((FRAME_FORMAT) == SPI_LSB_FIRST))
+
 #define IS_SPI_PIN_STATE(STATE)					(((STATE) == LOW) || \
 												 ((STATE) == HIGH))
 
