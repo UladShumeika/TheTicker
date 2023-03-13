@@ -141,6 +141,27 @@ void MISC_FLASH_instructionCacheCmd(FunctionalState newState)
   }
 }
 
+/**
+  * @brief  This function enables or disables the data cache feature.
+  * @param  newState - A new state of the data cache.
+  *          		   This parameter can be: ENABLE or DISABLE.
+  * @retval None.
+  */
+void MISC_FLASH_dataCacheCmd(FunctionalState newState)
+{
+  // Check the parameters
+  assert_param(IS_FUNCTIONAL_STATE(newState));
+
+  if(newState != DISABLE)
+  {
+    FLASH->ACR |= FLASH_ACR_DCEN;
+  }
+  else
+  {
+    FLASH->ACR &= (~FLASH_ACR_DCEN);
+  }
+}
+
 //---------------------------------------------------------------------------
 // Function's parameters check.
 //---------------------------------------------------------------------------
