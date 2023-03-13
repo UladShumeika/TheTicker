@@ -45,6 +45,7 @@ void SPI_init(USH_SPI_initDefaultTypeDef *initStructure)
 	assert_param(IS_SPI_PINSPACK(initStructure->PinsPack));
 	assert_param(IS_SPI_BAUDRATE_PRESCALER(initStructure->BaudRatePrescaler));
 	assert_param(IS_SPI_MODE(initStructure->Mode));
+	assert_param(IS_SPI_FRAME_FORMAT(initStructure->FrameFormat));
 
 	/* ----------------------- GPIO configuration -------------------------- */
 
