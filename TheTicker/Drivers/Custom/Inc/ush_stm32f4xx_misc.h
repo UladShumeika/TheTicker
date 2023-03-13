@@ -70,10 +70,18 @@ void MISC_NVIC_DisableIRQ(IRQn_Type IRQn);
 
 /**
   * @brief  This function enables or disables the prefetch buffer.
-  * @param  newState - a new state of the prefetch buffer.
+  * @param  newState - A new state of the prefetch buffer.
   *          		   This parameter can be: ENABLE or DISABLE.
   * @retval None.
   */
 void MISC_FLASH_prefetchBufferCmd(FunctionalState newState);
+
+/**
+  * @brief  This function enables or disables the instruction cache feature.
+  * @param  newState - A new state of the instruction cache.
+  *          		   This parameter can be: ENABLE or DISABLE.
+  * @retval None.
+  */
+void MISC_FLASH_instructionCacheCmd(FunctionalState newState);
 
 #endif /* __USH_STM32F4XX_MISC_H */
