@@ -84,4 +84,12 @@ void MISC_FLASH_prefetchBufferCmd(FunctionalState newState);
   */
 void MISC_FLASH_instructionCacheCmd(FunctionalState newState);
 
+/**
+  * @brief  This function enables or disables the data cache feature.
+  * @param  newState - A new state of the data cache.
+  *          		   This parameter can be: ENABLE or DISABLE.
+  * @retval None.
+  */
+void MISC_FLASH_dataCacheCmd(FunctionalState newState);
+
 #endif /* __USH_STM32F4XX_MISC_H */
