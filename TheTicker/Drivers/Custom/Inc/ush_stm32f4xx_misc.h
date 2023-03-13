@@ -136,4 +136,19 @@ void MISC_FLASH_instructionCacheCmd(FunctionalState newState);
   */
 void MISC_FLASH_dataCacheCmd(FunctionalState newState);
 
+/**
+  * @brief  This function sets the code latency value.
+  * @param  flashLatency - specifies the FLASH Latency value.
+  *          			   This parameter can be a value of @ref USH_FLASH_latency.
+  *
+  * @note For STM32F405xx/407xx, STM32F415xx/417xx, STM32F401xx/411xE/STM32F412xG and STM32F413_423xx devices
+  *       this parameter can be a value between FLASH_LATENCY_0 and FLASH_LATENCY_7.
+  *
+  * @note For STM32F42xxx/43xxx devices this parameter can be a value between
+  *       FLASH_LATENCY_0 and FLASH_LATENCY_15.
+  *
+  * @retval None
+  */
+void MISC_FLASH_setLatency(USH_FLASH_latency flashLatency);
+
 #endif /* __USH_STM32F4XX_MISC_H */
