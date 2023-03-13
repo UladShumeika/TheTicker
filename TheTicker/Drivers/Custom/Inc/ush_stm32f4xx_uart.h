@@ -164,10 +164,16 @@ typedef enum
 
 #define IS_USART_MESSAGE_SIZE(SIZE)			(((SIZE) != 0x00U))
 
-#define IS_USART_CLEAR_FLAGS(FLAG)			(((FLAG) == USART_FLAG_CTS)  || \
-											 ((FLAG) == USART_FLAG_LBD)  || \
-											 ((FLAG) == USART_FLAG_TC)   || \
+#define IS_USART_CLEAR_FLAGS(FLAG)			(((FLAG) == USART_FLAG_PE)   || \
+											 ((FLAG) == USART_FLAG_FE)   || \
+											 ((FLAG) == USART_FLAG_NE)   || \
+											 ((FLAG) == USART_FLAG_ORE)  || \
+											 ((FLAG) == USART_FLAG_IDLE) || \
 											 ((FLAG) == USART_FLAG_RXNE) || \
+											 ((FLAG) == USART_FLAG_TC)   || \
+											 ((FLAG) == USART_FLAG_TXE)  || \
+											 ((FLAG) == USART_FLAG_LBD)  || \
+											 ((FLAG) == USART_FLAG_CTS)  || \
 											 ((FLAG) == USART_FLAG_ALL))
 
 //---------------------------------------------------------------------------
