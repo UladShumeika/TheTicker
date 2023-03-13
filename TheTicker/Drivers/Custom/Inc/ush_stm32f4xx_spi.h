@@ -126,6 +126,8 @@ typedef struct
 
 	USH_SPI_mode Mode;       						/* SPI modes selection. This parameter can be a value of @ref USH_SPI_mode */
 
+	USH_SPI_frameFormat FrameFormat;				/* SPI frame format selection. This parameter can be a value of @ref USH_SPI_frameFormat */
+
 } USH_SPI_initDefaultTypeDef;
 
 /**
@@ -137,7 +139,6 @@ typedef enum
 	SPI_DIRECTION_2LINES	= 0x8400U,		/* Full duplex selected */
 	SPI_DATASIZE			= 0x0800U,		/* 16bits data size selected */
 	SPI_NSS					= 0x0300U, 		/* Chip select pin software control selected */
-	SPI_FIRST_BIT			= 0x0080U, 		/* MSB transmitted first */
 	SPI_CRC_CALCULATION		= 0x6000U,		/* CRC calculation disabled */
 	SPI_TI_MODE				= 0x0010U		/* TI mode disable */
 } USH_SPI_default;
