@@ -97,8 +97,8 @@ static ErrorStatus initSystemClock(void)
 	while(!PWR_GetFlagStatus(PWR_FLAG_ODSWRDY));
 
 	// Configure FLASH LATENCY
-	FLASH_SetLatency(FLASH_Latency_5);
-	if((READ_BIT((FLASH->ACR), FLASH_ACR_LATENCY)) != FLASH_Latency_5)
+	MISC_FLASH_setLatency(FLASH_LATENCY_5);
+	if((READ_BIT((FLASH->ACR), FLASH_ACR_LATENCY)) != FLASH_LATENCY_5)
 	{
 		return ERROR;
 	}
