@@ -39,7 +39,7 @@ typedef enum
 #include "ush_stm32f4xx_misc.h"
 #include "ush_gpio.h"
 #include "ush_dma.h"
-#include "ush_spi.h"
+#include <ush_stm32f4xx_spi.h>
 #include "ush_stm32f4xx_uart.h"
 
 //---------------------------------------------------------------------------
