@@ -8,9 +8,15 @@
 //---------------------------------------------------------------------------
 // Defines
 //---------------------------------------------------------------------------
-#define SPEED_SHIFT					((uint8_t)60)
 
-#define SHIFT_BYTE					((uint8_t)7)
+// Configuration SPI
+#define USED_SPI			(SPI1)
+#define USED_PINSPACK		((SPI_PINSPACK_1))
+#define USED_PRESCALER		((SPI_BAUDRATE_PRESCALER_16))
+
+#define SPEED_SHIFT			((uint8_t)60)
+
+#define SHIFT_BYTE			((uint8_t)7)
 
 //---------------------------------------------------------------------------
 // Descriptions of FreeRTOS elements
@@ -44,7 +50,7 @@ static uint8_t rowBuffer;
  */
 void sendToTheMatrixTask(void const *argument)
 {
-	MAX7219_init();
+	MAX7219_init(USED_SPI, USED_PINSPACK, USED_PRESCALER);
 
 	/* Infinite loop */
 	for(;;)
