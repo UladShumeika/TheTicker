@@ -21,6 +21,33 @@
 #include "stm32f4xx.h"
 
 //---------------------------------------------------------------------------
+// Structures and enumerations
+//---------------------------------------------------------------------------
+
+/**
+ * @brief Flash latency enumeration
+ */
+typedef enum
+{
+	FLASH_LATENCY_0,		/* Flash zero latency cycle */
+	FLASH_LATENCY_1,		/* Flash one latency cycle */
+	FLASH_LATENCY_2,		/* Flash two latency cycle */
+	FLASH_LATENCY_3,		/* Flash three latency cycle */
+	FLASH_LATENCY_4,		/* Flash four latency cycle */
+	FLASH_LATENCY_5,		/* Flash five latency cycle */
+	FLASH_LATENCY_6,		/* Flash six latency cycle */
+	FLASH_LATENCY_7,		/* Flash seven latency cycle */
+	FLASH_LATENCY_8,		/* Flash eight latency cycle */
+	FLASH_LATENCY_9,		/* Flash nine latency cycle */
+	FLASH_LATENCY_10,		/* Flash ten latency cycle */
+	FLASH_LATENCY_11,		/* Flash eleven latency cycle */
+	FLASH_LATENCY_12,		/* Flash twelve latency cycle */
+	FLASH_LATENCY_13,		/* Flash thirteen latency cycle */
+	FLASH_LATENCY_14,		/* Flash fourteen latency cycle */
+	FLASH_LATENCY_15,		/* Flash fifteen latency cycle */
+} USH_FLASH_latency;
+
+//---------------------------------------------------------------------------
 // Macros
 //---------------------------------------------------------------------------
 #define IS_MISC_NVIC_PREEMPTION_PRIORITY(PRIORITY)  	((PRIORITY) < 16U)
