@@ -1,9 +1,9 @@
 /**
   ******************************************************************************
-  * @file    ush_dma.c
+  * @file    ush_stm32f4xx_dma.c
   * @author  Ulad Shumeika
   * @version v1.0
-  * @date    5-January-2023
+  * @date    04-February-2023
   * @brief	 This file contains the implementation of functions for working with DMA.
   *
   *	NOTE: This file is not a full-fledged DMA driver, but contains only some of
@@ -14,7 +14,7 @@
 //---------------------------------------------------------------------------
 // Includes
 //---------------------------------------------------------------------------
-#include "ush_dma.h"
+#include "ush_stm32f4xx_dma.h"
 #include "stm32f4xx.h"
 
 //---------------------------------------------------------------------------

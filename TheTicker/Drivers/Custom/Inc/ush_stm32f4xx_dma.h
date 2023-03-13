@@ -1,6 +1,6 @@
 /**
   ******************************************************************************
-  * @file    ush_dma.h
+  * @file    ush_stm32f4xx_dma.h
   * @author  Ulad Shumeika
   * @version v1.0
   * @date    04-February-2023
@@ -12,8 +12,8 @@
 //---------------------------------------------------------------------------
 // Define to prevent recursive inclusion
 //---------------------------------------------------------------------------
-#ifndef __USH_DMA_H
-#define __USH_DMA_H
+#ifndef __USH_STM32F4XX_DMA_H
+#define __USH_STM32F4XX_DMA_H
 
 //---------------------------------------------------------------------------
 // Includes
@@ -354,4 +354,4 @@ __WEAK void DMA_transferErrorCallback(DMA_Stream_TypeDef *DMAy_Streamx);
 __WEAK void DMA_directModeErrorCallback(DMA_Stream_TypeDef *DMAy_Streamx);
 __WEAK void DMA_fifoErrorCallback(DMA_Stream_TypeDef *DMAy_Streamx);
 
-#endif /* __USH_DMA_H */
+#endif /* __USH_STM32F4XX_DMA_H */
