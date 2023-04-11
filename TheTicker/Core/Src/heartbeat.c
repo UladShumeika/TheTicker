@@ -6,7 +6,7 @@
 //---------------------------------------------------------------------------
 // Descriptions of FreeRTOS elements
 //---------------------------------------------------------------------------
-static osThreadId HeartbeatHandle;
+static osThreadId heartbeatHandle;
 
 //---------------------------------------------------------------------------
 // FreeRTOS's threads
@@ -17,7 +17,7 @@ static osThreadId HeartbeatHandle;
 * @param argument: Not used
 * @retval None
 */
-void HeartbeatTask(void const * argument)
+void heartbeatTask(void const * argument)
 {
   //HEARTBEAT_GPIO_Init();
 
@@ -43,6 +43,6 @@ void HEARTBEAT_freeRtosInit(void)
 {
 	// Create the thread(s)
 	// definition and creation of HeartbeatTask
-	osThreadDef(Heartbeat, HeartbeatTask, osPriorityLow, 0, 128);
-	HeartbeatHandle = osThreadCreate(osThread(Heartbeat), NULL);
+	osThreadDef(Heartbeat, heartbeatTask, osPriorityLow, 0, 128);
+	heartbeatHandle = osThreadCreate(osThread(Heartbeat), NULL);
 }

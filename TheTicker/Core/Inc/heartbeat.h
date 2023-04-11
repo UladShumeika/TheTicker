@@ -12,7 +12,7 @@
 //---------------------------------------------------------------------------
 // External function prototypes
 //---------------------------------------------------------------------------
-void HeartbeatTask(void const * argument);
 void HEARTBEAT_freeRtosInit(void);
+void heartbeatTask(void const * argument);
 
 #endif /* __HEARTBEAT_H */
