@@ -1,0 +1,6 @@
+# ignored directories
+TheTicker/Debug/
+TheTicker/.settings/
+
+# ignored files
+*.launch
