@@ -76,6 +76,11 @@ static void SPI_gpioInitPins(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin)
 			// Pull-up pull-down resistor configuration
       		GPIOx->PUPDR &= ~(GPIO_PUPDR_PUPDR0 << ((uint16_t)pinPos * 2));
       		//GPIOx->PUPDR |= (((uint32_t)SPI_GPIO_PuPd_NOPULL) << (pinPos * 2));
+
+      		// Set alternate function
+      		GPIOx->AFR[pinPos >> 0x03] &= ~(0x0F << (4 * (pinPos & 0x07)));
+
+      		//GPIOx->AFR[pinpos >> 0x03] = (GPIOx->AFR[pinpos >> 0x03] & ~(0x0F << (4 * (pinpos & 0x07)))) | (Alternate << (4 * (pinpos & 0x07)));
 		}
 	}
 }
