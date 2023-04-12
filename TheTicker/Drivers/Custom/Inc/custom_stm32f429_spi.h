@@ -33,4 +33,15 @@ typedef enum
 	SPI_pinsPack_2	= 0x01		// select PinsPack2 from Pinout table for specific SPI
 } SPI_pinsPack_t;
 
+/**
+  * @brief  GPIO configuration mode enumeration
+  */
+typedef enum
+{
+	SPI_GPIO_Mode_IN	= 0x00,		// GPIO input mode
+	SPI_GPIO_Mode_OUT	= 0x01,  	// GPIO output mode
+	SPI_GPIO_Mode_AF	= 0x02,  	// GPIO alternate function mode
+	SPI_GPIO_Mode_AN	= 0x03   	// GPIO analog mode
+} SPI_GPIOMode_TypeDef;
+
 #endif /* __CUSTOM_SPI_H */
