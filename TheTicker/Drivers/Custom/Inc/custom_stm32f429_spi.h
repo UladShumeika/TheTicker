@@ -20,4 +20,17 @@
 //---------------------------------------------------------------------------
 #include "stm32f4xx.h"
 
+//---------------------------------------------------------------------------
+// Typedefs and enumerations
+//---------------------------------------------------------------------------
+
+/**
+ * @brief  SPI pinsPack enumeration to select pins combination for SPI
+ */
+typedef enum
+{
+	SPI_pinsPack_1	= 0x00,		// select PinsPack1 from Pinout table for specific SPI
+	SPI_pinsPack_2	= 0x01		// select PinsPack2 from Pinout table for specific SPI
+} SPI_pinsPack_t;
+
 #endif /* __CUSTOM_SPI_H */
