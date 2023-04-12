@@ -44,4 +44,15 @@ typedef enum
 	SPI_GPIO_Mode_AN	= 0x03   	// GPIO analog mode
 } SPI_GPIOMode_TypeDef;
 
+/**
+  * @brief  GPIO output maximum frequency enumeration
+  */
+typedef enum
+{
+	SPI_GPIO_Low_Speed		= 0x00,		// low speed
+	SPI_GPIO_Medium_Speed	= 0x01, 	// medium speed
+	SPI_GPIO_Fast_Speed		= 0x02, 	// fast speed
+	SPI_GPIO_High_Speed		= 0x03  	// high speed
+} SPI_GPIOSpeed_TypeDef;
+
 #endif /* __CUSTOM_SPI_H */
