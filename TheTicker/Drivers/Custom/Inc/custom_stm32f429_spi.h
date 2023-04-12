@@ -55,4 +55,17 @@ typedef enum
 	SPI_GPIO_High_Speed		= 0x03  	// high speed
 } SPI_GPIOSpeed_TypeDef;
 
+/**
+  * @brief  GPIO output type enumeration
+  */
+typedef enum
+{
+	SPI_GPIO_OType_PP	= 0x00,		// push-pull
+	SPI_GPIO_OType_OD 	= 0x01		// open-drain
+} SPI_GPIOOType_TypeDef;
+
+//---------------------------------------------------------------------------
+// External function prototypes
+//---------------------------------------------------------------------------
+
 #endif /* __CUSTOM_SPI_H */
