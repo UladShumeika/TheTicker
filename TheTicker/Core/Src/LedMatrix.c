@@ -14,6 +14,8 @@
 #define USED_PINSPACK		((SPI_PINSPACK_1))
 #define USED_PRESCALER		((SPI_BAUDRATE_PRESCALER_16))
 
+#define SPEED_SHIFT			((uint8_t)60)
+
 //---------------------------------------------------------------------------
 // Descriptions of FreeRTOS elements
 //---------------------------------------------------------------------------
@@ -24,6 +26,7 @@ extern osMessageQId fromUartToMatrixHandle;
 //---------------------------------------------------------------------------
 // Static function prototypes
 //---------------------------------------------------------------------------
+static void outputOnMatrix(uint8_t** outputBuffer);
 static uint8_t** convertStringIntoDataForMatrix(UART_messageTypeDef *message, const uint8_t fontArray[][ASCII_COLUMN]);
 
 //---------------------------------------------------------------------------
@@ -48,6 +51,8 @@ void sendToTheMatrixTask(void const *argument)
 	/* Infinite loop */
 	for(;;)
 	{
+		outputOnMatrix(outputBuffer);
+		osDelay(SPEED_SHIFT);
 	}
 }
 
@@ -104,6 +109,30 @@ void LEDMATRIX_freeRtosInit(void)
 //---------------------------------------------------------------------------
 // Others functions
 //---------------------------------------------------------------------------
+
+/**
+ * @brief	This function outputs information from the output buffer to the LED matrix.
+ * @note	A pointer to a dynamic 2D buffer is passed to this function without specifying its size,
+ * 			since the "output window" of information corresponds to the number of digits of the LED matrix.
+ * 			For example, if a LED matrix module with 4 digits is available, then a dynamic array must be created
+ * 			for at least 4 characters. !!!If you create a dynamic array smaller than the LED matrix "output window",
+ * 			then this will lead to an overflow of the array!!!.
+ * @param 	outputBuffer - A pointer to output buffer that contains the useful information for
+ * 						   outputting to the LED matrix.
+ * @retval	None.
+ */
+static void outputOnMatrix(uint8_t** outputBuffer)
+{
+	for(uint8_t column = 0; column < OUTPUT_BUFFER_COLUMN; column++)
+	{
+		SPI_csPin(MATRIX_CS_PORT, MATRIX_CS_PIN, LOW);
+		for(int8_t row = OUTPUT_BUFFER_MIN_ROW - 1; row >= 0; row--)
+		{
+			SPI_writeData(MATRIX_SPI, column + 1, outputBuffer[row][column]);
+		}
+		SPI_csPin(MATRIX_CS_PORT, MATRIX_CS_PIN, HIGH);
+	}
+}
 
 /**
  * @brief 	This function converts the received message into the special data for the LED matrix.
