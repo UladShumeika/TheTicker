@@ -102,6 +102,16 @@ typedef enum
 } USH_SPI_mode;
 
 /**
+ * @brief SPI frame format selection enumeration
+ */
+typedef enum
+{
+	SPI_MSB_FIRST		  = 0x00U,		/* MSB transmitted first *//**< SPI_MSB_FIRST */
+	SPI_LSB_FIRST		  = 0x80U,		/* LSB transmitted first *//**< SPI_LSB_FIRST */
+	SPI_FRAME_FORMAT_MASK = 0x80U
+} USH_SPI_frameFormat;
+
+/**
   * @brief  GPIO configuration mode enumeration
   */
 typedef enum
