@@ -52,4 +52,25 @@ typedef enum
 	ALL_DIGITS	= 0xFF
 } USH_MAX7219_digits;
 
+/**
+ * @brief MAX7219 registers enumeration.
+ */
+typedef enum
+{
+	REG_NO_OP = 0,
+	REG_DIGIT_0,
+	REG_DIGIT_1,
+	REG_DIGIT_2,
+	REG_DIGIT_3,
+	REG_DIGIT_4,
+	REG_DIGIT_5,
+	REG_DIGIT_6,
+	REG_DIGIT_7,
+	REG_DECODE_MODE,
+	REG_INTENSITY,
+	REG_SCAN_LIMIT,
+	REG_SHUTDOWN,
+	REG_DISPLAY_TEST = 0x0F
+} USH_MAX7219_registers;
+
 #endif /* __MAX7219_H */
