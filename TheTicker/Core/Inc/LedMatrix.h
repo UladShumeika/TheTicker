@@ -10,4 +10,9 @@
 #include "main.h"
 #include "MAX7219.h"
 
+//---------------------------------------------------------------------------
+// External function prototypes
+//---------------------------------------------------------------------------
+void LEDMATRIX_freeRtosInit(void);
+
 #endif /* __LEDMATRIX_H */
