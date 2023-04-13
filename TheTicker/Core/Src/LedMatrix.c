@@ -3,3 +3,4 @@
 //---------------------------------------------------------------------------
 #include "LedMatrix.h"
 #include "string.h"
+#include "fonts_max7219.h"
