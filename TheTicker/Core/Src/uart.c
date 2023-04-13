@@ -10,6 +10,8 @@
 static osThreadId idleIRQTaskHandle;
 static osPoolId	messageStructHandle;
 osMessageQId fromUartToMatrixHandle;
+static osSemaphoreId idleIRQHandle;
+
 static const uint8_t defaultString[] = "Hi, please enter your message. ";
 
 //---------------------------------------------------------------------------
@@ -54,4 +56,14 @@ void UART_freeRtosInit(void)
 	// definition and creating of messageStructHandle
 	osPoolDef(messagePool, 1, UART_messageTypeDef);
 	messageStructHandle = osPoolCreate(osPool(messagePool));
+
+	// Create the semaphore(s)
+	// definition and creating of idleIRQHandle
+	osSemaphoreDef(idleIRQ);
+	idleIRQHandle = osSemaphoreCreate(osSemaphore(idleIRQ), 1);
+
+#ifdef DEBUG
+	vQueueAddToRegistry(fromUartToMatrixHandle, "from uart");
+	vQueueAddToRegistry(idleIRQHandle, "IDLE IRQ");
+#endif
 }
