@@ -1,6 +1,6 @@
 /**
   ******************************************************************************
-  * @file    ush_gpio.c
+  * @file    ush_stm32f4xx_gpio.c
   * @author  Ulad Shumeika
   * @version v1.0
   * @date    13-January-2023
@@ -14,7 +14,7 @@
 //---------------------------------------------------------------------------
 // Includes
 //---------------------------------------------------------------------------
-#include "ush_gpio.h"
+#include "ush_stm32f4xx_gpio.h"
 
 //---------------------------------------------------------------------------
 // Defines
@@ -48,7 +48,6 @@ void GPIO_init(USH_GPIO_initTypeDef *initStructure)
 	assert_param(IS_GPIO_MODE(initStructure->Mode));
 	assert_param(IS_GPIO_PULL(initStructure->Pull));
 	assert_param(IS_GPIO_SPEED(initStructure->Speed));
-	assert_param(IS_GPIO_ALTERNATE(initStructure->Alternate));
 
 	// Configure the port pins
 	for(pinPos = 0x00; pinPos < GPIO_NUMBER; pinPos++)
@@ -86,6 +85,9 @@ void GPIO_init(USH_GPIO_initTypeDef *initStructure)
 			// In case of Alternate function mode selection
 			if((initStructure->Mode & GPIO_MODE) == GPIO_AF)
 			{
+				// Check parameters
+				assert_param(IS_GPIO_ALTERNATE(initStructure->Alternate));
+
 				// Configure Alternate function mapped with the current IO
 				temp = initStructure->GPIOx->AFR[pinPos >> 3U];
 				temp &= ~((uint32_t)0x0F << ((pinPos) & 0x07UL) * 4U);
