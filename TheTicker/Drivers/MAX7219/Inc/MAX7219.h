@@ -20,4 +20,16 @@
 //---------------------------------------------------------------------------
 #include "ush_stm32f4xx_spi.h"
 
+//---------------------------------------------------------------------------
+// General parameters of the matrix
+//---------------------------------------------------------------------------
+#define MATRIX_DIGITS								((uint8_t)4)
+#define MATRIX_HIGH									((uint8_t)8)
+
+#define DELAY_TEST_MODE								((uint16_t)2000)
+
+#define MATRIX_SPI									(SPI1)
+#define MATRIX_CS_PORT								(GPIOA)
+#define MATRIX_CS_PIN								(GPIO_PIN_4)
+
 #endif /* __MAX7219_H */
