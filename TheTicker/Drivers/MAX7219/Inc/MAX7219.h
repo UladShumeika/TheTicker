@@ -107,4 +107,19 @@ typedef enum
 	INTENSITY_31_32			// max value
 } USH_MAX7219_REG_INTENSITY;
 
+/**
+ * @brief MAX7219 scan limit register's description enumeration.
+ */
+typedef enum
+{
+	SCAN_LIMIT_0 = 0,		// display digit 0 only
+	SCAN_LIMIT_0_1,			// display digits 0 & 1
+	SCAN_LIMIT_0_2,			// display digits 0 & 2
+	SCAN_LIMIT_0_3,			// display digits 0 & 3
+	SCAN_LIMIT_0_4,			// display digits 0 & 4
+	SCAN_LIMIT_0_5,			// display digits 0 & 5
+	SCAN_LIMIT_0_6,			// display digits 0 & 6
+	SCAN_LIMIT_0_7			// display digits 0 & 7
+} USH_MAX7219_REG_SCAN_LIMIT;
+
 #endif /* __MAX7219_H */
