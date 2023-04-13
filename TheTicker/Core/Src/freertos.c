@@ -33,7 +33,16 @@ void vApplicationGetIdleTaskMemory( StaticTask_t **ppxIdleTaskTCBBuffer, StackTy
   */
 void freeRtosInit(void)
 {
-	#ifdef HEARTBEAT
-		HEARTBEAT_freeRtosInit();
-	#endif
+#ifdef HEARTBEAT
+	HEARTBEAT_freeRtosInit();
+#endif
+
+#ifdef LEDMATRIX
+	LEDMATRIX_freeRtosInit();
+#endif
+
+#ifdef UART
+	UART_freeRtosInit();
+#endif
+
 }

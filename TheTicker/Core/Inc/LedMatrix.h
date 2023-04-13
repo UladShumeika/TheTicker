@@ -1,48 +1,26 @@
 //---------------------------------------------------------------------------
 // Define to prevent recursive inclusion
 //---------------------------------------------------------------------------
-#ifndef __MAIN_H
-#define __MAIN_H
-
-#ifdef __cplusplus
-extern "C" {
-#endif
+#ifndef __LEDMATRIX_H
+#define __LEDMATRIX_H
 
 //---------------------------------------------------------------------------
 // Includes
 //---------------------------------------------------------------------------
-#include "stm32f4xx.h"
-#include "cmsis_os.h"
+#include "main.h"
+#include "MAX7219.h"
 
 //---------------------------------------------------------------------------
 // Defines
 //---------------------------------------------------------------------------
-#define HEARTBEAT
-#define LEDMATRIX
-#define UART
-
-//---------------------------------------------------------------------------
-// Module's includes
-//---------------------------------------------------------------------------
-#ifdef HEARTBEAT
-	#include "heartbeat.h"
-#endif
-
-#ifdef LEDMATRIX
-	#include "LedMatrix.h"
-#endif
-
-#ifdef UART
-	#include "uart.h"
-#endif
+#define OUTPUT_BUFFER_MIN_ROW		MATRIX_DIGITS
+#define OUTPUT_BUFFER_COLUMN		MATRIX_HIGH
 
 //---------------------------------------------------------------------------
 // External function prototypes
 //---------------------------------------------------------------------------
-void freeRtosInit(void);
+void LEDMATRIX_freeRtosInit(void);
+void sendToTheMatrixTask(void const *argument);
+void convertStringIntoDataForMatrixTask(void const *argument);
 
-#ifdef __cplusplus
-}
-#endif
-
-#endif /* __MAIN_H */
+#endif /* __LEDMATRIX_H */
