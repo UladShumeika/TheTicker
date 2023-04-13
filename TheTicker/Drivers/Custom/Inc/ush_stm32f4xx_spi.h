@@ -112,6 +112,25 @@ typedef enum
 } USH_SPI_frameFormat;
 
 /**
+  * @brief SPI init structure definition with default settings
+  */
+typedef struct
+{
+	SPI_TypeDef* SPIx;								/* A pointer to SPIx peripheral to be used where x is between 1 to 6 */
+
+	USH_SPI_pinsPack PinsPack;						/* SPI pinsPack enumeration to select pins combination for SPI.
+									   	   	   	   	   This parameter can be a value of @ref USH_SPI_pinsPack */
+
+	USH_SPI_baudRatePrescaler BaudRatePrescaler;	/* The Baud Rate prescaler value which will be used to configure the transmit
+									   	   	   	   	   and receive SCK clock. This parameter can be a value of @ref USH_SPI_baudRatePrescaler */
+
+	USH_SPI_mode Mode;       						/* SPI modes selection. This parameter can be a value of @ref USH_SPI_mode */
+
+	USH_SPI_frameFormat FrameFormat;				/* SPI frame format selection. This parameter can be a value of @ref USH_SPI_frameFormat */
+
+} USH_SPI_initDefaultTypeDef;
+
+/**
   * @brief  GPIO configuration mode enumeration
   */
 typedef enum
