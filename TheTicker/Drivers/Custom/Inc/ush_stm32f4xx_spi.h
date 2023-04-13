@@ -246,7 +246,6 @@ void SPI_init(USH_SPI_initDefaultTypeDef *initStructure);
  */
 void SPI_writeData(SPI_TypeDef *SPIx, uint8_t reg, uint8_t data);
 
-
 /**
   * @brief  Chip select (CS) pin switching.
   * @param	GPIOx - A pointer to GPIOx peripheral to be used where x is between A to F.
