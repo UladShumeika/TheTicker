@@ -6,6 +6,15 @@
 #include "fonts_max7219.h"
 
 //---------------------------------------------------------------------------
+// Defines
+//---------------------------------------------------------------------------
+
+// Configuration SPI
+#define USED_SPI			(MATRIX_SPI)
+#define USED_PINSPACK		((SPI_PINSPACK_1))
+#define USED_PRESCALER		((SPI_BAUDRATE_PRESCALER_16))
+
+//---------------------------------------------------------------------------
 // Descriptions of FreeRTOS elements
 //---------------------------------------------------------------------------
 static osThreadId sendToTheMatrixHandle;
@@ -28,6 +37,8 @@ static uint8_t rowBuffer;
  */
 void sendToTheMatrixTask(void const *argument)
 {
+	MAX7219_init(USED_SPI, USED_PINSPACK, USED_PRESCALER);
+
 	/* Infinite loop */
 	for(;;)
 	{
