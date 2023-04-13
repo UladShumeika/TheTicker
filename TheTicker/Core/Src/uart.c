@@ -25,9 +25,25 @@ static const uint8_t defaultString[] = "Hi, please enter your message. ";
  */
 void idleIRQTask(void const *argument)
 {
+	UART_messageTypeDef *message = (UART_messageTypeDef*)osPoolCAlloc(messageStructHandle);
+	uint8_t flagFirstStart = 1;
+
 	/* Infinite loop */
 	for(;;)
 	{
+		osSemaphoreWait(idleIRQHandle, osWaitForever);
+
+		if(flagFirstStart)
+		{
+			message->message = (uint8_t*)defaultString;
+			message->sizeMessage = strlen((char*)defaultString);
+
+			flagFirstStart = 0;
+		} else
+		{
+		}
+
+		osMessagePut(fromUartToMatrixHandle, (uint32_t)message, osWaitForever);
 	}
 }
 
