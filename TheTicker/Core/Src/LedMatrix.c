@@ -22,6 +22,11 @@ static osThreadId convertStringHandle;
 extern osMessageQId fromUartToMatrixHandle;
 
 //---------------------------------------------------------------------------
+// Static function prototypes
+//---------------------------------------------------------------------------
+static uint8_t** convertStringIntoDataForMatrix(UART_messageTypeDef *message, const uint8_t fontArray[][ASCII_COLUMN]);
+
+//---------------------------------------------------------------------------
 // Variables
 //---------------------------------------------------------------------------
 static uint8_t rowBuffer;
@@ -92,5 +97,43 @@ void LEDMATRIX_freeRtosInit(void)
 	convertStringHandle = osThreadCreate(osThread(convertString), NULL);
 
 
+}
 
+//---------------------------------------------------------------------------
+// Others functions
+//---------------------------------------------------------------------------
+
+/**
+ * @brief 	This function converts the received message into the special data for the LED matrix.
+ * @param 	message - A pointer to the message structure.
+ * @param 	fontArray - The special array that has ASCII font information.
+ * @retval	A pointer to a dynamic 2D buffer.
+ */
+static uint8_t** convertStringIntoDataForMatrix(UART_messageTypeDef *message, const uint8_t fontArray[][ASCII_COLUMN])
+{
+	uint8_t sizeMessage = message->sizeMessage;
+	uint8_t symbol = 0;
+
+/* -------------------------------- Dynamic allocation memory ---------------------------------------*/
+
+	uint8_t **outputBuffer = (uint8_t**)pvPortMalloc(sizeMessage * sizeof(uint8_t*) + sizeof(uint8_t) * OUTPUT_BUFFER_COLUMN * sizeMessage);
+	uint8_t *startData = ((uint8_t*)outputBuffer + sizeMessage * sizeof(uint8_t*));
+
+	for(uint8_t counter = 0; counter < sizeMessage; counter++)
+		outputBuffer[counter] = startData + counter * OUTPUT_BUFFER_COLUMN;
+
+/* ------ Filling the created array with information about symbols for output to the LED matrix -----*/
+
+	for(uint8_t row = 0; row < sizeMessage; row++)
+	{
+		for(uint8_t column = 0; column < OUTPUT_BUFFER_COLUMN; column++)
+		{
+			symbol = (uint8_t)(message->message[row] - ASCII_SHIFT);
+			if(symbol >= ASCII_ROW) symbol = 0;	// see font_ASCII buffer for more information
+
+			outputBuffer[row][column] = font_ASCII[symbol][column];
+		}
+	}
+
+	return outputBuffer;
 }
