@@ -16,6 +16,8 @@
 
 #define SPEED_SHIFT			((uint8_t)60)
 
+#define SHIFT_BYTE			((uint8_t)7)
+
 //---------------------------------------------------------------------------
 // Descriptions of FreeRTOS elements
 //---------------------------------------------------------------------------
@@ -27,6 +29,7 @@ extern osMessageQId fromUartToMatrixHandle;
 // Static function prototypes
 //---------------------------------------------------------------------------
 static void outputOnMatrix(uint8_t** outputBuffer);
+static void shiftOutputBuffer(uint8_t** outputBuffer, uint8_t rowOutputBuffer, uint8_t columnOutputBuffer);
 static uint8_t** convertStringIntoDataForMatrix(UART_messageTypeDef *message, const uint8_t fontArray[][ASCII_COLUMN]);
 
 //---------------------------------------------------------------------------
@@ -52,6 +55,8 @@ void sendToTheMatrixTask(void const *argument)
 	for(;;)
 	{
 		outputOnMatrix(outputBuffer);
+		shiftOutputBuffer(outputBuffer, rowBuffer, MATRIX_HIGH);
+
 		osDelay(SPEED_SHIFT);
 	}
 }
@@ -132,6 +137,49 @@ static void outputOnMatrix(uint8_t** outputBuffer)
 		}
 		SPI_csPin(MATRIX_CS_PORT, MATRIX_CS_PIN, HIGH);
 	}
+}
+
+/**
+ * @brief 	This function shifts data into the output buffer.
+ * @note	To understand how shift works. You need to understand that the matrix driver "flips" the data it receives.
+ * 			For example, it is necessary that the LEDs 10011000 light up. For the matrix itself, the numbering will be
+ * 			carried out as L10011000M. However, this number is stored in memory as M00011001L. In this regard,
+ * 			when it is necessary to shift the displayed data to the left, then in fact in the code they need to be
+ * 			shifted to the right. Also, when we check the extreme bit for a 1 in order to move it to the adjacent
+ * 			matrix, then we need to keep track of the low bit in the code, and not the high bit.
+ * 			And move it to the place of the older one in the adjacent matrix, and not the younger one.
+ * 			!!!Note about the pointer. Read outputOnMatrix function's description.
+ * @param 	outputBuffer - A pointer to output buffer that contains the useful information for
+ * 						   outputting to the LED matrix.
+ * @param 	rowOutputBuffer - The number of rows in the dynamic output buffer.
+ * @param 	columnOutputBuffer - The number of columns in the dynamic output buffer.
+ * @retval	None.
+ */
+static void shiftOutputBuffer(uint8_t** outputBuffer, uint8_t rowOutputBuffer, uint8_t columnOutputBuffer)
+{
+	uint8_t *tempBuffer = (uint8_t*)pvPortMalloc(columnOutputBuffer * sizeof(uint8_t));
+
+	for(uint8_t row = 0; row < rowOutputBuffer; row++)
+	{
+		for(uint8_t column = 0; column < columnOutputBuffer; column++)
+		{
+			if(row == 0)				// For the extreme matrix, we move the transitional 1 array from the buffer.
+			{
+				tempBuffer[column] = outputBuffer[row][column] & 0x01;
+				outputBuffer[row][column] = outputBuffer[row][column] >> 1;
+			} else
+			{
+				outputBuffer[row - 1][column] |= (outputBuffer[row][column] & 0x01) << SHIFT_BYTE;
+				outputBuffer[row][column] = outputBuffer[row][column] >> 1;
+			}
+
+			if(row == rowOutputBuffer - 1)	// For the last matrix, add transition units from the buffer.
+			{
+				outputBuffer[row][column] = outputBuffer[row][column] | (tempBuffer[column] << SHIFT_BYTE);
+			}
+		}
+	}
+	vPortFree(tempBuffer);
 }
 
 /**
