@@ -134,6 +134,41 @@ void SPI_init(USH_SPI_initDefaultTypeDef *initStructure)
 }
 
 //---------------------------------------------------------------------------
+// Library Functions
+//---------------------------------------------------------------------------
+
+/**
+ * @brief 	This function writes data to a register.
+ * @param 	SPIx - A pointer to SPIx peripheral to be used where x is between 1 to 6.
+ * @param 	reg - A register to write data to.
+ * @param 	data - Data to be recorded.
+ * @retval	None.
+ */
+void SPI_writeData(SPI_TypeDef *SPIx, uint8_t reg, uint8_t data)
+{
+	uint16_t temp;
+
+	// Check parameters
+	assert_param(IS_SPI_ALL_INSTANCE(SPIx));
+
+	// Check if the SPI is already enabled
+	if((SPIx->CR1 & SPI_CR1_SPE) != SPI_CR1_SPE)
+	{
+		// Enable SPI peripheral
+		SPIx->CR1 |= SPI_CR1_SPE;
+	}
+
+	while(!(SPIx->SR & SPI_SR_TXE));
+
+	// Write in the DR register the data to be sent
+	temp = (reg << 8) | data;
+	SPIx->DR = temp;
+
+	while(!(SPIx->SR & SPI_SR_RXNE));
+	(void) SPI1->DR;
+}
+
+//---------------------------------------------------------------------------
 // Static function prototypes
 //---------------------------------------------------------------------------
 static void SPI_gpioInitPins(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin);

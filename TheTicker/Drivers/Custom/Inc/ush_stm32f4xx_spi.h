@@ -203,4 +203,13 @@ typedef enum
  */
 void SPI_init(USH_SPI_initDefaultTypeDef *initStructure);
 
+/**
+ * @brief 	This function writes data to a register.
+ * @param 	SPIx - A pointer to SPIx peripheral to be used where x is between 1 to 6.
+ * @param 	reg - A register to write data to.
+ * @param 	data - Data to be recorded.
+ * @retval	None.
+ */
+void SPI_writeData(SPI_TypeDef *SPIx, uint8_t reg, uint8_t data);
+
 #endif /* __USH_STM32F4XX_SPI_H */
