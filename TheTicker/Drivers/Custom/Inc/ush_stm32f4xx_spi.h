@@ -90,6 +90,18 @@ typedef enum
 } USH_SPI_baudRatePrescaler;
 
 /**
+ * @brief SPI modes selection enumeration
+ */
+typedef enum
+{
+	SPI_MODE_1		= 0x00U,		/* Clock polarity low, clock phase 1st edge */
+	SPI_MODE_2		= 0x02U, 		/* Clock polarity low, clock phase 2nd edge */
+	SPI_MODE_3		= 0x01U, 		/* Clock polarity high, clock phase 1st edge */
+	SPI_MODE_4  	= 0x03U, 		/* Clock polarity high, clock phase 2nd edge */
+	SPI_MODE_MASK 	= 0x03U
+} USH_SPI_mode;
+
+/**
   * @brief  GPIO configuration mode enumeration
   */
 typedef enum
