@@ -145,6 +145,14 @@ typedef enum
 //---------------------------------------------------------------------------
 
 /**
+ * @brief 	This function cleans matrix's digits.
+ * @param 	numDigit - The digit indicates which digit of the matrix driver to transfer data to.
+ * 					   This parameter can be any value of @ref USH_MAX7219_digits.
+ * @retval	None.
+ */
+void MAX7219_clean(USH_MAX7219_digits numDigit);
+
+/**
  * @brief	This function sets the number of digits to be displayed.
  * @param 	numDigit - The digit indicates which digit of the matrix driver to transfer data to.
  * 					   This parameter can be any value of @ref USH_MAX7219_digits.

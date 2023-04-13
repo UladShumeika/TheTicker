@@ -19,6 +19,20 @@
 //---------------------------------------------------------------------------
 
 /**
+ * @brief 	This function cleans matrix's digits.
+ * @param 	digit - The digit indicates which digit of the matrix driver to transfer data to.
+ * 					This parameter can be any value of @ref USH_MAX7219_digits.
+ * @retval	None.
+ */
+void MAX7219_clean(uint8_t numDigit)
+{
+	for(uint8_t reg = REG_DIGIT_0; reg <= REG_DIGIT_7; reg++)
+	{
+		MAX7219_sendDataWithLatch(numDigit, reg, 0x00U);
+	}
+}
+
+/**
  * @brief	This function sets the number of digits to be displayed.
  * @param 	digit - The digit indicates which digit of the matrix driver to transfer data to.
  * 					This parameter can be any value of @ref USH_MAX7219_digits.
