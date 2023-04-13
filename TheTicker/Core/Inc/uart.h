@@ -13,5 +13,6 @@
 // External function prototypes
 //---------------------------------------------------------------------------
 void UART_freeRtosInit(void);
+void idleIRQTask(void const *argument);
 
 #endif /* __UART_H */

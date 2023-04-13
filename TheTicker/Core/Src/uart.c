@@ -5,6 +5,28 @@
 #include "string.h"
 
 //---------------------------------------------------------------------------
+// Descriptions of FreeRTOS elements
+//---------------------------------------------------------------------------
+static osThreadId idleIRQTaskHandle;
+
+//---------------------------------------------------------------------------
+// FreeRTOS's threads
+//---------------------------------------------------------------------------
+
+/**
+ * @brief 	Function implementing the processing of received data by USART1
+ * @param 	argument - Not used.
+ * @retval  None.
+ */
+void idleIRQTask(void const *argument)
+{
+	/* Infinite loop */
+	for(;;)
+	{
+	}
+}
+
+//---------------------------------------------------------------------------
 // Initialization functions
 //---------------------------------------------------------------------------
 
@@ -15,4 +37,8 @@
   */
 void UART_freeRtosInit(void)
 {
+	// Create the thread(s)
+	// definition and creation of idleIRQTask
+	osThreadDef(idleIRQ, idleIRQTask, osPriorityLow, 0, 256);
+	idleIRQTaskHandle = osThreadCreate(osThread(idleIRQ), NULL);
 }
