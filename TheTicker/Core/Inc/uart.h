@@ -10,6 +10,19 @@
 #include "main.h"
 
 //---------------------------------------------------------------------------
+// Typedefs and enumerations
+//---------------------------------------------------------------------------
+
+/**
+ * @brief UART message structure
+ */
+typedef struct
+{
+	uint8_t *message;		/* The pointer to received message */
+	uint8_t sizeMessage;	/* The size of received message */
+} UART_messageTypeDef;
+
+//---------------------------------------------------------------------------
 // External function prototypes
 //---------------------------------------------------------------------------
 void UART_freeRtosInit(void);
