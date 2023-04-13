@@ -145,6 +145,17 @@ typedef enum
 //---------------------------------------------------------------------------
 
 /**
+ * @brief	This function initializes MAX7219.
+ * @param	spi - A pointer to SPIx peripheral to be used where x is between 1 to 6.
+ * @param 	pinsPack - SPI pinsPack enumeration to select pins combination for SPI.
+ * 					   This parameter can be a value of @ref USH_SPI_pinsPack.
+ * @param	prescaler - The Baud Rate prescaler value which will be used to configure the transmit
+ * 						and receive SCK clock. This parameter can be a value of @ref USH_SPI_baudRatePrescaler.
+ * @retval	None.
+ */
+void MAX7219_init(SPI_TypeDef* spi, USH_SPI_pinsPack pinsPack, USH_SPI_baudRatePrescaler prescaler);
+
+/**
  * @brief 	This function starts a test mode with a duration of delay (ms)
  * @param 	numDigit - The digit indicates which digit of the matrix driver to transfer data to.
  * 					   This parameter can be any value of @ref USH_MAX7219_digits.

@@ -16,6 +16,37 @@
 #include "cmsis_os.h"
 
 //---------------------------------------------------------------------------
+// Initialization functions
+//---------------------------------------------------------------------------
+
+/**
+ * @brief	This function initializes MAX7219.
+ * @param	spi - A pointer to SPIx peripheral to be used where x is between 1 to 6.
+ * @param 	pinsPack - SPI pinsPack enumeration to select pins combination for SPI.
+ * 					   This parameter can be a value of @ref USH_SPI_pinsPack.
+ * @param	prescaler - The Baud Rate prescaler value which will be used to configure the transmit
+ * 						and receive SCK clock. This parameter can be a value of @ref USH_SPI_baudRatePrescaler.
+ * @retval	None.
+ */
+void MAX7219_init(SPI_TypeDef* spi, USH_SPI_pinsPack pinsPack, USH_SPI_baudRatePrescaler prescaler)
+{
+	USH_SPI_initDefaultTypeDef initStructure = {0,};
+
+	initStructure.SPIx 					= spi;
+	initStructure.PinsPack 				= pinsPack;
+	initStructure.BaudRatePrescaler		= prescaler;
+	initStructure.Mode 					= SPI_MODE_1;
+	SPI_init(&initStructure);
+
+	MAX7219_state(ALL_DIGITS, NORMAL_MODE);
+	MAX7219_decodeMode(ALL_DIGITS, NO_DECODE_FOR_ALL);
+	MAX7219_intensity(ALL_DIGITS, INTENSITY_13_32);
+	MAX7219_scanLimit(ALL_DIGITS, SCAN_LIMIT_0_7);
+	MAX7219_clean(ALL_DIGITS);
+	MAX7219_testMode(ALL_DIGITS, DELAY_TEST_MODE);
+}
+
+//---------------------------------------------------------------------------
 // Library Functions
 //---------------------------------------------------------------------------
 
