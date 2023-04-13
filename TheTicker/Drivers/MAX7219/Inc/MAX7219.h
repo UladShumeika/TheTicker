@@ -140,4 +140,19 @@ typedef enum
 	DISPLAY_TEST_MODE
 } USH_MAX7219_REG_DISPLAY_TEST;
 
+//---------------------------------------------------------------------------
+// External function prototypes
+//---------------------------------------------------------------------------
+
+/**
+  * @brief  This function sends data WITHOUT a latch.
+  * @param	numDigit - The digit indicates which digit of the matrix driver to transfer data to.
+  * 		           This parameter can be any value of @ref USH_MAX7219_digits.
+  * @param  reg - The matrix driver's address where the data should be written.
+  * 			  This parameter can be any value of @ref USH_MAX7219_registers.
+  * @param	data - Data to be sent to the matrix driver.
+  * @retval None.
+  */
+void MAX7219_sendDataWithoutLatch(USH_MAX7219_digits numDigit, USH_MAX7219_registers reg, uint8_t data);
+
 #endif /* __MAX7219_H */
