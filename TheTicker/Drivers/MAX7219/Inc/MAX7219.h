@@ -32,4 +32,24 @@
 #define MATRIX_CS_PORT								(GPIOA)
 #define MATRIX_CS_PIN								(GPIO_PIN_4)
 
+//---------------------------------------------------------------------------
+// Typedefs and enumerations
+//---------------------------------------------------------------------------
+
+/**
+ * @brief MAX7219 digits enumeration
+ */
+typedef enum
+{
+	DIGIT_1		= 0x08,
+	DIGIT_2		= 0x04,
+	DIGIT_3		= 0x02,
+	DIGIT_4		= 0x01,
+	DIGIT_5		= 0x80,
+	DIGIT_6		= 0x40,
+	DIGIT_7		= 0x20,
+	DIGIT_8		= 0x10,
+	ALL_DIGITS	= 0xFF
+} USH_MAX7219_digits;
+
 #endif /* __MAX7219_H */
