@@ -19,6 +19,18 @@
 //---------------------------------------------------------------------------
 
 /**
+  * @brief  This function enables or disables a matrix driver.
+  * @param  digit - The digit indicates which digit of the matrix driver to transfer data to.
+  * 				This parameter can be any value of @ref USH_MAX7219_digits.
+  * @param  mode - The driver mode. This parameter can be any value of @ref USH_MAX7219_REG_SHUTDOWN.
+  * @retval None.
+  */
+void MAX7219_state(uint8_t numDigit, USH_MAX7219_REG_SHUTDOWN mode)
+{
+	MAX7219_sendDataWithLatch(numDigit, REG_SHUTDOWN, mode);
+}
+
+/**
   * @brief  This function sends data WITH a latch.
   * @param  digit - The digit indicates which digit of the matrix driver to transfer data to.
   * 		        This parameter can be any value of @ref USH_MAX7219_digits.
