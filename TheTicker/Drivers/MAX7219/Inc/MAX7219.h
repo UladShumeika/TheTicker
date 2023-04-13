@@ -145,6 +145,15 @@ typedef enum
 //---------------------------------------------------------------------------
 
 /**
+ * @brief 	This function starts a test mode with a duration of delay (ms)
+ * @param 	numDigit - The digit indicates which digit of the matrix driver to transfer data to.
+ * 					   This parameter can be any value of @ref USH_MAX7219_digits.
+ * @param 	delay - The delay in ms.
+ * @retval	None.
+ */
+void MAX7219_testMode(USH_MAX7219_digits numDigit, uint16_t delay);
+
+/**
  * @brief 	This function cleans matrix's digits.
  * @param 	numDigit - The digit indicates which digit of the matrix driver to transfer data to.
  * 					   This parameter can be any value of @ref USH_MAX7219_digits.

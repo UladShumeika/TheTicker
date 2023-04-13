@@ -13,10 +13,25 @@
 // Includes
 //---------------------------------------------------------------------------
 #include "MAX7219.h"
+#include "cmsis_os.h"
 
 //---------------------------------------------------------------------------
 // Library Functions
 //---------------------------------------------------------------------------
+
+/**
+ * @brief 	This function starts a test mode with a duration of delay (ms)
+ * @param 	digit - The digit indicates which digit of the matrix driver to transfer data to.
+ * 					This parameter can be any value of @ref USH_MAX7219_digits.
+ * @param 	delay - The delay in ms.
+ * @retval	None.
+ */
+void MAX7219_testMode(uint8_t numDigit, uint16_t delay)
+{
+	MAX7219_sendDataWithLatch(numDigit, REG_DISPLAY_TEST, DISPLAY_TEST_MODE);
+	osDelay(delay);	// from FreeRTOS
+	MAX7219_sendDataWithLatch(numDigit, REG_DISPLAY_TEST, NORMAL_OPERATION);
+}
 
 /**
  * @brief 	This function cleans matrix's digits.
