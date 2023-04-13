@@ -145,6 +145,15 @@ typedef enum
 //---------------------------------------------------------------------------
 
 /**
+ * @brief	This function sets the decoding mode for the matrix driver
+ * @param	numDigit - The digit indicates which digit of the matrix driver to transfer data to.
+ * 					   This parameter can be any value of @ref USH_MAX7219_digits.
+ * @param	mode - The decode mode. This parameter can be any value of @ref USH_MAX7219_REG_DECODE_MODE.
+ * @retval	None.
+ */
+void MAX7219_decodeMode(USH_MAX7219_digits numDigit, USH_MAX7219_REG_DECODE_MODE mode);
+
+/**
   * @brief  This function enables or disables a matrix driver.
   * @param  numDigit - The digit indicates which digit of the matrix driver to transfer data to.
   * 				   This parameter can be any value of @ref USH_MAX7219_digits.
