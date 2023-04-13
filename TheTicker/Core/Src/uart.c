@@ -8,6 +8,7 @@
 // Descriptions of FreeRTOS elements
 //---------------------------------------------------------------------------
 static osThreadId idleIRQTaskHandle;
+static osPoolId	messageStructHandle;
 
 //---------------------------------------------------------------------------
 // FreeRTOS's threads
@@ -41,4 +42,9 @@ void UART_freeRtosInit(void)
 	// definition and creation of idleIRQTask
 	osThreadDef(idleIRQ, idleIRQTask, osPriorityLow, 0, 256);
 	idleIRQTaskHandle = osThreadCreate(osThread(idleIRQ), NULL);
+
+	// Create the memory pool(s)
+	// definition and creating of messageStructHandle
+	osPoolDef(messagePool, 1, UART_messageTypeDef);
+	messageStructHandle = osPoolCreate(osPool(messagePool));
 }
