@@ -19,6 +19,21 @@
 //---------------------------------------------------------------------------
 
 /**
+  * @brief  This function sends data WITH a latch.
+  * @param  digit - The digit indicates which digit of the matrix driver to transfer data to.
+  * 		        This parameter can be any value of @ref USH_MAX7219_digits.
+  * @param  reg - The matrix driver's address where the data should be written.
+  * @param	data - Data to be sent to the matrix driver.
+  * @retval None.
+  */
+void MAX7219_sendDataWithLatch(uint8_t numDigit, USH_MAX7219_registers reg, uint8_t data)
+{
+	SPI_csPin(MATRIX_CS_PORT, MATRIX_CS_PIN, LOW);
+	MAX7219_sendDataWithoutLatch(numDigit, reg, data);
+	SPI_csPin(MATRIX_CS_PORT, MATRIX_CS_PIN, HIGH);
+}
+
+/**
   * @brief  This function sends data WITHOUT a latch.
   * @param	numDigit - The digit indicates which digit of the matrix driver to transfer data to.
   * 		           This parameter can be any value of @ref USH_MAX7219_digits.
