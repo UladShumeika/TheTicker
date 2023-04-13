@@ -15,5 +15,6 @@
 //---------------------------------------------------------------------------
 void LEDMATRIX_freeRtosInit(void);
 void sendToTheMatrixTask(void const *argument);
+void convertStringIntoDataForMatrixTask(void const *argument);
 
 #endif /* __LEDMATRIX_H */
