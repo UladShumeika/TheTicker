@@ -212,4 +212,16 @@ void SPI_init(USH_SPI_initDefaultTypeDef *initStructure);
  */
 void SPI_writeData(SPI_TypeDef *SPIx, uint8_t reg, uint8_t data);
 
+
+/**
+  * @brief  Chip select (CS) pin switching.
+  * @param	GPIOx - A pointer to GPIOx peripheral to be used where x is between A to F.
+  * @param	csPin - The GPIO pin which is used as CS pin.
+  * 				This parameter can be any value of @ref USH_GPIO_pins.
+  * @param  state - The value to be written to the CS pin.
+  * 				This parameter can be any value of @ref USH_SPI_csState.
+  * @retval None.
+  */
+void SPI_csPin(GPIO_TypeDef *GPIOx, uint16_t csPin, USH_SPI_csState state);
+
 #endif /* __USH_STM32F4XX_SPI_H */
