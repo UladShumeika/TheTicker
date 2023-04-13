@@ -29,6 +29,7 @@ static uint8_t** convertStringIntoDataForMatrix(UART_messageTypeDef *message, co
 //---------------------------------------------------------------------------
 // Variables
 //---------------------------------------------------------------------------
+static uint8_t **outputBuffer;
 static uint8_t rowBuffer;
 
 //---------------------------------------------------------------------------
@@ -72,6 +73,7 @@ void convertStringIntoDataForMatrixTask(void const *argument)
 			message = evt.value.p;
 			rowBuffer = message->sizeMessage;
 
+			outputBuffer = convertStringIntoDataForMatrix(message, font_ASCII);
 		}
 	}
 }
