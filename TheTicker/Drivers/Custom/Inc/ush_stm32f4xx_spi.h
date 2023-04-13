@@ -65,13 +65,13 @@
 //---------------------------------------------------------------------------
 
 /**
- * @brief  SPI pinsPack enumeration to select pins combination for SPI
+ * @brief SPI pinsPack enumeration to select pins combination for SPI
  */
 typedef enum
 {
-	SPI_pinsPack_1	= 0x00,		// select PinsPack1 from Pinout table for specific SPI
-	SPI_pinsPack_2	= 0x01		// select PinsPack2 from Pinout table for specific SPI
-} SPI_pinsPack_t;
+	SPI_PINSPACK_1	= 0x00U,	/* pinsPack1 selected */
+	SPI_PINSPACK_2	= 0x01U		/* pinsPack2 selected */
+} USH_SPI_pinsPack;
 
 /**
   * @brief  GPIO configuration mode enumeration
