@@ -9,6 +9,7 @@
 //---------------------------------------------------------------------------
 static osThreadId idleIRQTaskHandle;
 static osPoolId	messageStructHandle;
+static const uint8_t defaultString[] = "Hi, please enter your message. ";
 
 //---------------------------------------------------------------------------
 // FreeRTOS's threads
