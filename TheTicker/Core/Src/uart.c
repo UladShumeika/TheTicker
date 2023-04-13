@@ -3,3 +3,16 @@
 //---------------------------------------------------------------------------
 #include "uart.h"
 #include "string.h"
+
+//---------------------------------------------------------------------------
+// Initialization functions
+//---------------------------------------------------------------------------
+
+/**
+  * @brief  FreeRTOS initialization for uart module
+  * @param  None
+  * @retval None
+  */
+void UART_freeRtosInit(void)
+{
+}
