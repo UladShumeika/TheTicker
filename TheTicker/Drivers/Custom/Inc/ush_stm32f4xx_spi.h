@@ -187,4 +187,20 @@ typedef enum
 // External function prototypes
 //---------------------------------------------------------------------------
 
+/**
+ * @brief 	This function initializes the SPIx peripheral according to the specified parameters in the USH_SPI_initDefaultTypeDef.
+ * @note 	This function has default settings:
+ *			- Master mode selected;
+ *			- Full duplex selected;
+ *			- 16bits data size selected;
+ *			- Chip select pin software control selected;
+ *			- MSB transmitted first;
+ *			- CRC calculation disabled;
+ *			- TI mode disable.
+ * @param 	initStructure - A pointer to a USH_SPI_initDefaultTypeDef structure that contains the configuration
+ * 							information for the specified SPI peripheral.
+ * @retval	None.
+ */
+void SPI_init(USH_SPI_initDefaultTypeDef *initStructure);
+
 #endif /* __USH_STM32F4XX_SPI_H */
