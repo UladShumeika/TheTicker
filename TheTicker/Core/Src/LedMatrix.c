@@ -10,6 +10,12 @@
 //---------------------------------------------------------------------------
 static osThreadId sendToTheMatrixHandle;
 static osThreadId convertStringHandle;
+extern osMessageQId fromUartToMatrixHandle;
+
+//---------------------------------------------------------------------------
+// Variables
+//---------------------------------------------------------------------------
+static uint8_t rowBuffer;
 
 //---------------------------------------------------------------------------
 // FreeRTOS's threads
@@ -35,10 +41,22 @@ void sendToTheMatrixTask(void const *argument)
  */
 void convertStringIntoDataForMatrixTask(void const *argument)
 {
+	osEvent evt;
+	UART_messageTypeDef *message;
+	uint8_t firstStart = 1;
 
 	/* Infinite loop */
 	for(;;)
 	{
+		evt = osMessageGet(fromUartToMatrixHandle, osWaitForever);
+
+		if(evt.status == osEventMessage)
+		{
+
+			message = evt.value.p;
+			rowBuffer = message->sizeMessage;
+
+		}
 	}
 }
 
