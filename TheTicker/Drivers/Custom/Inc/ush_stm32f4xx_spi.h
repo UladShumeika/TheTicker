@@ -4,11 +4,50 @@
   * @author  Ulad Shumeika
   * @version v1.0
   * @date    16-January-2023
-  * @brief   This file contains all the functions prototypes for the SPI firmware
-  *          library.  
+  * @brief   Header file of SPI module.
+  *
   ******************************************************************************
   */
   
+/* NOTE: The work with DMA is not implemented */
+
+/* The SPI setting is based on the choice of a set of pins and a set of DMA.
+ *
+ * The set of pins.
+ * 		  |             pinsPack_1			|			  pinsPack_2		  |
+ * SPIx___|__MOSI__|__MISO__|__CLK__|__NSS__|__MOSI__|__MISO__|__CLK__|__NSS__|
+ * 		  |		   |		|		|		|		 |		  |		  |       |
+ * SPI1	  |  PA7   |  PA6   |  PA5  |  PA4  |  PB5	 |  PB4   |	 PB3  |  PA15 |
+ * SPI2	  |	 PC3   |  PC2	|  PB10 |  PB9	|  PB15	 |  PB14  |	 PB13 |  PB12 |
+ * SPI3	  |	 PB5   |  PB4	|  PB3  |  PB4	|  PC12  |  PC11  |	 PC10 |	 PA15 |
+ * SPI4	  |	 PE6   |  PE5	|  PE2  |  PE4	|  PE14  |	PE13  |  PE12 |  PE11 |
+ * SPI5	  |	 PF9   |  PF8	|  PF7  |  PF6	|   --   |   --   |   --  |   --  |
+ * SPI6	  |	 PG14  |  PG12	|  PG13 |  PG8  |	--   |   --   |   --  |   --  |
+ *
+ * The set of DMA.
+ *     	   |		 dmaPack_1	     |		   dmaPack_2       |
+ * SPIx____|_DMAx Stream x Channel x_|_DMAx Stream x Channel x_|
+ * 		   |			             |				           |
+ * SPI1_RX |      DMA2 St.0 Ch.3     |      DMA2 St.2 Ch.3     |
+ * SPI1_TX |      DMA2 St.3 Ch.3     |      DMA2 St.5 Ch.3     |
+ * 		   |						 |						   |
+ * SPI2_RX |      DMA1 St.3 Ch.0     |			 ----		   |
+ * SPI2_TX |      DMA1 St.4 Ch.0     |			 ----		   |
+ * 		   |						 |						   |
+ * SPI3_RX |      DMA1 St.0 Ch.0     |      DMA1 St.2 Ch.0     |
+ * SPI3_TX |      DMA1 St.5 Ch.0     |      DMA1 St.7 Ch.0     |
+ * 		   |						 |						   |
+ * SPI4_RX |      DMA2 St.0 Ch.4     |      DMA2 St.3 Ch.5     |
+ * SPI4_TX |      DMA2 St.1 Ch.4     |      DMA2 St.4 Ch.5     |
+ * 		   |						 |						   |
+ * SPI5_RX | 	  DMA2 St.3 Ch.2     |      DMA2 St.5 Ch.7     |
+ * SPI5_TX |      DMA2 St.4 Ch.2     | 		DMA2 St.6 Ch.7     |
+ * 		   |						 |						   |
+ * SPI6_RX | 	  DMA2 St.6 Ch.1     |		     ----		   |
+ * SPI6_TX | 	  DMA2 St.5 Ch.1     |			 ----		   |
+ *
+ */
+
 //---------------------------------------------------------------------------
 // Define to prevent recursive inclusion
 //---------------------------------------------------------------------------
