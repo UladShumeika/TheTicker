@@ -9,6 +9,7 @@
 //---------------------------------------------------------------------------
 static osThreadId idleIRQTaskHandle;
 static osPoolId	messageStructHandle;
+osMessageQId fromUartToMatrixHandle;
 static const uint8_t defaultString[] = "Hi, please enter your message. ";
 
 //---------------------------------------------------------------------------
@@ -43,6 +44,11 @@ void UART_freeRtosInit(void)
 	// definition and creation of idleIRQTask
 	osThreadDef(idleIRQ, idleIRQTask, osPriorityLow, 0, 256);
 	idleIRQTaskHandle = osThreadCreate(osThread(idleIRQ), NULL);
+
+	// Create the queue(s)
+	// definition and creating of fromUartToMatrixHandle
+	osMessageQDef(fromUartToMatrix, 1, UART_messageTypeDef);
+	fromUartToMatrixHandle = osMessageCreate(osMessageQ(fromUartToMatrix), NULL);
 
 	// Create the memory pool(s)
 	// definition and creating of messageStructHandle
