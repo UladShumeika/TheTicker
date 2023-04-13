@@ -1,6 +1,6 @@
 /**
   ******************************************************************************
-  * @file    custom_stm32f429_spi.h
+  * @file    ush_stm32f4xx_spi.h
   * @author  Ulad Shumeika
   * @version v1.0
   * @date    16-January-2023
@@ -12,8 +12,8 @@
 //---------------------------------------------------------------------------
 // Define to prevent recursive inclusion
 //---------------------------------------------------------------------------
-#ifndef __CUSTOM_SPI_H
-#define __CUSTOM_SPI_H
+#ifndef __USH_STM32F4XX_SPI_H
+#define __USH_STM32F4XX_SPI_H
 
 //---------------------------------------------------------------------------
 // Includes
@@ -68,4 +68,4 @@ typedef enum
 // External function prototypes
 //---------------------------------------------------------------------------
 
-#endif /* __CUSTOM_SPI_H */
+#endif /* __USH_STM32F4XX_SPI_H */
