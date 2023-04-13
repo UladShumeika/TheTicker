@@ -41,4 +41,8 @@ void freeRtosInit(void)
 	LEDMATRIX_freeRtosInit();
 #endif
 
+#ifdef UART
+	UART_freeRtosInit();
+#endif
+
 }
