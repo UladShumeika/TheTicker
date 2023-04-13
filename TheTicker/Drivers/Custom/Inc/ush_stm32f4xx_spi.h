@@ -74,6 +74,22 @@ typedef enum
 } USH_SPI_pinsPack;
 
 /**
+ * @brief SPI baudrate prescaler enumeration
+ */
+typedef enum
+{
+	SPI_BAUDRATE_PRESCALER_2		= 0x0000U,		/* f_pclk/2 selected */
+	SPI_BAUDRATE_PRESCALER_4		= 0x0008U,		/* f_pclk/4 selected */
+	SPI_BAUDRATE_PRESCALER_8		= 0x0010U,		/* f_pclk/8 selected */
+	SPI_BAUDRATE_PRESCALER_16		= 0x0018U,		/* f_pclk/16 selected */
+	SPI_BAUDRATE_PRESCALER_32		= 0x0020U,		/* f_pclk/32 selected */
+	SPI_BAUDRATE_PRESCALER_64		= 0x0028U,		/* f_pclk/64 selected */
+	SPI_BAUDRATE_PRESCALER_128		= 0x0030U,		/* f_pclk/128 selected */
+	SPI_BAUDRATE_PRESCALER_256		= 0x0038U,		/* f_pclk/256 selected */
+	SPI_BAUDRATE_MASK				= 0x0038U
+} USH_SPI_baudRatePrescaler;
+
+/**
   * @brief  GPIO configuration mode enumeration
   */
 typedef enum
