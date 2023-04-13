@@ -184,6 +184,40 @@ typedef enum
 } SPI_GPIOOType_TypeDef;
 
 //---------------------------------------------------------------------------
+// Macros
+//---------------------------------------------------------------------------
+
+#define IS_SPI_ALL_INSTANCE(INSTANCE)			(((INSTANCE) == SPI1) || \
+												 ((INSTANCE) == SPI2) || \
+												 ((INSTANCE) == SPI3) || \
+												 ((INSTANCE) == SPI4) || \
+												 ((INSTANCE) == SPI5) || \
+												 ((INSTANCE) == SPI6))
+
+#define IS_SPI_PINSPACK(PINSPACK)				(((PINSPACK) == SPI_PINSPACK_1) || \
+										 	 	 ((PINSPACK) == SPI_PINSPACK_2))
+
+#define IS_SPI_BAUDRATE_PRESCALER(PRESCALER)	(((PRESCALER) == SPI_BAUDRATE_PRESCALER_2)   || \
+												 ((PRESCALER) == SPI_BAUDRATE_PRESCALER_4)   || \
+												 ((PRESCALER) == SPI_BAUDRATE_PRESCALER_8)   || \
+												 ((PRESCALER) == SPI_BAUDRATE_PRESCALER_16)  || \
+												 ((PRESCALER) == SPI_BAUDRATE_PRESCALER_32)  || \
+												 ((PRESCALER) == SPI_BAUDRATE_PRESCALER_64)  || \
+												 ((PRESCALER) == SPI_BAUDRATE_PRESCALER_128) || \
+												 ((PRESCALER) == SPI_BAUDRATE_PRESCALER_256))
+
+#define IS_SPI_MODE(MODE)						(((MODE) == SPI_MODE_1) || \
+												 ((MODE) == SPI_MODE_2) || \
+												 ((MODE) == SPI_MODE_3) || \
+												 ((MODE) == SPI_MODE_4))
+
+#define IS_SPI_FRAME_FORMAT(FRAME_FORMAT)		(((FRAME_FORMAT) == SPI_MSB_FIRST)	|| \
+												 ((FRAME_FORMAT) == SPI_LSB_FIRST))
+
+#define IS_SPI_PIN_STATE(STATE)					(((STATE) == LOW) || \
+												 ((STATE) == HIGH))
+
+//---------------------------------------------------------------------------
 // External function prototypes
 //---------------------------------------------------------------------------
 
