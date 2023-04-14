@@ -147,6 +147,15 @@ typedef enum
 void USART_init(USH_USART_initTypeDef *initStructure);
 
 /**
+ * @brief	This function receives an amount of data in DMA mode till either the expected number of data is received or an IDLE event occurs.
+ * @param 	usart - A pointer to U(S)ART peripheral to be used where x is between 1 to 8.
+ * @param 	data - The data to be transmitted.
+ * @param 	size - The data transfer size.
+ * @return	The periphery status.
+ */
+USH_peripheryStatus USART_receiveToIdleDMA(USART_TypeDef* usart, uint8_t* data, uint16_t size);
+
+/**
  * @brief 	This function clears U(S)ART flags.
  * @param 	usart - A pointer to U(S)ART peripheral to be used where x is between 1 to 8.
  * @param 	flags - U(S)ART flags. This parameter can be a value of @ref USH_USART_flags.
