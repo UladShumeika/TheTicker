@@ -331,4 +331,11 @@ void DMA_clearFlags(DMA_Stream_TypeDef *DMAy_Streamx, USH_DMA_flags flags);
  */
 uint32_t DMA_getFlags(USH_DMA_initTypeDef *initStructure);
 
+/**
+ * @brief 	This function returns number of data items to transfer.
+ * @param 	DMAy_Streamx - A pointer to Stream peripheral to be used where y is 1 or 2 and x is from 0 to 7.
+ * @retval	Number of data items to transfer.
+ */
+uint16_t DMA_getNumberOfData(DMA_Stream_TypeDef *DMAy_Streamx);
+
 #endif /* __USH_STM32F4XX_DMA_H */
