@@ -324,4 +324,11 @@ void DMA_state(DMA_Stream_TypeDef *DMAx_Streamy, FunctionalState state);
  */
 void DMA_clearFlags(DMA_Stream_TypeDef *DMAy_Streamx, USH_DMA_flags flags);
 
+/**
+ * @brief 	This function gets DMA flags.
+ * @param 	DMAy_Streamx - A pointer to Stream peripheral to be used where y is 1 or 2 and x is from 0 to 7.
+ * @retval	DMA flags.
+ */
+uint32_t DMA_getFlags(USH_DMA_initTypeDef *initStructure);
+
 #endif /* __USH_STM32F4XX_DMA_H */

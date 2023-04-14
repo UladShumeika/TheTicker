@@ -142,7 +142,34 @@ void DMA_clearFlags(DMA_Stream_TypeDef *DMAy_Streamx, USH_DMA_flags flags)
 	} else
 	{
 		DMAy->HIFCR = flags << flagBitshiftOffset[streamNumber];
+	}
 }
 
+/**
+ * @brief 	This function gets DMA flags.
+ * @param 	DMAy_Streamx - A pointer to Stream peripheral to be used where y is 1 or 2 and x is from 0 to 7.
+ * @retval	DMA flags.
+ */
+uint32_t DMA_getFlags(USH_DMA_initTypeDef *initStructure)
+{
+	// Check parameters
+	assert_param(IS_DMA_STREAM_ALL_INSTANCE(initStructure->DMAy_Streamx));
+
+	uint32_t flags = 0;
+
+	DMA_TypeDef* DMAy;
+
+	uint32_t streamNumber = ((uint32_t)initStructure->DMAy_Streamx & 0xFFU) / 0x18U;	// 0xFF is a mask. 0x18 is a step between stream registers.
+																						// For a better understanding of magic numbers. See the reference manual.
+	DMAy = (initStructure->DMAy_Streamx < DMA2_Stream0) ? DMA1 : DMA2;
+
+	if(streamNumber < 4U)	// Stream 0-3 is LIFCR and stream 4-6 is HIFCR
+	{
+		flags = DMAy->LISR >> flagBitshiftOffset[streamNumber];
+	} else
+	{
+		flags = DMAy->HISR >> flagBitshiftOffset[streamNumber];
 	}
 
+	return flags;
+}
