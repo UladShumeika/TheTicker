@@ -82,6 +82,12 @@ typedef enum
 
 #define IS_MISC_NVIC_DEVICE_IRQ(IRQ)                	((IRQ) >= (IRQn_Type)0x00U)
 
+#define IS_MISC_NVIC_PRIORITY_GROUP(GROUP) 			   (((GROUP) == NVIC_PRIORITYGROUP_0) || \
+                                       	   	   	 	 	((GROUP) == NVIC_PRIORITYGROUP_1) || \
+												 	 	((GROUP) == NVIC_PRIORITYGROUP_2) || \
+												 	 	((GROUP) == NVIC_PRIORITYGROUP_3) || \
+												 	 	((GROUP) == NVIC_PRIORITYGROUP_4))
+
 #define IS_MISC_FLASH_LATENCY(LATENCY)					(((LATENCY) == FLASH_LATENCY_0) || \
 														 ((LATENCY) == FLASH_LATENCY_1) || \
 														 ((LATENCY) == FLASH_LATENCY_2) || \
