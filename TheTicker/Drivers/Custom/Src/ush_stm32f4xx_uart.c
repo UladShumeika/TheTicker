@@ -195,7 +195,7 @@ void USART_init(USH_USART_initTypeDef *initStructure)
 	/* ----------------------- USART configuration ------------------------- */
 
 	// Check parameters
-	assert_param(IS_UART_BAUDRATE(initStructure->BaudRate));
+	assert_param(IS_USART_BAUDRATE(initStructure->BaudRate));
 
 	// Oversampling by 16, 8 data bits, parity control disabled, multiprocessor communication disabled
 	if(initStructure->Mode == USART_MODE_RX_TX)
