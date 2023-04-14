@@ -1,8 +1,13 @@
 /*
- * The pet project -
+ * The pet project - The ticker
  *
- *  Created on: Jan 13, 2023
+ * 	Created on: Jan 13, 2023
  *      Author: Ulad Shumeika
+ *
+ * This project is educational. Its goal is to gain hands-on experience with
+ * interfaces such as SPI and USART. The main task was to develop a device
+ * that receives data via UART and outputs to a 4-bit matrix under
+ * the control of the MAX7219 in a creeping line mode.
  */
 
 //---------------------------------------------------------------------------
@@ -38,15 +43,17 @@ static ErrorStatus initSystemClock(void);
   */
 int main(void)
 {
-	uint8_t status;
-
+	// Initialize Flash and cashes
 	initMicrocontroller();
 
-	status = initSystemClock();
-	if(!status);
+	// Initialize system clock
+	initSystemClock();
 
-	status = initSysTick(SYS_TICK_PRIORITY);
-	if(!status);
+	// Initialize sysTick timer
+	initSysTick(SYS_TICK_PRIORITY);
+
+	// Initialize timeout timer
+	MISC_timeoutTimer();
 
 	// Call init function for freertos objects (in freertos.c)
 	freeRtosInit();

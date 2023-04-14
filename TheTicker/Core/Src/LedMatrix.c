@@ -23,6 +23,7 @@
 //---------------------------------------------------------------------------
 static osThreadId sendToTheMatrixHandle;
 static osThreadId convertStringHandle;
+static osMutexId pVarsMutexHandle;
 extern osMessageQId fromUartToMatrixHandle;
 
 //---------------------------------------------------------------------------
@@ -54,8 +55,12 @@ void sendToTheMatrixTask(void const *argument)
 	/* Infinite loop */
 	for(;;)
 	{
+		osMutexWait(pVarsMutexHandle, osWaitForever);
+
 		outputOnMatrix(outputBuffer);
 		shiftOutputBuffer(outputBuffer, rowBuffer, MATRIX_HIGH);
+
+		osMutexRelease(pVarsMutexHandle);
 
 		osDelay(SPEED_SHIFT);
 	}
@@ -79,11 +84,18 @@ void convertStringIntoDataForMatrixTask(void const *argument)
 
 		if(evt.status == osEventMessage)
 		{
+			osMutexWait(pVarsMutexHandle, osWaitForever);
 
 			message = evt.value.p;
 			rowBuffer = message->sizeMessage;
 
+			if(!firstStart) vPortFree(outputBuffer);
 			outputBuffer = convertStringIntoDataForMatrix(message, font_ASCII);
+
+			osMutexRelease(pVarsMutexHandle);
+
+			if(!firstStart && message->message != getPointerDefaultString()) vPortFree(message->message);
+			firstStart = 0;
 		}
 	}
 }
@@ -108,7 +120,14 @@ void LEDMATRIX_freeRtosInit(void)
 	osThreadDef(convertString, convertStringIntoDataForMatrixTask, osPriorityLow, 0, 128);
 	convertStringHandle = osThreadCreate(osThread(convertString), NULL);
 
+	// Create the mutex(s)
+	// definition and creation of mutex for internal variables
+	osMutexDef(pVarsMutex);
+	pVarsMutexHandle = osMutexCreate(osMutex(pVarsMutex));
 
+#ifdef DEBUG
+	vQueueAddToRegistry(pVarsMutexHandle, "pointer to output buffer");
+#endif
 }
 
 //---------------------------------------------------------------------------

@@ -75,6 +75,8 @@ void idleIRQTask(void const *argument)
 			flagFirstStart = 0;
 		} else
 		{
+			message->message = messageCapture(USED_UART, rxBuffer, sizeof(rxBuffer));
+			message->sizeMessage = strlen((char*)message->message);
 		}
 
 		osMessagePut(fromUartToMatrixHandle, (uint32_t)message, osWaitForever);
