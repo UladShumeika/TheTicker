@@ -107,9 +107,17 @@ void DMA1_Stream7_IRQHandler(void)
 }
 
 /**
-  * @brief This function handles UART5 global interrupt.
+  * @brief This function handles TIM8 trigger and commutation interrupts and TIM14 global interrupt.
   */
-void UART5_IRQHandler(void)
+void TIM8_TRG_COM_TIM14_IRQHandler(void)
 {
+	if((TIM14->SR & TIM_SR_UIF) == TIM_SR_UIF)
+	{
+		if((TIM14->DIER & TIM_DIER_UIE) == TIM_DIER_UIE)
+		{
+			TIM14->SR = ~TIM_DIER_UIE;
 
+			MISC_timeoutTimerIncTick();
+		}
+	}
 }
