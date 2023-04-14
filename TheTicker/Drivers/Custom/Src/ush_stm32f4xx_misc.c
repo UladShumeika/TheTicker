@@ -118,3 +118,20 @@ void MISC_FLASH_setLatency(USH_FLASH_latency flashLatency)
   // Perform Byte access to FLASH_ACR[8:0] to set the Latency value
   *(__IO uint8_t *)FLASH_ACR_BYTE0_ADDRESS = (uint8_t)flashLatency;
 }
+
+//---------------------------------------------------------------------------
+// Function's parameters check.
+//---------------------------------------------------------------------------
+#ifdef USE_FULL_ASSERT
+/**
+  * @brief  Reports the name of the source file and the source line number
+  *         where the assert_param error has occurred.
+  * @param  file: pointer to the source file name
+  * @param  line: assert_param error line source number
+  * @retval None
+  */
+void assert_failed(uint8_t *file, uint32_t line)
+{
+	printf("Wrong parameters value: file %s on line %ld\r\n", file, line);
+}
+#endif /* USE_FULL_ASSERT */
