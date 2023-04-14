@@ -412,6 +412,41 @@ DMA_Stream_TypeDef* USART_getDmaStream(USART_TypeDef* usart, USH_USART_mode mode
 	return DMA_Stream;
 }
 
+/**
+ * @brief 	This function handles U(S)ART interrupt request.
+ * @param 	initStructure - A pointer to a USH_USART_initTypeDef structure that contains the configuration information
+ * 							for the specified U(S)ART peripheral.
+ * @retval	None.
+ */
+void USART_IRQHandler(USH_USART_initTypeDef *initStructure)
+{
+	uint32_t isrFlags 	= initStructure->USARTx->SR;
+	uint32_t CR1reg 	= initStructure->USARTx->CR1;
+	uint32_t CR3reg		= initStructure->USARTx->CR3;
+	uint32_t errors 	= (isrFlags & (uint32_t)(USART_SR_PE | USART_SR_FE | USART_SR_ORE | USART_SR_NE));
+
+	if(errors == RESET)
+	{
+		// if RXNE call something
+	}
+
+	if(errors != RESET && (initStructure->USARTx->CR3 & USART_CR3_EIE))
+	{
+		// Call ErrorCallBack
+	}
+
+	if((isrFlags & USART_SR_IDLE) && (CR1reg & USART_CR1_IDLEIE))
+	{
+		USART_clearFlags(initStructure->USARTx, USART_FLAG_IDLE);
+
+		if(CR3reg & USART_CR3_DMAR)
+		{
+			USART_idleCallback(initStructure->USARTx);
+		}
+
+	}
+}
+
 //---------------------------------------------------------------------------
 // Static Functions
 //---------------------------------------------------------------------------

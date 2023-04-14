@@ -181,4 +181,12 @@ void USART_clearFlags(USART_TypeDef* usart, USH_USART_flags flags);
  */
 DMA_Stream_TypeDef* USART_getDmaStream(USART_TypeDef* usart, USH_USART_mode mode);
 
+/**
+ * @brief 	This function handles U(S)ART interrupt request.
+ * @param 	initStructure - A pointer to a USH_USART_initTypeDef structure that contains the configuration information
+ * 							for the specified U(S)ART peripheral.
+ * @retval	None.
+ */
+void USART_IRQHandler(USH_USART_initTypeDef *initStructure);
+
 #endif /* __USH_STM32F4XX_USART_H */
