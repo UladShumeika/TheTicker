@@ -296,4 +296,16 @@ typedef enum
 													 ((FLAG) == DMA_FLAG_TCIF)  || \
 													 ((FLAG) == DMA_FLAG_ALL))
 
+//---------------------------------------------------------------------------
+// External function prototypes
+//---------------------------------------------------------------------------
+
+/**
+ * @brief 	This function initializes the DMAx peripheral according to the specified parameters in the USH_DMA_initTypeDef.
+ * @param 	initStructure - A pointer to a USH_DMA_initTypeDef structure that contains the configuration
+ * 							information for the specified DMA peripheral.
+ * @retval	None.
+ */
+void DMA_init(USH_DMA_initTypeDef *initStructure);
+
 #endif /* __USH_STM32F4XX_DMA_H */
