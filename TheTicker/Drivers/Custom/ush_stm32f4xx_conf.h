@@ -15,4 +15,13 @@
 #ifndef __USH_STM32F4xx_CONF_H
 #define __USH_STM32F4xx_CONF_H
 
+//---------------------------------------------------------------------------
+// Includes
+//---------------------------------------------------------------------------
+#include "ush_stm32f4xx_misc.h"
+#include "ush_stm32f4xx_gpio.h"
+#include "ush_stm32f4xx_dma.h"
+#include "ush_stm32f4xx_spi.h"
+#include "ush_stm32f4xx_uart.h"
+
 #endif	/* __USH_STM32F4xx_CONF_H */
