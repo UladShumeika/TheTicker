@@ -13,6 +13,8 @@
 #define USED_PINSPACK	(USART_PINSPACK_1)
 #define USED_BAUDRATE	((uint32_t)115200)
 
+#define RX_BUFFER_SIZE	(256U)
+
 //---------------------------------------------------------------------------
 // Descriptions of FreeRTOS elements
 //---------------------------------------------------------------------------
@@ -31,6 +33,10 @@ static void UART_init(void);
 //--------------------------------------------------------------------------
 USH_USART_initTypeDef uart_structure = {0};
 
+//---------------------------------------------------------------------------
+// Variables
+//---------------------------------------------------------------------------
+static uint8_t rxBuffer[RX_BUFFER_SIZE];
 static const uint8_t defaultString[] = "Hi, please enter your message. ";
 
 //---------------------------------------------------------------------------
@@ -48,6 +54,8 @@ void idleIRQTask(void const *argument)
 	uint8_t flagFirstStart = 1;
 
 	UART_init();
+
+	USART_receiveToIdleDMA(USED_UART, rxBuffer, sizeof(rxBuffer));
 
 	/* Infinite loop */
 	for(;;)
