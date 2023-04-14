@@ -83,19 +83,18 @@ typedef enum
 } USH_USART_flags;
 
 //---------------------------------------------------------------------------
-// Macros
+// Peripheral macros
 //---------------------------------------------------------------------------
 
 /**
- * @brief	Enable U(S)ART
+ * @brief Enable/disable U(S)ART
  */
 #define USH_USART_ENABLE(HANDLE)			((HANDLE)->CR1 |= USART_CR1_UE);
-
-/**
- * @brief	Disable U(S)ART
- */
 #define USH_USART_DISABLE(HANDLE)			((HANDLE)->CR1 &= ~USART_CR1_UE);
 
+//---------------------------------------------------------------------------
+// Test macros
+//---------------------------------------------------------------------------
 #define IS_USART_ALL_INSTANCE(INSTANCE)  	(((INSTANCE) == USART1)	|| \
 										 	 ((INSTANCE) == USART2)	|| \
 											 ((INSTANCE) == USART3)	|| \
