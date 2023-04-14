@@ -140,4 +140,15 @@ typedef enum
 	DMA_FIFO_MODE_DISABLE	= 0x00U		/* FIFO mode disable */
 } USH_DMA_fifoMode;
 
+/**
+ * @brief DMA FIFO threshold level enumeration
+ */
+typedef enum
+{
+	DMA_FIFO_THRESHOLD_1QUARTER		= 0x00U,	/* FIFO threshold 1 quart full configuration */
+	DMA_FIFO_THRESHOLD_HALF			= 0x01U,	/* FIFO threshold half full configuration */
+	DMA_FIFO_THRESHOLD_3QUARTER		= 0x02U,	/* FIFO threshold 3 quart full configuration */
+	DMA_FIFO_THRESHOLD_FULL			= 0x03U		/* FIFO threshold full configuration */
+} USH_DMA_fifoThresholdLevel;
+
 #endif /* __USH_STM32F4XX_DMA_H */
