@@ -7,7 +7,7 @@
 // Defines
 //---------------------------------------------------------------------------
 #define PORT_LED_HEARTBEAT				GPIOG
-#define PIN_LED_HEARTBEAT				GPIO_Pin_13
+#define PIN_LED_HEARTBEAT				GPIO_PIN_13
 #define BLICK_DELAY_HEARTBEAT			(1000U)				// ms
 
 //---------------------------------------------------------------------------
