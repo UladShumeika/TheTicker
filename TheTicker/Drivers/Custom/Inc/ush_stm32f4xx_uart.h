@@ -44,4 +44,24 @@ typedef enum
 	USART_MODE_RX_TX 	= 0x0CU		/* RX and TX selected */
 } USH_USART_mode;
 
+/**
+  * @brief UART initialization structure definition
+  */
+typedef struct
+{
+	USART_TypeDef* USARTx;			/* A pointer to U(S)ART peripheral to be used where x is between 1 to 8 */
+
+	USH_USART_pinsPack PinsPack;	/* U(S)ART pinsPack enumeration to select pins combination for U(S)ART.
+								   	   This parameter can be a value of @ref USH_USART_pinsPack */
+
+	uint32_t BaudRate;				/* The special value which will be used to configure the UART communication baud rate.
+								   	   The baud rate is computed using the following formula:
+								   	   	   - IntegerDivider = ((PCLKx) / (8 * (OVR8 + 1) * (BaudRate)))
+								   	   	   - FractionalDivider = ((IntegerDivider - ((uint32_t)IntegerDivider)) * 8 * (OVR8+1)) + 0.5
+	                                     	 Where OVR8 is the "oversampling by 8 mode" configuration bit in the CR1 register. */
+
+	USH_USART_mode Mode;			/* U(S)ART modes selection. This parameter can be a value of @ref USH_USART_mode */
+
+} USH_USART_initTypeDef;
+
 #endif /* __USH_STM32F4XX_USART_H */
