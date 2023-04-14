@@ -77,4 +77,14 @@ typedef enum
 	DMA_PERIPH_SIZE_WORD		= DMA_SxCR_PSIZE_1		/* Peripheral data alignment: Word */
 } USH_DMA_periphDataSize;
 
+/**
+ * @brief DMA memory data size enumeration
+ */
+typedef enum
+{
+	DMA_MEMORY_SIZE_BYTE		= 0x00UL,				/* Memory data alignment: Byte */
+	DMA_MEMORY_SIZE_HALFWORD	= DMA_SxCR_MSIZE_0,		/* Memory data alignment: Half word */
+	DMA_MEMORY_SIZE_WORD		= DMA_SxCR_MSIZE_1		/* Memory data alignment: Word	*/
+} USH_DMA_memoryDataSize;
+
 #endif /* __USH_STM32F4XX_DMA_H */
