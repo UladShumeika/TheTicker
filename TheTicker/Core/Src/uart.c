@@ -117,3 +117,17 @@ void UART_freeRtosInit(void)
 	vQueueAddToRegistry(idleIRQHandle, "IDLE IRQ");
 #endif
 }
+
+//---------------------------------------------------------------------------
+// Callbacks
+//---------------------------------------------------------------------------
+
+/**
+ * @brief  IDLE callbacks.
+ * @param  usart - A pointer to U(S)ART peripheral to be used where x is between 1 to 8.
+ * @retval None.
+ */
+void USART_idleCallback(USART_TypeDef* usart)
+{
+	if(usart == USED_UART) osSemaphoreRelease(idleIRQHandle);
+}
