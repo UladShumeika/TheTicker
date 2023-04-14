@@ -39,4 +39,23 @@ typedef enum
 	DMA_CHANNEL_7	= 0x0E000000U		/* DMA Channel 7 */
 } USH_DMA_channels;
 
+/**
+ * @brief DMA data transfer direction enumeration
+ */
+typedef enum
+{
+	DMA_PERIPH_TO_MEMORY	= 0x00UL,			/* Peripheral to memory direction */
+	DMA_MEMORY_TO_PERIPH	= DMA_SxCR_DIR_0,	/* Memory to peripheral direction */
+	DMA_MEMORY_TO_MEMORY	= DMA_SxCR_DIR_1	/* Memory to memory direction */
+} USH_DMA_dataTransferDirection;
+
+/**
+ * @brief DMA peripheral incremented mode enumeration
+ */
+typedef enum
+{
+	DMA_PINC_ENABLE		= DMA_SxCR_PINC,	/* Peripheral increment mode enable */
+	DMA_PINC_DISABLE	= 0x00UL			/* Peripheral increment mode disable */
+} USH_DMA_periphIncrement;
+
 #endif /* __USH_STM32F4XX_DMA_H */
