@@ -92,8 +92,8 @@ static ErrorStatus initSystemClock(void)
 	while(!PWR_GetFlagStatus(PWR_FLAG_ODSWRDY));
 
 	// Configure FLASH LATENCY
-	FLASH_SetLatency(FLASH_Latency_5);
-	if((READ_BIT((FLASH->ACR), FLASH_ACR_LATENCY)) != FLASH_Latency_5)
+	MISC_FLASH_setLatency(FLASH_LATENCY_5);
+	if((READ_BIT((FLASH->ACR), FLASH_ACR_LATENCY)) != FLASH_LATENCY_5)
 	{
 		return ERROR;
 	}
@@ -158,10 +158,10 @@ static ErrorStatus initSysTick(uint32_t tickPriority)
 static void initMicrocontroller(void)
 {
 	// Configure Flash prefetch, Instruction cache, Data cache
-	FLASH_PrefetchBufferCmd(ENABLE);
-	FLASH_InstructionCacheCmd(ENABLE);
-	FLASH_DataCacheCmd(ENABLE);
+	MISC_FLASH_prefetchBufferCmd(ENABLE);
+	MISC_FLASH_instructionCacheCmd(ENABLE);
+	MISC_FLASH_dataCacheCmd(ENABLE);
 
 	// Set NVIC Group Priority to 4
-	NVIC_PriorityGroupConfig(NVIC_PriorityGroup_4);
+	MISC_NVIC_setPriorityGrouping(NVIC_PRIORITYGROUP_4);
 }
