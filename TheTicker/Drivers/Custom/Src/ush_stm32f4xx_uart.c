@@ -257,7 +257,7 @@ USH_peripheryStatus USART_receiveToIdleDMA(USART_TypeDef* usart, uint8_t* data, 
 	assert_param(IS_USART_ALL_INSTANCE(usart));
 	assert_param(IS_USART_MESSAGE_SIZE(size));
 
-	if(!(usart->SR & USART_SR_TC))
+	while(!(usart->SR & USART_SR_TC))
 	{
 		// Check timeout
 		if((MISC_timeoutGetTick() - startTicks) > TIMEOUT)
@@ -311,7 +311,7 @@ USH_peripheryStatus USART_transmitDMA(USART_TypeDef* usart, uint8_t* data, uint1
 	assert_param(IS_USART_ALL_INSTANCE(usart));
 	assert_param(IS_USART_MESSAGE_SIZE(size));
 
-	if(!(usart->SR & USART_SR_TC))
+	while(!(usart->SR & USART_SR_TC))
 	{
 		// Check timeout
 		if((MISC_timeoutGetTick() - startTicks) > TIMEOUT)
