@@ -58,4 +58,23 @@ typedef enum
 	DMA_PINC_DISABLE	= 0x00UL			/* Peripheral increment mode disable */
 } USH_DMA_periphIncrement;
 
+/**
+ * @brief DMA memory incremented mode enumeration
+ */
+typedef enum
+{
+	DMA_MINC_ENABLE		= DMA_SxCR_MINC,	/* Memory increment mode enable */
+	DMA_MINC_DISABLE	= 0x00UL			/* Memory increment mode disable */
+} USH_DMA_memoryIncrement;
+
+/**
+ * @brief DMA peripheral data size enumeration
+ */
+typedef enum
+{
+	DMA_PERIPH_SIZE_BYTE		= 0x000UL,  			/* Peripheral data alignment: Byte */
+	DMA_PERIPH_SIZE_HALFWORD	= DMA_SxCR_PSIZE_0,		/* Peripheral data alignment: Half word	*/
+	DMA_PERIPH_SIZE_WORD		= DMA_SxCR_PSIZE_1		/* Peripheral data alignment: Word */
+} USH_DMA_periphDataSize;
+
 #endif /* __USH_STM32F4XX_DMA_H */
