@@ -19,6 +19,21 @@
 #include "ush_stm32f4xx_uart.h"
 
 //---------------------------------------------------------------------------
+// Defines
+//---------------------------------------------------------------------------
+#define PREEMPTION_PRIORITY_RX		(5U)
+#define SUBPRIORITY_RX				(0)
+
+#define PREEMPTION_PRIORITY_TX		(5U)
+#define SUBPRIORITY_TX				(0)
+
+//---------------------------------------------------------------------------
+// Private variables
+//---------------------------------------------------------------------------
+USH_DMA_initTypeDef initDMA_txStructure = {0};
+USH_DMA_initTypeDef initDMA_rxStructure = {0};
+
+//---------------------------------------------------------------------------
 // Initialization functions
 //---------------------------------------------------------------------------
 
@@ -115,5 +130,54 @@ void USART_init(USH_USART_initTypeDef *initStructure)
 	}
 
 	//TODO "There are only GPIO settings for USART1 pinsPack1 and pinsPack2"
+
+	/* ----------------------- DMA configuration --------------------------- */
+
+	if(initStructure->USARTx == USART1)
+	{
+		// Enable DMA2 clock
+		RCC->AHB1ENR |= RCC_AHB1ENR_DMA2EN;
+
+		// Check TX or TX/RX mode
+		if(initStructure->Mode == USART_MODE_TX || initStructure->Mode == USART_MODE_RX_TX)
+		{
+			// DMA interrupt init
+			MISC_NVIC_SetPriority(DMA2_Stream7_IRQn, PREEMPTION_PRIORITY_TX, SUBPRIORITY_TX);
+			MISC_NVIC_EnableIRQ(DMA2_Stream7_IRQn);
+
+			initDMA_txStructure.DMAy_Streamx  			= DMA2_Stream7;
+			initDMA_txStructure.Channel 				= DMA_CHANNEL_4;
+			initDMA_txStructure.Direction 				= DMA_MEMORY_TO_PERIPH;
+			initDMA_txStructure.PeriphInc 				= DMA_PINC_DISABLE;
+			initDMA_txStructure.MemInc 			  		= DMA_MINC_ENABLE;
+			initDMA_txStructure.PeriphDataAlignment 	= DMA_PERIPH_SIZE_BYTE;
+			initDMA_txStructure.MemDataAlignment    	= DMA_MEMORY_SIZE_BYTE;
+			initDMA_txStructure.Mode 				 	= DMA_NORMAL_MODE;
+			initDMA_txStructure.Priority 			 	= DMA_PRIORITY_LOW;
+			initDMA_txStructure.FIFOMode 			 	= DMA_FIFO_MODE_DISABLE;
+			DMA_init(&initDMA_txStructure);
+		}
+
+		// Check RX or TX/RX mode
+		if(initStructure->Mode == USART_MODE_RX || initStructure->Mode == USART_MODE_RX_TX)
+		{
+			// DMA interrupt init
+			MISC_NVIC_SetPriority(DMA2_Stream2_IRQn, PREEMPTION_PRIORITY_TX, SUBPRIORITY_TX);
+			MISC_NVIC_EnableIRQ(DMA2_Stream2_IRQn);
+
+			initDMA_rxStructure.DMAy_Streamx			= DMA2_Stream2;
+			initDMA_rxStructure.Channel 				= DMA_CHANNEL_4;
+			initDMA_rxStructure.Direction 				= DMA_PERIPH_TO_MEMORY;
+			initDMA_rxStructure.PeriphInc 				= DMA_PINC_DISABLE;
+			initDMA_rxStructure.MemInc 			  		= DMA_MINC_ENABLE;
+			initDMA_rxStructure.PeriphDataAlignment 	= DMA_PERIPH_SIZE_BYTE;
+			initDMA_rxStructure.MemDataAlignment    	= DMA_MEMORY_SIZE_BYTE;
+			initDMA_rxStructure.Mode 				 	= DMA_CIRCULAR_MODE;
+			initDMA_rxStructure.Priority 			 	= DMA_PRIORITY_LOW;
+			initDMA_rxStructure.FIFOMode 			 	= DMA_FIFO_MODE_DISABLE;
+			DMA_init(&initDMA_rxStructure);
+		}
+	}
+		//TODO "There are only DMA settings for USART1"
 
 }
