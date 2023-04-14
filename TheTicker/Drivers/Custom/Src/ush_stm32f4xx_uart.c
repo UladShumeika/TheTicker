@@ -27,6 +27,9 @@
 #define PREEMPTION_PRIORITY_TX		(5U)
 #define SUBPRIORITY_TX				(0)
 
+#define PREEMPTION_PRIORITY_UART	(5U)
+#define SUBPRIORITY_UART			(0)
+
 //---------------------------------------------------------------------------
 // Private variables
 //---------------------------------------------------------------------------
@@ -187,6 +190,50 @@ void USART_init(USH_USART_initTypeDef *initStructure)
 	}
 		//TODO "There are only DMA settings for USART1"
 
+	/* ----------------------- USART configuration ------------------------- */
+
+	// Check parameters
+	assert_param(IS_UART_BAUDRATE(initStructure->BaudRate));
+
+	// Oversampling by 16, 8 data bits, parity control disabled, multiprocessor communication disabled
+	if(initStructure->Mode == USART_MODE_RX_TX)
+	{
+		tmpReg |= USART_MODE_RX_TX;
+	} else if(initStructure->Mode == USART_MODE_RX)
+	{
+		tmpReg |= USART_MODE_RX;
+	} else
+	{
+		tmpReg |= USART_MODE_TX;
+	}
+
+	initStructure->USARTx->CR1 = tmpReg;
+
+	// Synchronous mode disabled, LIN disabled, 1 stop bit
+	tmpReg = 0;
+	initStructure->USARTx->CR2 = tmpReg;
+
+	// IrDA disable, half duplex mode is not selected, flow control disabled.
+	tmpReg = initStructure->USARTx->CR3;
+	tmpReg &= 0xC0; // clear all bits except DMAT, DMAR
+	initStructure->USARTx->CR3 = tmpReg;
+
+	// Get PCLK frequency
+	if(initStructure->USARTx == USART1 || initStructure->USARTx == USART6)
+	{
+		pclk = USART_getPCLK2Freq();
+	} else
+	{
+		pclk = USART_getPCLK1Freq();
+	}
+
+	// USART BRR configuration
+	initStructure->USARTx->BRR = USART_BRRSampling16(pclk, initStructure->BaudRate);
+
+	USH_USART_ENABLE(initStructure->USARTx);
+
+	MISC_NVIC_SetPriority(USART1_IRQn, PREEMPTION_PRIORITY_UART, SUBPRIORITY_UART);
+	MISC_NVIC_EnableIRQ(USART1_IRQn);
 }
 
 //---------------------------------------------------------------------------
