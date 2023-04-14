@@ -36,7 +36,7 @@ void heartbeatTask(void const * argument)
 	/* Infinite loop */
 	for(;;)
 	{
-		GPIO_ToggleBits(PORT_LED_HEARTBEAT, PIN_LED_HEARTBEAT);
+		GPIO_toggleBits(PORT_LED_HEARTBEAT, PIN_LED_HEARTBEAT);
 		osDelay(BLICK_DELAY_HEARTBEAT);
 	}
 }
