@@ -98,4 +98,26 @@ typedef enum
 	DMA_PERIPH_CTRL_MODE	= DMA_SxCR_PFCTRL	/* Peripheral control mode */
 } USH_DMA_mode;
 
+/**
+ * @brief DMA priority enumeration
+ */
+typedef enum
+{
+	DMA_PRIORITY_LOW		= 0x0000UL,		/* Priority level: Low */
+	DMA_PRIORITY_MEDIUM		= 0x4000UL,		/* Priority level: Medium */
+	DMA_PRIORITY_HIGH		= 0x8000UL,		/* Priority level: High */
+	DMA_PRIORITY_VERY_HIGH	= 0x30000UL		/* Priority level: Low */
+} USH_DMA_priority;
+
+/**
+ * @brief DMA memory burst enumeration
+ */
+typedef enum
+{
+	DMA_MBURST_SINGLE	= 0x0000000UL,	/* Single transfer configuration */
+	DMA_MBURST_INCR4	= 0x0800000UL,	/* Incremental burst of 4 beats */
+	DMA_MBURST_INCR8	= 0x1000000UL,	/* Incremental burst of 8 beats */
+	DMA_MBURST_INCR16	= 0x1800000UL	/* Incremental burst of 16 beats */
+} USH_DMA_memoryBurst;
+
 #endif /* __USH_STM32F4XX_DMA_H */
