@@ -338,4 +338,11 @@ uint32_t DMA_getFlags(USH_DMA_initTypeDef *initStructure);
  */
 uint16_t DMA_getNumberOfData(DMA_Stream_TypeDef *DMAy_Streamx);
 
+/**
+ * @brief 	This function handles DMA interrupt request.
+ * @param 	DMAy_Streamx - A pointer to Stream peripheral to be used where y is 1 or 2 and x is from 0 to 7.
+ * @retval	None.
+ */
+void DMA_IRQHandler(USH_DMA_initTypeDef *initStructure);
+
 #endif /* __USH_STM32F4XX_DMA_H */
