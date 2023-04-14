@@ -36,6 +36,7 @@ USH_DMA_initTypeDef initDMA_rxStructure = {0};
 //---------------------------------------------------------------------------
 // Static function prototypes
 //---------------------------------------------------------------------------
+static uint16_t USART_BRRSampling16(uint32_t pclk, uint32_t bautrate);
 static uint32_t USART_getPCLK1Freq(void);
 static uint32_t USART_getPCLK2Freq(void);
 
@@ -191,6 +192,27 @@ void USART_init(USH_USART_initTypeDef *initStructure)
 //---------------------------------------------------------------------------
 // Static Functions
 //---------------------------------------------------------------------------
+
+/**
+ * @brief 	This function calculates BRR value.
+ * @note	Most of the numbers are needed in order not to use float. 50 - for rounding.
+ * @param 	pclk - PCLK frequency.
+ * @param 	baudrate - The desired baudrate.
+ * @return	BRR value.
+ */
+static uint16_t USART_BRRSampling16(uint32_t pclk, uint32_t baudrate)
+{
+	// get usartDiv
+	uint32_t usartDiv = (uint32_t)((((uint64_t)pclk) * 25U) / (((uint64_t)baudrate) * 4U));
+
+	// get mantissa
+	uint32_t mantissa = usartDiv / 100U;
+
+	// get fraction
+	uint32_t fraction = (((usartDiv - (mantissa * 100U)) * 16U) + 50U) / 100U;
+
+	return ((uint16_t)(mantissa << 4U) | fraction);
+}
 
 /**
  * @brief	This function returns PCLK1 frequency.
