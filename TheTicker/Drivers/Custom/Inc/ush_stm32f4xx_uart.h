@@ -128,4 +128,23 @@ typedef enum
 											 ((FLAG) == USART_FLAG_CTS)  || \
 											 ((FLAG) == USART_FLAG_ALL))
 
+//---------------------------------------------------------------------------
+// External function prototypes
+//---------------------------------------------------------------------------
+
+/**
+ * @brief 	This function initializes the U(S)ART peripheral according to the specified parameters in the USH_USART_initTypeDef.
+ * @note 	This function has default settings:
+ *			- Asynchronous mode;
+ *			- Word Length - 8 bits;
+ *			- Parity - None;
+ *			- Stop bits - 1;
+ *			- Hardware flow control - None;
+ *			- Over sampling - 16 samples.
+ * @param 	initStructure - A pointer to a USH_USART_initTypeDef structure that contains the configuration information
+ * 							for the specified U(S)ART peripheral.
+ * @retval	None.
+ */
+void USART_init(USH_USART_initTypeDef *initStructure);
+
 #endif /* __USH_STM32F4XX_USART_H */
