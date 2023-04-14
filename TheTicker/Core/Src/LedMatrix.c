@@ -89,10 +89,13 @@ void convertStringIntoDataForMatrixTask(void const *argument)
 			message = evt.value.p;
 			rowBuffer = message->sizeMessage;
 
+			if(!firstStart) vPortFree(outputBuffer);
 			outputBuffer = convertStringIntoDataForMatrix(message, font_ASCII);
 
 			osMutexRelease(pVarsMutexHandle);
 
+			if(!firstStart && message->message != getPointerDefaultString()) vPortFree(message->message);
+			firstStart = 0;
 		}
 	}
 }
