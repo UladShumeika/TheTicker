@@ -30,6 +30,71 @@ int _write(int file, char *ptr, int len)
 }
 
 //---------------------------------------------------------------------------
+// The section of NVIC
+//---------------------------------------------------------------------------
+
+/**
+  * @brief  This function sets the priority of an interrupt.
+  * @param  IRQn External interrupt number.
+  *         This parameter can be an enumerator of IRQn_Type enumeration
+  *         (For the complete STM32 Devices IRQ Channels list, please refer to the appropriate CMSIS device file (stm32f4xxxx.h))
+  * @param  PreemptPriority - The preemption priority for the IRQn channel.
+  *         This parameter can be a value between 0 and 15.
+  *         A lower priority value indicates a higher priority.
+  * @param  SubPriority - The subpriority level for the IRQ channel.
+  *         This parameter can be a value between 0 and 15.
+  *         A lower priority value indicates a higher priority.
+  * @retval	None.
+  */
+void MISC_NVIC_SetPriority(IRQn_Type IRQn, uint32_t preemptPriority, uint32_t subPriority)
+{
+  uint32_t prioritygroup = 0x00U;
+
+  // Check the parameters
+  assert_param(IS_MISC_NVIC_DEVICE_IRQ(IRQn));
+  assert_param(IS_MISC_NVIC_SUB_PRIORITY(subPriority));
+  assert_param(IS_MISC_NVIC_PREEMPTION_PRIORITY(preemptPriority));
+
+  prioritygroup = NVIC_GetPriorityGrouping();
+
+  NVIC_SetPriority(IRQn, NVIC_EncodePriority(prioritygroup, preemptPriority, subPriority));
+}
+
+/**
+  * @brief  This function enables a device specific interrupt in the NVIC interrupt controller.
+  * @note   To configure interrupts priority correctly, the NVIC_PriorityGroupConfig()
+  *         function should be called before.
+  * @param  IRQn - The external interrupt number.
+  *         This parameter can be an enumerator of IRQn_Type enumeration
+  *         (For the complete STM32 Devices IRQ Channels list, please refer to the appropriate CMSIS device file (stm32f4xxxx.h))
+  * @retval None.
+  */
+void MISC_NVIC_EnableIRQ(IRQn_Type IRQn)
+{
+	// Check the parameters
+	assert_param(IS_MISC_NVIC_DEVICE_IRQ(IRQn));
+
+	// Enable interrupt
+	NVIC_EnableIRQ(IRQn);
+}
+
+/**
+  * @brief  This function disables a device specific interrupt in the NVIC interrupt controller.
+  * @param  IRQn - The external interrupt number.
+  *         This parameter can be an enumerator of IRQn_Type enumeration
+  *         (For the complete STM32 Devices IRQ Channels list, please refer to the appropriate CMSIS device file (stm32f4xxxx.h))
+  * @retval None.
+  */
+void MISC_NVIC_DisableIRQ(IRQn_Type IRQn)
+{
+  // Check the parameters
+  assert_param(IS_MISC_NVIC_DEVICE_IRQ(IRQn));
+
+  // Disable interrupt
+  NVIC_DisableIRQ(IRQn);
+}
+
+//---------------------------------------------------------------------------
 // The section of FLASH memory
 //---------------------------------------------------------------------------
 
