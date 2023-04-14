@@ -21,6 +21,19 @@
 #define IS_FUNCTIONAL_STATE(STATE) 		(((STATE) == DISABLE) || ((STATE) == ENABLE))
 
 //---------------------------------------------------------------------------
+// Structures and enumerations
+//---------------------------------------------------------------------------
+
+/**
+ * @brief Periphery status enumeration.
+ */
+typedef enum
+{
+	STATUS_TIMEOUT		= 0,				/* Periphery status timeout */
+	STATUS_OK	 		= !STATUS_TIMEOUT	/* Periphery status ok */
+} USH_peripheryStatus;
+
+//---------------------------------------------------------------------------
 // Includes
 //---------------------------------------------------------------------------
 #include "ush_stm32f4xx_misc.h"
