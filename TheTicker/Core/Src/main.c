@@ -1,8 +1,13 @@
 /*
- * The pet project -
+ * The pet project - The ticker
  *
- *  Created on: Jan 13, 2023
+ * 	Created on: Jan 13, 2023
  *      Author: Ulad Shumeika
+ *
+ * This project is educational. Its goal is to gain hands-on experience with
+ * interfaces such as SPI and USART. The main task was to develop a device
+ * that receives data via UART and outputs to a 4-bit matrix under
+ * the control of the MAX7219 in a creeping line mode.
  */
 
 //---------------------------------------------------------------------------
@@ -38,15 +43,17 @@ static ErrorStatus initSystemClock(void);
   */
 int main(void)
 {
-	uint8_t status;
-
+	// Initialize Flash and cashes
 	initMicrocontroller();
 
-	status = initSystemClock();
-	if(!status);
+	// Initialize system clock
+	initSystemClock();
 
-	status = initSysTick(SYS_TICK_PRIORITY);
-	if(!status);
+	// Initialize sysTick timer
+	initSysTick(SYS_TICK_PRIORITY);
+
+	// Initialize timeout timer
+	MISC_timeoutTimer();
 
 	// Call init function for freertos objects (in freertos.c)
 	freeRtosInit();
@@ -92,8 +99,8 @@ static ErrorStatus initSystemClock(void)
 	while(!PWR_GetFlagStatus(PWR_FLAG_ODSWRDY));
 
 	// Configure FLASH LATENCY
-	FLASH_SetLatency(FLASH_Latency_5);
-	if((READ_BIT((FLASH->ACR), FLASH_ACR_LATENCY)) != FLASH_Latency_5)
+	MISC_FLASH_setLatency(FLASH_LATENCY_5);
+	if((READ_BIT((FLASH->ACR), FLASH_ACR_LATENCY)) != FLASH_LATENCY_5)
 	{
 		return ERROR;
 	}
@@ -158,24 +165,10 @@ static ErrorStatus initSysTick(uint32_t tickPriority)
 static void initMicrocontroller(void)
 {
 	// Configure Flash prefetch, Instruction cache, Data cache
-	FLASH_PrefetchBufferCmd(ENABLE);
-	FLASH_InstructionCacheCmd(ENABLE);
-	FLASH_DataCacheCmd(ENABLE);
+	MISC_FLASH_prefetchBufferCmd(ENABLE);
+	MISC_FLASH_instructionCacheCmd(ENABLE);
+	MISC_FLASH_dataCacheCmd(ENABLE);
 
 	// Set NVIC Group Priority to 4
-	NVIC_PriorityGroupConfig(NVIC_PriorityGroup_4);
+	MISC_NVIC_setPriorityGrouping(NVIC_PRIORITYGROUP_4);
 }
-
-#ifdef  USE_FULL_ASSERT
-/**
-  * @brief  Reports the name of the source file and the source line number
-  *         where the assert_param error has occurred.
-  * @param  file: pointer to the source file name
-  * @param  line: assert_param error line source number
-  * @retval None
-  */
-void assert_failed(uint8_t *file, uint32_t line)
-{
-	printf("Wrong parameters value: file %s on line %ld\r\n", file, line);
-}
-#endif /* USE_FULL_ASSERT */

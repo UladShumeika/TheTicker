@@ -7,6 +7,9 @@
 //---------------------------------------------------------------------------
 // External variables
 //---------------------------------------------------------------------------
+extern USH_DMA_initTypeDef initDMA_txStructure;
+extern USH_DMA_initTypeDef initDMA_rxStructure;
+extern USH_USART_initTypeDef uart_structure;
 
 /******************************************************************************/
 /*           Cortex-M4 Processor Interruption and Exception Handlers          */
@@ -83,33 +86,41 @@ void DebugMon_Handler(void)
 /******************************************************************************/
 
 /**
-  * @brief This function handles TIM7 global interrupt.
-  */
-void TIM7_IRQHandler(void)
-{
-
-}
-
-/**
   * @brief This function handles DMA1 stream0 global interrupt.
   */
-void DMA1_Stream0_IRQHandler(void)
+void DMA2_Stream7_IRQHandler(void)
 {
-
+	DMA_IRQHandler(&initDMA_txStructure);
 }
 
 /**
   * @brief This function handles DMA1 stream7 global interrupt.
   */
-void DMA1_Stream7_IRQHandler(void)
+void DMA2_Stream2_IRQHandler(void)
 {
-
+	DMA_IRQHandler(&initDMA_rxStructure);
 }
 
 /**
-  * @brief This function handles UART5 global interrupt.
+  * @brief This function handles USART1 global interrupt.
   */
-void UART5_IRQHandler(void)
+void USART1_IRQHandler(void)
 {
+	USART_IRQHandler(&uart_structure);
+}
 
+/**
+  * @brief This function handles TIM8 trigger and commutation interrupts and TIM14 global interrupt.
+  */
+void TIM8_TRG_COM_TIM14_IRQHandler(void)
+{
+	if((TIM14->SR & TIM_SR_UIF) == TIM_SR_UIF)
+	{
+		if((TIM14->DIER & TIM_DIER_UIE) == TIM_DIER_UIE)
+		{
+			TIM14->SR = ~TIM_DIER_UIE;
+
+			MISC_timeoutTimerIncTick();
+		}
+	}
 }
