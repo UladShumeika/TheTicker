@@ -96,4 +96,36 @@ typedef enum
  */
 #define USH_USART_DISABLE(HANDLE)			((HANDLE)->CR1 &= ~USART_CR1_UE);
 
+#define IS_USART_ALL_INSTANCE(INSTANCE)  	(((INSTANCE) == USART1)	|| \
+										 	 ((INSTANCE) == USART2)	|| \
+											 ((INSTANCE) == USART3)	|| \
+											 ((INSTANCE) == UART4)	|| \
+											 ((INSTANCE) == UART5)	|| \
+											 ((INSTANCE) == USART6)	|| \
+											 ((INSTANCE) == UART7)  || \
+											 ((INSTANCE) == UART8))
+
+#define IS_USART_PINSPACK(PINSPACK)			(((PINSPACK) == USART_PINSPACK_1) || \
+											 ((PINSPACK) == USART_PINSPACK_2))
+
+#define IS_USART_BAUDRATE(BAUDRATE)			(((BAUDRATE) <= 10500000U))
+
+#define IS_USART_MODE(MODE)					(((MODE) == USART_MODE_RX) || \
+											 ((MODE) == USART_MODE_TX) || \
+											 ((MODE) == USART_MODE_RX_TX))
+
+#define IS_USART_MESSAGE_SIZE(SIZE)			(((SIZE) != 0x00U))
+
+#define IS_USART_CLEAR_FLAGS(FLAG)			(((FLAG) == USART_FLAG_PE)   || \
+											 ((FLAG) == USART_FLAG_FE)   || \
+											 ((FLAG) == USART_FLAG_NE)   || \
+											 ((FLAG) == USART_FLAG_ORE)  || \
+											 ((FLAG) == USART_FLAG_IDLE) || \
+											 ((FLAG) == USART_FLAG_RXNE) || \
+											 ((FLAG) == USART_FLAG_TC)   || \
+											 ((FLAG) == USART_FLAG_TXE)  || \
+											 ((FLAG) == USART_FLAG_LBD)  || \
+											 ((FLAG) == USART_FLAG_CTS)  || \
+											 ((FLAG) == USART_FLAG_ALL))
+
 #endif /* __USH_STM32F4XX_USART_H */
