@@ -10,6 +10,53 @@
   * 	  the functions that are needed for the current project.
   ******************************************************************************
   */
+
+/* The U(S)ART setting is based on the choice of a set of pins. Also sending and receiving data via U(S)ART always uses DMA.
+ * The stream and channel numbers for a particular U(S)ART are listed below.
+ *
+ * The set of pins.
+ * 		  	  |    pinsPack_1	|    pinsPack_2   |
+ * U(S)ARTx___|___TX___|___RX___|___TX___|___RX___|
+ * 		      |		   |		|		 |		  |
+ * USART1	  |  PA9   |  PA10  |  PB6   |  PB7   |
+ * USART2	  |	 PA2   |  PA3	|  PD5   |  PD6	  |
+ * USART3	  |	 PB10  |  PB11	|  PC10  |  PC11  |
+ * UART4	  |	 PA0   |  PA1	|  PC10  |  PC11  |
+ * UART5	  |	 PC12  |  PD2	|  ---   |  ---	  |
+ * USART6	  |	 PC6   |  PC7	|  PG14  |  PG9   |
+ * UART7	  |	 PE8   |  PE7   |  PF7	 |  PF6   |
+ * UART8	  |  PE1   |  PE0   |  ---   |  ---   |
+ *
+ * DMA streams and channels.
+ *     	      |		            	    |
+ * U(S)ARTx___|_DMAx Stream x Channel x_|
+ * 		      |			                |
+ * USART1_TX  |      DMA2 St.7 Ch.4     |
+ * USART1_RX  |      DMA2 St.2 Ch.4     |
+ * 		      |						    |
+ * USART2_TX  |      DMA1 St.6 Ch.4     |
+ * USART2_RX  |      DMA1 St.5 Ch.4     |
+ * 		      |						    |
+ * USART3_TX  |      DMA1 St.3 Ch.4     |
+ * USART3_RX  |      DMA1 St.1 Ch.4     |
+ * 		      |							|
+ * UART4_TX   |      DMA1 St.4 Ch.4     |
+ * UART4_RX   |      DMA1 St.2 Ch.4     |
+ * 		      |						    |
+ * UART5_TX   | 	 DMA1 St.7 Ch.4     |
+ * UART5_RX   |      DMA1 St.0 Ch.4     |
+ * 		      |						    |
+ * USART6_TX  | 	 DMA2 St.6 Ch.5     |
+ * USART6_RX  | 	 DMA2 St.1 Ch.5     |
+ *			  |							|
+ * UART7_TX	  | 	 DMA1 St.1 Ch.5     |
+ * UART7_RX	  | 	 DMA1 St.3 Ch.5     |
+ *			  |							|
+ * UART8_TX   | 	 DMA1 St.0 Ch.5     |
+ * UART8_RX   | 	 DMA1 St.6 Ch.5     |
+ *
+ */
+
 //---------------------------------------------------------------------------
 // Define to prevent recursive inclusion
 //---------------------------------------------------------------------------
