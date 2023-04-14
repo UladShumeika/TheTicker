@@ -52,20 +52,20 @@ void heartbeatTask(void const * argument)
   */
 static void HEARTBEAT_gpioInit(void)
 {
-	GPIO_InitTypeDef GPIO_InitStruct = {0};
+	USH_GPIO_initTypeDef GPIO_InitStruct = {0};
 
 	RCC_AHB1PeriphClockCmd(RCC_AHB1ENR_GPIOGEN, ENABLE);
 
 	// Configure GPIO pins : PIN_LED_HEARTBEAT
-	GPIO_InitStruct.GPIO_Pin 			= PIN_LED_HEARTBEAT;
-	GPIO_InitStruct.GPIO_Mode			= GPIO_Mode_OUT;
-	GPIO_InitStruct.GPIO_Speed 			= GPIO_High_Speed;
-	GPIO_InitStruct.GPIO_OType 			= GPIO_OType_PP;
-	GPIO_InitStruct.GPIO_PuPd			= GPIO_PuPd_DOWN;
-	GPIO_Init(PORT_LED_HEARTBEAT, &GPIO_InitStruct);
+	GPIO_InitStruct.GPIOx				= PORT_LED_HEARTBEAT;
+	GPIO_InitStruct.Pin					= PIN_LED_HEARTBEAT;
+	GPIO_InitStruct.Mode				= GPIO_MODE_OUTPUT_PP;
+	GPIO_InitStruct.Pull				= GPIO_PULLDOWN;
+	GPIO_InitStruct.Speed				= GPIO_SPEED_VERY_HIGH;
+	GPIO_init(&GPIO_InitStruct);
 
 	// Configure GPIO pin Output Level
-	GPIO_ResetBits(PORT_LED_HEARTBEAT, PIN_LED_HEARTBEAT);
+	GPIO_resetBits(PORT_LED_HEARTBEAT, PIN_LED_HEARTBEAT);
 }
 
 /**
