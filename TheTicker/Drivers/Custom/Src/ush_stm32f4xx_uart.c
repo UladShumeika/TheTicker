@@ -237,6 +237,35 @@ void USART_init(USH_USART_initTypeDef *initStructure)
 }
 
 //---------------------------------------------------------------------------
+// Library Functions
+//---------------------------------------------------------------------------
+
+/**
+ * @brief 	This function clears U(S)ART flags.
+ * @param 	usart - A pointer to U(S)ART peripheral to be used where x is between 1 to 8.
+ * @param 	flags - U(S)ART flags. This parameter can be a value of @ref USH_USART_flags.
+ * @retval	None.
+ */
+void USART_clearFlags(USART_TypeDef* usart, USH_USART_flags flags)
+{
+	uint16_t temp = 0;
+
+	// Check parameters
+	assert_param(IS_USART_ALL_INSTANCE(usart));
+	assert_param(IS_USART_CLEAR_FLAGS(flags));
+
+	if((flags == USART_FLAG_TXE) || (flags < USART_FLAG_RXNE))
+	{
+		temp = usart->SR;
+		temp = usart->DR;
+		(void)temp;
+	} else
+	{
+		usart->SR = ~(flags);
+	}
+}
+
+//---------------------------------------------------------------------------
 // Static Functions
 //---------------------------------------------------------------------------
 
