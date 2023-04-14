@@ -17,6 +17,11 @@
 #include <stdio.h>
 
 //---------------------------------------------------------------------------
+// Variables
+//---------------------------------------------------------------------------
+static volatile uint32_t timeoutTicks = 0;
+
+//---------------------------------------------------------------------------
 // Redefine printf function
 //---------------------------------------------------------------------------
 int _write(int file, char *ptr, int len)
@@ -27,6 +32,62 @@ int _write(int file, char *ptr, int len)
 	}
 
   return len;
+}
+
+//---------------------------------------------------------------------------
+// The section of timeout timer
+//---------------------------------------------------------------------------
+
+/**
+ * @brief 	This function sets up TIM14 timer to check for timeout.
+ * @retval	None.
+ */
+void MISC_timeoutTimer(void)
+{
+	// Enable TIM14 clock
+	RCC->APB1ENR |= RCC_APB1ENR_TIM14EN;
+
+	// Set the clock division
+	TIM14->CR1 &= ~TIM_CR1_CKD;
+
+	// Set the auto-reload preload
+	TIM14->CR1 &= ~TIM_CR1_ARPE;
+
+	// Set the Autoreload value
+	TIM14->ARR = (uint32_t)((500U) - 1U);
+
+	// Set the Prescaler value
+	TIM14->PSC = 180 - 1;
+
+	TIM14->EGR = TIM_EGR_UG;
+
+	// Enable the TIM update interrupt
+	TIM14->DIER |= TIM_DIER_UIE;
+
+	// Enable TIM14
+	TIM14->CR1 |= TIM_CR1_CEN;
+
+	// Enable the TIM14 global interrupt
+	MISC_NVIC_EnableIRQ(TIM8_TRG_COM_TIM14_IRQn);
+	MISC_NVIC_SetPriority(TIM8_TRG_COM_TIM14_IRQn, MIN_PRIORITY, 0U);
+}
+
+/**
+ * @brief 	This function increments a variable "timeoutTicks".
+ * @retval	None.
+ */
+void MISC_timeoutTimerIncTick(void)
+{
+	timeoutTicks++;
+}
+
+/**
+ * @brief 	This function returns "timeoutTicks" variable value.
+ * @retval	None.
+ */
+uint32_t MISC_timeoutGetTick(void)
+{
+	return timeoutTicks;
 }
 
 //---------------------------------------------------------------------------

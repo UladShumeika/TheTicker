@@ -21,6 +21,11 @@
 #include "stm32f4xx.h"
 
 //---------------------------------------------------------------------------
+// Defines
+//---------------------------------------------------------------------------
+#define MIN_PRIORITY	(15U)
+
+//---------------------------------------------------------------------------
 // Structures and enumerations
 //---------------------------------------------------------------------------
 
@@ -76,6 +81,24 @@ typedef enum
 //---------------------------------------------------------------------------
 // External function prototypes
 //---------------------------------------------------------------------------
+
+/**
+ * @brief 	This function sets up TIM14 timer to check for timeout.
+ * @retval	None.
+ */
+void MISC_timeoutTimer(void);
+
+/**
+ * @brief 	This function increments a variable "timeoutTicks".
+ * @retval	None.
+ */
+void MISC_timeoutTimerIncTick(void);
+
+/**
+ * @brief 	This function returns "timeoutTicks" variable value.
+ * @retval	None.
+ */
+uint32_t MISC_timeoutGetTick(void);
 
 /**
   * @brief  This function sets the priority of an interrupt.
