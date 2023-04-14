@@ -64,4 +64,22 @@ typedef struct
 
 } USH_USART_initTypeDef;
 
+/**
+ * @brief U(S)ART flags enumeration
+ */
+typedef enum
+{
+	USART_FLAG_PE		= USART_SR_PE,		/* Parity error flag */
+	USART_FLAG_FE		= USART_SR_FE,		/* Framing error flag */
+	USART_FLAG_NE		= USART_SR_NE,		/* Noise detected flag */
+	USART_FLAG_ORE		= USART_SR_ORE,		/* Overrun error */
+	USART_FLAG_IDLE		= USART_SR_IDLE, 	/* IDLE line detected */
+	USART_FLAG_RXNE		= USART_SR_RXNE,	/* Read data register not empty flag */
+	USART_FLAG_TC		= USART_SR_TC,		/* Transmission complete flag */
+	USART_FLAG_TXE		= USART_SR_TXE,		/* Transmit data register empty */
+	USART_FLAG_LBD		= USART_SR_LBD,		/* LIN break detection flag */
+	USART_FLAG_CTS		= USART_SR_CTS,		/* CTS flag */
+	USART_FLAG_ALL		= 0x360U			/* CTS + LBD + TC + RXNE flags */
+} USH_USART_flags;
+
 #endif /* __USH_STM32F4XX_USART_H */
