@@ -1,48 +1,31 @@
 //---------------------------------------------------------------------------
 // Define to prevent recursive inclusion
 //---------------------------------------------------------------------------
-#ifndef __MAIN_H
-#define __MAIN_H
-
-#ifdef __cplusplus
-extern "C" {
-#endif
+#ifndef __UART_H
+#define __UART_H
 
 //---------------------------------------------------------------------------
 // Includes
 //---------------------------------------------------------------------------
-#include "stm32f4xx.h"
-#include "cmsis_os.h"
+#include "main.h"
 
 //---------------------------------------------------------------------------
-// Defines
+// Typedefs and enumerations
 //---------------------------------------------------------------------------
-#define HEARTBEAT
-#define LEDMATRIX
-#define UART
 
-//---------------------------------------------------------------------------
-// Module's includes
-//---------------------------------------------------------------------------
-#ifdef HEARTBEAT
-	#include "heartbeat.h"
-#endif
-
-#ifdef LEDMATRIX
-	#include "LedMatrix.h"
-#endif
-
-#ifdef UART
-	#include "uart.h"
-#endif
+/**
+ * @brief UART message structure
+ */
+typedef struct
+{
+	uint8_t *message;		/* The pointer to received message */
+	uint8_t sizeMessage;	/* The size of received message */
+} UART_messageTypeDef;
 
 //---------------------------------------------------------------------------
 // External function prototypes
 //---------------------------------------------------------------------------
-void freeRtosInit(void);
+void UART_freeRtosInit(void);
+void idleIRQTask(void const *argument);
 
-#ifdef __cplusplus
-}
-#endif
-
-#endif /* __MAIN_H */
+#endif /* __UART_H */
