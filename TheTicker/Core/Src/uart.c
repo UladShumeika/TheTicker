@@ -131,6 +131,19 @@ void UART_freeRtosInit(void)
 }
 
 //---------------------------------------------------------------------------
+// Others functions
+//---------------------------------------------------------------------------
+
+/**
+ * @brief 	This function returns a pointer to the default string.
+ * @retval	A pointer to the default string.
+ */
+uint8_t* getPointerDefaultString(void)
+{
+	return (uint8_t*)defaultString;
+}
+
+//---------------------------------------------------------------------------
 // Callbacks
 //---------------------------------------------------------------------------
 
