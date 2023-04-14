@@ -189,4 +189,9 @@ DMA_Stream_TypeDef* USART_getDmaStream(USART_TypeDef* usart, USH_USART_mode mode
  */
 void USART_IRQHandler(USH_USART_initTypeDef *initStructure);
 
+//---------------------------------------------------------------------------
+// DMA interrupt user callbacks
+//---------------------------------------------------------------------------
+__WEAK void USART_idleCallback(USART_TypeDef* usart);
+
 #endif /* __USH_STM32F4XX_USART_H */

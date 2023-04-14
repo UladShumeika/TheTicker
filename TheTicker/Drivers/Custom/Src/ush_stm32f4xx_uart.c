@@ -491,3 +491,19 @@ static uint32_t USART_getPCLK2Freq(void)
 {
 	return (SystemCoreClock >> APBPrescTable[(RCC->CFGR & RCC_CFGR_PPRE2) >> 13]); // 13 - a position in CFGR register
 }
+
+//---------------------------------------------------------------------------
+// DMA interrupt user callbacks
+//---------------------------------------------------------------------------
+
+/**
+  * @brief  IDLE callbacks.
+  * 		NOTE: This function should not be modified, when the callback is needed,
+           	   	  the USART_idleCallback could be implemented in the user file.
+  * @param  usart - A pointer to U(S)ART peripheral to be used where x is between 1 to 8.
+  * @retval None.
+  */
+__WEAK void USART_idleCallback(USART_TypeDef* usart)
+{
+	(void)usart;
+}
