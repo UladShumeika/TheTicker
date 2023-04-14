@@ -154,4 +154,13 @@ void USART_init(USH_USART_initTypeDef *initStructure);
  */
 void USART_clearFlags(USART_TypeDef* usart, USH_USART_flags flags);
 
+/**
+ * @brief 	This function returns a pointer to DMA stream depending on the received pointer to U(S)ART.
+ * @param 	usart - A pointer to U(S)ART peripheral to be used where x is between 1 to 8.
+ * @param 	mode - U(S)ART modes selection. This parameter can be a value of @ref USH_USART_mode. if mode is USART_MODE_RX_TX than the function
+ * 				   will use mode like USART_MODE_TX.
+ * @return	A pointer to DMA stream.
+ */
+DMA_Stream_TypeDef* USART_getDmaStream(USART_TypeDef* usart, USH_USART_mode mode);
+
 #endif /* __USH_STM32F4XX_USART_H */

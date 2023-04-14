@@ -265,6 +265,47 @@ void USART_clearFlags(USART_TypeDef* usart, USH_USART_flags flags)
 	}
 }
 
+/**
+ * @brief 	This function returns a pointer to DMA stream depending on the received pointer to U(S)ART.
+ * @param 	usart - A pointer to U(S)ART peripheral to be used where x is between 1 to 8.
+ * @param 	mode - U(S)ART modes selection. This parameter can be a value of @ref USH_USART_mode. if mode is USART_MODE_RX_TX than the function
+ * 				   will use mode like USART_MODE_TX.
+ * @return	A pointer to DMA stream.
+ */
+DMA_Stream_TypeDef* USART_getDmaStream(USART_TypeDef* usart, USH_USART_mode mode)
+{
+	DMA_Stream_TypeDef* DMA_Stream;
+
+	if(mode == USART_MODE_RX_TX) mode = USART_MODE_TX;
+
+	if(usart == USART1)
+	{
+		DMA_Stream = (mode == USART_MODE_TX) ? DMA2_Stream7 : DMA2_Stream2;
+	} else if(usart == USART2)
+		   {
+		   	   DMA_Stream = (mode == USART_MODE_TX) ? DMA1_Stream6 : DMA1_Stream5;
+		   } else if(usart == USART3)
+		   	   	  {
+			   	  	  DMA_Stream = (mode == USART_MODE_TX) ? DMA1_Stream3 : DMA1_Stream1;
+		   	   	  } else if(usart == UART4)
+		   	   	  	  	 {
+		   	   		  	 	 DMA_Stream = (mode == USART_MODE_TX) ? DMA1_Stream4 : DMA1_Stream2;
+		   	   	  	  	 } else if(usart == UART5)
+		   	   	  	  	 	 	{
+		   	   	  	  		 		DMA_Stream = (mode == USART_MODE_TX) ? DMA1_Stream7 : DMA1_Stream0;
+		   	   	  	  	 	 	} else if(usart == USART6)
+		   	   	  	  	 	 		   {
+		   	   	  	  	 	 		   	   DMA_Stream = (mode == USART_MODE_TX) ? DMA2_Stream6 : DMA2_Stream1;
+		   	   	  	  	 	 		   } else if(usart == UART7)
+		   	   	  	  	 	 		   	   	  {
+		   	   	  	  	 	 			   	   	  DMA_Stream = (mode == USART_MODE_TX) ? DMA1_Stream1 : DMA1_Stream3;
+		   	   	  	  	 	 		   	   	  } else	// UART8
+		   	   	  	  	 	 		   	   	  {
+		   	   	  	  	 	 		   	   		  DMA_Stream = (mode == USART_MODE_TX) ? DMA1_Stream0 : DMA1_Stream6;
+		   	   	  	  	 	 		   	   	  }
+	return DMA_Stream;
+}
+
 //---------------------------------------------------------------------------
 // Static Functions
 //---------------------------------------------------------------------------
