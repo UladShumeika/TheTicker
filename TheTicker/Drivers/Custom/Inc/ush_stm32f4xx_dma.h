@@ -120,4 +120,24 @@ typedef enum
 	DMA_MBURST_INCR16	= 0x1800000UL	/* Incremental burst of 16 beats */
 } USH_DMA_memoryBurst;
 
+/**
+ * @brief DMA peripheral burst enumeration
+ */
+typedef enum
+{
+	DMA_PBURST_SINGLE	= 0x000000UL,	/* Single transfer configuration */
+	DMA_PBURST_INCR4	= 0x200000UL,	/* Incremental burst of 4 beats */
+	DMA_PBURST_INCR8	= 0x400000UL,	/* Incremental burst of 8 beats */
+	DMA_PBURST_INCR16	= 0x600000UL	/* Incremental burst of 16 beats */
+} USH_DMA_periphBurst;
+
+/**
+ * @brief DMA FIFO mode enumeration
+ */
+typedef enum
+{
+	DMA_FIFO_MODE_ENABLE	= 0x04U,	/* FIFO mode enable */
+	DMA_FIFO_MODE_DISABLE	= 0x00U		/* FIFO mode disable */
+} USH_DMA_fifoMode;
+
 #endif /* __USH_STM32F4XX_DMA_H */
