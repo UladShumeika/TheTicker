@@ -48,6 +48,32 @@ typedef enum
 } USH_FLASH_latency;
 
 //---------------------------------------------------------------------------
+// Macros
+//---------------------------------------------------------------------------
+#define IS_MISC_NVIC_PREEMPTION_PRIORITY(PRIORITY)  	((PRIORITY) < 16U)
+
+#define IS_MISC_NVIC_SUB_PRIORITY(PRIORITY)  			((PRIORITY) < 16U)
+
+#define IS_MISC_NVIC_DEVICE_IRQ(IRQ)                	((IRQ) >= (IRQn_Type)0x00U)
+
+#define IS_MISC_FLASH_LATENCY(LATENCY)					(((LATENCY) == FLASH_LATENCY_0) || \
+														 ((LATENCY) == FLASH_LATENCY_1) || \
+														 ((LATENCY) == FLASH_LATENCY_2) || \
+														 ((LATENCY) == FLASH_LATENCY_3) || \
+														 ((LATENCY) == FLASH_LATENCY_4) || \
+														 ((LATENCY) == FLASH_LATENCY_5) || \
+														 ((LATENCY) == FLASH_LATENCY_6) || \
+														 ((LATENCY) == FLASH_LATENCY_7) || \
+														 ((LATENCY) == FLASH_LATENCY_8) || \
+														 ((LATENCY) == FLASH_LATENCY_9) || \
+														 ((LATENCY) == FLASH_LATENCY_10) || \
+														 ((LATENCY) == FLASH_LATENCY_11) || \
+														 ((LATENCY) == FLASH_LATENCY_12) || \
+														 ((LATENCY) == FLASH_LATENCY_13) || \
+														 ((LATENCY) == FLASH_LATENCY_14) || \
+														 ((LATENCY) == FLASH_LATENCY_15))
+
+//---------------------------------------------------------------------------
 // External function prototypes
 //---------------------------------------------------------------------------
 
