@@ -82,4 +82,18 @@ typedef enum
 	USART_FLAG_ALL		= 0x360U			/* CTS + LBD + TC + RXNE flags */
 } USH_USART_flags;
 
+//---------------------------------------------------------------------------
+// Macros
+//---------------------------------------------------------------------------
+
+/**
+ * @brief	Enable U(S)ART
+ */
+#define USH_USART_ENABLE(HANDLE)			((HANDLE)->CR1 |= USART_CR1_UE);
+
+/**
+ * @brief	Disable U(S)ART
+ */
+#define USH_USART_DISABLE(HANDLE)			((HANDLE)->CR1 &= ~USART_CR1_UE);
+
 #endif /* __USH_STM32F4XX_USART_H */
