@@ -38,6 +38,8 @@ USH_USART_initTypeDef uart_structure = {0};
 //---------------------------------------------------------------------------
 static uint8_t rxBuffer[RX_BUFFER_SIZE];
 static const uint8_t defaultString[] = "Hi, please enter your message. ";
+static const uint8_t welcomeString[] = "Hi, please enter your message.\r\n";
+static const uint8_t noteMessage[] = "NOTE: Every message has to have only one system symbol (\\n).\r\n";
 
 //---------------------------------------------------------------------------
 // FreeRTOS's threads
@@ -56,6 +58,8 @@ void idleIRQTask(void const *argument)
 	UART_init();
 
 	USART_receiveToIdleDMA(USED_UART, rxBuffer, sizeof(rxBuffer));
+	USART_transmitDMA(USED_UART, (uint8_t*)welcomeString, strlen((char*)welcomeString));
+	USART_transmitDMA(USED_UART, (uint8_t*)noteMessage, strlen((char*)noteMessage));
 
 	/* Infinite loop */
 	for(;;)
