@@ -38,16 +38,18 @@ static ErrorStatus initSystemClock(void);
   */
 int main(void)
 {
-	uint8_t status;
-
+	// Initialize Flash and cashes
 	initMicrocontroller();
 
-	status = initSystemClock();
-	if(!status);
+	// Initialize system clock
+	initSystemClock();
 
-	status = initSysTick(SYS_TICK_PRIORITY);
-	if(!status);
+	// Initialize sysTick timer
+	initSysTick(SYS_TICK_PRIORITY);
 
+	// Initialize timeout timer
+	MISC_timeoutTimer();
+	printf("Hello");
 	// Call init function for freertos objects (in freertos.c)
 	freeRtosInit();
 
