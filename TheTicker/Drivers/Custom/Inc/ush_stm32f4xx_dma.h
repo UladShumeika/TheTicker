@@ -151,4 +151,53 @@ typedef enum
 	DMA_FIFO_THRESHOLD_FULL			= 0x03U		/* FIFO threshold full configuration */
 } USH_DMA_fifoThresholdLevel;
 
+/**
+  * @brief DMA initialization structure definition
+  */
+typedef struct
+{
+	DMA_Stream_TypeDef *DMAy_Streamx;			/* A pointer to Stream peripheral to be used where y is 1 or 2 and x is from 0 to 7. */
+
+	USH_DMA_channels Channel;					/* A channel to be used for the specified stream.
+											   	   This parameter can be a value of @ref USH_DMA_channels */
+
+	USH_DMA_dataTransferDirection Direction;	/* A direction to be used for the specified stream.
+											   	   This parameter can be a value of @ref USH_DMA_dataTransferDirection */
+
+	USH_DMA_periphIncrement PeriphInc;			/* This parameter specifies whether the peripheral address register should
+	                                               be incremented or not. This parameter can be a value of @ref USH_DMA_periphIncrement */
+
+	USH_DMA_memoryIncrement MemInc;				/* This parameter specifies whether the memory address register should
+	 	 	 	 	 	 	 	 	 	 	   	   be incremented or not. This parameter can be a value of @ref USH_DMA_memoryIncrement */
+
+	USH_DMA_periphDataSize PeriphDataAlignment;	/* This parameter specifies the peripheral data width.
+	 	 	 	 	 	 	 	 	 	 	   	   This parameter can be a value of @ref USH_DMA_periphDataSize */
+
+	USH_DMA_memoryDataSize MemDataAlignment;	/* This parameter specifies the memory data width.
+											       This parameter can be a value of @ref USH_DMA_memoryDataSize */
+
+	USH_DMA_mode Mode;							/* This parameter specifies the operation mode of the selected stream.
+	 	 	 	 	 	 	 	 	 	 	   	   This parameter can be a value of @ref USH_DMA_mode */
+
+	USH_DMA_priority Priority;					/* This parameter specifies the software priority for the selected stream.
+	 	 	 	 	 	 	 	 	 	 	   	   This parameter can be a value of @ref USH_DMA_priority */
+
+	USH_DMA_memoryBurst MemBurst;				/* This parameter specifies the burst transfer configuration for
+											   	   the memory transfers. It specifies the amount of data to be
+											   	   transferred in a single non interruptible transaction.
+											   	   This parameter can be a value of @ref USH_DMA_memoryBurst */
+
+	USH_DMA_periphBurst PeriphBurst;			/* This parameter specifies the burst transfer configuration for
+	   	   	   	   	   	   	   	   	   	   	   	   the peripheral transfers. It specifies the amount of data to be
+	   	   	   	   	   	   	   	   	   	   	   	   transferred in a single non interruptible transaction.
+	   	   	   	   	   	   	   	   	   	   	   	   This parameter can be a value of @ref USH_DMA_periphBurst */
+
+	USH_DMA_fifoMode FIFOMode;					/* This parameter specifies if the FIFO mode or Direct mode will be used
+											   	   for the selected stream. This parameter can be a value of @ref USH_DMA_fifoMode */
+
+	USH_DMA_fifoThresholdLevel FIFOThreshold;	/* This parameter specifies the FIFO threshold level.
+	 	 	 	 	 	 	 	 	 	 	   	   This parameter can be a value of @ref USH_DMA_fifoThresholdLevel */
+
+} USH_DMA_initTypeDef;
+
 #endif /* __USH_STM32F4XX_DMA_H */
