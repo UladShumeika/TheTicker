@@ -17,6 +17,11 @@
 #include "ush_stm32f4xx_dma.h"
 
 //---------------------------------------------------------------------------
+// Private variables
+//---------------------------------------------------------------------------
+static const uint8_t flagBitshiftOffset[8U] = {0U, 6U, 16U, 22U, 0U, 6U, 16U, 22U};
+
+//---------------------------------------------------------------------------
 // Initialization functions
 //---------------------------------------------------------------------------
 
@@ -112,3 +117,32 @@ void DMA_state(DMA_Stream_TypeDef *DMAy_Streamx, FunctionalState state)
 		DMAy_Streamx->CR &= ~DMA_SxCR_EN;
 	}
 }
+
+/**
+ * @brief 	This function clears DMA flags.
+ * @param 	DMAy_Streamx - A pointer to Stream peripheral to be used where y is 1 or 2 and x is from 0 to 7.
+ * @param 	flags - DMA flags. This parameter can be a value of @ref USH_DMA_flags.
+ * @retval	None.
+ */
+void DMA_clearFlags(DMA_Stream_TypeDef *DMAy_Streamx, USH_DMA_flags flags)
+{
+	// Check parameters
+	assert_param(IS_DMA_STREAM_ALL_INSTANCE(DMAy_Streamx));
+	assert_param(IS_DMA_INTERRUPT_FLAGS(flags));
+
+	DMA_TypeDef* DMAy;
+
+	uint32_t streamNumber = ((uint32_t)DMAy_Streamx & 0xFFU) / 0x18U;	// 0xFF is a mask. 0x18 is a step between stream registers.
+																		// For a better understanding of magic numbers. See the reference manual.
+	DMAy = (DMAy_Streamx < DMA2_Stream0) ? DMA1 : DMA2;
+
+	if(streamNumber < 4U)	// Stream 0-3 is LIFCR and stream 4-6 is HIFCR
+	{
+		DMAy->LIFCR = flags << flagBitshiftOffset[streamNumber];
+	} else
+	{
+		DMAy->HIFCR = flags << flagBitshiftOffset[streamNumber];
+}
+
+	}
+
