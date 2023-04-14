@@ -52,6 +52,27 @@ typedef enum
 	FLASH_LATENCY_15,		/* Flash fifteen latency cycle */
 } USH_FLASH_latency;
 
+/**
+ * @brief Preemption priority group enumeration
+ */
+typedef enum
+{
+	NVIC_PRIORITYGROUP_0	= 0x00000007U,		/* 0 bits for pre-emption priority
+	 	 	 	 	 	 	 	 	 	 	 	   4 bits for subpriority */
+
+	NVIC_PRIORITYGROUP_1	= 0x00000006U,		/* 1 bits for pre-emption priority
+												   3 bits for subpriority */
+
+	NVIC_PRIORITYGROUP_2	= 0x00000005U,		/* 2 bits for pre-emption priority
+												   2 bits for subpriority */
+
+	NVIC_PRIORITYGROUP_3	= 0x00000004U,		/* 3 bits for pre-emption priority
+												   1 bits for subpriority */
+
+	NVIC_PRIORITYGROUP_4	= 0x00000003U,		/* 4 bits for pre-emption priority
+												   0 bits for subpriority */
+} USH_NVIC_priorityGroup;
+
 //---------------------------------------------------------------------------
 // Macros
 //---------------------------------------------------------------------------
@@ -60,6 +81,12 @@ typedef enum
 #define IS_MISC_NVIC_SUB_PRIORITY(PRIORITY)  			((PRIORITY) < 16U)
 
 #define IS_MISC_NVIC_DEVICE_IRQ(IRQ)                	((IRQ) >= (IRQn_Type)0x00U)
+
+#define IS_MISC_NVIC_PRIORITY_GROUP(GROUP) 			   (((GROUP) == NVIC_PRIORITYGROUP_0) || \
+                                       	   	   	 	 	((GROUP) == NVIC_PRIORITYGROUP_1) || \
+												 	 	((GROUP) == NVIC_PRIORITYGROUP_2) || \
+												 	 	((GROUP) == NVIC_PRIORITYGROUP_3) || \
+												 	 	((GROUP) == NVIC_PRIORITYGROUP_4))
 
 #define IS_MISC_FLASH_LATENCY(LATENCY)					(((LATENCY) == FLASH_LATENCY_0) || \
 														 ((LATENCY) == FLASH_LATENCY_1) || \
@@ -99,6 +126,16 @@ void MISC_timeoutTimerIncTick(void);
  * @retval	None.
  */
 uint32_t MISC_timeoutGetTick(void);
+
+/**
+  * @brief  This function sets the priority grouping field (preemption priority and subpriority)
+  *         using the required unlock sequence.
+  * @param  priorityGroup - The priority grouping bits length.
+  * @note   When the NVIC_PriorityGroup_0 is selected, IRQ preemption is no more possible.
+  *         The pending IRQ priority will be managed only by the subpriority.
+  * @retval None.
+  */
+void MISC_NVIC_setPriorityGrouping(USH_NVIC_priorityGroup priorityGroup);
 
 /**
   * @brief  This function sets the priority of an interrupt.
