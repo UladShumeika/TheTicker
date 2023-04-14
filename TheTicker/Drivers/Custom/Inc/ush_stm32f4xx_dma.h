@@ -87,4 +87,15 @@ typedef enum
 	DMA_MEMORY_SIZE_WORD		= DMA_SxCR_MSIZE_1		/* Memory data alignment: Word	*/
 } USH_DMA_memoryDataSize;
 
+/**
+ * @brief DMA mode enumeration
+ */
+typedef enum
+{
+	DMA_NORMAL_MODE			= 0x00UL,			/* Normal mode */
+	DMA_CIRCULAR_MODE		= DMA_SxCR_CIRC,	/* Circular mode */
+	DMA_DOUBLE_BUFFERING	= DMA_SxCR_DBM,  	/* Double buffering mode */
+	DMA_PERIPH_CTRL_MODE	= DMA_SxCR_PFCTRL	/* Peripheral control mode */
+} USH_DMA_mode;
+
 #endif /* __USH_STM32F4XX_DMA_H */
