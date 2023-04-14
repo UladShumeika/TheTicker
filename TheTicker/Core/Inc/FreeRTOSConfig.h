@@ -28,7 +28,7 @@
 #define configIDLE_SHOULD_YIELD                 		1
 #define configUSE_TASK_NOTIFICATIONS            		1
 #define configTASK_NOTIFICATION_ARRAY_ENTRIES  			1
-#define configUSE_MUTEXES                        		0
+#define configUSE_MUTEXES                        		1
 #define configUSE_RECURSIVE_MUTEXES						0
 #define configUSE_COUNTING_SEMAPHORES          			0
 #define configQUEUE_REGISTRY_SIZE                		10
@@ -60,8 +60,12 @@
 #define configUSE_SB_COMPLETED_CALLBACK         		0
 
 // Run time and task stats gathering related definitions
+#ifdef DEBUG
+    #define configRECORD_STACK_HIGH_ADDRESS				1
+  	#define configUSE_TRACE_FACILITY                	1
+#endif
+
 #define configGENERATE_RUN_TIME_STATS          			0
-#define configUSE_TRACE_FACILITY                		0
 #define configUSE_STATS_FORMATTING_FUNCTIONS    		0
 
 // Co-routine related definitions
